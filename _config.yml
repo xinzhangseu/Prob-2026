@@ -7,7 +7,7 @@ description: |
     大数定律与中心极限定理等主题。
 baseurl: "/Prob-2026" # GitHub Pages 项目站点的仓库子路径
 url: "https://xinzhangseu.github.io" # the base hostname & protocol for your site
-syllabus: "https://xinzhangseu.github.io/Prob-2026/syllabus/syllabus.pdf"
+syllabus: "/syllabus/" # 网页版教学大纲；原 PDF 保留在 syllabus/syllabus.pdf
 githubdir: "xinzhangseu/Prob-2026"
 
 # Author/user information

@@ -1,4 +1,206 @@
-- title: "Sample .Rmd File"
-  filename: Untitled
-  dirname: untitled-lecture
-  tldr: "This is just a sample .rmd file to illustrate the use of the lectures.yml file."
+- number: 1
+  title: "概率论简介"
+  dirname: Lectures
+  filename: L01
+  handout: L01.pdf
+  slides: L01-S.pdf
+  source: L01.tex
+  tldr: "课程说明、概率论的研究对象、学习意义与发展简史。"
+
+- number: 2
+  title: "事件及其运算关系"
+  dirname: Lectures
+  filename: L02
+  handout: L02.pdf
+  slides: L02-S.pdf
+  source: L02.tex
+  tldr: "样本空间、随机事件、事件运算以及事件列的上下极限。"
+
+- number: 3
+  title: "古典概型与几何概型"
+  dirname: Lectures
+  filename: L03
+  handout: L03.pdf
+  slides: L03-S.pdf
+  source: L03.tex
+  tldr: "古典概型、排列组合计数方法与几何概型。"
+
+- number: 4
+  title: "黎曼积分、Lebesgue 积分、测度与概率"
+  dirname: Lectures
+  filename: L04
+  handout: L04.pdf
+  slides: L04-S.pdf
+  source: L04.tex
+  tldr: "从黎曼积分与 Lebesgue 积分出发，介绍测度、可测空间和概率。"
+
+- number: 5
+  title: "测度与概率及其性质"
+  dirname: Lectures
+  filename: L05
+  handout: L05.pdf
+  slides: L05-S.pdf
+  source: L05.tex
+  tldr: "测度与概率的定义、基本性质以及概率空间。"
+
+- number: 6
+  title: "条件概率、全概率公式与贝叶斯公式"
+  dirname: Lectures
+  filename: L06
+  handout: L06.pdf
+  slides: L06-S.pdf
+  source: L06.tex
+  tldr: "条件概率的定义与直观解释，以及全概率公式和贝叶斯公式。"
+
+- number: 7
+  title: "条件概率、全概率与贝叶斯公式的应用"
+  dirname: Lectures
+  filename: L07
+  handout: L07.pdf
+  slides: L07-S.pdf
+  source: L07.tex
+  tldr: "条件概率、全概率公式、贝叶斯公式及递推方法的典型应用。"
+
+- number: 8
+  title: "事件的独立性"
+  dirname: Lectures
+  filename: L08
+  handout: L08.pdf
+  slides: L08-S.pdf
+  source: L08.tex
+  tldr: "事件独立性的定义、性质以及独立随机试验。"
+
+- number: 9
+  title: "随机变量定义及相关性质"
+  dirname: Lectures
+  filename: L09
+  handout: L09.pdf
+  slides: L09-S.pdf
+  source: L09.tex
+  tldr: "随机变量的定义、基本性质以及随机向量。"
+
+- number: 10
+  title: "随机变量的分布与性质"
+  dirname: Lectures
+  filename: L10
+  handout: L10.pdf
+  slides: L10-S.pdf
+  source: L10.tex
+  tldr: "随机变量的分布、主要分布类型及随机变量的存在性。"
+
+- number: 11
+  title: "常见的离散型随机变量"
+  dirname: Lectures
+  filename: L11
+  handout: L11.pdf
+  slides: L11-S.pdf
+  source: L11.tex
+  tldr: "伯努利试验、二项分布、泊松分布与超几何分布。"
+
+- number: 12
+  title: "常见的连续型分布"
+  dirname: Lectures
+  filename: L12
+  handout: L12.pdf
+  slides: L12-S.pdf
+  source: L12.tex
+  tldr: "均匀分布、指数分布、正态分布等常见连续型分布。"
+
+- number: 13
+  title: "多维概率分布"
+  dirname: Lectures
+  filename: L13
+  handout: L13.pdf
+  slides: L13-S.pdf
+  source: L13.tex
+  tldr: "多维随机变量、联合分布、边缘分布及常见多维分布。"
+
+- number: 14
+  title: "条件分布与随机变量的独立性"
+  dirname: Lectures
+  filename: L14
+  handout: L14.pdf
+  slides: L14-S.pdf
+  source: L14.tex
+  tldr: "条件分布的计算与随机变量独立性的判定。"
+
+- number: 15
+  title: "随机变量函数的分布"
+  dirname: Lectures
+  filename: L15
+  handout: L15.pdf
+  slides: L15-S.pdf
+  source: L15.tex
+  tldr: "一维与多维随机变量函数的分布及其计算方法。"
+
+- number: 16
+  title: "数学期望"
+  dirname: Lectures
+  filename: L16
+  handout: L16.pdf
+  slides: L16-S.pdf
+  source: L16.tex
+  tldr: "数学期望的定义、计算方法与基本性质。"
+
+- number: 17
+  title: "数学期望（续）与方差"
+  dirname: Lectures
+  filename: L17
+  handout: L17.pdf
+  slides: L17-S.pdf
+  source: L17.tex
+  tldr: "数学期望的进一步性质、方差以及常见分布的期望和方差。"
+
+- number: 18
+  title: "协方差与相关系数"
+  dirname: Lectures
+  filename: L18
+  handout: L18.pdf
+  slides: L18-S.pdf
+  source: L18.tex
+  tldr: "协方差、相关系数及其性质与解释。"
+
+- number: 19
+  title: "条件数学期望与母函数"
+  dirname: Lectures
+  filename: L19
+  handout: L19.pdf
+  slides: L19-S.pdf
+  source: L19.tex
+  tldr: "条件数学期望的定义与性质，以及概率母函数。"
+
+- number: 20
+  title: "特征函数"
+  dirname: Lectures
+  filename: L20
+  handout: L20.pdf
+  slides: L20-S.pdf
+  source: L20.tex
+  tldr: "特征函数的定义、性质及其在分布研究中的应用。"
+
+- number: 21
+  title: "随机变量的收敛性"
+  dirname: Lectures
+  filename: L21
+  handout: L21.pdf
+  slides: L21-S.pdf
+  source: L21.tex
+  tldr: "依概率收敛、几乎处处收敛、依分布收敛及其关系。"
+
+- number: 22
+  title: "大数定律"
+  dirname: Lectures
+  filename: L22
+  handout: L22.pdf
+  slides: L22-S.pdf
+  source: L22.tex
+  tldr: "大数定律的主要形式、成立条件及概率意义。"
+
+- number: 23
+  title: "中心极限定理"
+  dirname: Lectures
+  filename: L23
+  handout: L23.pdf
+  slides: L23-S.pdf
+  source: L23.tex
+  tldr: "中心极限定理及其对随机变量和的正态近似。"
