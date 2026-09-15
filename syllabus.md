@@ -9,7 +9,7 @@ permalink: /syllabus/
   <div><span>开课学期</span><strong>2026 年秋季学期</strong></div>
   <div><span>授课教师</span><strong>张鑫 · 东南大学数学学院</strong></div>
   <div><span>课程编号</span><strong>B0700082 / B0700083</strong></div>
-  <div><span>上课时间</span><strong>荣誉：周二（3–4）、周四（6–7）<br>普通：周二（1–2）、周四（8–9）</strong></div>
+  <div><span>上课时间</span><strong>周二、周四</strong></div>
   <div><span>上课地点</span><strong>九龙湖校区 J2-109</strong></div>
   <div><span>答疑时间</span><strong>每周二 12:00–13:30</strong></div>
   <div><span>办公室</span><strong>新文科楼 528-4</strong></div>
