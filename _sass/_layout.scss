@@ -316,6 +316,8 @@ ul.listing li.listing-item a {
     grid-area: actions;
     display: flex;
     align-items: center;
+    align-self: center;
+    justify-self: end;
     gap: 10px;
 }
 
@@ -368,6 +370,7 @@ ul.listing li.listing-item a {
 
     .lecture-card__actions {
         justify-content: flex-end;
+        justify-self: stretch;
         margin-top: 7px;
     }
 }
