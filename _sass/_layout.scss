@@ -252,6 +252,44 @@ ul.listing li.listing-item a {
 
 /*------ syllabus tables ------ */
 
+.course-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin: 4px 0 32px;
+    overflow: hidden;
+    border: 1px solid #ded8e5;
+    border-radius: 7px;
+    background: #fff;
+    box-shadow: 0 3px 12px rgba(52, 35, 72, .06);
+}
+
+.course-facts > div {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 12px;
+    padding: 11px 16px;
+    border-bottom: 1px solid #e8e3ed;
+}
+
+.course-facts > div:nth-child(odd) {
+    border-right: 1px solid #e8e3ed;
+}
+
+.course-facts > div:nth-last-child(-n+2) {
+    border-bottom: 0;
+}
+
+.course-facts span {
+    color: #6b6472;
+    font-weight: 600;
+}
+
+.course-facts strong {
+    color: #342348;
+    font-weight: 500;
+}
+
 .syllabus-table-wrap {
     width: 100%;
     margin: 20px 0 32px;
@@ -331,23 +369,41 @@ ul.listing li.listing-item a {
 
 .schedule-table-wrap th:nth-child(1),
 .schedule-table-wrap td:nth-child(1) {
-    width: 9%;
+    width: 10%;
     text-align: center;
 }
 
 .schedule-table-wrap th:nth-child(2),
 .schedule-table-wrap td:nth-child(2) {
-    width: 34%;
+    width: 10%;
+    text-align: center;
 }
 
 .schedule-table-wrap th:nth-child(3),
 .schedule-table-wrap td:nth-child(3) {
-    width: 57%;
+    width: 40%;
+}
+
+.schedule-table-wrap th:nth-child(4),
+.schedule-table-wrap td:nth-child(4) {
+    width: 40%;
 }
 
 @include media-query($on-palm) {
+    .course-facts {
+        grid-template-columns: 1fr;
+    }
+
+    .course-facts > div:nth-child(odd) {
+        border-right: 0;
+    }
+
+    .course-facts > div:nth-last-child(2) {
+        border-bottom: 1px solid #e8e3ed;
+    }
+
     .syllabus-table-wrap table {
-        min-width: 680px;
+        min-width: 900px;
     }
 
     .syllabus-table-wrap th,
