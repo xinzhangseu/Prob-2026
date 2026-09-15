@@ -111,6 +111,12 @@
     text-align: left;
 }
 
+.footer-col-3 .social-media-list {
+    width: max-content;
+    max-width: 100%;
+    margin-left: auto;
+}
+
 @include media-query($on-laptop) {
     .footer-col-wrapper {
         gap: $spacing-unit / 2;
