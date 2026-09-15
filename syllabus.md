@@ -25,13 +25,20 @@ permalink: /syllabus/
 
 ## 成绩构成
 
-| 项目 | 比例 | 说明 |
-| --- | ---: | --- |
-| 考勤 | 15% | 不定时随机点名；三次缺勤则此项成绩为零。若期末考试成绩高于 95 分，可用期末成绩替代考勤成绩。 |
-| 平时成绩 | 20% | 包括平时作业、大作业和讨论报告等。 |
-| 开卷测验 | 15% | 课程阶段性测验。 |
-| 期末考试 | 50% | 综合考查课程主要内容。 |
-| 课堂及平时表现 | 最多加 5 分 | 用于奖励积极参与课堂讨论与其他优秀表现。 |
+<div class="syllabus-table-wrap grading-table-wrap">
+<table>
+  <thead>
+    <tr><th>项目</th><th>比例</th><th>说明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>考勤</td><td>15%</td><td>不定时随机点名；三次缺勤则此项成绩为零。若期末考试成绩高于 95 分，可用期末成绩替代考勤成绩。</td></tr>
+    <tr><td>平时成绩</td><td>20%</td><td>包括平时作业、大作业和讨论报告等。</td></tr>
+    <tr><td>开卷测验</td><td>15%</td><td>课程阶段性测验。</td></tr>
+    <tr><td>期末考试</td><td>50%</td><td>综合考查课程主要内容。</td></tr>
+    <tr><td>课堂及平时表现</td><td>最多加 5 分</td><td>用于奖励积极参与课堂讨论与其他优秀表现。</td></tr>
+  </tbody>
+</table>
+</div>
 
 ## 作业要求
 
@@ -50,10 +57,13 @@ permalink: /syllabus/
 
 实际进度可根据教学安排适当调整。每讲的 Handout 和课堂 Slide 可在[课程讲义]({{ '/lectures/' | relative_url }})页面下载。
 
+<div class="syllabus-table-wrap schedule-table-wrap" markdown="1">
+
 | 讲次 | 主题 | 主要内容 |
-| ---: | --- | --- |
+| :---: | --- | --- |
 {% for lecture in site.data.lectures %}| {{ lecture.number }} | {{ lecture.title }} | {{ lecture.tldr }} |
 {% endfor %}
+</div>
 
 ## 参考书目
 

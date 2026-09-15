@@ -250,6 +250,105 @@ ul.listing li.listing-item a {
 
 /*------ archive type stuff ------ */
 
+/*------ syllabus tables ------ */
+
+.syllabus-table-wrap {
+    width: 100%;
+    margin: 20px 0 32px;
+    overflow-x: auto;
+    border: 1px solid #ded8e5;
+    border-radius: 7px;
+    box-shadow: 0 3px 12px rgba(52, 35, 72, .06);
+}
+
+.syllabus-table-wrap table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: #3f4752;
+    font-size: .94em;
+    line-height: 1.6;
+}
+
+.syllabus-table-wrap th,
+.syllabus-table-wrap td {
+    padding: 12px 18px;
+    border-right: 1px solid #e8e3ed;
+    border-bottom: 1px solid #e8e3ed;
+    vertical-align: top;
+    text-align: left;
+}
+
+.syllabus-table-wrap th:last-child,
+.syllabus-table-wrap td:last-child {
+    border-right: 0;
+}
+
+.syllabus-table-wrap tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.syllabus-table-wrap thead th {
+    background: #eee8f4;
+    color: #342348;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.syllabus-table-wrap tbody tr:nth-child(even) {
+    background: #faf8fc;
+}
+
+.syllabus-table-wrap tbody tr:hover {
+    background: #f5f0f9;
+}
+
+.grading-table-wrap th:nth-child(1),
+.grading-table-wrap td:nth-child(1) {
+    width: 19%;
+    font-weight: 600;
+}
+
+.grading-table-wrap th:nth-child(2),
+.grading-table-wrap td:nth-child(2) {
+    width: 15%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.grading-table-wrap th:nth-child(3),
+.grading-table-wrap td:nth-child(3) {
+    width: 66%;
+}
+
+.schedule-table-wrap th:nth-child(1),
+.schedule-table-wrap td:nth-child(1) {
+    width: 9%;
+    text-align: center;
+}
+
+.schedule-table-wrap th:nth-child(2),
+.schedule-table-wrap td:nth-child(2) {
+    width: 34%;
+}
+
+.schedule-table-wrap th:nth-child(3),
+.schedule-table-wrap td:nth-child(3) {
+    width: 57%;
+}
+
+@include media-query($on-palm) {
+    .syllabus-table-wrap table {
+        min-width: 680px;
+    }
+
+    .syllabus-table-wrap th,
+    .syllabus-table-wrap td {
+        padding: 10px 13px;
+    }
+}
+
 /*------ probability course lecture cards ------ */
 
 .lectures-intro {
