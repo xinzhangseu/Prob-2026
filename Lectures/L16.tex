@@ -1,0 +1,284 @@
+% 取消下一行注释可生成 handout（无逐步显示）；保持注释则生成正常 slide。
+% \PassOptionsToClass{handout}{beamer}
+\documentclass[Main-Prob-All.tex]{subfiles}
+\begin{document}
+
+\title[概率论]{第十六讲：数学期望}
+%\author[张鑫 {\rm Email: xzhangseu@seu.edu.cn} ]{\large 张 鑫}
+\institute[东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
+	\large 东南大学 \quad 数学学院 \\
+	\vspace{0.3cm}
+	%\trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+		%	\hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
+}
+\date{}
+
+
+
+
+
+
+
+
+% \begin{CJK*}{GBK}{song}
+
+%   \title{简单随机抽样}
+%   \author{林语堂}
+%   \institute{University}
+%   \date{2009-03-31}
+%   \date{}
+%   \begin{frame}
+%     \titlepage
+%   \end{frame}
+
+%   \begin{frame}
+%     \frametitle{第二章：简单随机抽样}
+%     \tableofcontents
+%   %     You might wish to add the option[pausesections]
+%   \end{frame}
+
+%   \AtBeginSubsection[]{
+%   \begin{frame}<beamer>
+%     \frametitle{Outline}
+%     \tableofcontents[currentsection,currentsubsection]
+%   \end{frame}
+% }
+%   定义目录页
+
+
+{ \setbeamertemplate{footline}{}
+  \begin{frame}
+    \titlepage
+  \end{frame}
+}
+
+
+
+\section{随机变量的数字特征与特征函数}
+\subsection{数学期望}
+\begin{frame}
+	\frametitle{平均值与加权平均值}
+	有甲乙两名射手，其射击技术可用下表表出 \begin{table}
+		甲射手 \qquad \qquad\qquad \qquad \qquad \qquad 乙射手 \\
+		\vspace{0.4cm}
+		\rowcolors[]{1}{blue!20}{blue!10}
+		\begin{tabular}{c|c|c|c}
+			\hline
+			\rowcolor{blue!50}
+			击中环数  &$8$ & $9$&$10$\\
+			\hline
+			概 \quad 率 & 0.3 & 0.1  & 0.6 \\
+			\hline
+		\end{tabular}
+		\begin{tabular}{c|c|c|c}
+			\hline
+			\rowcolor{blue!50}
+			击中环数  &$8$ & $9$&$10$\\
+			\hline
+			概 \quad 率 & 0.2 & 0.5  & 0.3 \\
+			\hline
+		\end{tabular}
+	\end{table}
+	试问哪一个射手技术较好？
+
+	\pause
+	\begin{itemize}[<+-|alert@+>]
+		\item 显然这个问题的答案不是一眼就可以看出来的；
+		\item 这也表明分布列虽然完整的描述了随机变量，但却不够集中的反应其变化情况；
+		\item 有必要找一些量来更集中，更概括的描述随机变量；
+		\item 所要找的量多是某种平均值.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{平均值与加权平均值}
+	\begin{itemize}[<+-|alert@+>]
+		\item 最常见的平均值求法:$\bar{x}=\dfrac{x_1+x_2+\cdots+x_n}{n}$;
+		\item 没有考虑每个数据相对重要性，比如一小学生考试成绩为：语文 95 分，数学 85 分，常识 60 分，若按上述计算其平均成绩为 $\bar{x}=80$;
+		\item 上述计算没有考虑到三个科目的相对重要性，不太能反映学生的真正成绩：如果在这个年级中，每周有语文 10 节课，数学 8 节课，常识 2 节课，则利用下述的平均计算其平均成绩似科更合理一些:
+		\begin{eqnarray*}
+			\bar{x}_w=95*\dfrac{10}{20}+85*\dfrac{8}{20}+60*\dfrac{2}{20}=87.5
+		\end{eqnarray*}
+		\item 加权平均：给定权 $w_i$ 满足 $\sum_{i=1}^nw_i=1$, 则
+		\begin{eqnarray*}
+			\bar{x}_w=\sum_{i=1}^nw_ix_i
+		\end{eqnarray*}
+		称为加权平均值.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	有甲乙两名射手，其射击技术可用下表表出 \begin{table}
+		甲射手 \qquad \qquad\qquad \qquad \qquad \qquad 乙射手 \\
+		\vspace{0.4cm}
+		\rowcolors[]{1}{blue!20}{blue!10}
+		\begin{tabular}{c|c|c|c}
+			\hline
+			\rowcolor{blue!50}
+			击中环数  &$8$ & $9$&$10$\\
+			\hline
+			概 \quad 率 & 0.3 & 0.1  & 0.6 \\
+			\hline
+		\end{tabular}
+		\begin{tabular}{c|c|c|c}
+			\hline
+			\rowcolor{blue!50}
+			击中环数  &$8$ & $9$&$10$\\
+			\hline
+			概 \quad 率 & 0.2 & 0.5  & 0.3 \\
+			\hline
+		\end{tabular}
+	\end{table}
+	\pause 考虑以概率为权重的加权平均:
+	\begin{eqnarray*}
+		\bar{x}_{\mbox{甲}}=8*0.3+9*0.1+10*0.6=9.3\\
+		\pause \bar{x}_{\mbox{乙}}=8*0.2+9*0.5+10*0.3=9.1
+	\end{eqnarray*}
+	\pause 则平均起来，甲每枪射中 9.3 环，乙每枪射中 9.1 环，故甲的技术更好一些.
+\end{frame}
+
+
+
+
+
+\begin{frame}
+	\frametitle{数学期望的定义}
+	\begin{defi}
+		设离散型随机变量的分布列为 \begin{eqnarray*}
+			\left(\begin{array}{ccccc}
+				x_1,&x_2, &\cdots, &x_k, &\cdots\\
+				p_1,&p_2, &\cdots, &p_k, &\cdots
+			\end{array}\right)
+		\end{eqnarray*}
+		如果
+		\begin{eqnarray*}
+			\sum_{i=1}^\infty|x_i|p_i<\infty
+		\end{eqnarray*}
+		则称
+		\begin{eqnarray*}
+			E(X)=\sum_{i=1}^\infty x_iP(X=x_i)=\sum_{i=1}^\infty x_ip_i
+		\end{eqnarray*}
+		为随机变量 $X$ 的数学期望，或称该分布的数学期望，简称期望或均值。若级数 $\sum_{i=1}^\infty|x_i|p_i$ 不收敛，则称 $X$ 的期望不存在.
+	\end{defi}
+\end{frame}
+\begin{frame}
+	\frametitle{从离散到连续}
+	\begin{itemize}[<+-|alert@+>]
+		\item 假设连续型随机变量 $X$ 的分布密度为 $p (x)$;
+		\item 考虑随机变量 $X$ 的如下近似：记 $A_i:=\{\omega:X (\omega)\in (x_i, x_{i+1}]\}$
+		\begin{eqnarray*}
+			\tilde{X}:=\sum_{i}x_iI_{A_i}(\omega)
+		\end{eqnarray*} 其中 $I_{A_i}(\omega)=\left\{
+		\begin{array}{ll}
+			1,& \omega\in A_i\\
+			0,& \omega\notin A_i
+		\end{array}\right.
+		$.
+
+		显然 $\tilde{X}$ 为离散型随机变量，且
+		\[P(\tilde{X}=x_i)=\int_{x_i}^{x_{i+1}}p(x)dx\approx p(x_i)(x_{i+1}-x_i);\]
+		\item 故 $\tilde{X}$ 的期望为
+		\begin{eqnarray*}
+			E(\tilde{X})\approx \sum_i x_ip(x_i)(x_{i+1}-x_i)\rightarrow \int xp(x)dx
+		\end{eqnarray*}
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{连续型随机变量数学期望的定义}
+	\begin{defi}
+		设连续随机变量 $X$ 的密度函数为 $p (x)$. 如果
+		\begin{eqnarray*}
+			\int_{-\infty}^{\infty}|x|p(x)dx<\infty,
+		\end{eqnarray*}
+		则称
+		\begin{eqnarray*}
+			E(X):=\int_{-\infty}^\infty xp(x)dx
+		\end{eqnarray*}
+		为随机变量 $X$ 的数学期望，简称期望或均值。若 $\int_{-\infty}^\infty|x|p (x) dx$ 不收敛，则称 $X$ 的期望不存在.
+	\end{defi}
+\end{frame}
+
+\begin{frame}
+	\frametitle{数学期望的一般情形}
+	\begin{itemize}[<+-|alert@+>]
+		\item 若随机变量 $X$ 的分布函数为 $F (x)$;
+		\item 类似于连续情形，考虑随机变量 $X$ 的如下近似:
+		\begin{eqnarray*}
+			\tilde{X}:=\sum_{i}x_iI_{A_i}(\omega)
+		\end{eqnarray*}
+		\vspace{-0.3cm} 其中 $A_i:=\{\omega:X (\omega)\in (x_i, x_{i+1}]\}, I_{A_i}(\omega)=\left\{
+		\begin{array}{ll}
+			1,& \omega\in A_i\\
+			0,& \omega\notin A_i
+		\end{array}\right.
+		$.
+
+		显然 $\tilde{X}$ 为离散型随机变量，且
+		\[P(\tilde{X}=x_i)=P(X\in (x_i,x_{i+1}])=F(x_{i+1})-F(x_i);\]
+		\item 故 $\tilde{X}$ 的期望为
+		\begin{eqnarray*}
+			E (\tilde{X})=\sum_i x_i\left[F (x_{i+1})-F (x_i)\right]\rightarrow \int xdF (x) \quad \textcolor{red}{\mbox{斯蒂尔切斯积分}}
+		\end{eqnarray*}
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{数学期望的一般定义}
+	\begin{defi}
+		假设随机变量 $X$ 的分布函数为 $F (x)$, 则定义
+		\begin{eqnarray*}
+			E(X)=\int_{-\infty}^{+\infty}xdF(x)
+		\end{eqnarray*}
+		为随机变量 $X$ 的数学期望。这里我们要求上述积分绝对收敛，否则称数学期望不存在.
+	\end{defi}
+
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{斯蒂尔切斯 (Stieltjes) 积分的性质}
+	\vspace{-0.6cm}
+	\begin{eqnarray*}
+		I=\int_{-\infty}^{+\infty}g(x)dF(x)
+	\end{eqnarray*}
+	\pause  \begin{itemize}[<+-|alert@+>]
+		\item 当 $F (x)$ 为右连续的阶梯函数，在 $x_i (i=1,2,\cdots,)$ 具有跃度 $p_i$ 时，上面的积分化为
+		\begin{eqnarray*}
+			I=\sum_{i}g(x_i)\bigg(F(x_i)-F(x_{i-1})\bigg)=\sum_i g(x_i)p_i
+		\end{eqnarray*}
+		\item 当 $F (x)$ 存在导数 $F'(x)=p (x)$ 时，上述积分化为普通积分
+		\begin{eqnarray*}
+			I=\int_{-\infty}^{+\infty}g(x)p(x)dx
+		\end{eqnarray*}
+		\item 线性性质
+		{\small\begin{eqnarray*}
+				\int_{-\infty}^{+\infty}(ag_1(x)+bg_2(x)dF(x)=a\int_{-\infty}^{+\infty}g_1(x)dF(x)+b\int_{-\infty}^{+\infty}g_2(x)dF(x)
+		\end{eqnarray*}}
+		\item 若 $g (x)\ge 0$, $F (x)$ 单调不减，$b>a$, 则 $\int_a^bg (x) dF (x)\ge 0$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{几点注记}
+	\begin{itemize}
+		\item   根据斯蒂尔切斯 (Stieltjes) 积分的定义可证:%在引入上述相关的积分后，
+		\begin{eqnarray*}
+			\int_{(a, b]}dF(y)&=&F(b)-F(a)\\
+			\int_{(-\infty, x]}dF(y)&=&\lim_{a\rightarrow-\infty}\int_{(a,x]}dF(y)=\lim_{a\rightarrow-\infty}[F(x)-F(a)]\\
+			&=&F(x)=P(X\le x)\\
+			\int_BdF(y)&=&P(X\in B)
+		\end{eqnarray*}
+
+		\item 数学期望的另一计算公式：关于概率测度的积分
+		{\small\begin{eqnarray*}
+				\textcolor{blue}{E (X)}&=& \pause \textcolor{blue}{\int_{-\infty}^\infty xdF (x)} \pause \quad \textcolor{red}{\mbox{ 注意到} F (x)=P (X (\omega)\le x):=P (X^{-1}(x))}\\
+				&\xlongequal[]{x=X(\omega)}&\pause \int_{\Omega}X(\omega)dP(X^{-1}(X(\omega)))=\pause \textcolor{blue}{\int_{\Omega}X(\omega)dP(\omega)}
+		\end{eqnarray*}}
+
+	\end{itemize}
+
+\end{frame}
+\end{document}

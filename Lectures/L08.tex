@@ -1,0 +1,474 @@
+% 取消下一行注释可生成 handout（无逐步显示）；保持注释则生成正常 slide。
+% \PassOptionsToClass{handout}{beamer}
+\documentclass[Main-Prob-All.tex]{subfiles}
+\begin{document}
+
+
+\title[概率论]{第八讲: 事件的独立性}
+%\author[张鑫 {\rm Email: xzhangseu@seu.edu.cn} ]{\large 张 鑫}
+\institute[东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
+	\large 东南大学\quad 数学学院\\
+	\vspace{0.3cm}
+	%\trc{ 公共邮箱: \textrm{zy.prob@qq.com}\\
+		% \hspace{-1.7cm}  密\qquad 码: \textrm{seu!prob}}
+}
+\date{}
+
+{\setbeamertemplate{footline}{}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+}
+\subsection{事件的独立性}
+
+\begin{frame}
+  \frametitle{两个事件的独立性}
+  \begin{itemize}[<+-|alert@+>]
+  \item 直观上来说，两个事件的独立性是指：一个事件的发生不影响另一个事件的发生。比如在掷两颗骰子的实验中，第一颗骰子的点数和第二颗骰子的点数是互不影响的.
+  \item 从概率的角度看，$P (A|B)$ 与 $P (A)$ 的差别在于：事件 $B$ 的发生改变了事件 $A$ 发生的概率，也即事件 $B$ 对事件 $A$ 有某种影响。故如果 $A$ 与 $B$ 的发生是相互不影响的，则有 \pause
+    \begin{eqnarray*}
+      P(A|B)=P(A),\quad P(B|A)=P(B).
+    \end{eqnarray*}
+    \pause 上面两式均等价于
+    \begin{eqnarray}\label{eq:inden}
+      P(AB)=P(A)P(B)
+    \end{eqnarray}
+  \item 注意到 \eqref{eq:inden} 式对 $P (B)=0$ 或 $P (A)=0$ 仍然成立，为此，我们用 \eqref{eq:inden} 作为两个事件相互独立的定义.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{两个事件独立性的定义}
+  \begin{defi}
+    如果对事件 $A$ 与 $B$ 有
+    \begin{eqnarray*}
+      P(AB)=P(A)P(B)
+    \end{eqnarray*}
+    成立，则称 \textcolor{red}{事件 $A$ 与 $B$ 相互独立}, 简称 \textcolor{red}{$A$ 与 $B$ 独立}. 否则称 $A$ 与 $B$ 不独立或相依.
+  \end{defi}
+
+\begin{rmk}
+	\begin{itemize}
+		\item 零概率事件 $E$ 与任何事件相互独立，特别的，不可能事件与任何事件相互独立
+		\item 若$A, B$互不相容且独立, 则$A, B$至少有一个零概率事件
+        \item 非零概率不相容事件,一定不独立; 非零概率独立事件，一定相容
+        \item 若事件$A$与其自身相互独立,则$P(A)=0$, 或$P(A)=1$
+\end{itemize}
+
+
+\end{rmk}
+
+\pause
+  \textcolor{red}{如何确定事件的独立性: }
+  \begin{itemize}[<+-|alert@+>]
+  \item 实际问题中，两个事件的独立大多根据经验及相互有无影响的直观性来判断.
+  \item 但对于较复杂事件，有无相互影响并不是很直观，则需要验证 \eqref{eq:inden} 式是否成立来说明独立性.
+  \end{itemize}
+\end{frame}
+
+
+ \begin{frame}
+	\frametitle{对立事件的独立性}
+	\begin{thm}
+		若 $A$ 与 $B$ 独立，则 $A$ 与 $\overline{B}$ 独立，$\overline{A}$ 与 $B$ 独立，$\overline{A}$ 与 $\overline{B}$ 独立.
+	\end{thm}
+	\pause
+
+	\zheng 我们仅证 $P (A\overline{B})=P (A) P (\overline{B})$, 其余类似可证.
+	\begin{eqnarray*}
+		P(A\overline{B})&=&\pause P(A-B)=\pause P(A)-P(AB)\pause =P(A)-P(A)P(B)\\
+		&=&\pause P(A)(1-P(B))=\pause P(A)P(\overline{B})
+	\end{eqnarray*}
+
+	\pause
+	对于上面的定理直观上来理解也是很容易的：因 $A,B$ 独立，故 $A$ 的发生不影响 $B$ 的发生，从而也不会影响 $B$ 的不发生，$\cdots$
+\end{frame}
+
+
+\begin{frame}{概率测度与独立性的关系}
+  \begin{exam}
+    考虑掷硬币问题, 记正面向上对应的样本点为 "$H$", 反面向上为 "$T$", 那么连续掷三次的结果构成样本空间
+  \[
+  \Omega=\{H H H, H H T, H T H, H T T, T H H, T H T, T T H, T T T\},
+  \]
+    令事件$A$为 "最后一次是反面", $B$为 "三次结果相同", 则有
+  \[
+  A=\{H H T, H T T, T H T, T T T\},  B=\{H H H, T T T\}
+  \]试讨论 $A, B$的独立性.
+  \end{exam}
+\pause
+
+\jieda: 设每次抛掷反面向上的概率是$p$, 那么\pause
+\[
+P(A)=p^{3}+2 p^{2}(1-p)+p(1-p)^{2}, \pause  P(B)=p^{3}+(1-p)^{3},  P(A B)=p^{3},
+\]
+\pause
+不难验证, $p=0$、$p=1$和$p=\frac{1}{2}$时,$A$和$B$是独立的, 否则两者不独立.
+
+
+\end{frame}
+
+
+
+
+
+
+
+   \begin{frame}
+	\frametitle{三个事件的独立性}
+	\begin{defi}
+		设 $A,B,C$ 三个事件，如果有
+		\begin{eqnarray}\label{eq:inden1}
+			\left.\begin{array}{l}
+				P(AB)=P(A)P(B)\\
+				P(AC)=P(A)P(C) \\
+				P(BC)=P(B)P(C)
+			\end{array}\right\}\\
+			\label{eq:inden2}
+			P(ABC)=P(A)P(B)P(C)
+		\end{eqnarray}
+		则称 $A,B,C$ 相互独立。如果仅有 \eqref{eq:inden1} 式成立，则称 $A,B,C$ 两两独立.
+	\end{defi}
+\end{frame}
+
+\begin{frame}
+	\frametitle{两两独立与相互独立的关系}
+	\begin{itemize}[<+-|alert@+>]
+		\item 由定义可知，三个事件相互独立必能推出两两独立.
+		\item 但两两独立未必能推出相互独立，即 \eqref{eq:inden1} 式成立，不一定能推出 \eqref{eq:inden2} 成立
+		\begin{itemize}
+			\item 考虑独立投掷两枚均匀硬币的随机试验，设事件 $A$ 代表第一枚硬币正面朝上，事件 $B$ 代表第二枚硬币正面朝上，事件 $C$ 表示两枚硬币结果相同。易知: \pause
+			$A$ $B$ 和 $C$ 是两两独立，但
+			\begin{align*}
+				P(A\cap B\cap C)=1/4\neq 1/8=P(A)P(B)P(C).
+			\end{align*}
+			\item 考虑一个均匀的正四面体，第一二三面分别染上红 / 白 / 黑色，第四面同时染上红白黑色。现在以 $A,B,C$ 分别记投一次四面体出现红，白，黑色朝下的事件。则易有 \pause
+			\begin{eqnarray*}
+				P(A)=P(B)=P(C)=\pause 1/2\\ \pause
+				P(AB)=P(BC)=P(AC)=\pause 1/4\\ \pause
+				P(ABC)=\pause 1/4    \pause
+			\end{eqnarray*}
+		\end{itemize}\vspace{-0.7cm}
+	\end{itemize}
+\end{frame}
+
+		\begin{frame}
+			\frametitle{两两独立与相互独立的关系}
+			\begin{itemize}[<+-|alert@+>]
+		\item 反之，如果 \eqref{eq:inden2} 成立，是否能推出 \eqref{eq:inden1} 成立？
+		\begin{itemize}[<+-|alert@+>]
+			\item 考虑一个均匀的正八面体，第 1, 2, 3, 4 面染上红色，第 1, 2, 3, 5 面染上白色，第 1, 6, 7, 8 面染上黑色。现在以 $A,B,C$ 分别记投一次八面体出现红，白，黑色朝下的事件，则 \pause
+			\begin{eqnarray*}
+				P(A)=P(B)=P(C)=\pause 4/8=1/2\\ \pause
+				P(ABC)=\pause 1/8   \\ \pause
+				P(AB)=3/8\pause \neq 1/4=P(A)P(B)
+			\end{eqnarray*}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{三个以上事件的独立性}
+	\begin{defi}
+		设 $(\Omega,\mathcal{F}, P)$ 为一概率空间，$A_1,A_2,\cdots,A_n\in\mathcal{F}$, 对任意的 $1\le k\le n$ 及任意的 $1< j_1<j_2<\cdots<j_k\leq n$ 均有:
+		\begin{eqnarray}\label{eq:mulinden0}
+			P(A_{j_1}A_{j_2}\cdots A_{j_k})=P(A_{j_1})P(A_{j_2})\cdots P(A_{j_k})
+		\end{eqnarray}
+		成立，则称事件 $A_1,\cdots, A_n$ 相互独立.
+	\end{defi}
+	\pause
+	\begin{itemize}[<+-|alert@+>]
+		\item \eqref{eq:mulinden0} 式共有多少个等式？\pause
+		\begin{eqnarray}
+			\label{eq:mulinden}
+			\left.\begin{array}{l}
+				P(A_{j_1}A_{j_2})=P(A_{j_1})P(A_{j_2})\\
+				P(A_{j_1}A_{j_2}A_{j_3})=P(A_{j_1})P(A_{j_2})P(A_{j_3}) \\
+				\qquad \vdots\\
+				P(A_1A_2\cdots A_n)=P(A_1)P(A_2)\cdots P(A_n)
+			\end{array}\right\} \pause \textcolor{red}{C_n^2+\cdots+C_n^n=2^n-n-1}
+		\end{eqnarray}
+		\pause
+		\item 从定义可以看出，$n$ 个相互独立事件中的任取 $m$($2\le m\le n$) 个事件仍是相互独立的，而且任意一部分与另一部分也是独立的.
+		\item 类似于前面的证明，将相互独立事件中的任一部分换为对立事件，所得诸事件仍是相互独立的.
+	\end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{任意多个事件相互独立}
+	\begin{defi}
+		设 $(\Omega,\mathcal{F}, P)$ 为一概率空间，每个 $t\in T$ 有 $A_t\in \mathcal{F}$. 称 $\{A_t, t\in T\}$ 为独立事件族，如果对 $T$ 的任意有限子集 $\{t_1,t_2,\cdots, t_s\}$, 事件 $A_{t_1}, A_{t_2},$ $\cdots, A_{t_s}$ 相互独立.
+	\end{defi}
+
+
+	\vspace{0.8cm}
+	\pause
+	\begin{exam}
+		$\mathcal{F}$ 中事件序列 $\{A_n\}$ 为相互独立的充分必要条件是，任意 $n\geq 1$, 事件 $A_1,A_2, \cdots, A_n$ 独立；等价的，任意有限个自然数 $k_1,\cdots, k_s$ 有
+		\begin{eqnarray*}
+			P(A_{k_1}A_{k_2}\cdots A_{k_s})=P(A_{k_1})P(A_{k_2})\cdots P(A_{k_s})
+		\end{eqnarray*}
+
+	\end{exam}
+
+\end{frame}
+
+
+\begin{frame}{条件独立}
+\begin{defi}
+称事件 $A$ 和 $B$ 是关于 $E$ 条件独立的，如果 $$P (A\cap B|E)=P (A|E) P (B|E)$$
+\end{defi}
+\pause
+\begin{itemize}[<+-|alert@+>]
+\item 两个事件可以在给定事件 $E$ 的条件下是条件独立的，但它们不是独立的.
+\item 两个事件可以是独立但却不是关于 $E$ 条件独立的.
+\item 两个事件可以关于 $E$ 条件独立但关于 $\overline{E}$ 不存在条件独立.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{条件独立不意味着独立}
+\begin{exam}
+假设有两枚硬币，一枚是均匀的，一枚是不均匀的。从两枚硬币中随机的选一枚硬币并进行抛掷 2 次，若令
+\begin{align*}
+  F &:=\{\mbox{选取的硬币是均匀的}\}\\
+   A_{1}&:= \{\mbox{第一次投掷硬币正面朝上}\}\\
+   A_{2}&:= \{\mbox{第二次投掷硬币正面朝上}\}
+\end{align*}
+则给定 $F$ 为条件，$A_1$ 和 $A_2$, 是相互独立的，$A_1$ 和 $A_2$ 并不是无条件独立的，因为 $A_1$ 会提供关于 $A_2$ 的信息.
+\end{exam}
+\end{frame}
+
+\begin{frame}{独立不意味着条件独立}
+\begin{exam}
+假设只有我的朋友 Alice 和 Bob 给我打过电话。每天他俩都会相互独立地决定是否给我打电话。若令
+\begin{align*}
+	 A&:= \{\mbox{Alice 给我打电话}\}\\
+	 B&:= \{\mbox{Bob 给我打电话}\}\\
+     R&:=\{\mbox{听到电话铃响}\}
+  \end{align*}
+  \pause
+  \begin{itemize}[<+-|alert@+>]
+  \item 显然，$A$ 和 $B$ 是无条件独立的.
+  \item 但现在我听到一声电话铃响，那 $A$ 和 $B$ 就不再独立了：如果这个电话不是 Alice 打的，那就肯定是 Bob 打的。从而 \pause
+  $$P(B|R)<1=P(B|\overline{A}R)= \frac{P(B\overline{A}R)}{P(\overline{A}R)}= \frac{P(B\overline{A}|R)}{P(\overline{A}|R)}.$$
+  显然: $P (B\overline{A}|R)>P (B|R) P (\overline{A}|R)$
+  \item $B$ 与 $\overline{A}$ 关于 $R$ 不条件独立，$A,B$ 亦是如此.
+  \end{itemize}
+
+\end{exam}
+\end{frame}
+
+\begin{frame}{给定 $E$ 条件独立 $vs$ 给定 $\overline{E}$ 条件独立}
+\begin{exam}
+\label{27}
+假设有两种课程：好的课程和坏的课程。在好的课上，如果你努力，就很有可能得到 $A$. 在坏的课上，教授随机分配给学生分数，而不管他们是否努力。若令
+\begin{align*}
+	G&:= \{\mbox{这个课程是好的}\}\\
+	W&:= \{\mbox{你学习努力}\}\\
+	A&:=\{\mbox{你的得分为} A\}
+ \end{align*}
+ \pause 这时，给定 $\overline{G}$, $A$ 和 $W$ 是条件独立的，但给定 $G$, $A$ 和 $W$ 却不是独立的！
+
+\end{exam}
+\end{frame}
+
+\begin{frame}{集类(族)的独立性}
+\begin{defi}
+  \tc{(集类(族)的独立性)} 考虑样本空间$\Omega, \mathcal{A}_{k} \subset \Omega$, $k=1,\cdots, n$. 称集类(族)$\left\{\mathcal{A}_{k}\right\}_{k=1}^{n}$是相互独立的, 如果$\left\{\mathcal{A}_{k}\right\}_{k=1}^{n}$满足
+\[
+P\left(\bigcap_{k \in I} A_{k}\right)=\prod_{k \in I} P\left(A_{k}\right),  \forall A_{k} \in \mathcal{A}_{k},  \forall I \subset\{1,2, \cdots, n\}.
+\]
+\end{defi}
+\pause
+
+\begin{thm}
+  \tc{(\(\sigma\)-代数的独立性)} 设 \( \mathcal{F}_{1}, \cdots, \mathcal{F}_{n} \) 为\( \Omega \)上的 \( \sigma\)-代数, 若
+\[
+P\left(A_{1} A_{2} \cdots A_{n}\right)=P\left(A_{1}\right) P\left(A_{2}\right) \cdots P\left(A_{n}\right), \quad \forall A_{k} \in \mathcal{F}_{k}, k=1,2, \cdots, n
+\]
+
+则 \( \mathcal{F}_{1}, \mathcal{F}_{2}, \cdots, \mathcal{F}_{n} \) 是独立的.
+\end{thm}
+
+\pause
+
+\begin{exam}
+  \tc{(硬币实验的独立性)} 抛掷不均匀硬币的实验，正面(用 1 表示)向上的概率是 \( p \), 反面 (用 0 表示) 向上的概率是 \( q \). 假设连抛 \( n \) 次, 则样本空间 \( \Omega \) 为$\Omega=\left\{a_{1} a_{2} \cdots a_{n}: a_{k}=0,1\right\}$. \pause 考虑事件$A_{k}=\left\{a_{k}=1\right\}$, $k=1,\cdots, n$, 构造 \( \sigma\)-代数 \( \mathcal{F}_{k} \): \pause $\mathcal{F}_{k}=\left\{\Omega, \varnothing, A_{k}, A_{k}^{C}\right\}$.\pause  可以验证, 这些 \( \sigma\)-代数是独立的.
+\end{exam}
+
+
+\end{frame}
+
+\begin{frame}{独立的集类(族)生成的$\sigma$-代数未必独立}
+
+
+\begin{itemize}[<+-|alert@+>]
+  \item 考虑$\Omega=\{1,2,3,4\}$, 集类(族)$\mathcal{A}=\{\{1,2\},\{2,3\}\}$,$ \mathcal{B}=\{\{2,4\}\}$
+  \item 令$P(\{1\})=P(\{2\})=P(\{3\})=P(\{4\})=\dfrac{1}{4}$, 则
+  \[P(\{1,2\} \cap\{2,4\})=P(\{2\})=\frac{1}{4}=\frac{1}{2} \times \frac{1}{2}=P(\{1,2\}) P(\{2,4\}), \]
+  \[P(\{2,3\} \cap\{2,4\})=P(\{2\})=\frac{1}{4}=\frac{1}{2} \times \frac{1}{2}=P(\{2,3\}) P(\{2,4\})\]
+  \item 集类(族)$\mathcal{A}$和$\mathcal{B}$独立
+  \item 但由于
+  \[
+  \sigma(\mathcal{A})=2^{\Omega},  \sigma(\mathcal{B})=\{\{2,4\},\{1,3\}, \varnothing, \Omega\}
+  \]
+  且明显有
+  \[
+  P(\{2,4\} \cap\{3\})=0 \neq \frac{1}{8}=\frac{1}{2} \times \frac{1}{4}=P(\{2,4\}) P(\{3\})
+  \]
+  \item 故, $\sigma(\mathcal{A})$和$\sigma(\mathcal{B})$不独立.
+\end{itemize}
+
+
+
+
+\end{frame}
+
+\begin{frame}{独立的$\pi$-类(族)生成$\sigma$-代数独立}
+\begin{thm}
+如果$\mathcal{A}$和$\mathcal{B}$是独立的集类(族), $\mathcal{B}$是$\pi$-类, 那么$\mathcal{A}$和$\sigma(\mathcal{B})$也独立.
+\end{thm}
+\pause
+
+\zheng 应用单调类定理.
+\begin{itemize}[<+-|alert@+>]
+  \item 任意固定$A \in \mathcal{A}$, 令
+\[
+\mathscr{A}=\{B \in \sigma(\mathcal{B}): P(A B)=P(A) P(B)\}
+\]
+则$\mathscr{A}$是$\lambda$-类(系统)
+
+\item 由$\mathcal{B} \subset \mathscr{A}$及单调类定理可得: $\sigma(\mathcal{B}) \subset \mathscr{A}$.
+\item $\mathcal{A}$和$\sigma(\mathcal{B})$独立.
+
+
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Borel-Cantelli引理}
+  \begin{thm}
+    对于事件列$\{A_j\}$，有
+    \begin{itemize}[<+-|alert@+>]
+    \item 如果$\sum_{j=1}^\infty P(A_j)<\infty$，则$P(A_n\ i.o.)=0$
+    \item 如果$\{A_j\}$相互独立，$\sum_{j=1}^\infty P(A_j)=\infty$，则$P(A_n\ i.o.)=1$
+    \end{itemize}
+  \end{thm}\pause
+  \zheng 注意到
+  \begin{eqnarray*}
+    P(A_n\ i.o.)=\pause P(\lim_{n\rightarrow\infty} \cup_{j=n}^\infty A_j)=\pause \lim_{n\rightarrow\infty} P(\cup_{j=n}^\infty A_j)\le \pause \lim_{n\rightarrow\infty}\sum_{j=n}^\infty P(A_j)\pause =0
+  \end{eqnarray*}
+  \pause
+  由于\pause
+  \begin{eqnarray*}
+    P(\cup_{j=n}^\infty A_j)&=&\pause \lim_{m\rightarrow\infty}P(\cup_{j=n}^m A_j)=\pause \lim_{m\rightarrow\infty}(1-P(\cap_{j=n}^m\overline{A}_j))\\\pause
+    P(\cap_{j=n}^m\overline{A}_j)&=&\pause \Pi_{j=n}^m P(\overline{A}_j)=\Pi_{j=n}^m(1-P(A_j))\\
+                            &\le&\pause \Pi_{j=n}^m \exp(-P(A_j))=\exp(-\sum_{j=n}^m P(A_j))\pause \stackrel{m\rightarrow\infty}{\longrightarrow} 0
+  \end{eqnarray*}
+
+\end{frame}
+
+
+
+
+
+
+\subsection{随机试验的独立性}
+ \begin{frame}{随机试验的独立性}
+
+  \begin{itemize}[<+-|alert@+>]
+  \item 先考虑两个随机试验，假定 $(\Omega_i,\mathcal{F}_i,P_i), i=1,2$ 为第 $i$ 个随机试验对应的概率空间。按照之前独立性的理解，两个试验的独立性应当叙述为:\pause
+   \textcolor{red}{ \begin{eqnarray*}
+      &&\mbox{对任何的} A_i\in\mathcal{F}_i, i=1,2, A_1\mbox{与} A_2\mbox{同时}\\
+      &&\mbox{发生的概率等于它们各自概率之乘积}
+    \end{eqnarray*}}%
+\item 两个不妥:
+  \begin{itemize}[<+-|alert@+>]
+  \item ``$A_1$ 与 $A_2$ 同时发生" 应当是这两个事件的交，但它们分别是两个样本空间 $\Omega_1,\Omega_2$ 的子集，无法进行运算；
+  \item 两个概率空间有各自的概率 $P_1, P_2$, 但涉及两个度验，命题中 ``同时发生的概率" 既不能用 $P_1$ 也不能用 $P_2$ 来度量.
+  \end{itemize}
+\item 解决方法：构造可以同时描述两个试验的新概率空间 $(\Omega,\mathcal{F},P)$.
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{乘积空间的构造}
+  \begin{itemize}[<+-|alert@+>]
+  \item 样本乘积空间: $\Omega:=\Omega_1\times \Omega_2=\{(\omega_1,\omega_2):\omega_1\in\Omega_1\mbox{且}\omega_2\in \Omega_2\}$;
+  \item 乘积 $\sigma$- 代数 $\mathcal{F}_1\times\mathcal{F}_2$:
+    \begin{itemize}[<+-|alert@+>]
+    \item 可测矩形集类: $\mathcal{G}:=\{A_1\times A_2: A_1\in\mathcal{F}_1, A_2\in \mathcal{F}_2\}$;
+    \item $\mathcal{F}_1\times \mathcal{F}_2:=\sigma(\mathcal{G})$
+    \end{itemize}
+  \item 乘积概率测度:
+    \begin{itemize}[<+-|alert@+>]
+    \item 对于每个可测矩形 $A_1\times A_2\in \mathcal{G}$ 定义如下集函数:
+      \begin{eqnarray}\label{eq:timeprob}
+        P(A_1\times A_2)=P_1(A_1)P_2(A_2), \quad A_i\in\mathcal{F}_i, i=1,2.
+      \end{eqnarray}
+    \item 理论上可以证明如上定义在 $\mathcal{G}$ 上的集函数 $P$ 可唯一地扩张为 $\mathcal{F}_1\times\mathcal{F}_2$ 上的概率测度，称之为 $P_1$ 与 $P_2$ 的乘积 (概率) 测度.
+    \end{itemize}
+  \item 在上述乘积测度下
+    \begin{eqnarray*}
+      &&P(A_1\times \Omega_2)=P_1(A_1), \quad P(\Omega_1\times A_2)=P_2(A_2)\\\pause
+      &&\pause P\big((A_1\times \Omega_2)\cap (\Omega_1\times A_2)\big)=\pause P(A_1\times A_2)\\
+      &&\pause = P_1(A_1)P_2(A_2)=\pause P(A_1\times\Omega_1)P(\Omega_1\times A_2)
+    \end{eqnarray*}
+  \item $(\Omega_i,\mathcal{F}_i,P_i)$ 的独立性取决于乘积样本空间 $\Omega_1\times\Omega_2$ 上的概率是否取作由 (\ref{eq:timeprob}) 所确定的乘积测度
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{$n$ 个试验相互独立的定义}
+  \begin{defi}
+    设有 $n$ 个随机试验，第 $i$ 个试验的概率空间为 $(\Omega_i,\mathcal{F}_i,P_i),$ $ i=1,\cdots,n$. 代表这 $n$ 个试验的乘积样本空间 $\Omega=\Omega_1\times \cdots \times \Omega_n$, $\mathcal{F}=\mathcal{F}_1\times \cdots\times \mathcal{F}_n=\sigma (\mathcal{G})$, 其中 $\mathcal{G}$ 为形如 $B_1\times\cdots\times B_n (B_i\in\mathcal{F}_i)$ 的可测矩形的全体。如果 $(\Omega,\mathcal{F})$ 上的概率测度 $P$ 是 $P_1,\cdots, P_n$ 的乘积测度，即对任何 $B_1\times\cdots\times B_n\in \mathcal{G}$ 满足
+    \begin{eqnarray*}
+      P(B_1\times\cdots\times B_n)=P_1(B_1)\cdots P(B_n),
+    \end{eqnarray*}
+    则称这 $n$ 个度验独立. \pause 如果现设 $$\Omega_i\equiv \Omega_0, \mathcal{F}_i\equiv \mathcal{F}_0, P_i\equiv P_0, i=1,\cdots,n, $$ 即 $n$ 个试验有相同的概率空间，则称它们为 $n$ 个 (重) 独立重复试验. \pause 如果在 $n$ 个独立重复实验中，每次试验的可能结果为两个:$A$ 或 $\overline{A}$, 则称这种试验为 \textcolor{red}{$n$ 重伯努利试验}.
+  \end{defi}
+\end{frame}
+             \begin{frame}{彩票问题}
+  % \frametitle{试验的独立性}
+  % \begin{defi}
+  %   设有两个实验 $E_1$ 和 $E_2$，假如实验 $E_1$ 的任一结果（事件）与试验 $E_2$ 的任一结果（事件）都是相互独立事件，则称这两个实验相互独立.
+  % \end{defi}
+  % \pause
+  % \begin{defi}
+  %   如果 $n$ 个实验 $E_1,E_2,\cdots,E_n$ 的任一结果都是相互独立的事件，则称试验 $E_1,\cdots E_n$ 相互独立。如果这 $n$ 个实验是相同的，则称其为 \textcolor{red}{$n$ 重独立重复实验}. 如果在 $n$ 重独立重复实验中，每次试验的可能结果为两个:$A$ 或 $\overline{A}$, 则称这种试验为 \textcolor{red}{$n$ 重伯努利试验}.
+  % \end{defi}
+  % \pause
+  \begin{exam}
+    某彩票每周开奖一次，每次提供十万分之一的中奖机会，且各周开奖是独立的。若你每周买一张彩票，坚持十年（每年按 52 周计算），试求未中奖的概率.
+  \end{exam}
+  \pause
+
+  \jieda 依假设，每次中奖的概率为 $10^{-5}$, 于是每次不中奖的概率是 $1-10^{-5}$. 另外十年一共购买 520 次彩票，而每次开奖都是独立的，相当于进行了 520 次独立重复试验. \pause 若记 $A_i$ 为 “第 $i$ 次开奖不中奖”, 则 $A_1,\cdots, A_{520}$ 相互独立，从而
+  \begin{eqnarray*}
+    P(A_1A_2\cdots A_{520})=(1-10^{-5})^{520}=0.9948
+  \end{eqnarray*}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+\end{document}

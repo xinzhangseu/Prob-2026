@@ -1,2 +1,37 @@
-_site
-.sass-cache
+# macOS
+.DS_Store
+
+# Jekyll build output
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# LaTeX auxiliary files (PDF files are intentionally retained)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+_minted-*/
+
+# Local compilation and verification directories
+.direct-test/
+.master-test/
+.mode-check/
+.publish-logs/
+.publish-logs-newnames/
+.slide-build/
+.subfiles-check/

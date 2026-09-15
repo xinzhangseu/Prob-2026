@@ -1,0 +1,741 @@
+% 取消下一行注释可生成 handout（无逐步显示）；保持注释则生成正常 slide。
+% \PassOptionsToClass{handout}{beamer}
+\documentclass[Main-Prob-All.tex]{subfiles}
+\begin{document}
+\title[概率论]{第二十二讲：大数定律}
+\author[张鑫{\rm Email: x.zhang.seu@foxmail.com} ]{\large 张 鑫}
+\institute[东南大学数学学院]{\large \textrm{Email: x.zhang.seu@foxmail.com} \\ \quad  \\
+	\large 东南大学 \quad 数学学院 \\
+	\vspace{0.3cm}
+	% \trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+		%  \hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
+}
+\date{}
+
+
+{ \setbeamertemplate{footline}{}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+}
+
+\subsection{大数定律}
+\begin{frame}
+	\frametitle{概率及频率}
+	\begin{itemize}[<+-|alert@+>]
+		\item 记 $S_n$ 为 $n$ 重伯努利试验中事件 $A$ 出现次数，称 $\dfrac{S_n}{n}$ 为事件 $A$ 出现的频率；
+		\item 记 $p$ 为一次试验中 $A$ 发生的概率；
+		\item 概率是频率的稳定值，何谓稳定值？似乎与频率的极限有关；
+		\item 考虑 $|\dfrac{S_n}{n}-p|$, 如果能类似于函数列极限情形即对任意的 $\epsilon>0$, 存在 $N$ 使得当 $n\ge N$ 时
+		\begin{eqnarray*}
+			|\dfrac{S_n}{n}-p|< \epsilon, \forall \omega\in \Omega.
+		\end{eqnarray*}
+		\item 但是上述情形无法做到，事实上，对任意的 $\epsilon<1-p$,
+		\begin{eqnarray*}
+			&& P(|\dfrac{S_n}{n}-p|< \epsilon)\le \pause P(\dfrac{S_n}{n}-p<\epsilon)\le \pause P(\dfrac{S_n}{n}-p<1-p)\\
+			&&=\pause P(\frac{S_n}{n}<1)=\pause 1-P(\frac{S_n}{n}=1)=\pause 1-P(X_1=1,\cdots,X_n=1)\\
+			&&=\pause 1-p^n<1
+		\end{eqnarray*}
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{伯努利大数定律}
+	\begin{thm}
+		设 $S_n$ 为 $n$ 重伯努利试验中事件 $A$ 出现次数，$p$ 为一次试验中 $A$ 发生的概率，则对任意的 $\epsilon>0$, 有
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty} P (|\frac{S_n}{n}-p|<\epsilon)=1, \quad\mbox{或等价的}\quad \lim_{n\rightarrow\infty} P (|\frac{S_n}{n}-p|\ge\epsilon)=0
+		\end{eqnarray*}
+	\end{thm}
+	\pause \zheng 因为 $S_n\sim B (n,p)$, 故 $S_n\sim B (n,p), E (\frac{S_n}{n})=p, D (\frac{S_n}{n})=\frac{p (1-p)}{n}$. \pause 从而由切比雪夫不等式可得
+	\begin{eqnarray*}
+		1\ge P(|\frac{S_n}{n}-p|<\epsilon)\ge 1-\dfrac{D(\frac{S_n}{n})}{\epsilon^2}=1-\frac{p(1-p)}{n\epsilon^2}\rightarrow 1  \quad n\rightarrow \infty
+	\end{eqnarray*}
+	\pause 故
+	\begin{eqnarray*}
+		\lim_{n\rightarrow\infty}P(|\frac{S_n}{n}-p|<\epsilon)=1
+	\end{eqnarray*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{伯努利大数定律的含义}
+	\begin{itemize}[<+-|alert@+>]
+		\item 随着 $n$ 的增大，事件 $A$ 发生的频率 $\dfrac{S_n}{n}$ 与其概率 $p$ 的偏差大于预先给定的精度 $\epsilon$ 的可能性越来越小，要多小有多小，这便是频率稳定于概率的含义；
+		\item 事实上，由切比雪夫不等式可得
+		\begin{eqnarray*}
+			P(|\frac{S_n}{n}-p|\ge\epsilon)\le \dfrac{D(\frac{S_n}{n})}{\epsilon^2}=\frac{p(1-p)}{\epsilon^2}\dfrac{1}{n}
+		\end{eqnarray*}
+
+		\item 伯努利大数定律提供了用频率来确定概率的理论依据；
+		\item 比如要估计某种产品的不合格品率 $p$, 则可从该种产品中随机抽取 $n$ 件，当 $n$ 很大时，这 $n$ 件产品中的不合格品的比例可作为不合格品率 $p$ 的估计值.
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{伯努利大数定律的另一形式}
+	\begin{itemize}[<+-|alert@+>]
+		\item 注意到，在伯努利大数定律中，如果记 $X_i=\bigg\{
+		\begin{array}{ll}
+			1,& \mbox{第} i\mbox{试验} A\mbox{发生}\\
+			0,& \mbox{第} i\mbox{试验} A\mbox{不发生}
+		\end{array}
+		$, 则 $S_n=\sum_{i=1}^nX_i$, 并且
+		\begin{eqnarray*}
+			\frac{S_n}{n}=\frac{1}{n}\sum_{i=1}^nX_i, \pause p=E(\frac{1}{n}\sum_{i=1}^nX_i)=\frac{1}{n}\sum_{i=1}^nE(X_i)
+		\end{eqnarray*}
+		\item 伯努利大数定律的结论为：对任意的 $\epsilon>0$, 有
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty}P(|\frac{1}{n}\sum_{i=1}^n[X_i-E(X_i)]|<\epsilon)=1
+		\end{eqnarray*}
+		也即
+		\begin{eqnarray*}
+			\frac{1}{n}\sum_{i=1}^n[X_i-E(X_i)]\stackrel{P}{\rightarrow}0
+		\end{eqnarray*}
+
+	\end{itemize}
+
+\end{frame}
+\begin{frame}
+	\frametitle{(强) 大数定律的一般形式}
+	\begin{defi}
+		设有一随机变量序列 $\{X_n\}$, 如果对任意的 $\epsilon>0$, 有
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty} P (|\frac{1}{n}\sum_{i=1}^n [X_i-E (X_i)]|<\epsilon)=1 \mbox{ 即 }  \frac{1}{n}\sum_{i=1}^n [X_i-E (X_i)]\stackrel{P}{\rightarrow} 0
+			%  \lim_{n\rightarrow\infty}P(|\frac{1}{n}\sum_{i=1}^nX_i-\frac{1}{n}\sum_{i=1}^nE(X_i)|<\epsilon)=1
+		\end{eqnarray*}
+		则称该随机变量序列 $\{X_n\}$ 满足大数定律。如果进一步有
+		\begin{eqnarray*}
+			\frac{1}{n}\sum_{i=1}^n[X_i-E(X_i)]\stackrel{a.s.}{\rightarrow}0
+		\end{eqnarray*}
+		则称 $\{X_n\}$ 满足强大数定律.
+	\end{defi}
+\end{frame}
+\begin{frame}
+	\frametitle{切比雪夫大数定律}
+	\begin{thm}
+		设 $\{X_n\}$ 为一列两两不相关的随机变量序列，若每个 $X_i$ 的方差存在且有共同的上界 $M$, 即 $D (X_i)\le M, \forall i\in \mathbb{N}$, 则 $\{X_n\}$ 服从大数定律，即对任意的 $\epsilon>0$, 有
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty}P(|\frac{1}{n}\sum_{i=1}^nX_i-\frac{1}{n}\sum_{i=1}^nE(X_i)|<\epsilon)=1
+		\end{eqnarray*}
+		特别的，若 $\{X_n\}$ 独立同分布，且 $D (X_n)<\infty$, 则 $\{X_n\}$ 服从大数定律.
+	\end{thm}
+
+	\pause \zheng 注意到
+	\begin{eqnarray*}
+		P(|\frac{1}{n}\sum_{i=1}^nX_i-\frac{1}{n}\sum_{i=1}^nE(X_i)|\ge\epsilon)&\le&\pause  \dfrac{D(\frac{1}{n}\sum_{i=1}^nX_i)}{\epsilon^2}\\
+		&=&\pause \dfrac{1}{\epsilon^2}\dfrac{1}{n^2}\sum_{i=1}^nD(X_i)\\
+		&\le&\pause \dfrac{1}{\epsilon^2}\dfrac{M}{n}\rightarrow\pause 0
+	\end{eqnarray*}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{马尔科夫大数定律}
+	\begin{thm}
+		设随机变量序列 $\{X_n\}$ 满足如下马尔科夫条件
+		\begin{eqnarray*}
+			\dfrac{1}{n^2}D(\sum_{i=1}^nX_i)\rightarrow 0
+		\end{eqnarray*}
+		则 $\{X_n\}$ 服从大数定律，即对任意的 $\epsilon>0$, 有
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty}P(|\frac{1}{n}\sum_{i=1}^nX_i-\frac{1}{n}\sum_{i=1}^nE(X_i)|<\epsilon)=1
+		\end{eqnarray*}
+	\end{thm}
+\end{frame}
+\begin{frame}
+	\frametitle{辛钦大数定律}
+	\begin{thm}
+		设 $\{X_n\}$ 为一列独立同分布随机变量序列，若每个 $X_i$ 的期望存在，则 $\{X_n\}$ 服从大数定律，即对任意的 $\epsilon>0$, 有
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty}P(|\frac{1}{n}\sum_{i=1}^nX_i-\frac{1}{n}\sum_{i=1}^nE(X_i)|<\epsilon)=1.
+		\end{eqnarray*}
+		特别的，如果 $E|X_i|^k, k=1,2,\cdots$, 存在，则 $\{X_n^k\}$ 服从大数定律.
+	\end{thm}
+
+	\pause%
+	\zheng 设 $\{X_n\}$ 独立同分布，且 $E (X_i)=a, i=1,\cdots,$, 则只需要证明
+	\begin{eqnarray*}
+		Y_n:=\dfrac{1}{n}\sum_{i=1}^nX_i\xlongrightarrow{P}a, \quad n\rightarrow \infty
+	\end{eqnarray*}
+	\pause 由依概率收敛的性质，仅需证 $\varphi_{Y_n}(t)\rightarrow e^{iat}$ 即可。事实上，由
+	\pause \begin{eqnarray*}
+		\varphi_{Y_n}(t)\pause &=&[\varphi(\frac{t}{n})]^n\pause =[1+\varphi'(0)\frac{t}{n}+o(\frac{t}{n})]^n\pause =[1+ia\frac{t}{n}+o(\frac{t}{n})]^n\\
+		&=&\pause \exp\{\dfrac{\ln (1+ia\frac{t}{n}+o(\frac{t}{n}))}{1/n}\}\pause \rightarrow e^{iat}
+	\end{eqnarray*}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Borel-Cantelli引理}
+	\begin{thm}
+	  对于事件列$\{A_j\}$，有
+	  \begin{itemize}[<+-|alert@+>]
+	  \item 若$\sum_{n=1}^\infty P(A_n)<\infty$，则
+	  \[P(\limsup_{n\rightarrow\infty}A_n)=\lim_{k\rightarrow\infty}P(\cup_{n=k}^\infty A_n)=0\]
+	  \item 若$\{A_n\}$相互独立，则$\sum_{n=1}^\infty P(A_n)=\infty$当且仅当
+	  \[P(\limsup_{n\rightarrow\infty}A_n)=\lim_{k\rightarrow\infty}P(\cup_{n=k}^\infty A_n)=1\]
+	  \end{itemize}
+	\end{thm}\pause
+	\zheng 1. 注意到$\lim_{k\rightarrow\infty}P(\cup_{n=k}^\infty A_n)\le \pause \lim_{k\rightarrow\infty}\sum_{n=k}^\infty P(A_n)\pause =0.$
+
+	\pause
+	2. 由于\pause
+	\begin{eqnarray*}
+	  P(\cup_{n=k}^\infty A_n)&=&\pause \lim_{m\rightarrow\infty}P(\cup_{n=k}^m A_n)=\pause \lim_{m\rightarrow\infty}(1-P(\cap_{n=k}^m\overline{A}_n))\\\pause
+	  P(\cap_{n=k}^m\overline{A}_n)&=&\pause \Pi_{n=k}^m P(\overline{A}_n)=\Pi_{n=k}^m(1-P(A_n))\\
+	  &\le&\pause \Pi_{n=k}^m \exp(-P(A_n))=\exp(-\sum_{n=k}^m P(A_n))\pause \stackrel{m\rightarrow\infty}{\longrightarrow} 0
+	\end{eqnarray*}
+
+  \end{frame}
+
+\begin{frame}
+	\frametitle{{\rm Borel} 强大数定律律}
+	\begin{thm}({\rm Borel} 强大数定律)
+		设 $S_n$ 为 $n$ 重伯努利试验中事件 $A$ 出现次数，$p$ 为一次试验中 $A$ 发生的概率，则
+		\begin{eqnarray*}
+			\dfrac{S_n}{n}\stackrel{a.s.}{\rightarrow} p
+		\end{eqnarray*}
+	\end{thm}
+
+\pause
+
+\fenxi 记${A_{n}=\left\{\left|S_n / n-p\right| \geq \varepsilon\right\}}$, 则定理中的几乎必然收敛的充分必要条件是\pause %由定理 1.1 知, (2.16) 式成立的充分必要条件是
+\[
+P\left(\limsup_{n} A_{n}\right)=0.
+\]
+
+再Borel-Cantelli引理可知, 只需证明\pause
+\[
+\sum_{n=1}^{\infty} P\left(A_{n}\right)<+\infty.
+\]
+
+\pause
+若像证明弱大数定律那样用切贝谢夫不等式，我们只能得到
+\[
+P\left(A_{n}\right) \leq \frac{1}{\varepsilon^{2}} D\left(\frac{S_n}{n}\right)=\frac{p q}{n \varepsilon^{2}} \leq \frac{1}{4 n \varepsilon^{2}} .
+\]
+
+\end{frame}
+
+\begin{frame}{Borel 强大数定律证明}
+\begin{itemize}[<+-|alert@+>]
+\item 用${r=4}$时的马尔科夫不等式可得$P\left(A_{n}\right) \leq \dfrac{1}{\varepsilon^{4}} E\left|\frac{S_n}{n}-p\right|^{4}.$
+\item 将${S_n}$写为${n}$个独立伯努利分布随机变量之和${S_n=\sum_{k=1}^{n} X_{k}}$, 从而
+\[
+E\left[\left|\frac{S_n}{n}-p\right|^{4}\right]=\frac{1}{n^{4}} \sum_{1 \leq i, j, k, l \leq n} E\left[\left(X_{i}-p\right)\left(X_{j}-p\right)\left(X_{k}-p\right)\left(X_{l}-p\right)\right] .
+\]
+\item 注意${X_{1}, \cdots, X_{n}}$相互独立，故上式和号中仅有
+\begin{align*}
+	&E\left[\left(X_{i}-p\right)^{4}\right]=p q\left(p^{3}+q^{3}\right)\neq 0,\\
+	  &E\left[\left(X_{i}-p\right)^{2}\left(X_{j}-p\right)^{2}\right]=p^{2} q^{2}\neq 0, (i \neq j).
+\end{align*}
+\item 注意到前者共${n}$项，后者共$ C_n^2C_4^2=3 n(n-1)$项，故我们有%可得到
+\[
+E\left[\left|\frac{S_n}{n}-p\right|^{4} =\frac{p q}{n^{4}}\left[n\left(p^{3}+q^{3}\right)+3 p q\left(n^{2}-n\right)\right]<\frac{1}{4 n^{2}} .\right.
+\]
+\item 代入马等科夫不等式右方可得$P\left(A_{n}\right) \leq \dfrac{1}{4 n^{2} \varepsilon^{4}}$, 定理得证.
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Borel强大数定律的备注}
+  \begin{rmk}
+	\begin{itemize}[<+-|alert@+>]
+	\item 上述定理证明，本质上只用到独立同分布序列的四阶中心矩
+	${E\left[\left(X_{k}-p\right)^{4}\right]}$以及${E\left[\left(X_{k}-p\right)^{2}\left(X_{j}-p\right)^{2}\right]}$有限, 并没有用到伯努利情形的其它特性. 所以，在四阶中心矩有限的前提下，其证明可以照搬到一般独立同分布情形.
+	\item 在如下定理中, 我们在明显减弱的条件下，得到一般独立同分布场合的强大数定律.
+	\begin{itemize}[<+-|alert@+>]
+	\item 证明中采用恰当选取子序列的方法,仅用切比雪夫不等式就得到了满足Borel-Cantelli引理要求的估计式.
+	\item 而且运用著名的 “截尾法”, 连切比雪夫不等式中“方差有限”的要求都可以绕过.
+	\end{itemize}
+
+	\end{itemize}
+
+
+  \end{rmk}
+
+
+
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{一般独立同分布情形下的强大数定律}
+		\begin{thm}
+		假定 $\{X_n\}$ 是相互独立同分布的随机变量序列，如果它们有有限的期望 $E (X_n)=a$, 则强大数定律成立，即 $n\rightarrow\infty$ 时有
+		\begin{eqnarray*}
+			\dfrac{1}{n}\sum_{k=1}^nX_k\stackrel{a.s.}{\rightarrow} a.
+		\end{eqnarray*}
+	\end{thm}
+
+	\pause
+
+
+
+
+
+\end{frame}
+
+\begin{frame}{分析}
+	%\fenxi
+	\begin{itemize}[<+-|alert@+>]
+	\item 记部分和${S_{n}=\sum_{k=1}^{n} X_{k}}$. 如非负情形成立, 则有
+	\[
+	\frac{S_{n}}{n}=\frac{1}{n} \sum_{k=1}^{n} X_{k}^{+}-\frac{1}{n} \sum_{k=1}^{n} X_{k}^{-} \stackrel{a.s.}{\longrightarrow} E\left(X_{1}^{+}\right)-E\left(X_{1}^{-}\right)=a .
+	\]
+	故不妨假定${\left\{X_{k}\right\}}$是非负随机变量列.
+
+	\item 注意到
+	\begin{align*}
+		P\left\{\frac{1}{n}\left|S_{n}-E\left(S_{n}\right)\right| \geq \varepsilon\right\} \leq \frac{E[\sum_{i=1}^n(X_i-E(X_i))]^k}{\varepsilon^{k}n^k}, k=2, 4%=\frac{D(X_1)}{\varepsilon^{2}n}
+	\end{align*}
+	\item 高阶矩不存在, 需要截断
+
+	\begin{itemize}[<+-|alert@+>]
+	\item 方法1: $X_{n}^{*}(\omega)={\left\{\begin{array}{ll}
+		X_{n}(\omega), &     X_{n}(\omega) \leq M \\
+		0, &     X_{n}(\omega)>M .
+		\end{array}=X_{n}(\omega) 1_{[0, M]}\left(X_{n}(\omega)\right) .\right.}$ %$X_n=X_n 1_{X_n\leq M}$
+	\item 方法2: $X_{n}^{*}(\omega)={\left\{\begin{array}{ll}
+		X_{n}(\omega), &     X_{n}(\omega) \leq n, \\
+		0, &     X_{n}(\omega)>n .
+		\end{array}=X_{n}(\omega) 1_{[0, n]}\left(X_{n}(\omega)\right) .\right.}$
+	\item $S_n^*=\sum_{i=1}^nX_i^*$
+	\end{itemize}
+
+%\[
+%	\sum_{n=1}^{\infty} P\left\{\frac{1}{n}\left|S_{n}-E\left(S_{n}\right)\right| \geq \varepsilon\right\} \leq \sum_{n=1}^{\infty} \frac{D(S_n)}{\varepsilon^{2}n^2} \int_{0}^{+\infty} M x d F(x)=\frac{M a}{\varepsilon^{\overline{2}}}<+\infty
+%\]
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{分析(续)}
+	\begin{itemize}[<+-|alert@+>]
+	\item 对截断方法1:
+	\begin{itemize}[<+-|alert@+>]
+	\item 若 $P\left\{X_{1}>M\right\} >0$, 则
+	\begin{align*}
+	   \sum_{n=1}^{\infty} P(X_{n} \neq X_{\mathrm{n}}^{*})=\sum_{n=1}^{\infty} P(X_{n}>M)=\sum_{n=1}^{\infty} P(X_{1}>M) =+\infty,
+	\end{align*}
+	\item 	无法推出$X_n-X_n^*\rightarrow 0, a.s.$. 从而无法得到$	  \dfrac{S_n-S_n^*}{n}\rightarrow 0, a.s.
+	$
+
+
+	\end{itemize}
+
+	\item 对截断方法2:
+	\begin{itemize}[<+-|alert@+>]
+	\item $\sum P(X_{n} \neq X_{\mathrm{n}}^{*})=\sum P(X_{1}>n)\leq \int_{0}^{+\infty} P(X_{1}>t) d t=E\left(X_{1}\right)<+\infty,
+	$
+	\item 故 $X_n-X_n^*\rightarrow 0, a.s.$. 更进一步有, $\dfrac{S_n-S_n^*}{n}\rightarrow 0, a.s.$
+	\item 注意到
+	\begin{align*}
+	  \dfrac{S_n}{n}=\dfrac{S_n-S_n^*}{n}+\dfrac{S_n^*-E(S_n^*)}{n}+\dfrac{E(S_n^*)}{n}
+	\end{align*}
+    \item $E(X_n^*)=E[X_{n}(\omega) 1_{[0, n]}\left(X_{n}(\omega)\right)]=E[X_{1}(\omega) 1_{[0, n]}\left(X_{1}(\omega)\right)]\stackrel{n\rightarrow \infty}{\longrightarrow} E(X_1)$
+    \item 从而$\dfrac{E(S_n^*)}{n}=\dfrac{\sum_{i=1}^nE(X_i^*)}{n}\rightarrow E(X_1)=a$
+	\end{itemize}
+
+	\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{分析(续)}
+	\begin{itemize}[<+-|alert@+>]
+	\item 只需证
+	\begin{align*}
+		\dfrac{S_n^*-E(S_n^*)}{n}\stackrel{a.s.}{\rightarrow}  0
+	\end{align*}
+    \item 注意到
+	\begin{align*}
+		&P\left(\frac{1}n\left|S_n^{*}-E\left(S_n^{*}\right)\right| \geq \varepsilon\right) \leq \frac{D(S_n^*)}{\varepsilon^{2}n^2}= \frac{1}{\varepsilon^{2}n^2}\sum_{i=1}^nD(X_i^*)\\
+		&\leq  \frac{1}{\varepsilon^{2}n^2}\sum_{i=1}^n \int_{0}^{\infty}x^21_{[0,i]}(x) d F(x)\leq \frac{1}{\varepsilon^{2}n} \int_{0}^{\infty}x^21_{[0,n]}(x) d F(x)
+	\end{align*}
+    \item 从而
+	\begin{align*}
+		&\sum_{n=1}^\infty P\left(\frac{1}n\left|S_n^{*}-E\left(S_n^{*}\right)\right| \geq \varepsilon\right) \leq \frac{1}{\varepsilon^{2}} \int_{0}^{\infty}x^2\sum_{n=1}^\infty \dfrac{1}{n}1_{[0,n]}(x) d F(x)
+	\end{align*}
+	\item 若 $\sum_{n=1}^\infty \dfrac{1}{n}1_{[0,n]}(x)<\dfrac{M}{x}$, 则由$X_i$期望存在可知上式小于$\infty$, 问题得证.
+	\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{分析(续)}
+	\begin{itemize}[<+-|alert@+>]
+	\item  遗憾的是, 我们无法做到 $\sum_{n=1}^\infty \dfrac{1}{n}1_{[0,n]}(x)<\dfrac{M}{x}$.
+	\item 但我们如果将$n$换成特定的子列$u_n=[\theta^n]\geq \frac{\theta^n}{2}$, 并令$N$是使$u_{n} \geq x$的最小自然数, 我们则有可能做到
+	\begin{align*}
+		\sum_{n=1}^\infty \dfrac{1}{u_n}1_{[0,u_n]}(x)=\sum_{n=N}^{\infty} \frac{1}{u_{n}}\leq 2 \sum_{n=N}^{\infty} \theta^{-n}=M \theta^{-N} \leq \frac{M}{x}
+	\end{align*}
+
+	\item 综上, 我们可以证明, 对任意的$\theta>1$及相应的$u_n=[\theta^n]$, 我们均有
+	\begin{align*}
+		\dfrac{S_{u_n}^*-E(S_{u_n}^*)}{u_n}\stackrel{a.s.}{\rightarrow}  0
+	\end{align*}
+	\item 从而可证
+	\begin{align*}
+		\frac{S_{u_{n}}}{u_{n}}  =\dfrac{S_{u_n}-S_{u_n}^*}{u_n}+\dfrac{S_{u_n}^*-E(S_{u_n}^*)}{u_n}+\dfrac{E(S_{u_n}^*)}{u_n}\stackrel{a.s.}{\rightarrow} a
+	\end{align*}
+
+	\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}{分析(续)}
+\begin{itemize}[<+-|alert@+>]
+\item 若 \( u_{n} \leq k \leq u_{n+1} \), 则由 \( X_{k} \) 的非负性知
+\[
+\frac{u_{n}}{u_{n+1}} \frac{S_{u_{n}}}{u_{n}} \leq \frac{S_{k}}{k} \leq \frac{u_{n+1}}{u_{n}} \frac{S_{u_{n+1}}}{u_{n+1}}
+\]
+
+\item 注意 \( u_{n+1} / u_{n} \rightarrow \theta \), 故令 \( n\) 及相应的 \( k \) 趋于无穷可得, 以概率 1 有
+\[
+\frac{1}{\theta} \cdot a \leq \liminf_{k\rightarrow\infty} \frac{S_{k}}{k} \leq \limsup_{k\rightarrow\infty} \frac{S_{k}}{k} \leq \theta\cdot a.
+\]
+\item 上式对任意$\theta>1$均成立, 特别的取 \( \theta=(\ell+1) / \ell \), 则以概率 1 有
+\[
+\frac{\ell}{\ell+1} \cdot a  \leq \liminf_{k\rightarrow\infty} \frac{S_{k}}{k} \leq \limsup_{k\rightarrow\infty} \frac{S_{k}}{k} \leq \frac{\ell+1}{\ell} \cdot a .
+\]
+
+\item 对每个 \( \ell \geq 1 \), 记上式不成立的例外集为 \( E_{\ell} \), 且取 \( E=\bigcup_{\ell=1}^{\infty} E_{\ell} \).
+\item 显然 \( P(E)=0 \), 且对任意的 \(\omega\notin E \), 上式对一切 \( \ell \geq 1 \) 成立.
+\item 令 \( \ell \rightarrow \infty \) 便得证对任意的\(\omega\in \bar{E} \) 恒有
+\[
+\lim _{k} \frac{S_{k}}{k}=\lim _{n} \frac{1}{n} \sum_{k=1}^{n} X_{k}=a
+\]
+\end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}{证明}
+	\begin{itemize}[<+-|alert@+>]
+	\item 不妨假定${\left\{X_{k}\right\}}$是非负随机变量列.
+	\item 截断: $X_{n}^{*}(\omega)={\left\{\begin{array}{ll}
+		X_{n}(\omega), &     X_{n}(\omega) \leq n, \\
+		0, &     X_{n}(\omega)>n .
+		\end{array}=X_{n}(\omega) 1_{[0, n]}\left(X_{n}(\omega)\right). \right.}$
+	 \item 令$S_n^*=\sum_{i=1}^nX_i^*$及$u_n=[\theta^n]$
+	 \item 证明: $\dfrac{1}{u_{n}} S_{u_{n}} \stackrel{a.s.}{\rightarrow} a$.
+	 \begin{itemize}[<+-|alert@+>]
+	 \item 只需证明
+	 \begin{align*}
+		\dfrac{S_n-S_n^*}{n}\stackrel{a.s.}{\rightarrow} 0, \quad \dfrac{S_{u_n}^*-E(S_{u_n}^*)}{u_n}\stackrel{a.s.}{\rightarrow}  0, \quad \dfrac{E(S_n^*)}{n}\rightarrow a
+	 \end{align*}
+	\end{itemize}
+    \item 由$\theta$的任意性证明
+    \[
+\frac{S_{n}}{n}\stackrel{a.s.}{\rightarrow} a.
+\]
+
+
+	\end{itemize}
+
+
+\end{frame}
+
+
+
+% \begin{frame}
+
+
+% 	$X_{n}^{*}(\omega)={\left\{\begin{array}{ll}
+% 	X_{n}(\omega), &     X_{n}(\omega) \leq n, \\
+% 	0, &     X_{n}(\omega)>n .
+% 	\end{array}=X_{n}(\omega) \chi_{[0, n]}\left[X_{n}(\omega)\right] .\right.}$
+
+
+
+% 	其中${\chi_{[0, n]}(x)}$是区间${[0, n]}$的示性逃数. 相应的部分和记为${S_{n}^{*}=}$ ${\sum_{n=1}^{n} X_{k}^{*}}$
+% \end{frame}
+
+% \begin{frame}
+% 	对每个实数$\theta>1$, 取自然数列的子序列$u_{n}=\left[\theta^{n}\right]$, 其中方搭号表示其中实数的整数部分. 先考查相应的子序列$\left\{S_{u_{n}}^{*}\right\}$. 以$F(x)$表$\left\{X_{n}\right\}$的共同的分布函数, 则有界随机变量$S_{z_{n}}^{*}$的方差
+
+% 	$D\left(S_{u_{n}}^{*}\right)=\sum_{k=1}^{u_{n}} D\left(X_{k}^{*}\right) \leq \sum_{k=1}^{u_{n}} E\left[\left(X_{k}^{*}\right)^{2}\right]$
+% 	$=\sum_{k=1}^{u_{n}} \int_{[0, k]} x^{2} d F(x) \leq u_{n} \int_{0}^{+\infty} x^{2} \chi_{\left(0, u_{n}\right]}(x) d F(x) $.
+
+
+
+% 	用切贝谢夫不等证便得到任$\varepsilon>0$有
+
+% 	$\sum_{n=1}^{\infty} P\left\{\frac{1}{u_{n}}\left|S_{u_{n}}^{*}-E\left(S_{u_{n}}^{*}\right)\right| \geq \varepsilon\right\} \leq \sum_{n=1}^{\infty} \frac{1}{\varepsilon^{2} u_{n}^{2}} D\left(S_{u_{n}}^{*}\right)$
+% 	$\leq \frac{1}{\varepsilon^{2}} \sum_{n=1}^{\infty} \int_{0}^{+\infty} \frac{x^{2}}{u_{n}} \chi_{\left(0, u_{n}\right]}(x) d F(x) $.
+
+
+
+% 	对于$x>0$及$M=2 \theta /(\theta-1)$, 如果$N$是使$u_{n} \geq x$的最小自然数,则因$y \geq 1$时有$y \leq 2\{y\}$, 所以有
+% 	\[
+% 	\sum_{n=1}^{\infty} \frac{1}{u_{n}} \chi_{\left(0, u_{n}\right]}(x)=\sum_{n=N}^{\infty} \frac{1}{u_{n}} \leq 2 \sum_{n=N}^{\infty} \theta^{-n}=M \theta^{-N} \leq \frac{M}{x} .
+% 	\]
+
+% 	将此式代入 (2.21) 式便得任$\varepsilon>0$有
+% 	\[
+% 	\sum_{n=1}^{\infty} P\left\{\frac{1}{u_{n}}\left|S_{u_{n}}^{*}-E\left(S_{u_{n}}^{*}\right)\right| \geq \varepsilon\right\} \leq \frac{1}{\varepsilon^{2}} \int_{0}^{+\infty} M x d F(x)=\frac{M a}{\varepsilon^{\overline{2}}}<+\infty
+% 	\]
+
+% 	运用被雷尔 - 康特里引理可得, 任$\varepsilon>0$有
+% 	\[
+% 	P\left\{\bigcap_{k=1}^{\infty} \bigcup_{n=k}^{\infty}\left\{\frac{1}{u_{n}}\left|S_{u_{n}}^{*}-E\left(S_{u_{n}}^{*}\right)\right| \geq \varepsilon\right]\right\}=0
+% 	\]
+
+% 	再由上䓆定理 1.1 便证得$n \rightarrow \infty$时有
+% 	\[
+% 	\frac{1}{u_{n}}\left[S_{u_{n}}^{*}-E\left(S_{u_{n}}^{*}\right)\right] \stackrel{a . s}{\rightarrow} 0 .
+% 	\]
+% \end{frame}
+
+
+
+\begin{frame}
+	\frametitle{伯努利大数定律的应用：蒙特卡罗法计算定积分}
+	\begin{prob}
+		设 $0\le f (x)\le 1$, 计算 $f (x)$ 在区间 $[0,1]$ 上的积分近似值
+		\begin{eqnarray*}
+			J=\int_0^1f(x)dx
+		\end{eqnarray*}
+	\end{prob}
+	\pause \jieda 注意到
+	\begin{eqnarray*}
+		J=\int_0^1f(x)dx=\int_0^1\int_0^{f(x)}dydx=P(Y\le f(X)):=p
+	\end{eqnarray*}
+	其中 $(X,Y)$ 为方形区域 $[0,1]\times [0,1]$ 上的均匀分布。此时我们有 \pause
+	\begin{itemize}[<+-|alert@+>]
+		\item $X,Y$ 分别服从 $[0,1]$ 上的均匀分布且 $X,Y$ 独立；
+		\item 故计算积分的值实际上就是计算事件 $A=\{Y\le f (X)\}$ 的概率 $p$;
+		\item $(X,Y)$ 为方形区域 $[0,1]\times [0,1]$ 均匀分布，因此可以看成在方形区域内的随机投点试验；
+		\item 由伯努利大数定律知，我们可以用重复随机投点试验中事件 $A$ 出现的频率：即随机点 $(X,Y)$ 落入区域 $\{(x,y):y\le f (x)\}$ 中的频率作为 $p$ 的估计值.
+
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{蒙特卡罗法计算定积分的具体步骤}
+	\begin{enumerate}[<+-|alert@+>]
+		\item 先用计算机产生 $(0,1)$ 均匀分布的 $2n$ 个随机数，组成 $n$ 对随机数 $(x_i,y_i),i=1,\cdots,n$, 这里的 $n$ 可以很大；
+		\item 对 $n$ 对数据 $(x_i,y_i), i=1,\cdots,n$, 记录满足 $y_i\le f (x_i)$ 的次数，即事件 $A$ 发生的频数 $S_n$;
+		\item 根据频数 $S_n$, 计算频率 $\dfrac{S_n}{n}$, 即为积分 $J$ 的近似值.
+	\end{enumerate}
+\end{frame}
+\begin{frame}
+	\frametitle{一般区间上的定积分的计算}
+	\begin{prob}
+		设 $c\le g (x)\le d, x\in [a,b]$, 计算 $g (x)$ 在区间 $[a,b]$ 上的积分近似值
+		\begin{eqnarray*}
+			J_{a,b}=\int_a^bg(x)dx
+		\end{eqnarray*}
+	\end{prob}
+	\pause \jieda
+	\begin{eqnarray*}
+		J_{a,b}&=&\int_a^bg(x)dx\pause \xlongequal{x=a+(b-a)y} \int_0^1g(a+(b-a)y)(b-a)dy\\
+		&=&\pause (b-a)(d-c)\int_0^1\bigg(\frac{g(a+(b-a)y)-c}{d-c}+\frac{c}{d-c}\bigg)dy\\
+		&=&\pause S_0\int_0^1f(y)dy+c(b-a)
+	\end{eqnarray*}
+	\pause 其中
+	\begin{eqnarray*}
+		S_0=(b-a)(d-c), \quad f(y)=\frac{g(a+(b-a)y)-c}{d-c}
+	\end{eqnarray*}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{{\rm Kolmogorov} 极大不等式}
+	\begin{thm}
+		({\rm Kolmogorov} 极大不等式) 设随机变量 $X_1,\cdots, X_n$ 相互独立，它们都有零期望与有限方差。令 $S_n=\sum_{k=1}^nX_k$, 则对任意的 $\epsilon>0$ 有
+		\begin{eqnarray}\label{eq:klie}
+			P(\max_{1\leq k\leq n}|S_k|\geq \epsilon)\leq \dfrac{1}{\epsilon^2}E(S_n^2)=\dfrac{1}{\epsilon^2}D(S_n)
+		\end{eqnarray}
+
+	\end{thm}
+
+
+
+\end{frame}
+\begin{frame}{{\rm Kolmogorov} 极大不等式的证明}
+\begin{itemize}[<+-|alert@+>]
+	\item 对 $k=1, \cdots, n$, 令
+	\[
+	A_{k}=\left\{\omega:\left|S_{k}\right| \geq \varepsilon \text {; 但 }\left|S_{j}\right|<\varepsilon, j=1, \cdots, k-1\right\} \text {. }
+	\]
+\item 则 $A_{k}$ 两两不相容, 且
+	\[
+	A:=\left\{\max _{I \leq k \leq n}\left|S_{k}\right| \geq \varepsilon\right\}=\bigcup_{k=1}^{n} A_{k}
+	\]
+\item 故由 $P\left(A_{k}\right)=E\left(1_{A_k}\right)$ 及 $A_{k}$ 的定义可推出
+	\begin{align}\label{eq:ki}
+		P\left\{\max _{1 \leq k \leq n}\left|S_{k}\right| \geq \varepsilon\right\}=\sum_{k=1}^{n} P\left(A_{k}\right) \leq \frac{1}{\varepsilon^{2}} \sum_{k=1}^{n} E\left(S_{k}^{2} 1_{A_k}\right).
+	\end{align}
+
+	\item 注意到 $S_{k}^{2} 1_{A_k}$ 是 $\xi_{1}, \cdots, X_{k}$ 的函数，它与 $S_{n}-S_{k}=\sum_{i=k+1}^{n} X_{i}$ 相互独立. 故
+	\[
+	E\left[\left(S_{n}-S_{k}\right) S_{k} 1_{A_k}\right]=E\left[S_n-S_{k}\right] E\left[S_{k} 1_{A_k}\right]=0 .
+	\]
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Kolmogorov极大不等式的证明}
+\begin{itemize}[<+-|alert@+>]
+	\item 于是 \eqref{eq:ki} 式可进一步化为
+	\[\begin{aligned}
+		& P\left\{\max _{1 \leq k \leq n}\left|S_{k}\right| \geq \varepsilon\right\} \\
+		\leq & \frac{1}{\varepsilon^{2}} \sum_{k=1}^{n}\left\{E\left(S_{k}^{2} 1_{A_k}\right)+2 E\left[\left(S_{n}-S_{k}\right) S_{k} 1_{A_k}\right]+E\left[\left(S_{n}-S_{k}\right)^{2} 1_{A_k}\right]\right\} \\
+		= & \frac{1}{\varepsilon^{2}} E\left[S_{n}^{2} \sum_{k=1}^{n} 1_{A_k}\right]= \frac{1}{\varepsilon^{2}} E\left[S_{n}^{2} 1_A\right]\leq \frac{1}{\varepsilon^{2}} E\left(S_{n}^{2}\right)=\frac{1}{\varepsilon^{2}} D\left(S_{n}\right) .
+	\end{aligned}
+	\]
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{一个引理}
+	\begin{lem}
+		考虑实数列 $\left\{c_{n}\right\}$ 及其部分和数列 $s_{n}=\sum_{k=1}^{n} c_{k}$.
+		\begin{enumerate}[1.]
+		  \item 若 $c_{n} \rightarrow c$, 则 $s_{n} / n \rightarrow c$;
+		\item  设 $b_{m}=\sup \left\{\left|s_{m+k}-s_{m}\right|: k \geq 1\right\}, b=\inf \left\{b_{m}: m \geq 1\right\}$, 则 $\sum_{n=1}^{\infty} c_{n}$ 收敛的充分必要条件是 $b=0$;
+		\item (柯罗奈克引理) 若 $\sum_{n=1}^{\infty} c_{n} / n$ 收敛, 则 $s_{n} / n \rightarrow 0$.
+		\end{enumerate}
+	\end{lem}
+
+\end{frame}
+
+\begin{frame}{引理证明}
+\begin{enumerate}[1.]
+  \item
+  \begin{itemize}
+	\item 对任 $\varepsilon>0$, 选 $n_{1}$ 使 $n>n_{1}$ 时 $\left|c_{n}-c\right|<\varepsilon / 2$;
+	\item 再选 $n_{2}>n_{1}$ 使 $n>n_{2}$ 则 $\sum_{k=1}^{n_{1}}\left|c_{k}-c\right| / n<\varepsilon / 2$.
+	\item 当 $n>n_{2}$ 时有
+	\begin{align}
+	\left|\frac{s_{n}}{n}-c\right| &\leq \sum_{k=1}^{n} \frac{\left|c_{k}-c\right|}{n} \\
+	&=\sum_{k=1}^{n_{1}} \frac{\left|c_{k}-c\right|}{n}+\sum_{k=n_1+1}^{n} \frac{\left|c_{k}-c\right|}{n}<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon .
+	\end{align}
+\end{itemize}
+\item \begin{itemize}
+	\item 若 $b=0$, 则对任意 $\varepsilon>0$, 存在 $n_{1}$ 使 $b_{n_{1}}<\varepsilon$. 从而对一切 $k \geq 1$ 有
+	\[\left|s_{n_{1}+k}-s_{n_{1}}\right|<\varepsilon.\]
+	\item 这表明 $\sum_{n=1}^{\infty} c_{n}$ 收敛。逆命题证明类似.
+\end{itemize}
+
+
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{引理证明}
+\begin{enumerate}[3.]
+	\item \begin{itemize}[<+-|alert@+>]
+		\item 令
+		\[
+		t_{0}=0, \quad t_{n}=\sum_{k=1}^{n} \frac{c_{k}}{k},  n \geq 1
+		\]
+
+		\item 由 $c_{k}=k\left(t_{k}-t_{k-1}\right)$ 可得
+		\[
+		s_{n+1}=\sum_{k=1}^{n+1} k t_{k}-\sum_{k=1}^{n+1} k t_{k-1}=-\sum_{k=1}^{n} t_{k}+(n+1) t_{n+1},\  n \geq 1
+		\]
+		\item 故
+		\begin{align}\label{eq:sn-1}
+			\frac{s_{n+1}}{n+1}=-\frac{n}{n+1} \cdot \frac{1}{n} \sum_{k=1}^{n} t_{k}+t_{n+1},\  n \geq 1
+		\end{align}
+
+		\item 现设 $\sum_{n=1}^{\infty} c_{n} / n$ 收敛，即其部分利序列 $\left\{t_{n}\right\}$ 收敛到有穷的极限 $t$.
+		\item 由已证得的 $1$ 知序列 $\left\{\dfrac{1}{n} \sum_{k=1}^{n} t_{k}\right\}$ 收敛到 $t$.
+		\item 由此在\eqref{eq:sn-1} 式中令 $n \rightarrow \infty$ 便得证 $s_{n} / n \rightarrow 0$. %引理全都证完.
+	\end{itemize}
+\end{enumerate}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+	\frametitle{Kolmogorov强大数定律}
+
+	\begin{thm}
+		(Kolmogorov强大数定律)设$\{X_n\}$是独立随机变量序列, 满足
+		\begin{eqnarray}\label{eq:kllc}
+			\sum_{k=1}^\infty\dfrac{D(X_k)}{k^2}<+\infty,
+		\end{eqnarray}
+		则强大数定律成立，即当 $n\rightarrow\infty$ 时有
+		\begin{eqnarray*}
+			\dfrac{1}{n}\sum_{k=1}^n[X_k-E(X_k)]\stackrel{a.s.}{\rightarrow}0.\end{eqnarray*}
+
+	\end{thm}
+
+
+
+
+
+\end{frame}
+
+\begin{frame}{Kolmogorov强大数定律证明}
+\begin{itemize}[<+-|alert@+>]
+	\item 令 \( X_{k}'=X_{k}-E\left(X_{k}\right) \), 则 \( E\left(X_{k}'\right)=0, D\left(X_{k}'\right)=D\left(X_{k}\right) \).
+	\item  条件 \eqref{eq:kllc} 式对独立序列 \( \left\{X_{k}'\right\} \) 仍成立.
+	\item 问题化为证明 \( n \rightarrow \infty \) 时有
+	\[
+	\frac{1}{n} \sum_{k=1}^{n} X_{k}' \stackrel{a . s}{\longrightarrow} 0 \text {. }
+	\]
+
+	\item 取 \( S_{n}=\sum_{k=1}^{n} X_{k}' / k \), 并令
+\begin{align*}
+	b_{m}&=\sup \left\{\left|S_{m+k}-S_{m}\right|, k=1,2, \cdots\right\},\\
+	b&=\inf \left\{b_{m},  m=1,2, \cdots\right\}.
+\end{align*}
+\item 对任意 ${\varepsilon>0}$ 及自然数 $n, m$, 由Kolmogorov极大不等式\eqref{eq:klie} 可得
+\begin{align}\label{eq:klie-2}
+	P\left\{\max _{1 \leq k \leq n}\left|S_{m+k}-S_{m}\right| \geq \varepsilon\right\} \leq \frac{1}{\varepsilon^{2}} \sum_{k=m+1}^{m+n} \frac{D\left(X_{k}'\right)}{k^{2}} .
+\end{align}
+
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Kolmogorov强大数定律证明}
+	\begin{itemize}[<+-|alert@+>]
+		\item 注意到 ${n \rightarrow \infty}$ 时,
+		\[
+		\max _{1 \leq k \leq n}\left|S_{m+k}-S_{m}\right| \uparrow b_{m} \geq b, (m \geq 1)
+		\]
+		\item
+		故对一切 $m \geq 1$ 有
+		\[
+		\{b>\varepsilon\} \subset\left\{b_{m}>\varepsilon\right\} \subset \bigcup_{n=1}^{\infty}\left\{\max _{1 \leq k \leq n}\left|S_{m+k}-S_{m}\right| \geq \varepsilon\right\} .
+		\]
+
+		\item 于是用概率的下连续性及 \eqref{eq:klie-2} 式可得
+		\[
+		P\{b>\varepsilon\} \leq P\left\{b_{m}>\varepsilon\right\} \leq \frac{1}{\varepsilon^{2}} \sum_{k=m+1}^{\infty} \frac{D\left(X_{k}'\right)}{k^{2}} .
+		\]
+		\item 由条件 \eqref{eq:kllc}式以及在上式中令 $m \rightarrow \infty$ 可得: ${P\{b>\varepsilon\}=0}$.
+
+
+
+	\end{itemize}
+
+	\end{frame}
+
+
+\begin{frame}{Kolmogorov强大数定律证明}
+	\begin{itemize}[<+-|alert@+>]
+
+		\item 取 ${\varepsilon=1 / \ell}$, 并记使 ${b>1 / \ell}$ 成立的零概集为 $E_{\ell}$.
+		\item 令$E=\bigcup_{\ell=1}^{\infty} E_{\ell}$, 则 ${P(E)=0}$, 且对任意的$\omega\notin E$均有
+		\[{b(\omega) \leq 1 / \ell}, \forall l\geq 1.\]
+		\item 故对任意的 $\omega \notin {E}$ 恒有 $b(\omega)=0$. 进而, 在${\bar{E}}$ 上 ${\sum_{k=1}^{\infty} X_{k}'/ k}$ 收敛.
+		\item 故在 ${\overline{E}}$ 上
+		\[{\lim _{n \rightarrow \infty} \dfrac{1}{n} \sum_{k=1}^{n} X_{k}'=0}.\]
+
+
+	\end{itemize}
+
+	\end{frame}
+\end{document}

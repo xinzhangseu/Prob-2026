@@ -1,0 +1,467 @@
+% 取消下一行注释可生成 handout（无逐步显示）；保持注释则生成正常 slide。
+% \PassOptionsToClass{handout}{beamer}
+\documentclass[Main-Prob-All.tex]{subfiles}
+\begin{document}
+%\section{概率简介}
+\title[概率论]{第五讲：测度与概率及其性质}
+%\author[张鑫 {\rm Email: xzhangseu@seu.edu.cn} ]{\large 张 鑫}
+\institute[东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
+	\large 东南大学 \quad 数学学院 \\
+	\vspace{0.3cm}
+	%\trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+	%\hspace{-1.7cm}  密 \ qquad 码: \textrm{seu!prob}}
+}
+\date{}
+
+
+
+{\setbeamertemplate{footline}{}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+}
+
+%\subsection{事件 $\sigma$ 域或 $\sigma$- 代数}
+
+% \begin{frame}{代数(algebra)或域(field)}
+% \begin{defi}\textcolor{cyan}{(集合的代数 (algebra))}  设${\mathcal{A}}$ 是由 ${\Omega}$ 的某些子集所构成的集合类, 称${\mathcal{A}}$为集合 ${\Omega}$ 上的代数, 如果,
+% 	\begin{enumerate}[<+-|alert@+>]
+% 		\item ${\Omega \in \mathcal{A}, \varnothing \in \mathcal{A}}$;
+% 		\item 若 ${A \in \mathcal{A}}$, 则 $\overline{A}:=\Omega-A\in \mathcal{A}$;
+% 		\item 若${A, B \in \mathcal{A}}$, 则 $A \cup B \in \mathcal{A}.$
+% 	\end{enumerate}
+% \end{defi}
+
+% \pause
+
+% \begin{exam}
+% 	设 ${\Omega=\{a, b, c, d\}}$, 则集族 ${\mathcal{A}=\{\varnothing, \Omega,\{a\},\{b, c, d\}\}}$ 是代数.
+% \end{exam}
+
+% \pause
+% \begin{exam}
+% 	(有限集上的代数) 设 ${\Omega}$ 为有限集, 则集族 ${2^{\Omega}}$ (即 ${\Omega}$ 的所有子集构成的集合) 是代数. 例如, 当 ${\Omega=\{a, b, c\}}$ 时,
+% 	\[
+% 	\mathcal{A}=\{\varnothing, \Omega,\{a\},\{b\},\{c\},\{a, b\},\{b, c\},\{a, c\},\{a, b, c\}\}
+% 	\]
+% 	是代数.
+% \end{exam}
+
+% \pause
+% \begin{rmk}
+% 	\begin{itemize}[<+-|alert@+>]
+% 		\item 代数是"集合的集合"，即其本身是集合, 其中的元素仍然是集合. %有时也称这种集合组成的集合为集族 (set class).
+% 		\item 代数对于集合的求补、有限交和有限并运算封闭。
+% 		\item 由于代数仅对集合的有限交并封闭，若样本空间 ${\Omega}$ 是无限集, 将会导致它将无法包含一些重要的集合 (特别是无限集合).
+% 		\item 有必要对代数定义进行延伸, 加强其表达能力.
+% 	\end{itemize}
+
+
+% \end{rmk}
+
+
+
+
+% \end{frame}
+
+
+
+
+
+
+% \begin{frame}
+% 	\frametitle{事件 $\sigma$ 域定义及其性质}
+
+% 	\begin{defi}\textcolor{cyan}{(事件 $\sigma$ 域或 $\sigma$- 代数)} 设 $\mathcal{F}$ 为 $\Omega$ 的某些子集构成的集合类，称 $\mathcal{F}$ 为 $\Omega$ 上的事件 $\sigma$ 域或 $\sigma$- 代数，如果
+% 		\begin{enumerate}[<+-|alert@+>]
+% 			\item $\Omega\in \mathcal{F}$;
+% 			\item 若 $E\in \mathcal{F}$, 则 $\overline{E}:=\Omega-E\in \mathcal{F}$;
+% 			\item 若 $E_i\in \mathcal{F}, i=1, 2,\cdots,$ 则 $\cup_{i=1}^{\infty} E_i\in \mathcal{F}$.
+% 		\end{enumerate}
+% 	\end{defi}
+% 	\pause
+
+% 	\begin{thm} 若 $\mathcal{F}$ 为 $\Omega$ 上的 $\sigma$-代数，则
+% 		\begin{itemize}[<+-|alert@+>]
+% 			\item $\emptyset\in \mathcal{F}$;
+% 			\item 若 $E_k\in \mathcal{F}, k=1,2,\cdots,$ 则 $\cap_{k=1}^\infty E_k\in \mathcal{F}$;
+% 			\item 若 $E_1,\cdots, E_n\in \mathcal{F}$, 则 $\cap_{k=1}^nE_k\in \mathcal{F}$ 且 $\cup_{k=1}^nE_k\in \mathcal{F}$;
+
+% 			\item 若 $E_1,E_2\in\mathcal{F}$, 则 $E_1-E_2\in \mathcal{F}$.
+% 		\end{itemize}
+% 	\end{thm}
+% \end{frame}
+
+
+
+
+
+
+% \begin{frame}
+% 	\frametitle{$\sigma$-代数例子及如何构造}
+% 	\begin{itemize}[<+-|alert@+>]
+% 		\item $\mathcal{F}:=\{\emptyset, \Omega\}$;
+% 		\item $\mathcal{F}:=\{A:A\subset \Omega\}$;
+% 		\item $\mathcal{F}:=\{\emptyset, A, \bar{A}, \Omega\}$;
+% 		\item 如何由 $\{A,B\}$(假设 $A,B$ 为非平凡事件，互不包含且不互为对立事件) 扩充成事件 $\sigma$ 域？
+% 	\end{itemize}
+% \end{frame}
+
+% \begin{frame}{{\rm Borel} 运算与生成 $\sigma$-代数}
+% 	% \begin{defi}\textcolor{cyan}{(事件或集合的{\rm Borel} 运算)}
+% 	% 	我们将对所给出的一些事件或集合所作的各种 (有限次或可列次) 取余、取交和取并运算以及它们的混合运算都称为 \textcolor{cyan}{事件或集合的{\rm Borel} 运算}。
+% 	% \end{defi}
+% 	%\pause
+% 	\vspace{0.5cm}
+% 	\begin{prop}\
+% 		$\sigma$ 域就是一切可能的 Borel 运算之下封闭的集合 ($\Omega$ 的子集) 类。
+% 	\end{prop}
+% 	\pause
+% 	\vspace{0.5cm}
+% 	\begin{defi}\
+% 		如果 $\mathcal{C}$ 是 $\Omega$ 的一个子集类，那么 $\mathcal{C}$ 中的集合做一切可能的 Borel 运算所得到的 $\sigma$ 域 $\mathcal{F}$ 称为由 $\mathcal{C}$ 生成的 $\sigma$ 域，记作 $\mathcal{F}=\sigma (\mathcal{C})$。
+% 	\end{defi}
+% 	%%	~\
+% 	%%	\begin{thm}
+% 	%%		实直线上的如下三种 $\sigma$ 域相同，都是一维 Borel 域 $\mathcal{B}^1$：
+% 	%%		\begin{enumerate}
+% 	%%			\item 由全体有界开区间构成的类所生成的 $\sigma$ 域；
+% 	%%			\item 由子集类 $\left\{(-\infty,x)|x\in\mathbb{R}\right\}$ 所生成的 $\sigma$ 域；
+% 	%%			\item 由全体开集和闭集构成的类所生成的 $\sigma$ 域。
+% 	%%		\end{enumerate}
+% 	%%	\end{thm}
+% \end{frame}
+
+
+
+%\begin{frame}
+%	\frametitle{实直线上的 $\sigma$- 域}
+%	\begin{thm}
+%		实直线上的如下三种 $\sigma$ 域相同，都是一维 Borel 域 $\mathcal{B}^1$：
+%			\begin{enumerate}
+%				\item 由全体有界开区间构成的类所生成的 $\sigma$ 域；
+%				\item 由子集类 $\left\{(-\infty,x)|x\in\mathbb{R}\right\}$ 所生成的 $\sigma$ 域；
+%				\item 由全体开集和闭集构成的类所生成的 $\sigma$ 域。
+%		\end{enumerate}
+%	\end{thm}
+%\end{frame}
+
+
+
+
+
+
+
+
+
+
+\subsection{测度与概率的定义及其性质}
+\begin{frame}{测度与概率的定义}
+\begin{defi}
+  设 $(\Omega, \mathcal{F})$ 是可测空间，$\mu$ 为定义在 $\sigma$-代数 $\mathcal{F}$ 上取值于 $[0, \infty]$ 的(集)函数．
+
+ \begin{itemize}[<+-|alert@+>]
+ \item 称 $\mu$ 为测度，如果
+ \begin{enumerate}[<+-|alert@+>][(1)]
+			\item $\mu(A)\ge 0, \forall A\in \mathcal{F}$;
+			\item $\mu(\emptyset)=0$;
+			\item $\mu$具有可列可加性: 若$A=\cup_{i=1}^{\infty}A_i$, 其中$A, A_i\in \mathcal{F}$,  且$i\neq j$时, $A_i\cap A_j=\emptyset$,  则
+			\begin{eqnarray*}
+				\mu(\cup_{i=1}^{\infty}A_i)=\sum_{i=1}^{\infty}\mu(A_i).
+			\end{eqnarray*}
+
+		\end{enumerate}
+ \item 称 $\mu$ 为 $\sigma$ 有限测度, 如果存在两两不交的集合列 $\left\{B_{1}, B_{2}, \cdots\right\} \subseteq \mathcal{F}$ 使得 $\bigcup_{k=1}^{\infty} B_{k}=\Omega$ 且对每个 $k \geqslant 1$有 $\mu\left(B_{k}\right)<\infty$.
+ \item 称 $\mu$ 为有限测度, 如果 $\mu(\Omega)<\infty$.
+ \item 称 $\mu$ 为概率测度或概率, 如果 $\mu(\Omega)=1$.
+ \end{itemize}
+
+
+\end{defi}
+
+\end{frame}
+
+
+\begin{frame}%[allowframebreaks,allowdisplaybreaks]
+	\frametitle{测度的性质 I}
+	\begin{thm}
+		设 $(\Omega,\mathcal{F},\mu)$ 为一测度空间，则其上的测度 $\mu$ 具有如下性
+		质:
+		\begin{enumerate}[<+-|alert@+>]
+			\item $\mu(\emptyset)=0$;
+			\item 有限可加性：若 $A_1,\cdots, A_n\in \mathcal{F}$ 且两两互不相交，则
+			      \begin{eqnarray*}
+				      \mu(\cup_{k=1}^n A_k)=\sum_{k=1}^n\mu(A_k)
+			      \end{eqnarray*}
+			\item 可减性：若 $A, B\in \mathcal{F}$ 且 $A\subset
+				      B, \mu(A)<\infty$, 则 $$\mu(B-A)=\mu(B)-\mu(A);$$
+			\item 单调性：若 $A, B\in \mathcal{F}$ 且 $A\subset B$,
+			      则 $\mu(A)\leq \mu(B)$;
+			\item 若$\mu$为概率测度, 则$\mu(\bar{A})=1-\mu(A)$;
+		\end{enumerate}
+	\end{thm}
+\end{frame}
+\begin{frame}
+	\frametitle{有限测度的性质 I}
+
+	\begin{enumerate}[<+-|alert@+>]
+		\setcounter{enumi}{5}
+\item 次可加性(布尔(Boole)不等式)：对任意$A_1, A_2, \cdots\in \mathcal{F}$, 有
+		     \begin{align*}
+			      \mu(\cup_{n=1}^{\infty}A_n)&\leq \sum_{n=1}^{\infty}\mu(A_n).
+		      \end{align*}
+			  特别的, 对任意的$A_1,\cdots, A_n\in\mathcal{F}$, 有
+		      \begin{eqnarray*}
+			      \mu(\cup_{i=1}^{n}A_i)&\leq \sum_{i=1}^{n}\mu(A_i)
+		      \end{eqnarray*}
+		\item 加法公式(容斥原理)：对任意的$A,B\in\mathcal{F}$, 有
+		      \begin{eqnarray}\label{eq:plusformulatwo}
+			      \mu(A\cup B)=\mu(A)+\mu(B)-\mu(AB).
+		      \end{eqnarray}
+		      一般的，对任意的 $A_1,\cdots,A_n\in \mathcal{F}$, 有
+		      {\small \begin{eqnarray}
+			      \label{eq:plusformula}
+			      \mu(\cup_{i=1}^nA_i)&=&\sum_{i=1}^n\mu(A_i)-\sum_{1\leq i<j\leq n}\mu(A_iA_j)+\sum_{1\leq i<j<k\leq n}\mu(A_iA_jA_k)\nonumber\\
+			      && +\cdots+(-1)^{n-1}\mu(A_1A_2\cdots A_n).
+		      \end{eqnarray}}
+
+	\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{有限测度的性质 II}
+
+	\begin{enumerate}[<+-|alert@+>]
+		\setcounter{enumi}{7}
+		\item 邦费罗尼(Bonferroni)不等式:
+		{\small \begin{align*}
+			\mu(\cup_{i=1}^{n} A_{i}) &\geq \sum_{i=1}^{n} \mu(A_{i})-\sum_{1\leq i<j\leq n} \mu(A_{i} \cap A_{j}), \\
+			\mu(\cup_{i=1}^nA_i)&\leq \sum_{i=1}^{n} \mu(A_{i})-\sum_{1\leq i<j\leq n} \mu(A_{i} \cap A_{j})+\sum_{1\leq i<j<k\leq n}\mu(A_i\cap A_j\cap A_k), \cdots.
+		\end{align*}}
+		\item 下连续性:
+		      若 $A_n\in\mathcal{F}$ 且 $A_n\subset A_{n+1}, n=1,2,\cdots,$ 则
+		      \begin{eqnarray*}
+			      \mu(\cup_{n=1}^\infty A_n)=\mu(\lim_{n\rightarrow\infty}A_n)=\lim_{n\rightarrow\infty}\mu(A_n)
+		      \end{eqnarray*}
+		\item 上连续性:
+		      若 $A_n\in\mathcal{F}$ 且 $A_n\supset A_{n+1}, n=1,2,\cdots,$ 则
+		      \begin{eqnarray*}
+			      \mu(\cap_{n=1}^\infty A_n)=\mu(\lim_{n\rightarrow\infty}A_n)=\lim_{n\rightarrow\infty}\mu(A_n)
+		      \end{eqnarray*}
+		\item 有限测度 $\mu$ 的可列可加性等价于 $\mu$ 有限可加且下连续.
+	\end{enumerate}
+
+	% \end{thm}
+\end{frame}
+\begin{frame}{布尔不等式的证明}
+\begin{itemize}[<+-|alert@+>]
+\item 定义
+$$B_{1}=A_{1}, \quad B_{n}=A_{1}^{c} A_{2}^{c} \cdots A_{n-1}^{c} A_{n}, n \geq 2.$$
+
+\item 易证 $B_{1}, B_{2}, \cdots \in \mathcal{F}$ 两两不交且 $\bigcup_{n=1}^{\infty} A_{n}=\bigcup_{n=1}^{\infty} B_{n}$ ．
+
+\item 由可数可加性得
+\[
+\mu\left(\bigcup_{n=1}^{\infty} A_{n}\right)=\mu\left(\bigcup_{n=1}^{\infty} B_{n}\right)=\sum_{n=1}^{\infty} \mu\left(B_{n}\right)
+\]
+
+\item 由单调性知: $\mu\left(B_{n}\right) \leqslant \mu\left(A_{n}\right)$，故
+\begin{align*}
+\mu(\cup_{n=1}^{\infty}A_n)&\leq \sum_{n=1}^{\infty}\mu(A_n).
+\end{align*}
+\end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{加法公式证明 I}
+	% \begin{enumerate}[<+-|alert@+>]
+	% \item ({\color{red} 加法公式的证明})
+	注意到
+	\begin{eqnarray*}
+		A\cup B=A\cup (B-AB).
+	\end{eqnarray*}
+	\pause  故由测度的有限可加性及可减性可得：
+	\begin{eqnarray*} \mu(A\cup B)=\mu(A)+\mu(B)-\mu(AB).
+	\end{eqnarray*}
+	\pause 对于一般情形，可由归纳法证明。当 $n=2$ 时，\eqref{eq:plusformula} 式即为
+	\eqref{eq:plusformulatwo} 式。设 \eqref{eq:plusformula} 式对 $n-1$ 成立，
+	则先对 $\cup_{i=1}^{n-1} A_i$ 与 $A_n$ 应用
+	\eqref{eq:plusformulatwo} 得 \pause
+	\begin{eqnarray}\label{eq:proofplusformula}
+		\mu(\cup_{i=1}^nA_i)&=&\mu(\cup_{i=1}^{n-1}A_i)+\mu(A_n)-\mu((\cup_{i=1}^{n-1}A_i)\cap
+		A_n)\nonumber\\
+		&=&\mu(\cup_{i=1}^{n-1}A_i)+\mu(A_n)-\mu((\cup_{i=1}^{n-1}(A_iA_n))
+	\end{eqnarray}
+	%\end{enumerate}
+\end{frame}
+\begin{frame}%[allowframebreaks]
+	% \begin{enumerate}[<+-|alert@+>]
+	\frametitle{加法公式证明 II}
+
+	而{\small \begin{eqnarray*}
+		\mu(\cup_{i=1}^{n-1}A_i)&=&\sum_{i=1}^{n-1}\mu(A_i)-\sum_{1\leq i<j\leq n-1}\mu(A_iA_j)+\sum_{1\leq i<j<k\leq n-1}\mu(A_iA_jA_k)\nonumber\\
+		&&
+		+\cdots+(-1)^{n-2}\mu(A_1A_2\cdots
+		A_{n-1}),
+	\end{eqnarray*}
+	\pause
+	\begin{eqnarray*}
+		\hspace{-2cm} \mu(\cup_{i=1}^{n-1}(A_iA_n))&=&\sum_{1\leq i\leq n-1}\mu(A_iA_n)-\sum_{1\leq i<j\leq n-1}\mu(A_iA_jA_n)\\
+		&& +\cdots+(-1)^{n-2}\mu(A_1A_2\cdots A_n)\\
+		&=&\sum_{1\leq i<j=n}\mu(A_iA_n)-\sum_{1\leq i<j<k=n}\mu(A_iA_jA_n)\\
+		&& +\cdots+(-1)^{n-2}\mu(A_1A_2\cdots A_n)
+	\end{eqnarray*}}
+	\pause 故将上面两式代入 \eqref{eq:proofplusformula} 式即得加法公式.
+\end{frame}
+
+% \begin{frame}{{\rm Boole}不等式的证明: 归纳法}
+%  \begin{itemize}[<+-|alert@+>]
+% 	\item $n=2$时显然有
+% 	\[
+% 	P\left(A_{1} \cup A_{2}\right)=P\left(A_{1}\right)+P\left(A_{2}\right)-P\left(A_{1} \cap A_{2}\right) \leqslant P\left(A_{1}\right)+P\left(A_{2}\right),
+% 	\]
+% 	\item 假定$n=m$时结论成立, 那么$n=m+1$时, 有
+% 	\begin{align*}
+% 	\mu(\bigcup_{i=1}^{m+1} A_{i})  &\leq \mu(\bigcup_{i=1}^{m} A_{i})+\mu(A_{m+1}) \\
+% 	&\leqslant \sum_{i=1}^{m} \mu(A_{i})+\mu(A_{m+1}) \\
+% 	& =\sum_{i=1}^{m+1} \mu(A_{i})
+% 	\end{align*}
+
+
+%  \end{itemize}
+
+
+
+% \end{frame}
+
+\begin{frame}{邦费罗尼({\rm Bonferroni})不等式证明:非归纳法}
+	\begin{itemize}[<+-|alert@+>]
+		\item 注意到:
+		\begin{align*}
+		  \cup_{i=1}^nA_i&=A_1\cup (A_2-A_1)\cup(A_3-(A_1\cup A_2))\cup\cdots\cup(A_n-\cup_{i=1}^{n-1} A_i) \\
+		   &=A_1\cup (A_2\overline{A}_1)\cup(A_3\overline{A}_2\overline{A}_1))\cup\cdots\cup(A_n\overline{A}_{n-1}\cdots\overline{A}_1)\\
+		   &=A_1\cup \cup_{i=2}^n (A_i\overline{A}_{i-1}\cdots\overline{A}_1)
+		\end{align*}
+		\item 从而
+		\begin{align*}
+		  \mu(\cup_{i=1}^nA_i) &=\pause \mu(A_1)+\sum_{i=2}^n\mu(A_i\overline{A}_{i-1}\cdots\overline{A}_1) \\
+		   & =\pause \mu(A_1)+\sum_{i=2}^n\big[\mu(A_i)-\mu(A_i\cap (A_{i-1}\cup \cdots \cup A_1))\big] \\
+		   &=\pause \sum_{i=1}^n\mu(A_i)-\sum_{i=2}^n\mu(\cup_{j=1}^{i-1}(A_iA_j))%\leq \pause \sum_{i=1}^n\mu(A_i)
+		\end{align*}
+	\end{itemize}
+
+	\end{frame}
+
+
+	\begin{frame}{邦费罗尼({\rm Bonferroni})不等式证明:非归纳法}
+	\begin{itemize}[<+-|alert@+>]
+		\item 注意到
+		{\small \begin{align*}
+			\mu(\cup_{j=1}^{i-1}(A_iA_j)) &\leq \sum_{j=1}^{i-1}\mu(A_iA_j)
+		\end{align*}}
+		\item 从而
+		{\small \begin{align*}
+			\mu(\cup_{i=1}^nA_i) &=\pause \sum_{i=1}^n\mu(A_i)-\sum_{i=2}^n\mu(\cup_{j=1}^{i-1}(A_iA_j)) \\
+			&\geq\pause \sum_{i=1}^n\mu(A_i)-\sum_{i=2}^n\sum_{j=1}^{i-1}\mu(A_iA_j) \\
+			&=\pause\sum_{i=1}^n\mu(A_i)-\sum_{1\leq j<i\leq n}\mu(A_iA_j).
+		  \end{align*}}
+		\item 再由{\small $\mu(\cup_{j=1}^{i-1}(A_iA_j)) \geq \sum_{j=1}^{i-1}\mu(A_iA_j)-\sum_{1\leq j<k\leq i-1}\mu(A_iA_j\cap A_iA_k)$}可得\pause
+		{\small \begin{align*}
+			\mu(\cup_{i=1}^nA_i)\leq\pause \sum_{i=1}^{n} \mu(A_{i})-\sum_{1\leq i<j\leq n} \mu(A_{i} \cap A_{j})+\sum_{1\leq i<j<k\leq n}\mu(A_i\cap A_j\cap A_k)
+		\end{align*}}
+	\end{itemize}
+
+	\end{frame}
+
+
+
+
+
+\begin{frame}%[allowframebreaks]
+	\frametitle{测度 $\mu$ 的下连续性}
+	\begin{itemize}[<+-|alert@+>]
+	\item 设 $A_n\in\mathcal{F}$ 且 $A_n\subset A_{n+1}, n=1,2,\cdots,$, 则
+	\begin{eqnarray*}
+		\lim_{n\rightarrow \infty}A_n=\cup_{i=1}^\infty A_i
+	\end{eqnarray*}
+	\item  若令 $A_0=\emptyset$, 则
+	\begin{eqnarray*}
+		\cup_{i=1}^\infty A_i=\cup_{i=1}^\infty (A_i-A_{i-1}).
+	\end{eqnarray*}
+	\item   由于 $A_{i-1}\subset A_i$, 显然诸 $A_i-A_{i-1}$ 互不相容，故由可列可加性得
+	\begin{eqnarray*}
+		\mu(\cup_{i=1}^\infty A_i)&=&\mu(\cup_{i=1}^\infty (A_i-A_{i-1}))\pause =\sum_{i=1}^\infty (\mu(A_i)-\mu(A_{i-1}))\\
+		&=&\pause \lim_{n\rightarrow \infty}\sum_{i=1}^n(\mu(A_i)-\mu(A_{i-1}))=\pause \lim_{n\rightarrow \infty}\mu(A_n).
+	\end{eqnarray*}
+	\end{itemize}
+	% \begin{enumerate}[<+-|alert@+>]
+
+
+	% \item ({\color{red} 概率 $P$ 的下连续
+	%     性})
+
+\end{frame}
+\begin{frame}
+	\frametitle{测度$\mu$的上连续性}
+	\begin{itemize}[<+-|alert@+>]
+	\item 设 $A_n\in\mathcal{F}$ 且 $A_n\supset A_{n+1}, n=1,2,\cdots$，则
+	$$\bar{A}_n\in\mathcal{F}, \quad  \bar{A}_n\subset \bar{A}_{n+1}, n=1, 2, \cdots.$$
+	\item 由测度的下连续性可得
+	\begin{eqnarray}\label{eq:downcont}
+		\mu(\cup_{i=1}^\infty \bar{A}_i)=\lim_{n\rightarrow\infty}\mu(\bar{A}_n)=\mu(\Omega)-\lim_{n\rightarrow\infty}\mu(A_n).
+	\end{eqnarray}
+	\item 另一方面，
+	\begin{eqnarray}
+		\label{eq:downcont2}
+		\mu(\cup_{i=1}^\infty \bar{A}_i)=\mu(\overline{\cap_{i=1}^\infty A_i})=\mu(\Omega)-\mu(\cap_{i=1}^\infty A_i)=\mu(\Omega)-\mu(\lim_{n\rightarrow\infty}A_n).
+	\end{eqnarray}
+	\item 综合 \eqref{eq:downcont} 式与 \eqref{eq:downcont2} 式可得
+	\begin{eqnarray*}
+		\lim_{n\rightarrow\infty}\mu(A_n)=\mu(\lim_{n\rightarrow\infty}A_n).
+	\end{eqnarray*}
+	\end{itemize}
+
+
+
+\end{frame}
+\begin{frame}
+	\frametitle{可列可加 $\Leftrightarrow$ 有限可加且下连续}
+	\begin{itemize}[<+-|alert@+>]
+	\item $\Rightarrow$: 显然，下证 $\Leftarrow$.
+	\item 设 $A_i\in\mathcal{F},i=1,2,\cdots,$ 是两两互不相交，则由有限可加性知，对任意的 $n$ 均有
+	$\mu(\cup_{i=1}^nA_i)=\sum_{i=1}^n\mu(A_i)$.
+	\item 等式两边同时
+	令 $n\rightarrow\infty$ 可得
+	\begin{eqnarray*}
+		\lim_{n\rightarrow\infty} \mu(\cup_{i=1}^nA_i)=\lim_{n\rightarrow\infty}\sum_{i=1}^n\mu(A_i)=\sum_{i=1}^\infty \mu(A_i).
+	\end{eqnarray*}
+	\item 令 $F_n:=\cup_{i=1}^nA_i$, 则
+	 $$F_n\in \mathcal{F},\quad  F_n\subset F_{n+1}.$$
+	 从而由测度的下连续性可得
+	\begin{eqnarray*}
+		\lim_{n\rightarrow\infty} \mu(\cup_{i=1}^nA_i)= \lim_{n\rightarrow\infty} \mu(F_n)=\mu(\cup_{n=1}^\infty F_n)=\mu(\cup_{i=1}^\infty A_i).
+	\end{eqnarray*}
+	\end{itemize}
+
+
+
+
+\end{frame}
+
+
+\subsection{概率空间的概念}
+\begin{frame}{概率空间的定义}
+	\begin{itemize}[<+-|alert@+>]
+		\item 概率空间是一个三元组 $(\Omega, \mathcal{F}, P)$，其中
+		\begin{itemize}
+			\item $\Omega$ 是样本空间，表示所有可能的结果集合；
+			\item $\mathcal{F}$ 是 $\Omega$ 的 $\sigma$-代数，表示事件的集合；
+			\item $P$ 是概率测度，满足 $P: \mathcal{F} \rightarrow [0,1]$，并且 $P(\Omega)=1$.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+\end{document}

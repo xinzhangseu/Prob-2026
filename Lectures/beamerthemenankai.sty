@@ -1,0 +1,143 @@
+% Copyright 2010 by Zhiyong Zhao <zyzhao@nankai.edu.cn>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 1.0
+
+\mode<presentation>
+
+\useinnertheme[shadow=true]{rounded}
+
+
+% define color theme
+\definecolor{beamer@thucolor}{RGB}{120,30,150}
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=beamer@thucolor}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=beamer@thucolor!75!black}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=beamer@thucolor!50!black}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg!75!black}
+\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=alerted text.fg!75!black}
+\setbeamercolor{block title example}{use=example text,fg=white,bg=example text.fg!75!black}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!10!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+
+\setbeamercolor{section in head/foot}{parent=palette quaternary}
+\setbeamercolor{subsection in head/foot}{parent=palette primary}
+
+\setbeamercolor{author in head/foot}{parent=section in head/foot}
+\setbeamercolor{title in head/foot}{parent=subsection in head/foot}
+
+%\setbeamercolor{frametitle}{parent=subsection in head/foot}
+%\setbeamercolor{frametitle right}{parent=section in head/foot}
+\setbeamercolor{frametitle}{fg=beamer@thucolor, bg=white}
+\setbeamercolor{frametitle right}{fg=beamer@thucolor, bg=white}
+
+
+% define outer theme
+\pgfdeclarehorizontalshading[frametitle.bg,frametitle right.bg]{beamer@frametitleshade}{\paperheight}{%
+  color(0pt)=(frametitle.bg);
+  color(\paperwidth)=(frametitle right.bg)}
+
+\AtBeginDocument{
+  \pgfdeclareverticalshading{beamer@topshade}{\paperwidth}{%
+    color(0pt)=(bg);
+    color(8pt)=(bg)}
+  \pgfdeclareverticalshading{beamer@splitshade}{\paperwidth}{%
+    color(0pt)=(bg);
+    color(4pt)=(beamer@thucolor)}
+  \pgfdeclareimage[height=0.6cm]{beamer@logo}{nkulogo}
+}
+
+\addtobeamertemplate{headline}{}
+{%
+  \vskip-5pt
+  \pgfuseshading{beamer@topshade}
+  \vskip-2pt
+}
+
+\defbeamertemplate*{footline}{split theme}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.3\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{subsection in head/foot}%{author in head/foot}%
+    \centering{\usebeamerfont{author in head/foot}\insertshortauthor}%\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\centering{\thesection.\thesubsection~\insertsubsectionhead}%\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.1cm,rightskip=.3cm plus1fill]{subsection in head/foot}%
+    \usebeamerfont{title in head/foot}\centering{~~\insertshortinstitute~~~~~~~\insertpagenumber/\insertdocumentendpage}
+%\insertsubsectionhead
+  \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+\defbeamertemplate*{frametitle}{shadow theme}
+{%
+  \nointerlineskip%
+  \vskip-2pt%
+  \hbox{\leavevmode
+    \advance\beamer@leftmargin by -12bp%
+    \advance\beamer@rightmargin by -12bp%
+    \beamer@tempdim=\textwidth%
+    \advance\beamer@tempdim by \beamer@leftmargin%
+    \advance\beamer@tempdim by \beamer@rightmargin%
+    \hskip-\Gm@lmargin\hbox{%
+      \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+          \vbox{}\vskip-.75ex%
+          \leftskip0.3cm%
+          \rightskip0.3cm plus1fil\leavevmode
+          \insertframetitle%
+          \ifx\insertframesubtitle\@empty%
+            \strut\par%
+          \else
+            \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
+          \fi%
+          \nointerlineskip
+          \vbox{}%
+          \end{minipage}}%
+      \beamer@tempdim=\ht\beamer@tempbox%
+      \advance\beamer@tempdim by 5pt%
+      \begin{pgfpicture}{0pt}{0pt}{.92\paperwidth}{\beamer@tempdim}
+        \usebeamercolor{frametitle right}
+        \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}
+        \pgfusepath{clip}
+        \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+      \end{pgfpicture}
+      \begin{pgfpicture}{0pt}{-2pt}{.08\paperwidth}{\beamer@tempdim}
+        \pgfuseimage{beamer@logo}
+      \end{pgfpicture}
+      \hskip-\paperwidth%
+      \box\beamer@tempbox%
+    }%
+    \hskip-\Gm@rmargin%
+  }%
+  \nointerlineskip
+    \vskip-0.2pt
+    %\hbox{%
+    %\begin{beamercolorbox}[wd=\paperwidth,ht=1pt,dp=0ex]{subsection in head/foot}%
+    %\end{beamercolorbox}%
+    %}%
+    \hbox to\textwidth{\hskip-\Gm@lmargin\pgfuseshading{beamer@splitshade}\hskip-\Gm@rmargin}
+    \vskip-2pt
+}
+
+% define font theme
+
+\usefonttheme[onlylarge]{structurebold}
+%\usefonttheme{default}
+\usefonttheme[onlymath]{serif}
+
+
+\setbeamerfont{block title}{size={}}
+
+\mode
+<all>

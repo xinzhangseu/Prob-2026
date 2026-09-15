@@ -1,0 +1,231 @@
+ %\documentclass[compress,table]{beamer}
+ \documentclass[fontset=windows,compress,table]{beamer}
+ \usefonttheme[onlymath]{serif}
+
+ \usetheme{nankai} %% Madrid, Malmoe, Warsaw, Marburg
+
+ \usepackage{extarrows,amsmath,amsfonts,amssymb,pict2e}
+ \usepackage{mathrsfs}
+
+
+
+ % \usepackage{CJK,graphicx}
+ \usepackage{colortbl,xcolor}
+ \usepackage{multimedia}
+ \usepackage{multicol}
+ \usepackage{tikz}
+ \usepackage{graphicx}
+ \graphicspath{{figures/}} %% 图片路径
+ \usepackage{subfigure}                        % 子图并排
+ \usepackage{subfiles}                         % 每讲继承本文件导言并可独立编译
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%% 超链接  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \usepackage{hyperref}
+ \hypersetup{bookmarksnumbered=true,bookmarksopen=true,pdfborder=1,breaklinks,colorlinks,linkcolor=cyan,filecolor=black,urlcolor=blue,citecolor=green}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%% 超链接  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+ %%%%%%%%%%%%%%%%%%%%%% item 显示 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %\setbeamertemplate{itemize items}[circle]
+ \setbeamertemplate{itemize items}[triangle]
+ \setbeamertemplate{enumerate items}[default]
+ % item 逐步显示时，使已经出现的 item、正在显示的 item、将要出现的 item 呈现不同颜色
+ \def\hilite<#1>{
+	 \temporal<#1>{\color{gray}}{\color{blue}}
+	 {\color{blue!25}}
+ }
+ \beamertemplatetransparentcovereddynamic %% 隐藏 item 透明显示
+
+ %%%%%%%%%%%%%%%%%%%%%% item 显示 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \renewcommand{\baselinestretch}{1.05} % 行距
+
+ \setbeamersize{text margin left=18pt}
+ \setbeamersize{text margin right=12pt}
+
+ \setlength{\leftmargini}{18pt}
+
+
+%%%%%%%%%%%%%%%%%%% 设置字体方法一 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \usepackage{multirow}
+
+
+
+ %\usepackage[cm-default]{fontspec}
+ \usepackage{fontspec}
+ \usepackage{xunicode,xltxtra}
+
+ \defaultfontfeatures{Mapping=tex-text}
+\usepackage{xeCJK}    % CJK 包
+
+ \XeTeXlinebreaklocale "zh"
+ \setCJKmainfont[BoldFont=FandolHei]{FandolKai}
+ \setCJKsansfont[BoldFont=FandolHei]{FandolKai}  % 设置中文字体
+ \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+ \setmainfont{Times New Roman} % 设置西文字体
+ %\setmainfont{Baskerville} % 设置西文字体
+ % \setmainfont[BoldFont=SimHei]{Adobe Song Std}
+ %\setsansfont[BoldFont=SimHei]{KaiTi_GB2312}
+
+ % \setsansfont[BoldFont=SimHei]{Microsoft YaHei}
+\setmonofont{FandolSong}
+
+ %%%%%%%%%%%%%%%%%%%%% 设置字体方法一结束 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 自定义定理环境  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \theoremstyle{definition}
+ \setbeamertemplate{theorems}[numbered]% 定理编号
+ \newtheorem{thm}{定理}[section]
+ \newtheorem{lem}{引理}[section]
+ \newtheorem{defi}{定义}[section]
+ \newtheorem{prop}{命题}[section]
+ \newtheorem{exam}{例}[section]
+ \newtheorem{prob}{问题}[section]
+ \newtheorem{rmk}{注}[section]
+ \newtheorem{coro}{推论}[section]
+ %\newtheorem{proof}{证明}
+ \newcommand{\jieda}{\noindent\textcolor{red}{解:}\quad}
+ \newcommand{\zheng}{\noindent\textcolor{cyan}{证明:}\quad}
+ \newcommand{\fenxi}{\noindent\textcolor{cyan}{分析:}\quad}
+
+ \newcommand{\lizi}{\noindent\textcolor{red}{例:}\quad}
+ \newcommand{\dy}{\noindent\textcolor{red}{定义:}\quad}
+ \renewcommand{\proofname}{证明}
+
+ \renewcommand{\figurename}{图}
+ \renewcommand{\tablename}{表}
+ % 在表格、图片等得标题中显示编号
+ \setbeamertemplate{caption}[numbered]
+
+ % \newtheorem{defi}{定义}[section]
+ \newenvironment{simpleblock}[1]{\vspace{0.02cm}\textcolor{cyan}{#1}\,}{\vspace{0.02cm}}
+ \renewenvironment{proof}[1]{\textcolor{cyan}{\proofname:} \vspace{0.02cm} #1\,}{\vspace{0.02cm}\qed}
+
+ % \newenvironment{simpleblock}[1]{#1\quad}{}
+ \renewcommand\inserttheoremblockenv{simpleblock}
+
+
+ \renewcommand{\proofname}{证明}
+ %\newcommand{\tc}{\textcolor{cyan}}
+ \newcommand{\trc}{\color{red}}
+ \makeatletter
+ \newcommand*{\tc}{\@ifnextchar\bgroup{\tc@}{\color{cyan}}}
+ \newcommand*{\tc@}[1]{{\textcolor{cyan}{#1}}}
+ \makeatother
+
+
+
+ \usepackage{listings} %frame 要加 option [fragile]
+ \usepackage{xcolor}
+
+ % \definecolor{dkgreen}{rgb}{0,0.6,0}
+ % \definecolor{gray}{rgb}{0.5,0.5,0.5}
+ % \definecolor{mauve}{rgb}{0.58,0,0.82}
+
+ % \lstset{
+ %   language=Matlab,  %代码语言使用的是matlab
+ %   frame=shadowbox, %把代码用带有阴影的框圈起来
+ %   rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
+ %   keywordstyle=\color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
+ %   commentstyle=\color{red!10!green!70}\textit,    % 设置代码注释的颜色
+ %   showstringspaces=false,%不显示代码字符串中间的空格标记
+ %   numbers=left, % 显示行号
+ %   numberstyle=\tiny,    % 行号字体
+ %   stringstyle=\ttfamily, % 代码字符串的特殊格式
+ %   breaklines=true, %对过长的代码自动换行
+ %   extendedchars=false,  %解决代码跨页时，章节标题，页眉等汉字不显示的问题
+ %   escapebegin=\begin{CJK*},escapeend=\end{CJK*},      % 代码中出现中文必须加上，否则报错
+ %   %backgroundcolor=\color{gray},
+ %   xleftmargin=2em,xrightmargin=2em, aboveskip=1em,
+ %   texcl=true}
+
+
+
+ \definecolor{codegreen}{rgb}{0,0.6,0}
+ \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+ \definecolor{codepurple}{rgb}{0.58,0,0.82}
+ \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ % 定义 listings 风格，可以定义多个
+ \lstdefinestyle{mystyle}{
+	 backgroundcolor=\color{backcolour},  % 背景色
+	 commentstyle= \color{red!50!green!50!blue!50},  % 注释的颜色
+	 keywordstyle= \color{blue!70},  % 关键字/程序语言中的保留字颜色
+	 numberstyle=\tiny\color{codegray},  % 左侧行号显示的颜色
+	 stringstyle=\color{codepurple},
+	 stringstyle=\ttfamily, % 代码字符串的特殊格式
+	 basicstyle=\ttfamily\footnotesize,
+	 breakatwhitespace=false,
+	 breaklines=true,  % 对过长的代码自动换行
+	 captionpos=b,
+	 keepspaces=true,
+	 numbers=left,  % 在左侧显示行号
+	 numbersep=5pt,
+	 showspaces=false,
+	 showstringspaces=false,  % 不显示字符串中的空格
+	 showtabs=false,
+	 tabsize=2,
+	 frame=single,  % [none | single | shadowbox] 显示边框
+	 xleftmargin=2em,xrightmargin=2em, aboveskip=1em,
+	 texcl=true
+	 }
+ \lstset{style=mystyle}  % 使用 listings 风格
+
+
+
+
+
+
+
+
+ % 打开 PDF 后直接全屏
+ \hypersetup{pdfpagemode={FullScreen}}
+ % \logo{\includegraphics[height=0.06\textwidth]{nkulogo.jpg}}
+
+
+ %\title[概率论]{第六讲：全概率公式与贝叶斯公式}
+ %\author[张鑫{\rm Email: x.zhang.seu@foxmail.com} ]{\large 张 鑫}
+ %\institute[东南大学数学学院]{\large \textrm{Email: x.zhang.seu@foxmail.com} \\ \quad  \\
+ %	\large 东南大学 \quad 数学学院 \\
+ %	\vspace{0.3cm}
+ %	%\trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+ %		% \hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
+ %}
+ %\date{}
+
+\begin{document}
+\ifdefined\LectureFile
+  \expandafter\subfile\expandafter{\LectureFile}
+\else
+\subfile{L01.tex}
+ \subfile{L02.tex}
+ \subfile{L03.tex}
+ \subfile{L04.tex}
+ \subfile{L05.tex}
+  \subfile{L06.tex}
+  \subfile{L07.tex}
+  \subfile{L08.tex}
+  \subfile{L09.tex}
+  \subfile{L10.tex}
+
+  \subfile{L11.tex}
+  \subfile{L12.tex}
+
+  \subfile{L13.tex}
+  \subfile{L14.tex}
+  \subfile{L15.tex}
+  \subfile{L16.tex}
+
+  \subfile{L17.tex}
+  \subfile{L18.tex}
+
+  \subfile{L19.tex}
+
+  \subfile{L20.tex}
+  \subfile{L21.tex}
+\subfile{L22.tex}
+
+  \subfile{L23.tex}
+\fi
+
+ \end{document}

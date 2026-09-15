@@ -1,0 +1,607 @@
+% 取消下一行注释可生成 handout（无逐步显示）；保持注释则生成正常 slide。
+% \PassOptionsToClass{handout}{beamer}
+\documentclass[Main-Prob-All.tex]{subfiles}
+\begin{document}
+
+
+
+ \title[概率论]{第十五讲：随机变量函数的分布}
+% \author[张鑫 {\rm Email: x.zhang.seu@foxmail.com} ]{\large 张 鑫}
+ \institute[东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
+ 	\large 东南大学 \quad 数学学院 \\
+ 	\vspace{0.3cm}
+ %	\trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+ 	%	\hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
+ }
+ \date{}
+
+
+
+ 	{ \setbeamertemplate{footline}{}
+ 		\begin{frame}
+ 			\titlepage
+ 		\end{frame}
+ 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \section{随机变量}
+
+ \subsection{随机变量函数的分布}
+ \begin{frame}
+ 	\frametitle{一维离散型随机变量函数的分布}
+ 	\begin{thm}
+ 		设 $X\sim \{p_k\}$ 为一维离散型随机变量，若 $Z=f (X)$, 则对随机变量 $Z$ 的所有可能值 $z_k$ 有
+ 		\begin{eqnarray*}
+ 			P(Z=z_k)=\sum_{i:f(x_i)=z_k}p_i
+ 		\end{eqnarray*}
+ 	\end{thm}%
+ 	\pause%
+ 	\noindent\zheng 注意到 \vspace{-1cm}
+ 	\begin{eqnarray*}
+ 		\hspace{1.5cm} \{Z=z_k\}=\{f(X)=z_k\}=\cup_{i:f(x_i)=z_k}\{X=x_i\}
+ 	\end{eqnarray*}
+ 	\pause 故 $P (Z=z_k)=\sum_{i:f (x_i)=z_k} P (X=x_i)=\sum_{i:f (x_i)=z_k} p_i$.
+ 	\begin{exam}
+ 		若 $P (X=1)=P (X=-1)=0.25, P (X=0)=0.5$, 求 $Z=X^2$ 的分布.
+ 	\end{exam}
+
+ 	\jieda \pause$P(Z=1)=\sum_{i:x_i^2=1}p_i=P(X=1)+P(X=-1)=0.5$\\
+ 	\pause $$P(Z=0)=P(X=0)=0.5$$
+ \end{frame}
+
+ \begin{frame}
+ 	\frametitle{$Y=f (X): f (x)$ 严格单调且 $X$ 为连续型随机变量}
+ 	\begin{thm}
+ 		设 $X$ 是连续随机变量，其密度函数为 $p_X (x)$. $Y=f (X)$ 是另一个随机变量。若 $y=f (x)$ 严格单调，其反函数 $h (y)$ 有连续导数，则 $Y=f (X)$ 的密度函数为
+ 		\begin{eqnarray*}
+ 			p_Y(y)=\left\{
+ 			\begin{array}{ll}
+ 				p_X(h(y))|h'(y)|,& a\leq y\leq b\\
+ 				0,&\mbox{其他}
+ 			\end{array}
+ 			\right.
+ 		\end{eqnarray*}
+ 		其中 $a=\min\{f (-\infty), f (+\infty)\}, b=\max\{f (-\infty), f (+\infty)\}$.
+ 	\end{thm}
+
+ 	\pause \zheng 由 $f (x)$ 为严格单调函数可知:%
+ 	\begin{eqnarray*}
+ 		\hspace{-0cm} F_Y(y)&=&\pause P(Y\le y)=P(f(X)\le y)\\
+ 		&=&\pause \left\{
+ 		\begin{array}{ll}
+ 			\pause 0, & y<a\\
+ 			\pause 1, & y>b\\
+ 			\pause P (X\le h (y))=\pause \int_{-\infty}^{h (y)} p_X (x) dx, & a\leq y \leq b \mbox{且} f (x)\mbox{严格递增}\\
+ 			\pause P (X\ge h (y))=\pause \int_{h (y)}^{+\infty} p_X (x) dx, &a\leq y \leq b\mbox{且} f (x)\mbox{严格递减}
+ 		\end{array}
+ 		\right.
+ 	\end{eqnarray*}
+
+ \end{frame}
+
+ % \begin{frame}
+ 	%   从而 $Y$ 的密度函数为
+ 	%   \begin{eqnarray*}
+ 		%       p_Y(y)=\left\{
+ 		%       \begin{array}{ll}
+ 			%       p_X(h(y))|h'(y)|,& a<y<b\\
+ 			%       0,&\mbox{其他}
+ 			%     \end{array}
+ 		%                   \right.
+ 		%     \end{eqnarray*}
+
+ 	%                   \end{frame}
+ \begin{frame}
+ 	\frametitle{几个常见的函数形式 $f$}
+ 	\begin{itemize}[<+-|alert@+>]
+ 		\item $f (x)=ax+b$ : 当 $X$ 为均匀分布，正态分布，伽玛分布时，求 $Y=f (X)$ 的分布密度；
+ 		\item 当 $X\sim N (\mu,\sigma^2)$ 时，可以验证 $aX+b\sim N (a\mu+b, a^2\sigma^2)$;
+ 		\item $f (x)=e^x$ : 当 $X$ 为均匀分布，正态分布，伽玛分布时，\\ 求 $Y=f (X)$ 的分布密度；
+ 		\item 对无单调性的函数 $f (x)$, 我们一般根据 $X$ 的分布密度想法求出 $Y$ 的分布函数 $F_Y (y)$,
+ 		\begin{eqnarray*}
+ 			F_Y(y)&=&P(Y\le y)=P(f(X)\le y)=P(X\in f^{-1}((-\infty, y]))\\
+ 			&=&\int_{f^{-1}((-\infty, y])}p_X(x)dx
+ 		\end{eqnarray*}
+ 		\item 然后对 $F_Y (y)$ 关于 $y$ 求导即可得到其分布密度 $p_Y (y)$.
+ 	\end{itemize}
+
+ \end{frame}
+
+ \begin{frame}{标准正态分布随机变量函数的分布}
+\begin{exam}
+设 $X$ 服从正态分布 $N(0,1)$, 求 $Y=X^{2}$ 的分布．
+\end{exam}
+\pause
+
+\jieda
+\begin{itemize}[<+-|alert@+>]
+\item 显然，可以认为 $Y=X^{2}$ 以概率 1 取值于开区间（ $0, \infty$ ）;
+\item 对 $y>0$ 有
+\begin{align*}
+   F(y)&=P(X^2\leq y)=P(|X| \leqslant \sqrt{y})\\
+   &=\int_{-\sqrt{y}}^{\sqrt{y}} \frac{1}{\sqrt{2 \pi}} \mathrm{e}^{-\frac{x^{2}}{2}} \mathrm{d} x=\sqrt{2} \int_{0}^{\sqrt{y}} \frac{1}{\sqrt{\pi}} \mathrm{e}^{-\frac{x^{2}}{2}} \mathrm{d} x
+\end{align*}
+\item 故 $Y$ 的密度函数为
+\[
+p(y)=\frac{1}{\sqrt{2 \pi y}} \mathrm{e}^{-\frac{y}{2}},  y>0
+\]
+\item 显然, $Y\sim \chi^2(1)$.
+\end{itemize}
+
+
+\end{frame}
+% \begin{frame}
+% 	\frametitle{两个问题}
+% 	\begin{itemize}[<+-|alert@+>]
+% 		\item 若 $X$ 为随机变量，对于怎样的 $f$ 才会有 $f (X)$ 仍然为随机变量？
+% 		\item 给定分布函数 $F (x)$, 是否存在某个随机变量 $X$ 恰好使得其分布函数为给定的 $F (x)$?
+% 	\end{itemize}
+% \end{frame}
+% \begin{frame}
+% 	\frametitle{随机变量的 $p$ 分位数函数}
+% 	\vspace{-0.3cm}
+% 	\begin{defi}
+% 		设 $X$ 是概率空间 $(\Omega,\mathcal{F},P)$ 上的随机变量，$F (x)$ 为其分布函数。对于 $p\in (0,1)$, 定义
+% 		\begin{eqnarray*}
+% 			F^{-1}(p):=\sup\{x:F(x)<p\}\pause =\inf\{x: F(x)\geq p\}.
+% 		\end{eqnarray*}
+% 		称 $F^{-1}(p)$ 为 $F$ 或 $X$ 的 $p$ 分位数，通常用 $x_p$ 或 $\xi_p$ 来表示.
+% 	\end{defi}
+%
+%
+% \end{frame}
+%
+% \begin{frame}
+% 	\frametitle{随机变量的 $p$ 分位数函数的性质}
+%
+% 	\begin{itemize}[<+-|alert@+>]
+% 		\item $F^{-1}(p)$ 关于 $p$ 单调不减：集合 $\{x:F (x)<p\}$ 关于 $p$ 单调不减，故其上确界也关于 $p$ 单调不减；
+% 		\item 若 $x<F^{-1}(p)$, 则 $F (x)<p$: $F^{-1}(p)$ 是使得 $F (x)<p$ 的 $x$ 中的上确界；
+% 		\item 若 $F (x)<p$, 则 $x<F^{-1}(p)$:\pause 由分布函数的右连续性知，若 $F (x)<p$, 对于给定的 $\epsilon:=\dfrac{p-F (x)}{2}$, 则必定存在充分小的 $\delta$, 使得
+% 		\begin{eqnarray*}
+% 			F(x+\delta)<F(x)+\epsilon=\dfrac{p+F(x)}{2}<p
+% 		\end{eqnarray*}
+% 		从而 $x<F^{-1}(p)$;\pause
+% 		\item $x<F^{-1}(p)\Leftrightarrow F (x)<p$, 或等价的 $x\ge F^{-1}(p)\Leftrightarrow F (x)\ge p$;
+% 		\item $P(X\le F^{-1}(p))=F(F^{-1}(p))\ge p$;
+% 		\item $P(X\ge F^{-1}(p))=1-P(X<F^{-1}(p))$\\ \pause $=1-\lim_{\epsilon\rightarrow 0}P(X\le F^{-1}(p)-\epsilon)\pause \ge 1-p$
+% 	\end{itemize}
+%
+% \end{frame}
+%
+%
+% \begin{frame}
+% 	\frametitle{$p$ 分位数函数的应用：随机变量的存在性}
+% 	由前面所学知识易知：给定一个随机变量，我们可定义其分布函数，并且分布函数具有性质：单调不减，右连续，$F (-\infty)=0$, $F (+\infty)=1$. 那么反过来呢？
+% 	\pause \begin{prob}
+% 		给定一个分布函数 $F (x)$, 即函数 $F (x)$ 具有分布函数的性质：单调不减，右连续，$F (-\infty)=0$, $F (+\infty)=1$, 是否一定存在一个概率空间 $(\Omega,\mathcal{F},P)$ 及其上的随机变量 $X$ 使得其分布函数恰为 $F (x)$?
+% 	\end{prob}
+% 	\pause  \begin{thm}
+% 		若 $F (x)$ 是右连续的单调不减函数，且 $F (-\infty)=0, F (+\infty)=1$, 则存在一个概率空间 $(\Omega,\mathcal{F},P)$ 及其上的随机变量 $X (\omega)$, 使 $X (\omega)$ 的分布函数恰好是 $F (x)$.
+% 	\end{thm}
+% \end{frame}
+% \begin{frame}
+% 	\frametitle{随机变量存在性的证明}
+% 	\zheng
+% 	\begin{itemize}[<+-|alert@+>]
+% 		\item 取 $\Omega=[0,1]$, $\mathcal{F}$ 为 $[0,1]$ 上的 Borel 集全体，取 $P$ 为直线上的 Lebesgue 测度 (是长度概念的推广，但对一切 Borel 集有定义);
+% 		\item 定义: $\theta (\omega)=\omega$, 则 $\theta (\omega)$ 是 $(\Omega,\mathcal{F},P)$ 上的随机变量，并且，对一切的 $0\le x\le 1$,
+% 		\begin{eqnarray*}
+% 			P(\theta(\omega)\le x)=P(\omega\in[0,x])=x;
+% 		\end{eqnarray*}
+% 		\item 考虑 $X (\omega):=F^{-1}(\theta (\omega))$, 则
+% 		{\small\begin{eqnarray*}
+% 				F_X(x)=P(X\le x)=\pause P(F^{-1}(\theta(\omega))\le x)\pause \xlongequal[p\le F(x)]{F^{-1}(p)\le x} P(\theta(\omega)\le F(x))=\pause F(x)
+% 		\end{eqnarray*}}
+%
+%
+% 	\end{itemize}
+%
+% \end{frame}
+ \begin{frame}
+ 	\frametitle{多维随机变量函数的分布：离散情形}
+ 	\begin{thm}[离散卷积公式] 设 $X$ 与 $Y$ 为相互独立的非负整值随机变量，各有分布 $\{a_k\}$ 与 $\{b_k\}$. 则其和有分布
+ 		\begin{eqnarray*}
+ 			P(X+Y=n)=\sum_{k=0}^na_kb_{n-k}, n=0,1,2,\cdots.
+ 		\end{eqnarray*}
+ 	\end{thm}
+ 	\pause \zheng 注意到 $X$ 与 $Y$ 相互独立，故对任何的 $n=0,1,2,\cdots,$ 有
+ 	\begin{eqnarray*}
+ 		&&\hspace{-0.7cm}P(X+Y=n)=\pause \sum_{k=0}^\infty P(X+Y=n,X=k)=\pause \sum_{k=0}^n P(X+Y=n,X=k)\\
+ 		&=&\pause \sum_{k=0}^n P(X=k)P(X+Y=n|X=k)=\pause \sum_{k=0}^n P(X=k)P(Y=n-k|X=k)\\
+ 		&=&\pause \sum_{k=0}^n P(X=k)P(Y=n-k)=\sum_{k=0}^n a_kb_{n-k}
+ 	\end{eqnarray*}
+ \end{frame}
+
+ \begin{frame}
+ 	\frametitle{泊松分布的可加性}
+ 	\begin{exam}[泊松分布的可加性] 设随机变量 $X\sim P (\lambda_1), Y\sim P (\lambda_2)$, 且 $X,Y$ 相互独立，则 $Z=X+Y\sim P (\lambda_1+\lambda_2)$
+ 	\end{exam}
+
+ 	\pause \jieda 由题意知
+ 	\begin{eqnarray*}
+ 		P(Z=k)&=&\pause P(X+Y=k)=\pause \sum_{i=0}^\infty P(X=i, X+Y=k)\\
+ 		&=&\pause \sum_{i=0}^\infty P(X=i, Y=k-i)=\sum_{i=0}^kP(X=i,Y=k-i)\\
+ 		&=&\pause \sum_{i=0}^kP(X=i)P(Y=k-i)=\sum_{i=0}^n\bigg(\dfrac{\lambda_1^i}{i!}e^{-\lambda_1}\bigg)\bigg(\dfrac{\lambda_2^{k-i}}{(k-i)!}e^{-\lambda_2}\bigg)\\
+ 		&=&\pause \dfrac{e^{-(\lambda_1+\lambda_2)}}{\textcolor{red}{k!}}\sum_{i=0}^k\dfrac{\textcolor{red}{k!}}{i!(k-i)!}\lambda_1^i\lambda_2^{k-i}=\dfrac{(\lambda_1+\lambda_2)^k}{k!}e^{-(\lambda_1+\lambda_2)}\\
+ 		&&\pause k=0,1,\cdots,
+ 	\end{eqnarray*}
+
+ \end{frame}
+
+ \begin{frame}
+ 	\frametitle{泊松分布的可加性}
+
+ 	\begin{itemize}[<+-|alert@+>]
+ 		\item 泊松分布的上述性质可以叙述为：泊松分布的卷积仍是泊松分布，并记为
+ 		\begin{eqnarray*}
+ 			P(\lambda_1)*P(\lambda_2)=P(\lambda_1+\lambda_2);
+ 		\end{eqnarray*}
+ 		\item 这里的卷积是指 "寻求两具独立随机变量和的分布运算";
+ 		\item 上述泊松的性质可推广至有限个独立泊松随机变量之和的分布上去，即:
+ 		\begin{eqnarray*}
+ 			P(\lambda_1)*P(\lambda_2)*\cdots *P(\lambda_n)=P(\lambda_1+\lambda_2+\cdots+\lambda_n);
+ 		\end{eqnarray*}
+ 		\item 特别的，当 $\lambda_1=\lambda_2=\cdots=\lambda_n$ 时有
+ 		\begin{eqnarray*}
+ 			P(\lambda)*P(\lambda)*\cdots *P(\lambda)=P(n\lambda);
+ 		\end{eqnarray*}
+
+ 	\end{itemize}
+ \end{frame}
+ \begin{frame}
+ 	\frametitle{二项分布的可加性}
+ 	\begin{exam}[二项分布的可加性]
+ 		设随机变量 $X\sim B (n,p), Y\sim B (m,p)$, 且 $X,Y$ 独立，则 $X+Y\sim B (n+m,p)$. 特别的，若 $$X_i\sim B (1,p), i=1,2,\cdots, n, \mbox{则} X_1+X_2+\cdots+X_n\sim B (n,p).$$
+ 	\end{exam}
+ \end{frame}
+
+ \begin{frame}
+ 	\frametitle{多维随机变量函数的分布：连续情形的一般方法}
+ 	若 $Z=f (X_1,X_2,\cdots,X_n)$, $(X_1,X_2,\cdots,X_n)$ 的密度函数为 $p (x_1,x_2,\cdots,x_n)$, 则 $Y$ 的分布函数为
+ 	\begin{eqnarray*}
+ 		G(z)=P(Z\le z)=\int\cdots\int_{f(x_1,x_2,\cdots,x_n)\le z}p(x_1,x_2,\cdots,x_n)dx_1dx_2\cdots dx_n
+ 	\end{eqnarray*}
+
+ \end{frame}
+ \begin{frame}
+ 	\frametitle{二维随机变量和的分布 (卷积公式): $Z=X+Y$}
+ 	\begin{thm}
+ 		若 $Z=X+Y$, 而 $(X,Y)$ 的联合密度函数为 $p (x,y)$, 则
+ 		\begin{eqnarray*}
+ 			F(z)&=&P(Z\le z)=\pause \iint_{x+y\le z}p(x,y)dxdy\\
+ 			&=&\pause \int_{-\infty}^{+\infty}\int_{-\infty}^{z-x}p(x,y)dydx
+ 		\end{eqnarray*}
+ 		\pause 特别的，若 $X,Y$ 相互独立时有 $p (x,y)=p_1 (x) p_2 (y)$, 将其代入上式得 %\vspace{-0.6cm}
+ 		\pause \begin{eqnarray*}
+ 			F(z)&=&\pause \int_{-\infty}^{+\infty}dx\int_{-\infty}^{z-x}p_1(x)p_2(y)dy\\
+ 			&=& \pause  \int_{-\infty}^{+\infty}dx\int_{-\infty}^zp_1(x)p_2(u-x)du\\
+ 			&=& \pause  \int_{-\infty}^{z}\bigg[\int_{-\infty}^{+\infty}p_1(x)p_2(u-x)dx\bigg]du\\
+ 		\end{eqnarray*}
+ 		\pause 故其密度函数为 $p (z)=\int_{-\infty}^{+\infty} p_1 (x) p_2 (z-x) dx=\int_{-\infty}^{+\infty} p_1 (z-y) p_2 (y) dy$
+ 	\end{thm}
+ \end{frame}
+ \begin{frame}
+ 	\frametitle{正态分布的可加性}
+ 	\begin{exam}
+ 		设随机变量 $X\sim N (\mu_1,\sigma_1^2), Y\sim N (\mu_2,\sigma_2^2)$, 且 $X,Y$ 独立，则 $X+Y\sim N (\mu_1+\mu_2,\sigma_1^2+\sigma_2^2)$.
+ 	\end{exam}
+
+ 	\pause \zheng 显然 $Z=X+Y$ 仍在 $(-\infty,+\infty)$ 上取值。据卷积公式可得
+ 	{\small\begin{eqnarray*}
+ 			&&  \hspace{-2.4cm} p_z(z)=\int_{-\infty}^{+\infty}p_1(z-y)p_2(y)dy\\
+ 			&=&\dfrac{1}{2\pi\sigma_1\sigma_2}\int_{-\infty}^{+\infty}\exp\left\{-\dfrac{1}{2}\bigg[\dfrac{(z-y-\mu_1)^2}{\sigma_1^2}+\dfrac{(y-\mu_2)^2}{\sigma_2^2}\bigg]\right\}dy\\
+ 			&\xlongequal[B=\frac{(z-\mu_1)}{\sigma_1^2}+\frac{\mu_2}{\sigma_2^2}]{A=\frac{1}{\sigma_1^2}+\frac{1}{\sigma_2^2}}&\dfrac{1}{2\pi\sigma_1\sigma_2}\int_{-\infty}^{+\infty}\exp\left\{-\dfrac{1}{2}\bigg[A(y-\dfrac{B}{A})^2+\dfrac{(z-\mu_1-\mu_2)^2}{\sigma_1^2+\sigma_2^2}\bigg]\right\}dy\\
+ 			&=&\hspace{-0.5cm}\dfrac{\sqrt{2\pi}\sqrt{1/A}}{2\pi\sigma_1\sigma_2}e^{-\frac{(z-\mu_1-\mu_2)^2}{2(\sigma_1^2+\sigma_2^2}}\textcolor{red}{\int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi}\sqrt{1/A}}\exp\big\{-\dfrac{(y-\dfrac{B}{A})^2}{2(\sqrt{1/A})^2}\big\}dy}\\
+ 			&=&\dfrac{1}{\sqrt{2\pi}\sigma_1\sigma_2\sqrt{A}}e^{-\frac{(z-\mu_1-\mu_2)^2}{2(\sigma_1^2+\sigma_2^2)}}=\dfrac{1}{\sqrt{2\pi}\sqrt{\sigma_1^2+\sigma_2^2}}e^{-\dfrac{(z-\mu_1-\mu_2)^2}{2(\sigma_1^2+\sigma_2^2)}}
+ 	\end{eqnarray*}}
+
+ \end{frame}
+ \begin{frame}
+ 	\frametitle{正态分布的可加性}
+ 	\begin{itemize}[<+-|alert@+>]
+ 		\item 若 $X\sim N (\mu,\sigma^2)$, 则对任意非零常数 $a$ 有，$aX\sim N (a\mu,a^2\sigma^2)$;
+ 		\item 若 $X_i\sim N (\mu_i,\sigma_i^2), i=1,2,\cdots, n$ 为 $n$ 个独立的正态随机变量，则其线性组合仍服从正态分布，即
+ 		\begin{eqnarray*}
+ 			a_1X_1+a_2X_2+\cdots+a_nX_n\sim N(\mu_0,\sigma_0^2)
+ 		\end{eqnarray*}
+ 		其中 $\mu_0=\sum_{i=1}^na_i\mu_i, \sigma_0^2=\sum_{i=1}^na_i^2\sigma_i^2$.
+
+
+ 	\end{itemize}
+ \end{frame}
+
+ \begin{frame}
+ 	\frametitle{Gamma 分布的可加性}
+ 	\begin{exam}
+ 		若 $X\sim \Gamma (\alpha_1,\lambda), Y\sim \Gamma (\alpha_2,\lambda)$, 且 $X,Y$ 独立，则 $$Z=X+Y\sim \Gamma (\alpha_1+\alpha_2,\lambda).$$
+ 	\end{exam}
+
+ 	\pause \begin{exam}
+ 		若 $X_i\sim \exp (\lambda)=\Gamma (1,\lambda), i=1,2,\cdots,n$, 且相互独立独立，则
+ 		\begin{eqnarray*}
+ 			X_1+X_2+\cdots+X_n\sim \Gamma(n,\lambda).
+ 		\end{eqnarray*}
+ 	\end{exam}
+
+ 	\pause
+ 	\begin{exam}
+ 		若 $X_i\sim \chi^2 (n_i)=\Gamma (\dfrac{n_i}{2},\dfrac{1}{2}), i=1,2,\cdots,m$, 且相互独立独立，则
+ 		\begin{eqnarray*}
+ 			X_1+X_2+\cdots+X_m&\sim& \Gamma(\dfrac{n_1+n_2+\cdots+n_m}{2},\dfrac{1}{2})\\
+ 			&=& \chi^2(n_1+n_2+\cdots+n_m)  \end{eqnarray*}
+
+ 	\end{exam}
+
+\pause
+\begin{exam}
+ 		若 $X_i\sim N(0,1), \  i=1,2,\cdots,m$, 且相互独立独立，则
+ 		\begin{eqnarray*}
+ 			X_1^2+X_2^2+\cdots+X_m^2 \sim \chi^2(m) \end{eqnarray*}
+
+ 	\end{exam}
+
+ \end{frame}
+
+ \begin{frame}
+ 	\frametitle{二维随机变量商的分布: $Z=X/Y$}
+ 	\vspace{-0.3cm}
+ 	\begin{thm}[商的密度] 如果随机变量 $(X,Y)$ 的联合密度函数为 $p (x,y)$, 则它们的商 $Z:=X/Y$ 仍为连续型，且其密度为
+ 		\begin{eqnarray*}
+ 			p(z)=\int_{-\infty}^{+\infty} |y|p(zy,y)dy.
+ 		\end{eqnarray*}
+ 	\end{thm}
+ 	\pause \zheng 商的分布函数为
+ 	\vspace{-0.3cm}
+ 	\begin{eqnarray*}
+ 		F(z)&=&\pause P(X/Y\le z)=\pause \iint_{x/y\le z}p(x,y)dxdy\\
+ 		&=&\pause \iint_{x/y\le z, y>0}p(x,y)dxdy+\iint_{x/y\le z,y<0}p(x,y)dxdy\\
+ 		&=&\pause \int_0^{+\infty} dy\int_{-\infty}^{yz}p(x,y)dx+\int_{-\infty}^0dy\int_{yz}^{+\infty}p(x,y)dx\\
+ 		&=&\pause \int_0^{+\infty} dy\int_{-\infty}^{z}yp(yu,y)du+\int_{-\infty}^0dy\int_{z}^{-\infty}yp(yu,y)du\\
+ 		&=&\pause \int_{-\infty}^{z}\bigg[\int_{-\infty}^{+\infty}|y|p(yu,y)dy\bigg]du
+ 	\end{eqnarray*}
+
+ \end{frame}
+ \begin{frame}
+ 	\frametitle{多维独立随机变量的最大 (小) 值分布}
+ 	\begin{thm}
+ 		若 $X_1,X_2,\cdots,X_n$ 是相互独立的随机变量，其各自的分布为 $F_k (x), k=1,2,
+ 		\cdots, n$, 若记
+ 		\begin{eqnarray*}
+ 			\overline{X}:=\max_{k=1}^nX_k, \quad \underline{X}=\min_{k=1}^nX_k
+ 		\end{eqnarray*}
+ 		则
+ 		\begin{eqnarray*}
+ 			P(\overline{X}\le x)=\Pi_{k=1}^nF_k(x),\quad  P(\underline{X}\le x)=1-\Pi_{k=1}^n(1-F_k(x))
+ 		\end{eqnarray*}
+ 	\end{thm}
+ 	\pause \zheng $\overline{X},\underline{X}$ 的分布函数为
+ 	\begin{eqnarray*}
+ 		F_{\overline{X}}(x)&=&P(\overline{X}\le x)=\pause P(X_1\le x,X_2\le x,\cdots, X_n\le x)\\
+ 		&=&\pause  \Pi_{k=1}^nP(X_k\le x)=\Pi_{k=1}^nF_k(x)\\
+ 		F_{\underline{X}}(x)&=& \pause 1-P(\underline{X}>x)=1-P(X_1>x,\cdots, X_n>x)\\
+ 		&=&\pause 1-\Pi_{k=1}^nP(X_k>x)=1-\Pi_{k=1}^n(1-F_k(x))
+ 	\end{eqnarray*}
+
+ \end{frame}
+ \begin{frame}
+ 	\frametitle{独立同分布情形下的最大最小值分布}
+ 	\begin{coro}
+ 		若上述定理中的 $F_k$ 均相同为 $F (x)$, 并且假设 $F (x)$ 具有分布密度 $p (x)$, 则 $\overline{X},\underline{X}$ 分布密度分别为
+ 		\begin{eqnarray*}
+ 			p_{\overline{X}}(x)&=&n[F(x)]^{n-1}p(x),\\
+ 			p_{\underline{X}}(x)&=&n[1-F(x)]^{n-1}p(x)
+ 		\end{eqnarray*}
+ 	\end{coro}
+
+ 	\pause
+
+ 	\textcolor{red}{思考}: 计算 $(\overline{X},\underline{X})$ 的联合分布函数.
+
+ \end{frame}
+
+\begin{frame}
+ 	\frametitle{多维独立随机变量的最大最小值的联合分布}
+ 	\begin{thm}
+ 		若 $X_1,X_2,\cdots,X_n$ 是相互独立的随机变量，其各自的分布为 $F_k (x), k=1,2,
+ 		\cdots, n$, 若记 $
+ 			\overline{X}:=\max_{k=1}^nX_k, \underline{X}=\min_{k=1}^nX_k$, 则其联合分布函数为
+ 		\begin{eqnarray*}
+ 			P(\overline{X}\le x, \underline{X}\le y)=\left\{\begin{array}{ll}
+			  \Pi_{k=1}^nF_k(x),& x\leq y\\
+			  \Pi_{k=1}^nF_k(x)-\Pi_{k=1}^n(F_k(x)-F_k(y)),& x>y
+			\end{array}\right.
+ 		\end{eqnarray*}
+ 	\end{thm}
+ 	\pause \zheng $(\overline{X},\underline{X})$ 的联合分布函数为:
+	\begin{itemize}[<+-|alert@+>]
+	\item 当 $x\leq y$时,
+	\begin{eqnarray*}
+ 		F_{\overline{X}, \underline{X}}(x,y)&=&P(\overline{X}\le x, \underline{X}\le y)=\pause P(X_1\le x,X_2\le x,\cdots, X_n\le x)\\
+ 		&=&\pause  \Pi_{k=1}^nP(X_k\le x)=\Pi_{k=1}^nF_k(x)
+ 	\end{eqnarray*}
+	\item 当 $x>y$时,
+\begin{eqnarray*}
+ 		F_{\overline{X}, \underline{X}}(x,y)&=&P(\overline{X}\le x, \underline{X}\le y)=\pause P(\overline{X}\le x)-P(\overline{X}\le x, \underline{X}>y)\\
+ 		&=&\pause P(X_1\le x,\cdots, X_n\le x)-P(y<X_1\le x,\cdots, y<X_n\le x)\\
+ 		&=&\Pi_{k=1}^nF_k(x)-\Pi_{k=1}^n(F_k(x)-F_k(y))
+ 	\end{eqnarray*}
+	\end{itemize}
+
+
+
+ \end{frame}
+
+
+\begin{frame}{最大最小值分布的应用}
+\begin{exam}
+向区间 $(0,1)$ 中独立地随机投掷 $n$ 个点．求这些个点全分布在长为 $1 / 2$的子区间内的概率．
+\end{exam}
+
+\pause
+
+%\jieda
+
+\begin{itemize}[<+-|alert@+>]
+\item 以 $\xi_{i}$ 表示第 $i$ 个点的坐标，$i=1,\cdots, n$, 则 $\xi_i\sim U(0,1)$且独立.
+\item 令 $\eta=\xi_{1} \wedge \xi_{2} \wedge \cdots \wedge \xi_{n}$ 和 $\zeta=\xi_{1} \vee \xi_{2} \vee \cdots \vee \xi_{n}$.
+\item 由最大最小值的分布公式可知，$\eta$ 和 $\zeta$ 的联合密度为
+\[p_{\eta, \zeta}(x, y)=\left\{\begin{array}{lc} n(n-1)(y-x)^{n-2}, & 0<x<y<1 \\ 0, & \text { 其他 } \end{array}\right.\]
+\item 题目要求的概率即为 $\mathbf{P}(\zeta-\eta<1 / 2)$, 由联合密度可得
+{\small \begin{align*}
+   &P(\zeta-\eta<1 / 2) =\iint_{\{y-x<1 / 2,0<x<y<1\}} n(n-1)(y-x)^{n-2} \mathrm{d} x \mathrm{d} y \\
+   &=\int_{0}^{1 / 2} \mathrm{d} x \int_{x}^{x+1 / 2} n(n-1)(y-x)^{n-2} \mathrm{d} y+ \int_{1 / 2}^{1} \mathrm{d} x \int_{x}^{1} n(n-1)(y-x)^{n-2} \mathrm{d} y \\
+   %&=  \int_{0}^{1 / 2}\left[\left.n(y-x)^{n-1}\right|_{y=x} ^{y=x+1 / 2}\right] \mathrm{d} x+ \int_{1 / 2}^{1}\left[\left.n(y-x)^{n-1}\right|_{y=x} ^{y=1}\right] \mathrm{d} x \\
+   &=  \int_{0}^{1 / 2} \frac{n}{2^{n-1}} \mathrm{d} x+\int_{1 / 2}^{1} n(1-x)^{n-1} \mathrm{d} x=\frac{n+1}{2^{n}}.
+\end{align*}}
+\end{itemize}
+
+
+
+\end{frame}
+
+
+
+ \begin{frame}
+ 	\frametitle{随机向量函数的联合分布：一般情形}
+ 	求连续型随机向量的函数的分布最一般的提法是:
+
+ 	设已知 $(X_1,X_2,\cdots,X_n)$ 的联合密度函数 $p (x_1,x_2,\cdots, x_n)$, 而
+ 	\begin{eqnarray}
+ 		\label{eq:yfx}
+ 		\left\{
+ 		\begin{array}{l}
+ 			Y_1=f_1(X_1,X_2,\cdots,X_n)\\
+ 			Y_2=f_2(X_1,X_2,\cdots,X_n)\\
+ 			\cdots\\
+ 			Y_m=f_m(X_1,X_2,\cdots,X_n)
+ 		\end{array}
+ 		\right.
+ 	\end{eqnarray}
+ 	求随机变量 $(Y_1,Y_2,\cdots,Y_m)$ 的分布.
+
+ 	\pause
+ 	\begin{itemize}[<+-|alert@+>]
+ 		\item 保证 $(Y_1,Y_2,\cdots, Y_n)$ 是随机向量：只需 $f_i, i=1,2,\cdots, m$ 是 Borel 函数即可；
+ 		\item 我们需要利用 $(X_1,\cdots, X_n)$ 的分布密度计算 $(Y_1,\cdots,Y_n)$, 故我们需要从 \eqref{eq:yfx} 中反解出 $(X_1,\cdots,X_n)$ 即要求方程组 \eqref{eq:yfx} 有解:
+ 		\begin{itemize}
+ 			\item 若 $m>n$, 既使对线性函数 $f_i$ 也不能保证方程组有解；
+ 			\item 若 $m<n$, 我们可以增补 $Y_j=X_j, j=m+1,\cdots, n$ 化为 $m=n$ 的情形；
+ 			\item 故我们只考虑 $m=n$ 的情形.
+ 		\end{itemize}
+
+ 	\end{itemize}
+
+ \end{frame}
+ \begin{frame}
+ 	\frametitle{随机向量函数的联合分布：一般情形}
+ 	\begin{thm}\hspace{-0.3cm}
+ 		设随机向量 $(X_1,X_2,\cdots,X_n)$ 的联合密度函数 $p (x_1,x_2,\cdots, x_n)$, 而 $Y_k=f_k (X_1,\cdots,X_n), k=1,2,\cdots,n$.
+ 		% \begin{eqnarray}
+ 			%   \label{eq:yfx2}
+ 			%   \left\{
+ 			%     \begin{array}{l}
+ 				%       Y_1=f_1(X_1,X_2,\cdots,X_n)\\
+ 				%       \cdots\\
+ 				%       Y_n=f_m(X_1,X_2,\cdots,X_n)
+ 				%     \end{array}
+ 			%   \right.
+ 			% \end{eqnarray}
+ 		若假设每个 $f_k$ 均为 $n$ 维 Borel 函数，并且对 $(Y_1,\cdots, Y_n)$ 的每一组可能值 $(y_1,\cdots,y_n)$, 方程组
+ 		\begin{eqnarray}\label{eq:yxf2}
+ 			\left\{
+ 			\begin{array}{l}
+ 				y_1=f_1(x_1,\cdots,x_n)\\
+ 				\cdots\\
+ 				y_n=f_n(x_1,\cdots,x_n)
+ 			\end{array}
+ 			\right.
+ 		\end{eqnarray}
+ 		有唯一解 \vspace{-0.7cm}\begin{eqnarray}\label{eq:yxf3}
+ 			\left\{\begin{array}{l}
+ 				x_1=h_1(y_1,\cdots,y_n)\\
+ 				\cdots\\
+ 				x_n=h_n(y_1,\cdots,y_n)
+ 			\end{array}
+ 			\right.
+ 		\end{eqnarray}
+ 		并且每个 $h_k (y_1,\cdots,y_n)$ 有连续的一阶偏导数。那么 $(Y_1,\cdots, Y_n)$ 是连续型随机向量，并且有联合密度函数
+ 		\begin{eqnarray*}
+ 			q(y_1,\cdots,y_n)=\left\{
+ 			\begin{array}{l}
+ 				p\big(h_1(y_1,\cdots,y_n),\cdots, h_n(y_1,\cdots,y_n)\big)|J|\\
+ 				0,  \mbox{若}(y_1,\cdots,y_n)\mbox{使}\eqref{eq:yxf2}\mbox{无解}
+ 			\end{array}
+ 			\right.
+ 		\end{eqnarray*}
+ 		其中 $J$ 为变换 \eqref{eq:yxf3} 的 Jacobi 行列式.
+ 	\end{thm}
+ \end{frame}
+ \begin{frame}
+ 	\frametitle{随机向量函数的联合分布：一般情形}
+
+ 	\zheng $(Y_1,\cdots,Y_n)$ 的联合分布函数为
+ 	\begin{eqnarray*}
+ 		&&\hspace{-0.7cm} F(u_1,\cdots,u_n)=\pause P(Y_1\le u_1,\cdots,Y_n\le u_n)\\
+ 		&=&\pause \int_{f_1(x_1,\cdots,x_n)\le u_1}\cdots\int_{f_n(x_1,\cdots,x_n)\le u_n}p(x_1,\cdots,x_n)dx_1\cdots dx_n\\
+ 		&=&\pause \int_{-\infty}^{u_1}\cdots\int_{-\infty}^{u_n}p\big(h_1(y_1,\cdots,y_n),\cdots, h_n(y_1,\cdots,y_n)\big)|J|dy_1\cdots dy_n\\
+ 	\end{eqnarray*}
+ 	\pause 故 $(Y_1,\cdots, Y_n)$ 是连续型随机向量，并且有联合密度函数
+ 	\begin{eqnarray*}
+ 		q(y_1,\cdots,y_n)=\left\{
+ 		\begin{array}{l}
+ 			p\big(h_1(y_1,\cdots,y_n),\cdots, h_n(y_1,\cdots,y_n)\big)|J|\\
+ 			\\
+ 			0,  \mbox{若}(y_1,\cdots,y_n)\mbox{使}\eqref{eq:yxf2}\mbox{无解}
+ 		\end{array}
+ 		\right.
+ 	\end{eqnarray*}
+
+ 	\pause \textcolor{red}{注:} 若 Jacobi 行列式 $J$ 不易计算时，可计算 $J^{-1}$ 即变换 \eqref{eq:yxf2} 的 Jacobi 行列式.
+ \end{frame}
+
+ \begin{frame}
+ 	\frametitle{随机变量积的分布}
+ 	\begin{exam}
+ 		设随机向量 $(X,Y)$ 的联合密度函数为 $p (x,y)$. 则 $U=XY$ 的密度函数为
+ 		\begin{eqnarray*}
+ 			p_U(u)=\int_{-\infty}^{+\infty}p(\frac{u}{v},v)\dfrac{1}{|v|}dv
+ 		\end{eqnarray*}
+ 	\end{exam}%
+ 	\pause \zheng 增补变量 $V=Y$, 则
+ 	$ \left\{
+ 	\begin{array}{l}
+ 		u=xy,\\
+ 		v=y,
+ 	\end{array}
+ 	\right.$
+ 	的反函数为 \pause $ \left\{
+ 	\begin{array}{l}
+ 		x=\dfrac{u}{v},\\
+ 		y=v,
+ 	\end{array}
+ 	\right.$. \pause 其 Jacobi 行列式为
+ 	\begin{eqnarray*}
+ 		J=\left|
+ 		\begin{array}{cc}
+ 			\dfrac{1}{v} & -\dfrac{u}{v^2}\\
+ 			& \\
+ 			0      & 1
+ 		\end{array}
+ 		\right|=\dfrac{1}{v},
+ 	\end{eqnarray*}
+ 	\pause 故 $(U,V)$ 的联合密度函数为 $q (u,v)=p (\dfrac{u}{v},v)\dfrac{1}{|v|}$. \pause 对 $q (u,v)$ 关于 $v$ 积分便可得 $U=XY$ 的密度函数. \pause (\textcolor{red}{随机变量商的密度也可类似求出})
+ \end{frame}
+\end{document}

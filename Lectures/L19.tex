@@ -1,0 +1,608 @@
+% 取消下一行注释可生成 handout（无逐步显示）；保持注释则生成正常 slide。
+% \PassOptionsToClass{handout}{beamer}
+\documentclass[Main-Prob-All.tex]{subfiles}
+\begin{document}
+\title[概率论]{第十九讲：条件数学期望与母函数}
+%\author[张鑫 {\rm Email: xzhangseu@seu.edu.cn} ]{\large 张 鑫}
+\institute[东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
+	\large 东南大学 \quad 数学学院 \\
+	\vspace{0.3cm}
+	% \trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+		%\hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
+}
+\date{}
+
+{ \setbeamertemplate{footline}{}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+}
+
+
+\subsection{条件数学期望}
+\begin{frame}
+	\frametitle{条件数学期望}
+	\begin{itemize}[<+-|alert@+>]
+		\item 在第二章中对于任何有正概率的事件 $B$, 我们引入了条件概率 $P (\cdot|B)$ 及条件分布 $F (x|B):=P (X\le x|B)$;
+		\item 类似于概率与分布函数，对于上述的条件概率及条件分布，我们也可以定义相应的条件数学期望:
+
+
+	\end{itemize}
+	\pause
+	\begin{defi}
+		如果下述积分绝对收敛，则称
+		\begin{eqnarray*}
+			E(X|B):=\int_{-\infty}^{+\infty}xdF(x|B)=\int_{\Omega}X(\omega)dP(\omega|B)
+		\end{eqnarray*}
+		为已知事件 $B$ 发生后 $X$ 的条件数学期望.
+	\end{defi}
+\end{frame}
+
+\begin{frame}
+	\frametitle{条件数学期望的两类特殊情形：离散型与连续型}
+	\begin{thm}
+		若 $X,Y$ 均为离散型随机变量，并且条件数学期望定义中的 $B$ 选为 $B:=\{Y=y_j\}$ 的形式，则
+		\begin{eqnarray*}
+			E(X|Y=y_j)=\int_{-\infty}^{+\infty}xdF(x|Y=y_j)=\sum_{i}x_iP(X=x_i|Y=y_j)
+		\end{eqnarray*}
+
+	\end{thm}
+	\pause
+	\begin{thm}
+		若 $X,Y$ 均为连续型随机变量，并且条件数学期望定义中的 $B$ 选为 $B:=\{Y=y\}$ 的形式，则
+		\begin{eqnarray*}
+			E(X|Y=y)=\int_{-\infty}^{+\infty}xdF(x|Y=y)=\int_{-\infty}^{+\infty}xp(x|y)dx
+		\end{eqnarray*}
+	\end{thm}
+
+\end{frame}
+\begin{frame}
+	\frametitle{随机变量函数的条件数学期望及条件方差}
+	\begin{thm}
+		设 $g (x)$ 为 Borel 函数，则 $g (X)$ 关于 $Y=y$ 的条件期望为
+		\begin{eqnarray*}
+			E(g(X)|Y=y)=\int_{-\infty}^{+\infty}g(x)dF(x|y)
+		\end{eqnarray*}
+	\end{thm}
+	\pause
+	\begin{defi}
+		假设 $X$ 的方差存在，则称
+		\begin{eqnarray*}
+			D(X|Y=y)&:=&E[(X-E(X|Y=y))^2|Y=y]\\
+			&=&\int_{-\infty}^{+\infty}(x-E(X|Y=y))^2dF(x|y)
+		\end{eqnarray*}
+		为给定 $Y=y$ 后 $X$ 的条件方差.
+	\end{defi}
+
+
+\end{frame}
+
+
+
+
+\begin{frame}{条件数学期望与数学期望之间的联系}
+\begin{thm}
+设 $X$ 为随机变量，$B$ 为任意事件，且 $P(B)>0$, 则
+		\begin{eqnarray*}
+			E(X|B)&=&\dfrac{1}{P(B)}E(X1_B)\\
+			&=&\dfrac{1}{P(B)}\int_{\Omega}X(\omega)1_{B}(\omega)dP(\omega)
+			=\dfrac{1}{P(B)}\int_{B}X(\omega)dP(\omega)
+		\end{eqnarray*}
+\end{thm}
+
+\pause
+
+
+
+
+\end{frame}
+
+
+\begin{frame}{条件数学期望与数学期望之间的联系}
+
+\small
+
+\begin{itemize}[<+-|alert@+>]
+\item 若 $X=1_A$, 则 $E(X|B)=P(A|B)=\dfrac{P(A\cap B)}{P(B)}=\dfrac{E(1_A1_B)}{P(B)}=\dfrac{E(X1_B)}{P(B)}$;
+\item 若 $X=\sum_{i=1}^na_i1_{A_i}$, 则
+\begin{eqnarray*}
+E(X|B)&=&\sum_{i=1}^na_iP(A_i|B)=\sum_{i=1}^na_i\dfrac{P(A_i\cap B)}{P(B)}\\
+&=&\dfrac{1}{P(B)}\sum_{i=1}^na_iE(1_{A_i}1_B)=\dfrac{1}{P(B)}E(X1_B);
+\end{eqnarray*}
+\item 对任意非负随机变量 $X$, 存在简单随机变量$X_n\uparrow X$, 从而%由单调收敛定理知
+\begin{eqnarray*}
+E(X|B)&=&\lim_{n\to\infty}E(X_n|B)=\lim_{n\to\infty}\dfrac{1}{P(B)}E(X_n1_B)\\
+&=&\dfrac{1}{P(B)}\lim_{n\to\infty}E(X_n1_B)=\dfrac{1}{P(B)}E(X1_B);
+\end{eqnarray*}
+\item 对任意随机变量 $X=X^+-X^-$, 则 %令 $X^+=\max(X,0), X^-=-\min(X,0)$, 则 $X=X^+-X^-$, 从而
+\begin{eqnarray*}
+E(X|B)=\frac{1}{P(B)}E(X^+1_B)-\frac{1}{P(B)}E(X^-1_B)=\frac{1}{P(B)}E(X1_B).
+\end{eqnarray*}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{如何理解条件数学期望}
+ \begin{itemize}[<+-|alert@+>]
+ \item 如何理解条件概率 $P(A|B)=\frac{P(AB)}{P(B)}$:
+ \begin{itemize}[<+-|alert@+>]
+ \item 对随机变量 $1_A$ 的最优常数估计为: $E(1_A)=P(A)$;
+ \item 已知 $B$ 发生的条件下对 $1_A$ 的最优常数估计为: $E(1_A|B)=P(A|B)$;
+ \item 条件概率 $P(A|B)$ 也可看作在已知事件 $B$ 发生的条件下对事件 $A$ 发生概率 $P(A)$ 的一个估计.%是多少？
+ \end{itemize}
+  %在已知事件 $B$ 发生的条件下对事件 $A$ 的概率 $P(A)$ 的一个估计值.%是多少？
+ \item 如何理解条件数学期望 $E(X|B)$:
+ \begin{itemize}[<+-|alert@+>]
+ \item 对随机变量 $X$ 的最优常数估计为: $E(X)$;
+ \item 已知事件 $B$ 发生的条件下对 $X$ 的最优常数估计为: $E(X|B)$;
+ \item 条件数学期望 $E(X|B)$ 也可看作在已知事件 $B$ 发生的条件下对 $X$ 的数学期望 $E(X)$ 的一个估计.
+ \end{itemize}
+ \item 若已知 $\mathcal{G}=\{\emptyset, B, \bar{B}, \Omega\}$, 如何定义 $E(X|\mathcal{G})$, 即寻找已知 $\sigma$-代数 $\mathcal{G}$ 下 $X$ 的最优预测或估计?
+ \begin{itemize}[<+-|alert@+>]
+ \item 若 $\omega\in B$, 则 $X$ 的最优预测或估计 $E(X|\mathcal{G})(\omega)=E(X|B)$;
+ \item 若 $\omega\in \bar{B}$, 则 $X$ 的最优预测或估计 $E(X|\mathcal{G})(\omega)=E(X|\bar{B})$;
+ \item 因此 $
+ E(X|\mathcal{G})=E(X|B)1_B(\omega)+E(X|\bar{B})1_{\bar{B}}(\omega);$
+ \item 上述定义的 $E(X|\mathcal{G})$ 关于 $\mathcal{G}$ 可测，且满足\vspace{-0.15cm}
+ {\small \begin{eqnarray*}
+ \int_G E(X|\mathcal{G})dP=\int_G XdP, \quad \forall G\in \mathcal{G};
+ \end{eqnarray*}}
+ \end{itemize}
+ %是多少？
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{随机变量关于$\sigma$-代数 $\sigma(\{B_i, i\in I\})$ 的条件数学期望}
+\begin{defi}
+  设 $\{B_i, i\in I\}\subset\mathcal{F}$ 为 $\Omega$ 的一个划分且$P(B_i)>0$. 令 $\mathcal{G}=\sigma(\{B_i, i\in I\})$ 为由该划分生成的 $\sigma$-代数，则称随机变量
+  \begin{eqnarray*}
+	Z=\sum_{i\in I}E(X|B_i)1_{B_i}(\omega)
+  \end{eqnarray*}
+  为随机变量 $X$ 关于 $\sigma$-代数 $\mathcal{G}$ 的条件数学期望, 并将其记为 $E(X|\mathcal{G})$.
+\end{defi}
+
+
+\end{frame}
+
+
+
+\begin{frame}{ $E(X|\sigma(\{B_i, i\in I\})$ 的性质}
+
+\begin{thm} 上述定义的 $E(X|\mathcal{G})$ 关于 $\mathcal{G}$ 可测，且满足
+{\small \begin{eqnarray*}
+	\int_G E(X|\mathcal{G})dP=\int_G XdP, \quad \forall G\in \mathcal{G}.
+\end{eqnarray*}}
+\end{thm}
+\pause
+\noindent\zheng 显然，$E(X|\mathcal{G})$ 关于 $\mathcal{G}$ 可测.  \pause 若 $G\in \mathcal{G}=\sigma(\{B_i, i\in I\})$, 则必有
+ $$G=\cup_{i\in J} B_i, \quad J\subset I.$$
+ \pause 因此,
+{\small \begin{eqnarray*}
+	\int_{G}XdP&=&\pause\int_{\cup_{i\in J} B_i}XdP=\pause\sum_{i\in J}\int_{B_i}XdP=\pause\sum_{i\in J}\int_{\Omega}X1_{B_i}dP\\
+	&=& \pause\sum_{i\in J}E(X|B_i)P(B_i) = \pause\sum_{i\in J}\int_{B_i}E(X|B_i)dP\\
+	&=&\pause\sum_{i\in J}\int_{B_i}E(X|\mathcal{G})dP=\pause \int_{\cup_{i\in J} B_i} E(X|\mathcal{G})dP\pause\\
+	%\sum_{i\in J}\int_{\Omega}E(X|\mathcal{G})1_{B_i}dP\\
+	 &=&\int_G E(X|\mathcal{G})dP, \quad \forall G\in \mathcal{G};
+\end{eqnarray*}}
+\end{frame}
+
+\begin{frame}{随机变量关于任意$\sigma$-代数的条件数学期望}
+\begin{defi}
+  设 $\mathcal{G}$ 为$\sigma$-代数且 $\mathcal{G}\subset\mathcal{F}$, 我们称随机变量 $Z$ 为可积随机变量 $X$ 关于 $\sigma$-代数 $\mathcal{G}$ 的条件数学期望, 如果
+  \begin{itemize}[<+-|alert@+>]
+	\item $Z$ 关于 $\mathcal{G}$ 可测;
+	\item 对任意 $G\in \mathcal{G}$ 有
+	{\small \begin{eqnarray*}
+		\int_G ZdP=\int_G XdP.
+	\end{eqnarray*}}
+  \end{itemize}
+\end{defi}
+\pause
+\vspace{-0.2cm}
+\begin{rmk}
+\begin{itemize}[<+-|alert@+>]
+\item 此处定义的 $Z$ 在几乎处处相等意义下是否唯一存在?
+\item 我们常把上述定义的 $Z$ 记为 $E(X|\mathcal{G})$.
+\item 若取 $G=\Omega$, 则有 $EZ=\int_{\Omega}ZdP=\int_{\Omega}XdP=EX$, 也即
+$$E[E(X|\mathcal{G})]=EX.$$
+
+\end{itemize}
+
+\end{rmk}
+
+\end{frame}
+
+\begin{frame}{随机变量关于任意$\sigma$-代数的条件数学期望的性质}
+\begin{itemize}[<+-|alert@+>]
+\item 若 $\mathcal{G}=\{\emptyset, \Omega\}$, 则 $E(X|\mathcal{G})=EX$;
+%\item 若 $\mathcal{G}=\mathcal{F}$, 则 $E(X|\mathcal{G})=X$;
+\item 若 $X$ 关于 $\mathcal{G}$ 可测, 则 $E(X|\mathcal{G})=X$;
+\item 若 $X$ 与 $\mathcal{G}$ 独立, 则 $E(X|\mathcal{G})=EX$;
+\item 若 $\mathcal{G}_1\subset \mathcal{G}_2\subset \mathcal{F}$, 则
+$$E[E(X|\mathcal{G}_2)|\mathcal{G}_1]=E(X|\mathcal{G}_1);$$
+\item 若 $X,Y$ 均为可积随机变量, 且 $a,b$ 为常数, 则
+$$E(aX+bY|\mathcal{G})=aE(X|\mathcal{G})+bE(Y|\mathcal{G});$$
+\item 若 $X\le Y$ 几乎处处成立, 则
+$$E(X|\mathcal{G})\le E(Y|\mathcal{G}) \mbox{ 几乎处处成立};$$
+\item 若 $Y$ 关于 $\mathcal{G}$ 可测, 则
+$$E(XY|\mathcal{G})=Y E(X|\mathcal{G}).$$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{条件数学期望的最优预测性}
+\begin{thm}
+设 $\mathcal{G}$ 为$\sigma$-代数且 $\mathcal{G}\subset\mathcal{F}$, 则对任意 $\mathcal{F}$可测的可积随机变量 $X$ 及 $\mathcal{G}$-可测随机变量 $Z$ 有
+{\small \begin{eqnarray*}
+	E[(X-E(X|\mathcal{G}))^2]=\inf_{Z\in\mathcal{G}} E[(X-Z)^2].
+\end{eqnarray*}}
+\end{thm}
+\pause
+%\vspace{-0.cm}
+\zheng 对任意 $\mathcal{G}$-可测随机变量 $Z$, 有
+{\small \begin{eqnarray*}
+	E[(X-Z)^2]&=&E[(X-E(X|\mathcal{G}))+ (E(X|\mathcal{G})-Z)]^2\\
+	&=&E[(X-E(X|\mathcal{G}))^2]+E[(E(X|\mathcal{G})-Z)^2]\\
+	&&+2E[(X-E(X|\mathcal{G}))(E(X|\mathcal{G})-Z)]
+\end{eqnarray*}}
+\pause 注意到
+{\small \begin{eqnarray*}
+	E[(X-E(X|\mathcal{G}))(E(X|\mathcal{G})-Z)]&=&E\bigg[E\big((X-E(X|\mathcal{G}))(E(X|\mathcal{G})-Z)\big|\mathcal{G}\big)\bigg]\\
+	&=&E\bigg[(E(X|\mathcal{G})-Z)E\big(X-E(X|\mathcal{G})|\mathcal{G}\big)\bigg]=0
+\end{eqnarray*}}
+\pause 故  {\small $E[(X-Z)^2]=E[(X-E(X|\mathcal{G}))^2]+E[(E(X|\mathcal{G})-Z)^2]\ge E[(X-E(X|\mathcal{G}))^2].$}
+\end{frame}
+
+\begin{frame}{条件数学期望的最优预测性}
+\begin{thm}
+设 $\mathcal{G}$ 为$\sigma$-代数且 $\mathcal{G}\subset\mathcal{F}$, 则对任意有界 $\mathcal{G}$可测随机变量 $Z$ 均有
+\begin{eqnarray*}
+	E[(X-E(X|\mathcal{G}))Z]=0.
+\end{eqnarray*}
+\end{thm}
+\pause
+
+\zheng
+\begin{itemize}[<+-|alert@+>]
+\item 由条件数学期望的定义可知, 对任意的 $G\in\mathcal{G}$ 均有
+$$E[(X-E(X|\mathcal{G}))1_G]=0$$
+\item 从而, 对任意的简单函数 $Z=\sum_{i=1}^na_i1_{G_i}$, 其中 $G_i\in\mathcal{G}$, 均有
+$$E[(X-E(X|\mathcal{G}))Z]=\sum_{i=1}^na_iE[(X-E(X|\mathcal{G}))1_{G_i}]=0.$$
+\item 由于有界 $\mathcal{G}$ 可测随机变量 $Z$ 可由有界简单函数逼近, 故由控制收敛定理可知对任意有界 $\mathcal{G}$ 可测随机变量 $Z$ 均有
+$$E[(X-E(X|\mathcal{G}))Z]=0.$$
+\end{itemize}
+
+
+
+\end{frame}
+
+
+\begin{frame}{随机变量$X$ 关于随机变量 $Y$ 的条件数学期望}
+\begin{itemize}[<+-|alert@+>]
+\item 随机变量 $X$ 关于随机变量 $Y$ 的条件数学期望:
+$$E(X|Y):=E(X|\sigma(Y)).$$
+\item 根据PPT267页定理2.4可知, 存在博雷尔可测函数 $\varphi(\cdot)$ 使得
+$$E(X|Y)=\varphi(Y).$$
+\item 我们也常把上述的函数 $\varphi(\cdot)$ 记作 $\varphi(y):=E(X|Y=y)$.
+\begin{itemize}[<+-|alert@+>]
+\item 若 $Y$ 为离散型随机变量, 则上述的博雷尔函数 $\varphi(y_j)=E(X|Y=y_j)$;
+\item 若 $(X,Y)$ 为二维连续型随机向量,且其联合分布密度为 $p(x,y)$, 则上述的博雷尔函数
+$$\varphi(y)=E(X|Y=y)=\int_{-\infty}^{+\infty}xp(x|y)dx,$$
+其中 $p(x|y)=\dfrac{p(x,y)}{p_Y(y)}$ 为 $X$ 关于 $Y$ 的条件分布密度.
+\end{itemize}
+\end{itemize}
+
+
+\end{frame}
+
+
+
+
+\begin{frame}
+	\vspace{0.3cm}
+	\begin{exam}
+		若 $(X,Y)\sim N (\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)$, 则
+		\begin{eqnarray*}
+			E(X|Y=y)=\mu_1+\rho \dfrac{\sigma_1}{\sigma_2}(y-\mu_2).
+		\end{eqnarray*}
+	\end{exam}%
+	\zheng 在第二章中，我们知道给定 $Y=y$ 下，$X$ 的条件分布服从
+	\[N(\mu_1+\rho \dfrac{\sigma_1}{\sigma_2}(y-\mu_2), \sigma_1^2(1-\rho^2))\]
+	\pause 故
+	\begin{eqnarray*}
+		\varphi(y)=E(X|Y=y)=\mu_1+\rho \dfrac{\sigma_1}{\sigma_2}(y-\mu_2)
+	\end{eqnarray*}
+	\pause 更进一步地，我们有
+	\begin{eqnarray*}
+		E(X|Y)=\varphi(Y)=\mu_1+\rho \dfrac{\sigma_1}{\sigma_2}(Y-\mu_2)
+	\end{eqnarray*}
+	% \pause 一般来说，给定 $Y=y$ 后 $X$ 的条件数学期望是 $Y$ 的可能值 $y$ 的函数，记之为
+	% \begin{eqnarray*}
+	% 	\varphi(y):=E(X|Y=y)
+	% \end{eqnarray*}
+	% \pause  如果再将 $y$ 用 $Y$ 代回，就得到一个随机变量 $\varphi (Y)$, 相应的，我们记
+	% \begin{eqnarray*}
+	% 	E(X|Y):=\varphi(Y)
+	% \end{eqnarray*}
+	% 并称随机变量 $E (X|Y)$ 为 $X$ 关于 $Y$ 的条件数学期望.
+\end{frame}
+
+
+\begin{frame}{条件数学期望的性质：重期望(全期望)公式}
+	\begin{thm}
+		设 $\mathcal{G}$ 为$\sigma$-代数且 $\mathcal{G}\subset\mathcal{F}$, 则对随机变量 $X$ 及任意 Borel 函数 $g (x)$ 有
+		{\small \begin{eqnarray*}
+			E[E(g(X)|\mathcal{G})]=E(g(X)), \mbox{ 或, } \int_{\Omega}E(g(X)|\mathcal{G})dP=\int_{\Omega}g(X)dP.
+		\end{eqnarray*}}
+		特别的,
+		\begin{itemize}[<+-|alert@+>]
+		\item 若 $\mathcal{G}=\sigma(Y)$, 则有
+		{\small \begin{eqnarray*}
+			E[E(g(X)|Y)]=E(g(X)), \mbox{ 或,  } \int_{\Omega}E(g(X)|Y)dP=\int_{\Omega}g(X)dP.
+		\end{eqnarray*}}
+		\item 若 $\mathcal{G}=\sigma(\{B_i, i\in I\})$, 则有
+		{\small \begin{eqnarray*}
+			E\bigg[\sum_{i\in I}E(g(X)|B_i)1_{B_i}(\omega)\bigg]=E(g(X)), \mbox{ 或, } E[g(X)]=\sum_{i\in I}E(g(X)|B_i)P(B_i).
+		\end{eqnarray*}}
+		%  或等价的,
+		%  $$E[g(X)]=\sum_{i\in I}E(g(X)|B_i)P(B_i).$$
+		\end{itemize}
+
+	\end{thm}
+
+
+
+\end{frame}
+
+
+\begin{frame}{条件数学期望的性质：重期望(全期望)公式}
+	\zheng 由条件数学期望定义的第2条可知对任意 $G\in \mathcal{G}$ 有
+	\begin{eqnarray*}
+		\int_G E(g(X)|\mathcal{G})dP=\int_G g(X)dP.
+	\end{eqnarray*}
+	\pause 取 $G=\Omega$, 则有
+	\begin{eqnarray*}
+		E[E(g(X)|\mathcal{G})]=\int_{\Omega}E(g(X)|\mathcal{G})dP=\int_{\Omega}g(X)dP=E(g(X)).
+	\end{eqnarray*}
+
+
+\end{frame}
+% \begin{frame}{条件数学期望的性质：重期望(全期望)公式}
+% 	\begin{thm}
+% 		设 $(X,Y)$ 为二维随机向量，则对于 Borel 函数 $g (x)$ 有
+% 		\begin{eqnarray*}
+% 			E[E(g(X)|Y)]=E(g(X))
+% 		\end{eqnarray*}
+% 	\end{thm}
+% 	\pause \zheng 我们仅对二维连续型随机变量给出证明。令 $\varphi (y):=E (g (X)|Y=y)$, 则 $E (g (X)|Y)=\varphi (Y)$, 从而
+% 	\begin{eqnarray*}
+% 		\varphi(y)&=&E(g(X)|Y=y)=\pause \int_{-\infty}^{+\infty}g(x)dF(x|y)\\
+% 		&=&\pause \int_{-\infty}^{+\infty}g(x)p(x|Y=y)dx=\pause \int_{-\infty}^{+\infty}g(x)\dfrac{p(x,y)}{p_Y(y)}dx\\
+% 		\pause  E[E(g(X)|Y)]&=&\pause E(\varphi(Y))=\int_{-\infty}^{+\infty}\varphi(y)p_Y(y)dy\\
+% 		&=&\pause \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}g(x)\dfrac{p(x,y)}{p_Y(y)}p_Y(y)dxdy\\
+% 		&=&\pause \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}g(x)p(x,y)dxdy=\pause E(g(X))
+% 	\end{eqnarray*}
+
+
+% \end{frame}
+
+\begin{frame}
+	\frametitle{重期望公式关于分布函数的Stieltjes积分表达形式}
+	\begin{itemize}[<+-|alert@+>]
+		\item 注意到, $E(g(X)|Y)=\varphi(Y),$ 其中 $\varphi(y):=E(g(X)|Y=y)$;
+		\item 故上述定理的重期望公式可写成如下形式
+		\begin{eqnarray*}
+			E(g(X))&=&\int_{-\infty}^{+\infty}E[g(X)|Y=y]dF_Y(y)\\
+			&=&\left\{
+			\begin{array}{l}
+				\sum_jE(g(X)|Y=y_j)P(Y=y_j)\\
+				\\
+				\int_{-\infty}^{+\infty}E(g(X)|Y=y)p_Y(y)dy
+			\end{array}
+			\right.
+		\end{eqnarray*}
+		\item 特别的，若 $g (X)=X$, 则有
+		\begin{eqnarray*}
+			E(X)&=&\int_{-\infty}^{+\infty}E[X|Y=y]dF_Y(y)\\
+			&=&\left\{
+			\begin{array}{l}
+				\sum_jE(X|Y=y_j)P(Y=y_j)\\
+				\\
+				\int_{-\infty}^{+\infty}E(X|Y=y)p_Y(y)dy
+			\end{array}
+			\right.
+		\end{eqnarray*}
+
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{巴格达窃贼问题}
+	\begin{exam}
+		一个窃贼被关在有 3 个门的地牢中。其中 1 号门通向自由，出 1 号门后走 3 个小时便回到地面；2 号门通向一个地道，在此地道走 5 个小时后返回地牢；3 号门通向一个更长的地道，沿这个地道走 7 个小时后回到地牢。如果窃贼每次选择 3 个门的可能性总相等，求他为获自由而奔走的平均时间.
+	\end{exam}
+
+	\pause \jieda 设窃贼需要走 $X$ 小时到达地面，则 $X$ 的所有可能取值为
+	\begin{eqnarray*}
+		3, 5+3, 7+3, 5+5+3, 5+7+3, 7+7+3,\cdots,
+	\end{eqnarray*}
+	则显然要写出 $X$ 的分布列是困难的，所以无法直接求 $E (X)$. \pause 但是如果我们引入 $Y$ 表示窃贼每次对 3 个门的选择，则 \pause
+	\begin{eqnarray*}
+		&&P(Y=1)=P(Y=2)=P(Y=3)=1/3\\
+		&&\pause E(X|Y=1)=3, \pause E(X|Y=2)=5+E(X), \pause E(X|Y=3)=7+E(X)
+	\end{eqnarray*}
+	\pause 从而由重期望公式可得
+	\begin{eqnarray*}
+		E(X)=\sum_{i=1}^3E(X|Y=i)P(Y=i)=5+\dfrac{2}{3}E(X)\pause \Rightarrow E(X)=15
+	\end{eqnarray*}
+\end{frame}
+\begin{frame}
+	\frametitle{随机个随机变量和的期望}
+	\begin{thm}
+		设 $X_1,X_2,\cdots,$ 为一列独立同分布的随机变量，随机变量 $N$ 只取正整数值，且 $N$ 与 $\{X_n\}$ 独立，则
+		\begin{eqnarray*}
+			E\left(\sum_{i=1}^NX_i\right)=E(X_1)E(N)
+		\end{eqnarray*}
+	\end{thm}
+
+	\pause \zheng 由重期望公式可知
+	\begin{eqnarray*}
+		E\left(\sum_{i=1}^NX_i\right)&=&\pause E\bigg[ E\big(\sum_{i=1}^NX_i|N\big)\bigg]=\pause \sum_{n=1}^{+\infty}E\big(\sum_{i=1}^NX_i|N=n\big)P(N=n)\\
+		&=&\pause \sum_{n=1}^{+\infty}E\big(\sum_{i=1}^nX_i|N=n\big)P(N=n)=\pause \sum_{n=1}^{+\infty}E\big(\sum_{i=1}^nX_i\big)P(N=n)\\
+		&=&\pause \sum_{n=1}^{+\infty}nE(X_1)P(N=n)=\pause E(X_1)E(N)\\
+	\end{eqnarray*}
+
+\end{frame}
+\begin{frame}
+	\frametitle{矩的概念}
+	\begin{defi}
+		如果 $E|X|^k<+\infty$, 则称 $m_k:=E (X^k)$ 为随机变量 $X$(及其分布) 的 $k$ 阶原点矩。而称 $c_k:=E (X-EX)^k$ 为随机变量 (及其分布) 的 $k$ 阶中心矩.
+	\end{defi}
+	\pause
+	\begin{thm}
+		当 $E|X|^k<+\infty$ 时有，
+		\begin{eqnarray*}
+			c_k=\sum_{i=0}^kC_k^i(-m_1)^{k-i}m_i, \quad m_k=\sum_{i=0}^kC_k^ic_{k-i}m_1^i.
+		\end{eqnarray*}
+
+	\end{thm}
+	\pause
+	\zheng 注意到 \pause
+	\begin{eqnarray*}
+		(X-EX)^k&=&\sum_{i=0}^kC_k^iX^i(-EX)^{k-i}, \\
+		\pause X^k=(EX+X-EX)^k&=&\pause \sum_{i=0}^kC_k^i(EX)^i(X-EX)^{k-i}
+	\end{eqnarray*}
+	\pause 对上面两式取期望即可得证.
+\end{frame}
+\subsection{母函数}
+\begin{frame}
+	\frametitle{母函数的定义}
+	\begin{defi}
+		对任何实数列 $\{p_n\}$, 如果幂级数
+		\begin{eqnarray}\label{eq:gfunc}
+			G(s)=\sum_{n=0}^\infty p_ns^n
+		\end{eqnarray}
+		的收敛半径 $s_0>0$, 则称 $G (s)$ 为数列 $\{p_n\}$ 的母函数。特别当 $\{p_n\}$ 为某非负整值随机变量 $X$ 的概率分布时，(\ref{eq:gfunc}) 式至少在区间 $[-1,1]$ 上绝对收敛且一致收敛，此时有
+		\begin{eqnarray*}
+			G(s)=E(s^X),
+		\end{eqnarray*}
+		称此 $G (s)$ 为随机变量 $X$ 或其概率分布 $\{p_n\}$ 的母函数.
+	\end{defi}
+\end{frame}
+\begin{frame}
+	\frametitle{母函数与分布之间的反演公式}
+	\begin{itemize}[<+-|alert@+>]
+		\item 已知 $G (s)$, 如何确定 $\{p_n\}$?
+		\item 注意到
+		\begin{eqnarray*}
+			G(0)=p_0, \quad G^{(n)}(s)=n! p_n+\sum_{k=n+1}^\infty k(k-1)\cdots(k-n+1)p_ks^{k-n}
+		\end{eqnarray*}
+		\item 故
+		\begin{eqnarray*}
+			p_n=\dfrac{1}{n!}G^{(n)}(0)
+		\end{eqnarray*}
+		\item 非负整值概率分布 $\{p_n\}$ 与其母函数 $G (s)$ 是一一对应的，母函数可以作为描述这种分布的一种工具.
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{母函数与随机变量矩的关系}
+	\begin{thm}
+		设非负随机变量 $X$ 的母函数为 $G (s)$, 如果 $E (X)$ 与 $E (X^2)$ 有限，则
+		\begin{eqnarray*}
+			G'(1)=E(X),\pause \quad G''(1)=E(X^2)-E(X)
+		\end{eqnarray*}
+
+	\end{thm}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{常见离散型分布的母函数}
+	\begin{itemize}[<+-|alert@+>]
+		\item Poisson 分布的母函数
+		\begin{eqnarray*}
+			G(s)=E(s^X)=\sum_{k=0}^\infty s^k\dfrac{\lambda^k}{k!}e^{-\lambda}=e^{\lambda(s-1)}
+		\end{eqnarray*}
+		\item 几何分布的母函数
+		\begin{eqnarray*}
+			G(s)=E(s^X)=\sum_{k=1}^\infty s^kq^{k-1}p=\dfrac{ps}{1-qs}
+		\end{eqnarray*}
+
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{独立和的母函数}
+	\begin{thm}
+		如果 $X,Y$ 为相互独立的随机变量，它们分别有概率分布 $\{a_n\}, \{b_n\}$ 及对应的母函数 $A (s), B (s)$, 则它们的和 $X+Y$ 的母函数为
+		\[C(s)=A(s)B(s).\]
+		\pause 更进一步，如果 $X_1,\cdots, X_n$ 相互独立，其对应的母函数分别为 $A_1 (s),$ $ \cdots, A_n (s)$, 则 $X_1+\cdots+X_n$ 的母函数为 \pause
+		\begin{eqnarray*}
+			C(s)=\Pi_{i=1}^nA_i(s)
+		\end{eqnarray*}
+
+	\end{thm}
+	\pause   \zheng 注意到由 $X,Y$ 相互独立可知 $s^X, s^Y$ 也相互独立，从而 \pause
+	\begin{eqnarray*}
+		C(s)=\pause E(s^{X+Y})=\pause E(s^X s^Y)=\pause E(s^X)E(s^Y)=\pause A(s)B(s)
+	\end{eqnarray*}
+
+	\pause
+	\begin{exam}
+		设 $X$ 服从二项分布 $B (n,p)$, 则 $X$ 的母函数为 $G (s)=(q+ps)^n$.
+	\end{exam}
+
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{随机个非负整值随机量之和的母函数}
+	\begin{thm}
+		设 $\{X_k\}$ 为相互独立同分布的非负整值随机变量序列，其共同的母函数为 $G (s)$. 如果 $N$ 为另一非负整值随机变量，其母函数为 $F (s)$. 则当 $N$ 与每一个 $X_k$ 均独立时，$X=\sum_{k=1}^NX_k$ 的母函数为
+		\begin{eqnarray*}
+			H(s)=F(G(s)).
+		\end{eqnarray*}
+
+	\end{thm}
+
+	\pause
+	\zheng 由重期望公式可得
+	\begin{eqnarray*}
+		H(s)&=&\pause E(s^X)=\pause E(E(s^X|N))=\pause\sum_{n=0}^\infty P(N=n) E(s^{\sum_{k=1}^NX_k}|N=n)\\
+		&=&\pause\sum_{n=0}^\infty P(N=n) E(s^{\sum_{k=1}^nX_k}|N=n)=\pause\sum_{n=0}^\infty P(N=n) E(s^{\sum_{k=1}^nX_k})\\
+		&=&\pause\sum_{n=0}^\infty P(N=n)[G(s)]^n=\pause E(G(s)^N)\\
+		&=&\pause F(G(s))
+	\end{eqnarray*}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{随机个非负整值随机量之和的期望与方差}
+	\begin{itemize}[<+-|alert@+>]
+		\item 对 $H (s)$ 求导可得
+		\begin{eqnarray*}
+			H'(s)=F'(G(s))G'(s)
+		\end{eqnarray*}
+		\item 令 $s=1$ 并注意到 $G (1)=1$ 可得
+		\begin{eqnarray*}
+			E(X)=E(N)E(X_1)
+		\end{eqnarray*}
+		\item 再对 $H'(s)$ 求导可得
+		\begin{eqnarray*}
+			H''(s)=F''(G(s))[G'(s)]^2+F'(G(s))G''(s)
+		\end{eqnarray*}
+		\item 令 $s=1$ 可得
+		\begin{eqnarray*}
+			E(X^2)-E(X)  &=&\pause \mbox{[}E(N^2)-E(N)][E(X_1)]^2+E(N)[E(X_1^2)-E(X_1)]\\
+			&=&\pause  E(N)D(X_1)+E(N^2)[E(X_1)]^2-E(N)E(X_1)
+		\end{eqnarray*}
+		\item 从而
+		\begin{eqnarray*}
+			D(X)=\pause E(X^2)-[E(X)]^2=E(N)D(X_1)+D(N)[E(X_1)]^2
+		\end{eqnarray*}
+	\end{itemize}
+\end{frame}
+\end{document}

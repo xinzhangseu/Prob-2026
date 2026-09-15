@@ -1,0 +1,518 @@
+% 取消下一行注释可生成 handout（无逐步显示）；保持注释则生成正常 slide。
+% \PassOptionsToClass{handout}{beamer}
+\documentclass[Main-Prob-All.tex]{subfiles}
+\begin{document}
+
+
+
+
+
+\title[概率论]{第二十三讲：中心极限定理}
+\author[张鑫{\rm Email: x.zhang.seu@foxmail.com} ]{\large 张 鑫}
+\institute[东南大学数学学院]{\large \textrm{Email: x.zhang.seu@foxmail.com} \\ \quad  \\
+	\large 东南大学 \quad 数学学院 \\
+	\vspace{0.3cm}
+	% \trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+		%  \hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
+}
+\date{}
+
+{ \setbeamertemplate{footline}{}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+}
+
+\subsection{中心极限定理}
+\begin{frame}
+	\frametitle{中心极限定理：问题的由来}
+	\begin{itemize}[<+-|alert@+>]
+		\item 实际生活中，我们会经常会进行误差分析，而误差的产生是由大量微小的相互独立的随机因素叠加而成。举个例子来说：机床加工机械轴使其直径符合规定要求，加工后的机械轴的直径会受以下各种随机因素的影响:
+		\begin{itemize}
+			\item 机床振动与转速的影响；
+			\item 刀具装配与磨损的影响；
+			\item 钢材成份与产地的影响；
+			\item 量具的误差，测量技术的影响；
+			\item 车间的温度，湿度，照明，工作电压的影响等等.
+		\end{itemize}
+		\item 若记每个因素使每个加工轴的直径产生的误差为 $X_i, i=1,\cdots,n$, 则最终对加工轴直径产生的误差为
+		\begin{eqnarray*}
+			Y_n=\sum_{i=1}X_i
+		\end{eqnarray*}
+		\item 显然在实际中，我们必然要关心当 $n\rightarrow\infty$ 时 $Y_n$ 的分布是什么？
+		\item 为什么我们不根据 $X_i$ 的分布用卷积公式来计算 $Y_n$ 的分布？
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{一个例子}
+	\begin{exam}
+		设 $\{X_n\}$ 为独立同分布的随机变量序列，其共同的分布为区间 $(0,1)$ 上的均匀分布。记 $Y_n=\sum_{i=1}^nX_i$, 试计算 $Y_n$ 的分布.
+	\end{exam}
+
+	\pause
+	\begin{figure}
+		\centering
+		\includegraphics[width=9cm]{uniform.jpg}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{问题：寻求 $Y_n$ 的极限分布}
+	\begin{itemize}[<+-|alert@+>]
+		\item 从上面均匀分布的例子可知:
+		\begin{eqnarray*}
+			E(Y_n)=\pause \sum_{i=1}^nE(X_i)=\dfrac{n}{2}\rightarrow\infty\\
+			D(Y_n)=\pause \sum_{i=1}^n D(X_i)=\dfrac{n}{12}\rightarrow\infty
+		\end{eqnarray*}
+		\item 考虑 $Y_n$ 的极限分布时，需对 $Y_n$ 进行标准化:
+		\begin{eqnarray*}
+			Y_n^*:=\dfrac{Y_n-E(Y_n)}{\sqrt{D(Y_n)}}
+		\end{eqnarray*}
+		\item 在什么情况下
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty}P(Y_n^*\le y)=\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^ye^{-u^2/2}du
+		\end{eqnarray*}
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{独立同分布情形下的中心极限定理}
+	\begin{thm}[林德伯格 - 莱维 (Lindeberg-L{\'e} vy) 中心极限定理] 设 $\{X_n\}$ 是独立同分布的随机变量序列，且 $E (X_i)=\mu, D (X_i)=\sigma^2>0$ 存在，若记
+		\begin{eqnarray*}
+			Y_n^*=\dfrac{\sum_{i=1}^nX_i-n\mu}{\sigma\sqrt{n}},
+		\end{eqnarray*}
+		则对任意的 $y\in R$ 有
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty}P(Y_n^*\le y)=\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^ye^{-u^2/2}du
+		\end{eqnarray*}
+
+	\end{thm}
+\end{frame}
+\begin{frame}
+	\frametitle{Lindeberg-L{\'e}vy 中心极限定理的证明}
+	\zheng 要证 $Y_n^*$ 依分布收敛于标准正态分布，只需要说明其特征函数收敛于标准正态分布的特征函数即可. \pause 注意到 $Y_n^*=\sum_{i=1}^n\dfrac{X_i-\mu}{\sigma\sqrt{n}}$. 故若记 $Z_i:=X_i-\mu$ 的特征函数为 $\varphi (t)$, 则
+	\begin{eqnarray*}
+		\varphi(t)&=&\pause \varphi(0)+\varphi'(0)t+\varphi''(0)\frac{t^2}{2}+o(t^2)\\
+		&=&\pause 1+iE(Z_i)t+i^2E(Z_i^2)\frac{t^2}{2}+o(t^2)\\
+		&=&\pause 1-\frac{\sigma^2t^2}{2}+o(t^2)\\
+		\varphi_{Y_n^*}&=&\pause \bigg[\varphi(\frac{t}{\sigma\sqrt{n}})\bigg]^n=\pause \bigg[1-\frac{t^2}{2n}+o(\frac{t^2}{n\sigma^2})\bigg]^n\rightarrow \pause e^{-t^2/2}
+	\end{eqnarray*}
+
+\end{frame}
+\begin{frame}
+	\frametitle{标准正态随机数的产生}
+	\begin{itemize}[<+-|alert@+>]
+		\item 在随机模拟中经常会需要产生正态随机数，下面我们介绍一种利用中心极限定理通过 $(0,1)$ 上的均匀分布的随机数来产生正态分布 $N (\mu,\sigma^2)$ 随机数的方法；
+		\item 中心极限定理理论分析：设 $X_1,\cdots,X_n,\cdots$ 为一列独立同 $(0,1)$ 上的均匀分布的随机变量序列，则 $E (X_i)=1/2, D (X_i)=1/12$, 故
+		\begin{eqnarray*}
+			\dfrac{\sum_{i=1}^nX_i-n/2}{\sqrt{n/12}}\rightarrow~ \sim N(0,1)
+		\end{eqnarray*}
+		特别的，若 $n=12$, 则 $X_1+X_2+\cdots+X_{12}-6$ 近似服从标准正态分布.
+		\item 产生正态随机数的方法:
+		\begin{itemize}
+			\item 从计算机中产生 12 个 $(0,1)$ 上均匀分布随机数，记为 $x_1,\cdots, x_{12}$;
+			\item 计算 $y=x_1+\cdots+x_{12}-6$, 由上面分析知可将 $y$ 看成 $N (0,1)$ 的一个随机数；
+			\item 计算 $z=\mu+\sigma y$, 可将 $z$ 看成 $N (\mu,\sigma^2)$ 分布的随机数；
+			\item 重复上面步骤 $n$ 次，即可得到 $n$ 个 $N (\mu,\sigma^2)$ 分布随机数.
+		\end{itemize}
+
+	\end{itemize}
+\end{frame}
+% \begin{frame}
+	%   \frametitle{数值计算中的误差分析 I}
+	%   \begin{itemize}[<+-|alert@+>]
+		%   \item 在数值计算中，任何实数 $x$ 只能通过一定位数的小数 $x'$ 来近似，不妨设我们用四舍五入法得到的 $k$ 位小数来近似；
+		%   \item 若 $x'=a_0.a_1a_2\cdots a_k$, 则 $\epsilon:=x-x'\in (-0.5*10^{-k},0.5*10^{-k})$;
+		%   \item 考虑一般情形，对于任何实数 $x$, 假设我们通过某种方法选取某个 $k$ 位小数 $x'$ 近似 $x$ 并且假设其误差 $\epsilon$ 服从 $(-0.5*10^{-k},0.5*10^{-k})$ 上的均匀分布 $U (-0.5*10^{-k},0.5*10^{-k})$;
+		%   \item 考虑 $n$ 个实数 $x_1,\cdots, x_n$ 的和 $S$ 的近似值 $S'$: 假设 $S$ 中的每一个 $x_i$ 均采用上述一般情形下的近似方法获得其近似值 $x'$, 如果记个别误差为 $\epsilon_i:=x_i-x_i'$, 则总误差为
+		%     \begin{eqnarray*}
+			%       S-S'=\sum_{i=1}^n(x_i-x_i')=\sum_{i=1}^n\epsilon_i
+			%     \end{eqnarray*}
+		%   \item 根所假设，我们可以认为 $\epsilon_i\sim U (-0.5*10^{-k},0.5*10^{-k})$, 且相互独立.
+		%   \end{itemize}
+	% \end{frame}
+% \begin{frame}
+	%   \begin{columns}
+		%     \column{5cm}
+		%     \begin{figure}
+			%       \centering
+			%       \includegraphics[width=5cm]{2sumuniform.png}
+			%     \end{figure}
+		%     \column{5cm}
+		%     \begin{figure}
+			%       \centering
+			%       \includegraphics[width=5cm]{3sumuniform.png}
+			%     \end{figure}
+
+		%   \end{columns}
+	%   \begin{columns}
+		%     \column{5cm}
+		%     \begin{figure}
+			%       \centering
+			%       \includegraphics[width=5cm]{12sumuniform1.png}
+			%     \end{figure}
+		%     \column{5cm}
+		%     \begin{figure}
+			%       \centering
+			%       \includegraphics[width=5cm]{n01.png}
+			%     \end{figure}
+
+		%   \end{columns}
+	% \end{frame}
+% \begin{frame}
+	%   \frametitle{数值计算中的误差分析 II}
+	%   \begin{itemize}[<+-|alert@+>]
+		%   \item 一种粗略的估计总误差的方法为：由于 $|\epsilon_i|\le 0.5*10^{-k}$, 故
+		%     \begin{eqnarray*}
+			%       |\sum_{i=1}^n\epsilon_i|\le n*0.5*10^{-k}
+			%     \end{eqnarray*}
+		%   \item 利用中心极限定理: $\epsilon_i$ 独立同分布且 $E (\epsilon_i)=0,D (\epsilon_i)=\dfrac{10^{-2k}}{12}$, 故
+		%{\small\begin{eqnarray*}
+				%              P(\sum_{i=1}^n\epsilon_i|\le z)&=&\pause P(\bigg|\dfrac{\sum_{i=1}^n\epsilon_i-0}{\sqrt{n10^{-2k}/12}}\bigg|\le \dfrac{z}{\sqrt{n10^{-2k}/12}})\\
+				%                                             &\approx&\pause \Phi(\dfrac{z}{\sqrt{n10^{-2k}/12}})-\Phi(-\dfrac{z}{\sqrt{n10^{-2k}/12}})\\
+				%                                             &=&\pause 2\Phi(\dfrac{z}{\sqrt{n10^{-2k}/12}})-1
+				%            \end{eqnarray*}}
+		%        \item 若令上面的概率为 $0.99$, 则 $\Phi (\dfrac{z}{\sqrt{n10^{-2k}/12}})=0.995$, 反查正态分布函数表可得 \vspace{-0.7cm}
+		%          \begin{eqnarray*}
+			%            \hspace{1.2cm} \dfrac{z}{\sqrt{n10^{-2k}/12}}=2.576\Rightarrow z=2.576\sqrt{n10^{-2k}/12}
+			%          \end{eqnarray*}
+
+		%        \end{itemize}
+
+
+	%      \end{frame}
+
+\begin{frame}
+	\frametitle{二项分布的正态近似}
+	\begin{thm}[棣莫弗 - 拉普拉斯中心极限定理] 设 $n$ 重伯努利试验中，事件 $A$ 在每次试验中出现的概率为 $p\in (0,1)$, 记 $S_n$ 为 $n$ 重伯努利试验中事件 $A$ 出现的次数，则对任意的 $y\in R$ 均有
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty}P(\dfrac{S_n-np}{\sqrt{np(1-p)}}\le y)=\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^ye^{-u^2/2}du
+		\end{eqnarray*}
+
+	\end{thm}
+	\pause 在上述定理中，若记 $\Phi (y)=\beta, Y_n^*:=\dfrac{S_n-np}{\sqrt{np (1-p)}}$, 则
+	\begin{eqnarray*}
+		P(Y_n^*\le y)\approx \Phi(y)=\beta
+	\end{eqnarray*}
+
+
+\end{frame}
+
+% \begin{frame}
+	%   \frametitle{二项分布正态近似的几点注意}
+	%   \begin{itemize}[<+-|alert@+>]
+		%   \item 与二项分布的泊松近似相比：一般来说，$p$ 较小时，用泊松分布近似较好；而在 $np>5$ 和 $n (1-p)>5$ 时，正态分布近似较好；
+		%   \item 因二项分布是离散分布，正态分布是连续分布，故用正态分布近似时，作些修正可以提高精度：若 $k_1<k_2$, 一般先作如下修正再用正态近似 $P (k_1\le S_n\le k_2)=P (k_1-0.5<S_n<k_2-0.5)$;
+		%   \item 对于二项分布的计算，用修正的正态近似还可得
+		%     \begin{eqnarray*}
+			%       P(S_n=k)&=&\pause P(k-0.5<S_n<k+0.5)\\
+			%               &=&\pause P(\dfrac{k-0.5-np}{\sqrt{np(1-p)}}<\dfrac{S_n-np}{\sqrt{np(1-p)}}<\dfrac{k+0.5-np}{\sqrt{np(1-p)}})\\
+			%               &\approx&\pause\int_{\frac{k-0.5-np}{\sqrt{np(1-p)}}}^{\frac{k+0.5-np}{\sqrt{np(1-p)}}} \dfrac{1}{\sqrt{2\pi}}e^{-x^2/2}dx\\
+			%               &\approx&\pause \dfrac{1}{\sqrt{2\pi}}e^{-(\frac{k-np}{\sqrt{np(1-p)}})^2/2}\cdot \dfrac{1}{\sqrt{np(1-p)}}
+			%     \end{eqnarray*}
+
+		%   \end{itemize}
+
+	% \end{frame}
+\begin{frame}
+	\frametitle{独立不同分布下的中心极限定理}
+	\begin{itemize}[<+-|alert@+>]
+		\item 设 $\{X_n\}$ 是一个相互独立的随机变量序列，其期望与方差有限分别为
+		\begin{eqnarray*}
+			E(X_i)=\mu_i, \quad D(X_i)=\sigma_i^2, \quad i=1,2,\cdots,
+		\end{eqnarray*}
+		\item 考虑随机变量的和 $\textcolor{red}{Y_n=X_1+\cdots+X_n}$, 则
+		\begin{eqnarray*}
+			E(Y_n)=\mu_1+\cdots+\mu_n,\quad \textcolor{red}{\sigma(Y_n):=\sqrt{D(Y_n)}=\sqrt{\sigma_1^2+\cdots+\sigma_n^2}}
+		\end{eqnarray*}
+		\item 考虑 $Y_n$ 的标准化:$ Y_n^*:=\dfrac{Y_n-E (Y_n)}{\sigma (Y_n)}=\sum_{i=1}^n\dfrac{X_i-\mu_i}{\sigma (Y_n)}$
+		\item 要求 $Y_n^*$ 中的各项 $\dfrac{X_i-\mu_i}{\sigma (Y_n)}$ 均匀的小，即对任意的 $\tau>0$, 要求事件
+		\begin{eqnarray*}
+			A_{ni}=\left\{\big|\dfrac{X_i-\mu_i}{\sigma(Y_n)}\big|>\tau\right\}=\left\{|X_i-\mu_i|>\tau\sigma(Y_n)\right\}
+		\end{eqnarray*}
+		发生的可能性小或直接要求其概率趋于 0.
+		\item 为达目的，我们要求 $\lim_{n\rightarrow\infty} P (\max_{1\le i\le n}|X_i-\mu_i|>\tau\sigma (Y_n))=0$
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{$\lim_{n\rightarrow\infty}P(\max_{1\le i\le n}|X_i-\mu_i|>\tau\sigma(Y_n))=0$}
+	注意到
+	\begin{eqnarray*}
+		&&P(\max_{1\le i\le n}|X_i-\mu_i|>\tau\sigma(Y_n))=\pause P(\cup_{i=1}^n|X_i-\mu_i|>\tau\sigma(Y_n))\\
+		&&\le\pause \sum_{i=1}^nP(|X_i-\mu_i|>\tau\sigma(Y_n))=\pause \sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}dF_i(x)\\
+		&&\le \pause \dfrac{1}{\tau^2}\cdot\dfrac{1}{\sigma(Y_n)^2}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)
+	\end{eqnarray*}
+
+	\pause 故只要下面的 \textcolor{red}{\bf 林德伯格条件} 满足
+	\begin{eqnarray*}%\label{eq:Lindeberg}
+		\lim_{n\rightarrow\infty} \dfrac{1}{\sigma(Y_n)^2}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)=0
+	\end{eqnarray*}
+	就可保证 $Y_n^*$ 中各加项充分的小
+
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{林德伯格中心极限定理}
+	\begin{thm}
+		设独立随机变量序列 $\{X_n\}$ 满足林德伯格条件
+		\begin{eqnarray}\label{eq:Lindeberg}
+			\lim_{n\rightarrow\infty} \dfrac{1}{\sigma(Y_n)^2}\sum_{i=1}^n\int_{|x-\mu_i|>\tau\sigma(Y_n)}(x-\mu_i)^2dF_i(x)=0
+		\end{eqnarray} 则对任意的 $x$, 有
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty}P(\dfrac{1}{\sigma(Y_n)}\sum_{i=1}^n(X_i-\mu_i)\le x)=\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^xe^{-u^2/2}du
+		\end{eqnarray*}
+	\end{thm}
+	\pause
+	\begin{rmk}
+		假设 $\{X_n\}$ 独立同分布且方差有限，则容易验证上述的林德伯格条件满足，从而我们先前在独立同分布情形下的中心极限定理是林德伯格中收极限定理的特例.
+	\end{rmk}
+\end{frame}
+
+\begin{frame}{一个引理}
+	\begin{lem}\label{lem:eixtaylor}
+		对一切 $x \in R$ 及非负整数 $n$ 有
+		\[
+		\left|e^{i x}-\sum_{k=0}^{n} \frac{(i x)^{k}}{k!}\right| \leq\left[\frac{|x|^{n+1}}{(n+1)!}\right] \wedge\left[\frac{2|x|^{n}}{n!}\right]
+		\]
+	\end{lem}
+
+\end{frame}
+
+\begin{frame}{引理证明}
+\begin{itemize}[<+-|alert@+>]
+\item 根据带 Lagrange 余项的 Taylor 展开，得到
+\[
+\exp (\mathrm{i} x)=\sum_{k=0}^{n} \frac{(\mathrm{i} x)^{k}}{k!}+\frac{(\mathrm{i} x)^{n+1}}{(n+1)!} \exp (\mathrm{i} u),  u \in[0, x],
+\]
+
+\item 对于任意的 $x \in \mathbb{R}$ 和 $n \ge 0$,
+\[
+\left|\exp (\mathrm{i} x)-\sum_{k=0}^{n} \frac{(\mathrm{i} x)^{k}}{k!}\right| \leqslant \frac{|x|^{n+1}}{(n+1)!} .
+\]
+\item  当 $n \ge 1$ 时, 我们有
+$$\left|\exp (\mathrm{i} x)-\sum_{k=0}^{n} \frac{(\mathrm{i} x)^{k}}{k!}\right| \leqslant\left|\exp (\mathrm{i} x)-\sum_{k=0}^{n-1} \frac{(\mathrm{i} x)^{k}}{k!}\right|+\frac{|x|^{n}}{n!} \leqslant \frac{2|x|^{n}}{n!} .$$
+\item 当$n=0$时, 显然有
+$$\left|\exp (\mathrm{i} x)-1\right| \le 2 .$$
+\item 综上所述, 引理得证.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{引理证明(法二)}
+\begin{itemize}
+	\item 用分部积分可得
+	\begin{align}\label{eq:sepinte}
+		\int_{0}^{x}(x-s)^{n} e^{i s} d s=\frac{x^{n+1}}{n+1}+\frac{i}{n+1} \int_{0}^{x}(x-s)^{n+1} e^{i s} d s
+	\end{align}
+
+	\item 递归可得知，对一切 $n \geq 0$ 有
+	\begin{align}\label{eq:digui}
+		e^{i x}=\sum_{k=0}^{n} \frac{(i x)^{k}}{k!}+\frac{i^{n+1}}{n!} \int_{0}^{x}(x-s)^{n} e^{i s} d s
+	\end{align}
+
+	\item
+	由此推出估计式$
+	\big|e^{i x}-\sum_{k=0}^{n} \dfrac{(i x)^{k}}{k!}\big| \leq \dfrac{|x|^{n+1}}{(n+1)!}$
+	\item 将\eqref{eq:sepinte}式中 $n$ 换为 $n-1$ ，解出右方积分并代入\eqref{eq:digui}便推出
+	\[
+	e^{i x}=\sum_{k=0}^{n} \frac{(i x)^{k}}{k!}+\frac{i^{n}}{(n-1)!} \int_{0}^{x}(x-s)^{n-1}\left(e^{i s}-1\right) d s
+	\]
+\item 故可得另一估计式$
+	\left|e^{i x}-\sum_{k=0}^{n} \dfrac{(i x)^{k}}{k!}\right| \leq \dfrac{2|x|^{n}}{n!}$
+\item 联合上述两个估计式可得引理结论.%（4.10）与（4.11）便得到（4.7）式，引理证完。
+
+
+\end{itemize}
+
+\end{frame}
+\begin{frame}{引理的几个常用结论}
+\begin{rmk} 若引理中的$n=0,1,2$, 则有%的特例以备引用:
+	\begin{align*}
+		\left|e^{i x}-1\right| & \leq|x| \wedge 2 \\
+		\left|e^{i x}-1-i x\right| & \leq \frac{x^{2}}{2} \wedge(2|x|) \\
+		\left|e^{i x}-1-i x+\frac{x^{2}}{2}\right| & \leq\left(\frac{1}{6}|x|^{3}\right) \wedge x^{2}
+	\end{align*}
+\end{rmk}
+
+\end{frame}
+
+\begin{frame}{林德伯格中心极限定理证明}
+\begin{itemize}
+	\item 只需证 $Y_n^*:=\frac{\sum_{k=1}^n(X_k-E[X_k])}{\sqrt{D(\sum_{k=1}^nX_k)}}$ 的特征函数列收敛到标准正态分布的特征函数,即
+	\begin{align}\label{eq:celimit}
+		\lim_{n\rightarrow\infty}\phi_{n}(t)=\lim_{n\rightarrow\infty}E[e^{itY_n^*}]= \exp\{-\frac{t^2}{2}\}.
+	\end{align}
+
+    \item 对一切 $n \geq 1$ 及 $k=1, \cdots, n$，令 $X_{nk}=\left(X_{k}-\mu_k\right) / \sigma(Y_n)$, 则
+	\[E\left(X_{nk}\right)=0,\quad D\left(X_{nk}\right)=\sigma_k^{2} / \sigma(Y_n)^{2}.\]
+	\item 以 $F_{n k}(x)$ 及 $\phi_{n k}(t)$ 分别表 $X_{nk}$的分布函数及特征函数.
+		\item 已知的林德伯格条件\eqref{eq:Lindeberg}式化为
+		\begin{align}\label{eq:Lindebergcondi-2}
+			\lim _{n} \sum_{k=1}^{n} \int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)=0, \ \forall \tau>0
+		\end{align}
+
+	\item
+		而待证的\eqref{eq:celimit}式变为 $n \rightarrow \infty$ 时有
+		\[
+		\phi_{n}(t)=\prod_{k=1}^{n} \phi_{n k}(t) \longrightarrow \exp\{-\frac{t^2}{2}\},  \forall t \in R
+		\]
+
+\end{itemize}
+
+\end{frame}
+\begin{frame}{林德伯格中心极限定理证明}
+	\begin{itemize}
+		\item 注意到
+		\begin{align*}
+		  \phi_{nk}(t)&\approx 1+\phi_{nk}'(0)t+\frac{1}{2}\phi_{nk}''(0)t^2=1+iE[X_{nk}]t+\frac{1}{2}i^2E[X_{nk}^2]t^2\\
+					&=1-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\approx \exp\{-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\}\\
+			\exp\{-\frac{t^2}{2}\}&=\exp\{-\frac{t^2}{2}\sum_{k=1}^n\frac{\sigma_k^2}{\sigma(Y_n)^2}\}=\prod_{k=1}^{n} \exp\{-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\}
+		\end{align*}
+		\item 因此,欲证$\phi_{n}(t)=\prod_{k=1}^{n} \phi_{n k}(t) \longrightarrow e^{-\frac{t^{2}}{2}},  \forall t \in R$, 只需证明
+		\begin{align*}
+	&\big|\prod_{k=1}^{n} \phi_{n k}(t)-\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big| \longrightarrow 0\\
+	&\big|\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)-\prod_{k=1}^{n} \exp\{-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\}\big| \longrightarrow 0
+		\end{align*}
+	\end{itemize}
+
+
+	\end{frame}
+	\begin{frame}{证明:$\big|\prod_{k=1}^{n} \phi_{n k}(t)-\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big| \rightarrow 0$}
+		\vspace{-0.1cm}
+		\begin{itemize}
+			\item 由引理\ref{lem:eixtaylor}可知，对一切 $t \in R$ 有
+		\[
+		\big|e^{i t x}-\big(1+i t x-\frac{1}{2} t^{2} x^{2}\big)\big| \leq|t x|^{2} \wedge|t x|^{3}
+		\]
+		\item 注意到 $X_{nk}$ 二阶矩有限，两边对 $F_{n k}$ 取积分得
+		\[
+		\big|\phi_{n k}(t)-\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^{2}}\big)\big| \leq \int_{-\infty}^\infty |tx|^2\wedge |tx|^3dF_{nk}(x)%E\big\{\big|t X_{nk}\big|^{2} \wedge\big|t X_{nk}\big|^{3}\big\}
+		\]
+		\item 而对任何 $\tau>0$ ，上式右方不超过
+		\begin{align*}
+			&\int_{(|x|<\tau)}|t x|^{3} d F_{n k}(x)+\int_{(|x| \geq \tau)}(t x)^{2} d F_{n k}(x)\\
+			&\leq \tau|t|^{3} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^{2}}+t^{2} \int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)
+		\end{align*}
+		\item 由于 $\sum_{k=1}^{n} \sigma_{k}^{2} / \sigma(Y_n)^{2}=D\big(Y_n^*\big)=1$, 求和便推出
+		\[
+		\sum_{k=1}^{n}\big|\phi_{n k}(t)-\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^{2}}\big)\big| \leq \tau|t|^{3}+t^{2} \sum_{k=1}^{n} \int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)
+		\]
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}{证明:$\big|\prod_{k=1}^{n} \phi_{n k}(t)-\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big| \rightarrow 0$}
+\begin{itemize}
+	\item 上式先令 $n \rightarrow \infty$ 再令 $\tau \downarrow 0$, 由\eqref{eq:Lindebergcondi-2}式得
+	\[
+	\sum_{k=1}^{n}\big|\phi_{n k}(t)-\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big| \rightarrow 0,  t \in R
+	\]
+	\item 故
+	\begin{align*}
+		\big|\prod_{k=1}^{n} \phi_{n k}(t)-\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big|\leq  \sum_{k=1}^{n}\big|\phi_{n k}(t)-\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big| \rightarrow 0
+	\end{align*}得证.
+\end{itemize}
+	\end{frame}
+
+\begin{frame}{证明:$\big|\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)-\prod_{k=1}^{n} \exp\{-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\}\big| \rightarrow 0$}
+\vspace{-0.1cm}
+\begin{itemize}
+
+	\item 注意到当 $|z| \leq 1 / 2$ 时有
+	{\small \[
+	\left|e^{z}-1-z\right| \leq \frac{1}{2} \sum_{k=2}^{\infty}|z|^{k}=\frac{1}{2}|z|^{2} /(1-|z|) \leq z^{2}
+	\]}
+    \item 取 $z=\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}$, 可得
+    {\small \begin{align*}
+		&\big|\prod_{k=1}^{n}\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)-\prod_{k=1}^{n} \exp\{-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\}\big|\\
+		&\leq \sum_{k=1}^{n}\big|\exp\{-\frac{t^2\sigma_k^2}{2\sigma(Y_n)^2}\}-\big(1-\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}\big)\big|\\
+		&\leq \frac{t^4}{4}\sum_{k=1}^{n}\big(\frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\big)^2\leq \frac{t^{4}}{4}\left(\max _{1 \leq k \leq n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\right) \sum_{k=1}^{n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\\
+		&\leq \frac{t^{4}}{4}\left(\max _{1 \leq k \leq n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\right)
+	\end{align*}}
+	\item 若$\max _{1 \leq k \leq n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\rightarrow 0$, 则定理得证.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{证明: $\max _{1 \leq k \leq n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\rightarrow 0$}
+	\vspace{-0.1cm}
+\begin{itemize}
+	\item 对任何 $\tau>0$ 有
+\begin{align*}
+	\hspace{-0.4cm}\frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}&=D\left(X_{n k}\right)=\int_{-\infty}^{+\infty}x^2dF_{nk}(x)=\int_{|x|<\tau}x^2dF_{nk}(x)+\int_{|x|\geq\tau}x^2dF_{nk}(x)\\
+	&\leq \tau^{2}+\int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)\leq \tau^{2}+\sum_{k=1}^{n} \int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)
+\end{align*}
+\item 从而
+	\[
+	\max _{1 \leq k \leq n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2} \leq \tau^{2}+\sum_{k=1}^{n} \int_{(|x| \geq \tau)} x^{2} d F_{n k}(x)
+	\]
+\item
+	再次令 $n \rightarrow \infty$ 及 $\tau \downarrow 0$, 由\eqref{eq:Lindebergcondi-2}式得
+	\[
+	\lim _{n}\left\{\max _{1 \leq k \leq n} \frac{\sigma_{k}^{2}}{\sigma(Y_n)^2}\right\}=0
+	\]
+	\item 进而, 若$z=\frac{t^{2} \sigma_{k}^{2}}{2 \sigma(Y_n)^2}$, 当$n$充分大时$|z| \leq 1 / 2$.
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}
+	\frametitle{推出 Lindeberg 条件的充分条件}
+	\begin{thm}
+		设 $\{X_n\}$ 为独立随机变量序列，如果存在常数列 $\{L_n\}$ 使得
+		\begin{eqnarray*}
+			\max_{1\leq k\leq n}|X_k|\leq L_n, \mbox{ 且  }\  \lim_{n}\dfrac{L_n}{\sigma(Y_n)}=0
+		\end{eqnarray*}
+		则 Lindeberg 条件成立，从而 $\{X_n\}$ 满足中心极限定理.
+	\end{thm}
+
+%\zheng
+\begin{itemize}
+	\item 由假设知，对于 $\tau>0$ ，存在 $N$ ，使当 $n \geq N$ 时有 $2 L_{n}<$ $\tau \sigma(Y_n)$.
+	\item 因此当 $n \geq N$ 时对一切 $k=1, \cdots, n$ 有 $\Omega=\left\{\left|X_{k}-\mu_{k}\right|<\tau \sigma(Y_n)\right\}$.
+	\item 故 $n \geq N$ 时有
+	{\small \begin{align*}
+		&\frac{1}{\sigma(Y_n)^{2}} \sum_{k=1}^{n} \int_{\left|x-\mu_{k}\right|\geq \tau \sigma(Y_n)}\left(x-\mu_{k}\right)^{2} d F_{k}(x)\\
+		&=\frac{1}{\sigma(Y_n)^{2}} \sum_{k=1}^{n} \int_{-\infty}^\infty\left(x-\mu_{k}\right)^{2}1_{\{\left|x-\mu_{k}\right|\geq \tau \sigma(Y_n)\}}(x) d F_{k}(x)\\
+		&=\frac{1}{\sigma(Y_n)^{2}} \sum_{k=1}^{n} E[(X_k-\mu_k)^21_{\{\left|x-\mu_{k}\right|\geq \tau \sigma(Y_n)\}}(X_k) ]=0 .
+	\end{align*}}
+\item 这表明林德伯格条件\eqref{eq:Lindeberg} 式成立，故 $\left\{X_{n}\right\}$ 满足中心极限定理.
+\end{itemize}
+
+
+
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{李雅普诺夫中心极限定理}
+	\begin{thm} 设 $\{X_n\}$ 为独立随机变量序列，若存在 $\delta>0$ 满足
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty}\dfrac{1}{\sigma(Y_n)^{2+\delta}}\sum_{k=1}^nE(|X_k-\mu_k|^{2+\delta})=0,
+		\end{eqnarray*}
+		则 $\lim_{n\rightarrow\infty}P(\dfrac{1}{\sigma(Y_n)}\sum_{k=1}^n(X_k-\mu_k)\le x)=\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^xe^{-u^2/2}du$.
+		% \begin{eqnarray*}
+		% 	\lim_{n\rightarrow\infty}P(\dfrac{1}{\sigma(Y_n)}\sum_{i=1}^n(X_i-\mu_i)\le x)=\dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^xe^{-u^2/2}du
+		% \end{eqnarray*}
+
+	\end{thm}
+
+	\zheng 只要验证林德伯格条件成立. 实际上对任何 $\tau>0$ 有
+	\begin{align*}
+		& \lim _{n} \frac{1}{\sigma(Y_n)^{2}} \sum_{k=1}^{n} \int_{\left(\left|x-\mu_k\right| \geq \tau \sigma(Y_n)\right)}\left(x-\mu_{k}\right)^{2} d F_{k}(x) \\
+		\leq & \lim _{n} \frac{1}{\sigma(Y_n)^{2}\left(\tau \sigma(Y_n)\right)^{\delta}} \sum_{k=1}^{n} \int_{\left(\left|x-\mu_k\right| \geq \tau \sigma(Y_n)\right)}\left|x-\mu_k\right|^{2+\delta} d F_{k}(x) \\
+		\leq & \lim _{n} \frac{1}{\tau^{\delta}} \frac{1}{\sigma(Y_n)^{2+\delta}} \sum_{k=1}^{n} \int_{\Re}\left|x-\mu_{k}\right|^{2+\delta} d F_{k}(x)=0 .
+	\end{align*}
+	定理证毕.
+\end{frame}
+\end{document}

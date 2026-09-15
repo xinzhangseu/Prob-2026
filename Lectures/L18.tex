@@ -1,0 +1,354 @@
+% 取消下一行注释可生成 handout（无逐步显示）；保持注释则生成正常 slide。
+% \PassOptionsToClass{handout}{beamer}
+\documentclass[Main-Prob-All.tex]{subfiles}
+\begin{document}
+
+\title[概率论]{第十八讲：协方差与相关系数}
+%\author[张鑫 {\rm Email: xzhangseu@seu.edu.cn} ]{\large 张 鑫}
+\institute[东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
+	\large 东南大学 \quad 数学学院 \\
+	\vspace{0.3cm}
+	%\trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+		%   \hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
+}
+\date{}
+
+{ \setbeamertemplate{footline}{}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+}
+\subsection{协方差}
+\begin{frame}
+	\frametitle{协方差}
+	\begin{defi}
+		对于随机向量 $X=(X_1,\cdots,X_n)$, 类似于随机向量期望的定义，我们定义随机向量 $X$ 的方差为 $D (X):=(D (X_1),D (X_2),\cdots, D (X_n))$.
+	\end{defi}
+
+	\pause
+	\begin{defi}
+		设随机向量 $(X_1,\cdots,X_n)$ 的每个分量 $X_i$ 的方差均存在，称
+		\begin{eqnarray*}
+			cov(X_i,X_j):=E[(X_i-EX_i)(X_j-EX_j)], i,j=1,2,\cdots,n
+		\end{eqnarray*}
+		为 $X_i$ 与 $X_j$ 的协方差. \pause 而将协方差构成的 $n\times n$ 方阵
+		$$B=(b_{ij}),\quad b_{ij}=cov (X_i,X_j)$$ 称为随机向量的协方差阵。一般来说，\pause
+		\begin{itemize}[<+-|alert@+>]
+			\item 若 $cov (X_i,X_j)>0$ 时，称 $X_i$ 与 $X_j$ 正相关；
+			\item 若 $cov (X_i,X_j)<0$ 时，称 $X_i$ 与 $X_j$ 负相关；
+			\item 若 $cov (X_i,X_j)=0$ 时，称 $X_i$ 与 $X_j$ 不相关或零相关.
+		\end{itemize}
+	\end{defi}
+\end{frame}
+
+\begin{frame}
+	\frametitle{协方差的性质:$cov (X_i,X_j)=E[(X_i-EX_i)(X_j-EX_j)]$}
+	\begin{itemize}[<+-|alert@+>]
+		\item $cov (X_i,X_j)=E (X_iX_j)-E (X_i) E (X_j)$: 事实上 \pause
+		\begin{eqnarray*}
+			cov(X_i,X_j)&=&E[(X_i-EX_i)(X_j-EX_j)]\\
+			&=&\pause E\bigg[X_iX_j-X_iE(X_j)-X_jE(X_i)+E(X_i)E(X_j)\bigg]\\
+			&=&\pause E(X_iX_j)-E(X_i)E(X_j)
+		\end{eqnarray*}
+		\item 若 $a$ 为常数，则 $cov (X_i,a)=0$;
+		\item 对任意常数 $a,b$, 有 $cov (aX_i,bX_j)=ab\cdot  cov (X_i,X_j)$;
+		\item $cov(X_i+X_j, X_k)=cov(X_i,X_k)+cov(X_j,X_k)$.
+
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{协方差与方差: $cov (X_i,X_j)=E[(X_i-EX_i)(X_j-EX_j)]$}
+	\begin{itemize}[<+-|alert@+>]
+		\item $cov(X_i,X_i)=E(X_i-EX_i)^2=D(X_i)$;
+		\item $D (X_1+X_2+\cdots+X_n)=\sum_{i=1}^nD (X_i)+2\sum_{1\le i<j\le n} cov (X_i,X_j)$: 事实上 \pause
+		\begin{eqnarray*}
+			D(\sum_{i=1}^nX_i)&=&\pause E(\sum_{i=1}^nX_i-E\sum_{i=1}^nX_i)^2=\pause E(\sum_{i=1}^n(X_i-EX_i))^2\\
+			&=&\pause E\bigg[\sum_{i=1}^n(X_i-EX_i)^2+2\sum_{1\le i<j\le n}(X_i-EX_i)(X_j-EX_j)\bigg]\\
+			&=&\pause \sum_{i=1}^nD(X_i)+2\sum_{1\le i<j\le n}cov(X_i,X_j)
+		\end{eqnarray*}
+		\item 特别的，
+		\begin{eqnarray*}
+			D(X_i+X_j)=D(X_i)+D(X_j)+2cov(X_i,X_j)
+		\end{eqnarray*}
+
+
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{协方差矩阵的性质:$cov (X_i,X_j)=E[(X_i-EX_i)(X_j-EX_j)]$}
+	\begin{itemize}
+		\item 对称性: $cov (X_i,X_j)=cov (X_j,X_i)$, 由定义可直接推得，从而协方差阵 $B$ 是对称矩阵；
+		\item 协方差矩阵 $B$ 是非负定矩阵，事实上，对任意向量 $y=(y_1,y_2,\cdots,y_n)$,
+		\begin{eqnarray*}
+			yBy'&=&\sum_{i,j}y_iy_jb_{ij}=\sum_{i,j}y_iy_jE[(X_i-EX_i)(X_j-EX_j)]\\
+			&=&E\sum_{i,j}y_i(X_i-EX_i)\cdot y_j(X_j-EX_j)\\
+			&=&E[\sum_{i}y_i(X_i-EX_i)]^2\ge 0
+		\end{eqnarray*}
+
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\vspace{0.3cm}
+	\begin{exam}
+		设二维随机变量 $(X,Y)$ 的联合密度为
+		\begin{eqnarray*}
+			p(x,y)=\left\{
+			\begin{array}{ll}
+				3x, & 0<y<x<1,\\
+				0, &\mbox{其他}
+			\end{array}
+			\right.
+		\end{eqnarray*}
+		试求 $cov (X,Y)$.
+	\end{exam}
+
+	\pause \jieda  由 $cov (X,Y)=E (XY)-EXEY$ 知，我们只需计算 $E (XY), EX, EY$ 的值.
+	\begin{eqnarray*}
+		EX&=&\pause \int_{-\infty}^{+\infty}xp_X(x)dx=\pause \int_{-\infty}^{+\infty}x\int_{-\infty}^{+\infty}p(x,y)dydx\\
+		&=&\pause \int_0^1x\int_0^x3xdydx=\pause \int_0^13x^3dx=\pause 3/4\\
+		EY&=&\pause \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}yp(x,y)dydx=\pause \int_0^1\int_0^x3xydydx=\pause 3/8\\
+		E(XY)&=&\pause \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}xyp(x,y)dydx=\pause \int_0^1\int_0^xxy\cdot 3xdydx=\pause 3/10\\
+		cov(X,Y)&=&\pause \dfrac{3}{10}-\dfrac{3}{4}\cdot \dfrac{3}{8}=\dfrac{3}{160}>0
+	\end{eqnarray*}
+
+\end{frame}
+\begin{frame}
+	\vspace{0.3cm}
+	\begin{exam}
+		设二维随机变量 $(X,Y)$ 的联合密度为
+		\begin{eqnarray*}
+			p(x,y)=\left\{
+			\begin{array}{ll}
+				\dfrac{x+y}{3}, & 0<x<1, 0<y<2,\\
+				0, &\mbox{其他}
+			\end{array}
+			\right.
+		\end{eqnarray*}
+		试求 $D (2X-3Y+8)$.
+	\end{exam}
+
+	\pause
+	\jieda 注意到
+	\begin{eqnarray*}
+		D(2X-3Y+8)&=&\pause D(2X-3Y)= \pause D(2X)+D(-3Y)+2cov(2X,-3Y)\\
+		&=&\pause 2^2D(X)+(-3)^2D(Y)+2\cdot2\cdot (-3)cov(X,Y)\\
+		&=&\pause 4D(X)+9D(Y)-12cov(X,Y)
+	\end{eqnarray*}
+	\pause 所以我们需要计算:$E (X),E (X^2), E (Y), E (Y^2), E (XY)$.
+	\pause
+	\begin{eqnarray*}
+		E(X)&=&\pause \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}xp(x,y)dydx=\pause \int_0^1\int_0^2x\dfrac{x+y}{3}dydx=\pause 5/9\\
+		E(X^2)&=&\pause \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}x^2p(x,y)dydx=\pause \int_0^1\int_0^2x^2\dfrac{x+y}{3}dydx=\pause 7/18\\
+	\end{eqnarray*}
+
+\end{frame}
+
+\begin{frame}
+	类似的可计算
+	\begin{eqnarray*}
+		E(Y)&=&\pause \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}yp(x,y)dydx=\pause \int_0^1\int_0^2y\dfrac{x+y}{3}dydx=\pause 11/9\\
+		E(Y^2)&=&\pause \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}y^2p(x,y)dydx=\pause \int_0^1\int_0^2y^2\dfrac{x+y}{3}dydx=\pause 16/9\\
+		E(XY)&=&\pause \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}xyp(x,y)dydx=\pause \int_0^1\int_0^2xy\dfrac{x+y}{3}dydx=\pause 2/3
+	\end{eqnarray*}
+	\pause 从而
+	\begin{eqnarray*}
+		D(X)&=&\pause 7/18-(5/9)^2=13/162, \\
+		D(Y)&=&\pause 16/9-(11/9)^2=23/81, \\
+		cov(X,Y)&=&\pause 2/3-5/9\cdot 11/9=-1/81\\
+		D(2X-3Y+8)&=&\pause 4\cdot 13/162+9\cdot 23/81-12\cdot (-1/81)=245/81
+	\end{eqnarray*}
+
+\end{frame}
+\begin{frame}
+	\frametitle{二维正态分布的协方差矩阵}
+	若 $(X,Y)\sim N (\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)$ 即其联合分布密度为
+	\pause  \begin{eqnarray*}
+		p(x,y)&=&\dfrac{1}{2\pi \sigma_1\sigma_2\sqrt{1-\rho^2}}\times\\
+		&&\hspace{-1cm}\exp\bigg\{-\dfrac{1}{2(1-\rho^2)}\bigg[\dfrac{(x-\mu_1)^2}{\sigma_1^2}-\dfrac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\dfrac{(y-\mu_2)^2}{\sigma_2^2}\bigg]\bigg\}
+	\end{eqnarray*}
+	则由上一章的知识知:\pause  $X\sim N (\mu_1,\sigma_1^2), Y\sim N (\mu_2,\sigma_2^2)$, 故 \pause
+	\begin{eqnarray*}
+		&& E(X)=\mu_1, \quad E(Y)=\mu_2\\
+		&&b_{11}=cov(X,X)=D(X)=\sigma_1^2,\\
+		&& b_{22}=cov(Y,Y)=D(Y)=\sigma_2^2
+	\end{eqnarray*}
+
+\end{frame}
+\begin{frame}
+
+	{\small\begin{eqnarray*}
+			&&\hspace{-0.4cm}\pause b_{12}=cov(X,Y)=E[(X-EX)(Y-EY)]=\iint (x-\mu_1)(y-\mu_2)p(x,y)dxdy\\
+			&&\hspace{-0.6cm}\pause \xlongequal[v=(y-\mu_2)/\sigma_2]{u=(x-\mu_1)/\sigma_1}\pause \iint \dfrac{\sigma_1\sigma_2uv}{2\pi\sqrt{1-\rho^2}}\exp\{-\dfrac{1}{2(1-\rho^2)}(u^2-2\rho uv+v^2)\}dudv\\
+			&&\hspace{-0.6cm}\pause= \iint \dfrac{\sigma_1\sigma_2uv}{2\pi\sqrt{1-\rho^2}}\exp\{-\dfrac{1}{2(1-\rho^2)}\big[(u-\rho v)^2+(1-\rho^2)v^2\big]\}dudv\\
+			&&\hspace{-0.6cm}\pause \xlongequal[t=v]{s=(u-\rho v)/\sqrt{1-\rho^2}}\pause \dfrac{\sigma_1\sigma_2}{2\pi}\iint(\sqrt{1-\rho^2}st+\rho t^2) \exp\{-\dfrac{s^2+t^2}{2}\}dsdt\\
+			&&\hspace{-0.6cm}\pause =\dfrac{\sigma_1\sigma_2}{2\pi}\bigg(\sqrt{1-\rho^2}\int_{-\infty}^{+\infty}se^{-\frac{s^2}{2}}ds\int_{-\infty}^{+\infty}te^{-\frac{t^2}{2}}dt+\rho\int_{-\infty}^{+\infty}e^{-\frac{s^2}{2}}ds\int_{-\infty}^{+\infty}t^2e^{-\frac{t^2}{2}}dt\bigg)\\
+			&&\hspace{-0.6cm}\pause =\dfrac{\sigma_1\sigma_2}{2\pi}(\sqrt{1-\rho^2}\cdot 0+\pause \rho\pause  \sqrt{2\pi}\cdot\pause  \sqrt{2\pi})=\pause \rho \sigma_1\sigma_2
+	\end{eqnarray*}}
+	\pause   故二维正态分布的协方差矩阵为
+	\begin{eqnarray*}
+		B=\left(
+		\begin{array}{cc}
+			\sigma_1^2, &\rho\sigma_1\sigma_2\\
+			\rho\sigma_1\sigma_2,&\sigma_2^2
+		\end{array}
+		\right)
+	\end{eqnarray*}
+
+\end{frame}
+\subsection{相关系数}
+\begin{frame}
+	\frametitle{相关系数}
+	\begin{defi}
+		设 $X, Y$ 为方差存在的两个随机变量，则称
+		\begin{eqnarray*}
+			r:=\dfrac{cov(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}
+		\end{eqnarray*}
+		为 $X$ 与 $Y$ 的相关系数.
+	\end{defi}
+\end{frame}
+
+\begin{frame}
+	\frametitle{相关系数的性质: $ r:=\dfrac{cov (X,Y)}{\sqrt{D (X)}\sqrt{D (Y)}}$}
+	\begin{itemize}[<+-|alert@+>]
+		\item $r=0\Leftrightarrow cov (X,Y)=0$ 即 $X,Y$ 不相关；
+		\item 若记 $X^*:=\dfrac{X-EX}{\sqrt{D (X)}}, \quad Y^*:=\dfrac{Y-EY}{\sqrt{D (Y)}}$, 则 $EX^*=EY^*=0$, 从而
+		\begin{eqnarray*}
+			\textcolor{red}{r}&:=&\pause \dfrac{cov(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}=\pause \dfrac{E[(X-EX)(Y-EY)]}{\sqrt{D(X)}\sqrt{D(Y)}}\\
+			&=&\pause E(X^*Y^*)=\pause E[(X^*-EX^*)(Y^*-EY^*)]\\
+			&=&\pause \textcolor{red}{cov(X^*,Y^*)}
+		\end{eqnarray*}
+		\item $|r|\le 1$, 且
+		\begin{itemize}
+			\item $r=1$ 当且仅当 $P (X^*=Y^*)=1$;
+			\item $r=-1$ 当且仅当 $P (X^*=-Y^*)=1$.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{相关系数绝对值小于等于 1 的证明}
+	\begin{itemize}[<+-|alert@+>]
+		\item 首先由 $X^*=\dfrac{X-EX}{\sqrt{D (X)}}, Y^*=\dfrac{Y-EY}{\sqrt{D (Y)}}$ 知:
+		\begin{eqnarray*}
+			EX^*&=&EY^*=0\\
+			D(X^*)&=&\pause D\bigg(\dfrac{X-EX}{\sqrt{D(X)}}\bigg)=\pause \dfrac{1}{D(X)}D(X-EX)=\pause \dfrac{1}{D(X)}D(X)=1\\
+			D(Y^*)&=&\pause D\bigg(\dfrac{Y-EY}{\sqrt{D(Y)}}\bigg)=\pause \dfrac{1}{D(Y)}D(Y-EY)=\pause \dfrac{1}{D(Y)}D(Y)=1\\
+		\end{eqnarray*}
+		\item 其次，由 $r=cov (X^*,Y^*)$ 知
+		\begin{eqnarray*}
+			|r|&=&|cov(X^*,Y^*)|=\pause |E(X^*Y^*)-E(X^*)E(Y^*)|\le\pause  \sqrt{E[(X^*)^2]E[(Y^*)^2]}\\
+			&=&\pause \sqrt{D(X^*)D(Y^*)}=1;
+		\end{eqnarray*}
+		\item $|r|=1$ 当且仅当存在 $t_0$ 使得 $P (Y^*=t_0X^*)=1$, 而此时有
+		\begin{eqnarray*}
+			r=E(X^*Y^*)=t_0E[(X^*)^2]=t_0
+		\end{eqnarray*}
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{随机变量不相关时期望与方差的性质}
+	\begin{thm}
+		对于随机变量 $X,Y$, 下面四个事实是等价的:
+		\begin{enumerate}
+			\item $X,Y$ 不相关；
+			\item $r=0$ 即相关系数为 $0$;
+			\item $E(XY)=E(X)E(Y)$;
+			\item $D(X+Y)=D(X)+D(Y)$.
+		\end{enumerate}
+	\end{thm}
+
+	\pause \zheng (1) 与 (2) 等价是显然的，根据定义即可得. \pause 由于
+	\begin{eqnarray*}
+		cov(X,Y)=E(XY)-E(X)E(Y)
+	\end{eqnarray*}
+	\pause 故 $cov (X,Y)=0$ 当且仅当 $E (XY)=E (X) E (Y)$, 即 (1) 和 (3) 等价. \pause 另外，又由于
+	\begin{eqnarray*}
+		D(X+Y)=D(X)+D(Y)+2cov(X,Y)
+	\end{eqnarray*}
+	故 $cov (X,Y)=0$ 当且仅当 $D (X+Y)=D (X)+D (Y)$, 即 (1) 与 (4) 等价.
+\end{frame}
+\begin{frame}
+	\frametitle{独立与不相关的联系：独立必定不相关}
+	\vspace{-0.2cm}
+	\begin{thm}
+		若 $X,Y$ 独立，则 $X$ 与 $Y$ 不相关.
+	\end{thm}
+
+	\zheng 我们仅对连续型随机变量给出证明。因为 $X,Y$ 独立，故其联合分布密度 $p (x,y)=p_X (x) p_Y (y)$, 从而
+	\begin{eqnarray*}
+		E(XY)&=&\pause \iint xyp(x,y)dxdy=\pause \iint xyp_X(x)p_Y(y)dxdy\\
+		&=&\pause \int xp_X(x)dx\int yp_Y(y)dy =\pause E(X)E(Y)
+	\end{eqnarray*}
+	\pause 从而 $X,Y$ 不相关.
+	\pause
+	\begin{thm}
+		若 $X,Y$ 独立，则
+		\begin{eqnarray*}
+			E(XY)=E(X)E(Y),\quad
+			D(X+Y)=D(X)+D(Y)
+		\end{eqnarray*}
+		更一般的，我们有若 $X_1,\cdots,X_n$ 为相互独立的随机变量，则.
+		\begin{eqnarray*}
+			E(X_1\cdots X_n)&=&E(X_1)E(X_2)\cdots E(X_n);\\
+			D(\sum_{i=1}^nX_i)&=&\sum_{i=1}^nD(X_i)
+		\end{eqnarray*}
+	\end{thm}
+
+\end{frame}
+\begin{frame}
+	\frametitle{独立与不相关的联系：不相关未必独立}
+	\begin{exam}
+		设随机变量 $X\sim N (0,\sigma^2)$, 并令 $Y=X^2$, 显然 $X,Y$ 不独立，但是此时 $X,Y$ 不相关。事实上，此时
+		\begin{eqnarray*}
+			cov(X,Y)=E(X\cdot X^2)-E(X)E(X^2)=0.
+		\end{eqnarray*}
+
+	\end{exam}
+
+\end{frame}
+\begin{frame}
+	\vspace{0.3cm}
+	\begin{exam}
+		设 $\theta$ 为 $[0,2\pi]$ 上的均匀分布，$a$ 为一固定常数，令
+		\begin{eqnarray*}
+			X=\cos \theta, \quad Y=\cos (\theta+a).
+		\end{eqnarray*}
+		则我们有 \pause
+		\begin{eqnarray*}
+			E(X)&=&\int_0^{2\pi}\cos t \cdot \dfrac{1}{2\pi}dt=0,\pause \quad  E(Y)=\int_0^{2\pi}\cos (t+a) \cdot \dfrac{1}{2\pi}dt=0\\
+			E(X^2)&=&\pause \int_0^{2\pi}\cos^2 t \cdot \dfrac{1}{2\pi}dt=\dfrac{1}{2},\pause \quad E(Y^2)=\int_0^{2\pi}\cos^2 (t+a) \cdot \dfrac{1}{2\pi}dt=\dfrac{1}{2}\\
+			E(XY)&=&\pause \int_0^{2\pi}\cos t \cos(t+a) \cdot \dfrac{1}{2\pi}dt=\dfrac{1}{2}\cos a
+		\end{eqnarray*}
+		\pause 因此 $r=\cos a$. 故
+		\begin{itemize}[<+-|alert@+>]
+			\item $a=0$ 时，$r=1, X=Y$;
+			\item $a=\pi$ 时，$r=-1, X=-Y$;
+			\item $a=\dfrac{\pi}{2}\mbox{或}\dfrac{3\pi}{2}$ 时，$r=0$, $X,Y$ 不相关，但此时 $X^2+Y^2=1$, 因此不独立.
+		\end{itemize}
+
+	\end{exam}
+\end{frame}
+
+\begin{frame}
+	\frametitle{二维正态分布：不相关与独立等价}
+	\begin{thm}
+		对于二维正态分布 $(X,Y)$,$X$ 与 $Y$ 不相关与 $X,Y$ 独立等价.
+	\end{thm}
+
+	\pause \zheng 因为独立必然不相关，故我们仅需证在不相关条件下，$X,Y$ 独立即可. \pause 对于二维正态分布，我们有
+	\begin{eqnarray*}
+		cov(X,Y)=\rho\sigma_1\sigma_2
+	\end{eqnarray*}
+	\pause 从而 $X,Y$ 不相关，当且仅当 $\rho=0$, 此时
+	\begin{eqnarray*}
+		p(x,y)&=&\dfrac{1}{2\pi \sigma_1\sigma_2\sqrt{1-\rho^2}}\times\\
+		&&\hspace{-1cm}\exp\bigg\{-\dfrac{1}{2(1-\rho^2)}\bigg[\dfrac{(x-\mu_1)^2}{\sigma_1^2}-\dfrac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\dfrac{(y-\mu_2)^2}{\sigma_2^2}\bigg]\bigg\}\\
+		&=&\dfrac{1}{\sqrt{2\pi}\sigma_1}\exp\{-\dfrac{(x-\mu_1)^2}{2\sigma_1^2}\}\cdot \dfrac{1}{\sqrt{2\pi}\sigma_2}\exp\{-\dfrac{(y-\mu_2)^2}{2\sigma_2^2}\}\\
+		&=&p_X(x)P_Y(y)
+	\end{eqnarray*}
+	故 $X,Y$ 独立，定理得证.
+
+
+\end{frame}
+\end{document}

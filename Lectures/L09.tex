@@ -1,0 +1,527 @@
+% 取消下一行注释可生成 handout（无逐步显示）；保持注释则生成正常 slide。
+% \PassOptionsToClass{handout}{beamer}
+\documentclass[Main-Prob-All.tex]{subfiles}
+\begin{document}
+\setcounter{section}{1}
+\section{随机变量}
+\title [概率论]{第九讲：随机变量定义及相关性质}
+\author [张鑫 {\rm Email: xzhangseu@seu.edu.cn} ]{\large 张 鑫}
+\institute [东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
+	\large 东南大学 \quad 数学学院 \\
+	\vspace{0.3cm}
+	%  \trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+	%    \hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
+}
+\date{}
+
+
+
+{ \setbeamertemplate{footline}{}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+}
+
+% \begin{frame}[plain]
+%   \frametitle{目录}
+%   \setcounter{tocdepth}{2}
+%   \tableofcontents
+% \end{frame}
+\addtocounter{framenumber}{-3}  % 目录页不计算页码
+%\section{随机变量}
+
+\subsection{随机变量的定义及性质}
+
+
+\begin{frame}{随机变量的引入}
+	\begin{itemize}[<+-|alert@+>]
+		\item 赌徒输光：甲和乙初始资金分别为 $i, a-i$ 元，每一局甲赢的概率为 $p$%\in (0,1)$.
+		\item 关注的问题
+		      \begin{itemize}[<+-|alert@+>]
+			      \item 甲最终获胜的概率
+			      \item 甲乙两人在任意时刻的剩余资产:$k$ 轮赌博后恰好剩下 $j$ 元
+			      \item $k$ 轮赌博后甲乙两人资产的差额 $Z$
+			      \item 赌博持续时间 $R$
+		      \end{itemize}
+		\item 表示方法:
+		      \begin{itemize}[<+-|alert@+>]
+			      \item $E:=$\{甲最终获胜 \}, $Q_i:=P$(E)
+			      \item $A_{jk}:=$\{甲在 $k$ 轮赌博后恰好剩下 $j$ 元 \}
+			      \item $B_{jk}:=$\{乙在 $k$ 轮赌博后恰好剩下 $j$ 元 \}
+			      \item $k$ 轮赌博后甲乙两人资产的差额如何表示？
+			      \item 赌博持续时间 $R$ 如何表示？
+			      \item 很难用事件来表示或者表示很复杂
+		      \end{itemize}
+
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{随机变量的引入}
+	\begin{itemize}[<+-|alert@+>]
+		\item $X_k:=$ 甲在 $k$ 轮赌博后的资产
+		      \begin{itemize}[<+-|alert@+>]
+			      \item 乙在 $k$ 轮赌博后的资产 $Y_k=a-X_k$
+			      \item 资产差额:$Z=X_k-Y_k=2X_k-a$
+			      \item 持续时间:$R=\min\{n: X_n=0, \mbox{或} Y_n=0\}$
+		      \end{itemize}
+		\item $X_k$ 取值的特点
+		      \begin{itemize}[<+-|alert@+>]
+			      \item 依赖于前面 $k$ 次赌博这一 “随机试验” 的结果
+			      \item 在 “随机试验” 完成之前，$X_k$ 取值不确定，因此具有不确定性
+			      \item $k$ 次赌博 “随机试验” 一旦完成，$X_k$ 的值必然确定
+			      \item 记 $k$ 次赌博 “随机试验” 样本空间为 $\Omega$, 则给定 $\omega\in\Omega$, 则 $X_k$ 值确定
+		      \end{itemize}
+		\item 以 $k=2$ 为例，看一下 $X_2$ 的取值情况，设 $i\geq 2$
+		      \begin{itemize}[<+-|alert@+>]
+			      \item $\Omega=\{\omega_1,\omega_2, \omega_3,\omega_4\}$, 其中 $\omega_1=(\mbox{胜，胜}), \omega_2=(\mbox{胜，败}), \omega_3=(\mbox{败，胜}), \omega_4=(\mbox{败，败})$
+			      \item $X_2(\omega_1)=i+2,\  X_2(\omega_2)=X_2(\omega_3)=i,\  X_2(\omega_4)=i-2$
+		      \end{itemize}
+		\item $X_k$ 可以看作定义在样本空间 $\Omega$ 上的函数，即 $X_k:\Omega\rightarrow \{0, 1,\cdots, a\}$
+		\item 一般的，随机变量可以看作从样本空间到实数的映射:$X:\Omega\rightarrow R$
+
+	\end{itemize}
+
+\end{frame}
+\begin{frame}{随机变量的直观定义}
+	\begin{defi} \textcolor{cyan}{(直观定义)}
+		称 $X$ 为随机变量，如果 $X$ 是从样本空间 $\Omega$ 到实数的映射，即 $X:\Omega\rightarrow R$.
+	\end{defi}
+
+\end{frame}
+\begin{frame}{一个随机变量的例子}
+	\begin{exam}\label{312}
+		考虑硬币抛掷两次的随机试验，其样本空间为 $$\Omega=\{HH,HT,TH,TT\}.$$ % 这里存在该空间上的一些随机变量 (用于实践，你也可以想出一些自己的随机变量). 每一个随机变量都是试验在某方面的数值表示.%
+		\begin{itemize}[<+-|alert@+>]
+			\item 令$X$表示正面朝上的次数，则$X$是一个随机变量,相应的映射如下
+			      % 其可能的取值为 0、1、2. 将其看作是一个函数，$X$ 作用在 $HH$ 上的值为 2,$X$ 作用在 $TH$ 或者 $HT$ 上的值为 1,$X$ 作用在 $TT$ 上的值为 0, 即
+			      $$X(TT)=0, X(HT)=X(TH)=1, X(HH)=2.$$
+			\item 令 $Y$ 表示反面朝上的次数，则 $Y=2-X$, 对于任意的 $\omega\in \Omega$, 有 $Y (\omega)=2-X (\omega)$.
+			\item 设 $I$ 是由第一次掷硬币的结果决定的随机变量：若第一次硬币正面朝上则 $I=1$, 反之 $I=0$, 即
+			      \begin{align*}
+				      I(HH)=I(HT)=1,\quad I(TH)=I(TT)=0.
+			      \end{align*}
+			\item 若正面记 1, 反面记 0, 此时 $\Omega=\{(1,1),(1,0),(0,1),(0,0)\}$. 上述的 $X,Y$ 和 $I$ 可表示为:$$X (\omega_1,\omega_2)=\omega_1+\omega_2,Y (\omega_1,\omega_2)=2-\omega_1-\omega_2,I (\omega_1,\omega_2)=\omega_1.$$
+		\end{itemize}
+	\end{exam}
+\end{frame}
+
+
+\begin{frame}{与函数对比分析}
+	\begin{itemize}[<+-|alert@+>]
+		\item 数学分析中的函数 $f (x)$
+		      \begin{itemize}[<+-|alert@+>]
+			      \item $f (x):D\rightarrow R$, 其中 $D\subset R$
+			      \item $R$ 上可定义距离 $d (x,y)=|x-y|$
+			      \item 可根据距离 $d$ 定义函数的连续性 %
+		      \end{itemize}
+		\item 概率论中的随机变量 $X$
+		      \begin{itemize}[<+-|alert@+>]
+			      \item $X(\omega):\Omega\rightarrow R$
+			      \item 定义域 $\Omega$ 没有距离的定义，\pause 但有事件域 $\mathcal{F}$ 及定义其上的概率 $P$, 即具有结构 $(\Omega, \mathcal{F}, P)$\pause
+			      \item 值域 $R$ 有距离，\pause 但因定义域无距离，故无法考虑随机变量的连续性 \pause
+			      \item 值域 $R$ 还有 $\sigma$- 代数 $\mathcal{B}:=\mathcal{B}(R)$, 有可测空间结构 $(R,\mathcal{B})$
+		      \end{itemize}
+		\item 是否需要对 $X (\omega):\Omega\rightarrow R$ 做一些额外的限定，以便更好的研究 $X$?
+		\item 从赌徒输光问题可以看出，对随机变量 $X$, 我们会关注
+		      \begin{itemize}[<+-|alert@+>]
+			      \item $X (\omega)=x$ 的概率，\pause $X (\omega)\leq x, X (\omega)\in [b,c]$ 的概率 \pause
+			      \item 更一般的，$\forall B\in\mathcal{B}(R), X (\omega)\in B$ 的概率
+		      \end{itemize}
+		\item 概率的定义域是 $\mathcal{F}$, 要想计算 $X (\omega)\in B$ 的概率，当且仅当
+		      \[\forall B\in\mathcal{B}(R), \ X^{-1}(B):=\{\omega: X(\omega)\in B\}\in\mathcal{F}\]
+	\end{itemize}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+	\frametitle{随机变量的严格数学定义}
+	\vspace{-0.1cm}
+	\begin{defi}[可测映射] 设 $(\Omega,\mathcal{F})$ 和 $(E,\mathcal{E})$ 为两个可测空间并令 $X$ 为从样本空间 $\Omega$ 到 $E$ 的映射，即 $X (\omega):\Omega\rightarrow E$. 若对任意的 $B\in \mathcal{E}$ 均有
+		\begin{eqnarray*}
+			X^{-1}(B):=\{\omega: X(\omega)\in B\}\in \mathcal{F}
+		\end{eqnarray*}
+		则称 $X$ 为 $(\Omega,\mathcal{F})$ 到 $(E,\mathcal{E})$ 的可测映射.
+	\end{defi}
+	\pause %
+
+	若将上述定义中的可测空间 $(E,\mathcal{E})$ 更换为 $(R,\mathcal{B})$，则 % 所定义的可测映射称为可测空间 $(\Omega,\mathcal{F})$ 上的可测函数或随机变量，即:
+	\pause
+	\begin{defi}[可测函数或随机变量] \label{rvdefi1}\hspace{-0.2cm} 设 $(\Omega,\mathcal{F})$ 是可测空间，$X$ 为从样本空间 $\Omega$ 到实数集 $R$ 的映射，即 $X (\omega):\Omega\rightarrow R$. 如果对 $\forall B\in \mathcal{B}$ 均有
+		\[X^{-1}(B):=\{\omega: X(\omega)\in B\}\in \mathcal{F}.\]%
+		则称 $X$ 为可测空间 $(\Omega,\mathcal{F})$ 上的可测函数或随机变量.
+	\end{defi}%
+	\pause
+	\begin{defi}[随机变量的另一定义]\hspace{-0.2cm} \label{rvdefi2} 设 $(\Omega,\mathcal{F})$ 是可测空间，$X$ 为从样本空间 $\Omega$ 到实数集 $R$ 的映射，即 $X (\omega):\Omega\rightarrow R$. 如果对任意的 $x\in R$ 均有
+		\begin{eqnarray*}
+			\{\omega: X (\omega)\le x\}\in \mathcal{F} \mbox{  或  }      \{\omega: X (\omega)< x\}\in \mathcal{F}
+		\end{eqnarray*}
+		则称 $X (\omega)$ 是可测空间 $(\Omega,\mathcal{F})$ 上的随机变量，简称随机变量.
+	\end{defi}
+\end{frame}
+\begin{frame}
+	\frametitle{随机变量两种定义的等价性}
+	由定义 \ref{rvdefi2} 推定义 \ref{rvdefi1}: 仅需说明若定义 \ref{rvdefi2} 成立，则对任意 $B\in\mathcal{B}$ 均有
+	$$X^{-1}(B):=\{\omega:X(\omega)\in B\}\in \mathcal{F}.$$
+	\pause 即只需说明以下集合包含关系成立即可
+	\begin{eqnarray*}
+		\mathcal{A}:=\{A:X^{-1}(A)\in \mathcal{F}\}\supset \mathcal{B}
+	\end{eqnarray*}
+	\pause
+	欲证上面包含关系成立，我们只需说明以下两点即可：
+	\begin{enumerate}[<+-|alert@+>]
+		\item $\mathcal{A}$ 是 $\sigma$ 代数；
+		\item $O_1:=\{(-\infty,x]:x\in R\}\subset \mathcal{A}$.
+	\end{enumerate}
+	\pause 再由 $\mathcal{B}:=\sigma (O_1)$ 知 $\mathcal{B}\subset \mathcal{A}$.
+\end{frame}
+\begin{frame}
+	\frametitle{$\mathcal{A}:=\{A:X^{-1}(A)\in \mathcal{F}\}$ 为 $\sigma$ 代数}
+	\begin{itemize}[<+-|alert@+>]
+		\item $X^{-1}(R)=\{\omega:X (\omega)\in R\}=\Omega\in \mathcal{F}$, 故 $R\in\mathcal{A}$;
+		\item 若 $A\in\mathcal{A}$, 即 $X^{-1}(A)\in \mathcal{F}$, 则
+		      \begin{eqnarray*}
+			      X^{-1}(\overline{A})&=&\pause \{\omega: X(\omega)\in \overline{A}\}\pause =\{\omega:X(\omega)\notin A\}\\
+			      &=&\pause \overline{\{\omega:X(\omega)\in A\}}=\pause \overline{X^{-1}(A)}\\ \pause &\in&  \mathcal{F}
+		      \end{eqnarray*}
+		\item 对于 $A_j\in \mathcal{A}, j=1,2,\cdots,$ 有 $X^{-1}(A_j)\in \mathcal{F},j=1,2,\cdots.$ 从而
+		      \begin{eqnarray*}
+			      X^{-1}(\cup_{j=1}^\infty A_j)&=&\pause \{\omega:X(\omega)\in\cup_{j=1}^\infty A_j\}
+			      =\pause \cup_{j=1}^\infty \{\omega:X(\omega)\in A_j\}\\
+			      &=&\pause \cup_{j=1}^\infty X^{-1}(A_j)\\ \pause &\in&\mathcal{F}
+		      \end{eqnarray*}
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{随机变量的分类以及两个注记}
+	\begin{itemize}[<+-|alert@+>]
+		\item 随机变量 $X$ 是从样本空间 $\Omega$ 到实数 $R$ 的映射，故根据其值域集合可粗略的分为两大类
+		      \begin{itemize}[<+-|alert@+>]
+			      \item 离散型随机变量：其值域集合是有限点集或可数点集即
+			            \[X(\Omega):=\{X(\omega):\omega\in \Omega\}=\{a_n\}_{n\geq 1}\]
+			      \item 非离散型随机变量：其值域集合不是有限点集或可数点集
+		      \end{itemize}
+	\end{itemize}
+	\pause
+	\begin{rmk} 随机变量的两点注记:
+		\begin{itemize}[<+-|alert@+>]
+			\item 首先, 随机变量是确定性函数, 自身并没有随机性. 给定样本空间上的样本点, 有唯一确定的实数值与之相对应, 这种对应关系并没有不确定性. 所有的不确定性都体现在样本点是否在试验结果中出现, 和随机变量本身没有关系。随机变量的引入, 更多地是为了数学处理上的方便.
+			\item 其次, 随机变量并不是概率论中独有的概念. 若将前面可测映射中的$(\Omega, \mathcal{F}), (E, \mathcal{E})$均取为$(R, \mathcal{B}(\mathbb{R}))$, 则可测映射的定义便退化为实分析中的 ``可测函数". 随机变量是一特殊的可测函数.
+		\end{itemize}
+
+	\end{rmk}
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{示性随机变量}
+	\begin{exam}
+		设 $\Omega$ 是某随机试验的样本空间，$\mathcal{F}$ 为其事件域 ($\sigma$ 代数)，则对于任意的 $A\in \mathcal{F}$， 示性函数
+		$I_A(\omega):=\left\{
+			\begin{array}{ll}
+				0, & \omega\notin A \\
+				1, & \omega\in A
+			\end{array}\right.$ 是随机变量.
+	\end{exam}
+
+	\pause
+	\jieda  由示性函数的定义知：
+	\begin{eqnarray*}
+		\{\omega:I_A(\omega)\le x\}=\left\{
+		\begin{array}{ll}
+			\pause \emptyset, & x<0,        \\ \pause
+			\overline{A},     & x\in [0,1), \\\pause
+			\Omega,           & x\ge 1.
+		\end{array}
+		\right.
+	\end{eqnarray*}
+	\pause
+	显然，无论 $x$ 取何值，均有 $\{\omega:I_A (\omega)\le x\}\in \mathcal{F}$
+
+
+\end{frame}
+
+
+
+
+
+\begin{frame}
+	\frametitle{随机变量的性质}
+	\begin{thm}
+		若 $X,Y, \{X_n,n\ge 1\}$ 都为概率空间 $(\Omega,\mathcal{F},P)$ 上的随机变量，则
+		\begin{enumerate}[<+-|alert@+>]
+			\item $|X|$，$aX+bY,(a,b\in R)$ 均为随机变量；
+			\item $X^+:=X\vee 0, X^-:=(-X)\vee 0$ 均为随机变量；
+			\item $XY$ 为随机变量；
+			\item 若 $X/Y$ 处处有意义，则 $X/Y$ 为随机变量；
+			\item $\inf_{n} X_n,\sup_nX_n, \liminf_{n\rightarrow\infty} X_n, \limsup_{n\rightarrow\infty} X_n$ 均为随机变量.
+		\end{enumerate}
+
+	\end{thm}
+
+	\pause
+	\zheng
+	\begin{enumerate}[<+-|alert@+>]
+		\item
+		      \begin{itemize}[<+-|alert@+>]
+			      \item $\{\omega:|X|<x\}=\{\omega:-x<X<x\}=\{\omega:X<x\}\cap\overline{\{\omega:X\le -x\}}\in \mathcal{F}$;
+			      \item  $\{\omega:aX<x\}=\{\omega:X<\dfrac{x}{a}\}\in \mathcal{F}$,  (当 $a>0$ 时);
+			      \item  设 $Q$ 为有理数集，则
+			            \begin{eqnarray*}
+				            \{\omega:X+Y<x\}&=&\pause \{\omega:X<x-Y\}=\pause \cup_{r\in Q}\{\omega:X<r<x-Y\}\\
+				            &=&\pause \cup_{r\in Q}\{\omega:X<r,Y<x-r\}\\
+				            &=&\pause \cup_{r\in Q}(\{\omega:X<r\}\cap \{\omega:Y<x-r\})\\\pause
+				            &\in& \mathcal{F}
+			            \end{eqnarray*}
+			      \item $aX+bY$ 为随机变量显然
+		      \end{itemize}
+	\end{enumerate}
+
+
+\end{frame}
+\begin{frame}
+	\vspace{0.6cm}
+	\begin{enumerate}[<+-|alert@+>]
+		\setcounter{enumi}{1}
+		\item 注意到 $X^+=\dfrac{|X|+X}{2}, X^-=\dfrac{|X|-X}{2}$，易得 $X^+,X^-$ 均为随机变量；
+		\item 首先假定 $X,Y$ 非负， 则对任意的 $x>0$ 有
+		      \begin{eqnarray*}
+			      \{XY<x\}&=&\pause \{X=0\}\cup \{Y=0\}\cup \left(\cup_{r\in Q_+}\left[\{X<r\}\cap \{Y<\frac{x}{r}\}\right]\right)\\ \pause
+			      &\in&\mathcal{F}.
+		      \end{eqnarray*}
+		      \pause
+		      对一般的 $X,Y$, 由 $X^+,X^-,Y^+,Y^-$ 为随机变量，可得
+		      \begin{eqnarray*}
+			      XY=(X^+-X^-)(Y^+-Y^-)=(X^+Y^++X^-Y^-)-(X^+Y^-+X^-Y^+)
+		      \end{eqnarray*}
+		      为随机变量.
+		\item 设 $|Y|>0$ 处处成立，易证 $\dfrac{1}{Y}$ 是随机变量， 故 $\dfrac{X}{Y}=X\cdot \dfrac{1}{Y}$ 为随机变量.
+		\item 对任意的 $x\in R$, 我们有
+		      \begin{eqnarray*}
+			      \{\inf_nX_n<x\}=\cup_n\{X_n<x\}, \quad \{\sup_nX_n\le x\}=\cap_n\{X_n\le x\}
+		      \end{eqnarray*}
+
+	\end{enumerate}
+
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{简单随机变量}
+	\begin{exam}
+		设 $(\Omega,\mathcal{F},P)$ 为一概率空间，$A_i\in\mathcal{F}, i=1,\cdots,n$ 为 $\Omega$ 的一个分割，$a_i,i=1,\cdots, n$ 为 $n$ 个不同的实数，则
+		\begin{eqnarray}\label{eq:simplerv}
+			X(\omega):=\sum_{i=1}^na_iI_{A_i}(\omega)
+		\end{eqnarray}
+		作为 $n$ 个示性随机变量的线性组合，仍为随机变量。我们称形如 \eqref{eq:simplerv} 的 $X (\omega)$ 为简单随机变量.
+	\end{exam}
+
+\end{frame}
+
+\begin{frame}{随机变量的函数是否仍为随机变量？}
+	\vspace{0.5cm}
+	\begin{thm}
+		设 $X$ 是可测空间 $(\Omega,\mathcal{F})$ 上的随机变量，$g (x)$ 为 $(R,\mathcal{B})\rightarrow (R,\mathcal{B})$ 上的Borel可测函数，证 $Y:=g (X)$ 为 $(\Omega,\mathcal{F})$ 上的随机变量.
+	\end{thm}
+
+	\vspace{0.3cm}
+	\pause
+	\zheng 注意到，对任意的 $B\in \mathcal{B}$, $g^{-1}(B)\in \mathcal{B}$, 故 \pause
+	\begin{align*}
+		Y^{-1}(B) & =\pause \{\omega:Y(\omega)\in B\}         \\
+		          & =\pause \{\omega:g(X(\omega))\in B\}      \\
+		          & =\pause \{\omega:X(\omega)\in g^{-1}(B)\} \\
+		          & =\pause X^{-1}(g^{-1}(B))                 \\ \pause
+		          & \in  \mathcal{F}
+	\end{align*}
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{随机变量的结构}
+	对于 $(\Omega,\mathcal{F},P)$ 上的任意非负随机变量 $X$ 及自然数 $n$，我们可将 $\Omega$ 按 $X$ 的取值进行分割。即令
+	\begin{eqnarray*}
+		A_k(\omega)&:=&\pause \{\omega:\frac{k}{2^n}\le X(\omega)<\frac{k+1}{2^n}\}, k=0,1,\cdots, n2^n-1\\
+		A_{n2^n}(\omega)&:=&\pause \{\omega:X(\omega)\ge n\}
+	\end{eqnarray*}
+	\pause 则
+	\begin{eqnarray*}
+		X_n(\omega):=\sum_{k=0}^{n2^n}\frac{k}{2^n}I_{A_k}(\omega)
+	\end{eqnarray*}
+	为简单随机变量且随机变量序列 $\{X_n,n\ge 1\}$ 满足
+	\begin{eqnarray*}
+		0\le X_1(\omega)\le X_2(\omega)\le \cdots\le X_n(\omega)\rightarrow X(\omega)
+	\end{eqnarray*}
+\end{frame}
+\begin{frame}
+	\frametitle{$X_n (\omega)$ 的单调性}
+	% 事实上，要说明 $X_n (\omega)\le X_{n+1}(\omega)$，只需要说明在 $\Omega$ 有限分割集合 $A_k, k=0,1,\cdots,n2^n$ 上均有 $X_n (\omega)\le X_{n+1}(\omega)$.
+	注意到对任意的 $k=0,1,\cdots,n2^n-1$，
+	\begin{eqnarray*}
+		A_k(\omega)&=&\pause \{\omega:\frac{k}{2^n}\le X(\omega)<\frac{k+1}{2^n}\}=\pause \{\omega:\frac{2k}{2^{n+1}}\le X(\omega)<\frac{2(k+1)}{2^{n+1}}\}\\
+		&=&\pause \{\omega:\frac{2k}{2^{n+1}}\le X(\omega)<\frac{2k+1}{2^{n+1}}\}\cup \{\omega:\frac{2k+1}{2^{n+1}}\le X(\omega)<\frac{2k+2)}{2^{n+1}}\}\\
+		&=&\pause A_k^1(\omega)\cup A_k^2(\omega)
+	\end{eqnarray*}
+	\pause 故在集合 $A_k (\omega),k=0,1,\cdots,n2^n-1$ 上，\pause
+	\begin{eqnarray*}
+		X_{n+1}(\omega)=
+		\left\{\begin{array}{ll}
+			\pause  \frac{2k}{2^{n+1}},   & \omega\in A_k^1(\omega)  \\ \pause
+			                              &                          \\
+			\pause  \frac{2k+1}{2^{n+1}}, & \omega\in A_k^2(\omega)
+		\end{array}
+		\right.\pause  (\textcolor{red}{\ge \frac{k}{2^n}=X_n(\omega)})
+	\end{eqnarray*}
+	\pause
+	而在 $A_{n2^n}(\omega):=\{\omega:X (\omega)\ge n\}=\{\omega:X (\omega)\ge \frac{n2^{n+1}}{2^{n+1}}\}$ 上，显然有
+	\pause $$X_{n+1}(\omega)\ge n=X_n(\omega).$$
+\end{frame}
+
+\begin{frame}
+	\frametitle{$X_n (\omega)$ 的收敛性}
+	注意到，对任意的 $\omega$, 必定存在 $k$ 使得
+	\begin{eqnarray*}
+		\frac{k}{2^n}\le X(\omega)<\frac{k+1}{2^n},
+	\end{eqnarray*}
+	\pause 从而
+	\begin{eqnarray*}
+		0\le X(\omega)-X_n(\omega)\le \frac{1}{2^n}
+	\end{eqnarray*}
+	\pause 显然有
+	\begin{eqnarray*}
+		\lim_{n\rightarrow \infty}X_n(\omega)=X(\omega).
+	\end{eqnarray*}
+\end{frame}
+\begin{frame}
+	\frametitle{随机变量的简单随机逼近}
+	\begin{thm}
+		对 $(\Omega,\mathcal{F},P)$ 上的实值变量 $X (\omega)$ 为随机变量的充要条件是：存在简单随机变量序列 $\{X_n (\omega),n\ge 1\}$ 使得
+		\begin{eqnarray*}
+			\lim_{n\rightarrow \infty}X_n(\omega)=X(\omega), \quad \forall \omega\in \Omega
+		\end{eqnarray*}
+		而且当 $X$ 非负时，还可选取 $\{X_n (\omega),n\ge 1\}$ 为非负单调不减的简单随机变量序列.
+	\end{thm}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{随机变量的生成$\sigma$-代数}
+	\begin{defi}
+	(\tc{单个随机变量的生成$\sigma$-代数}) 设$X$为定义在$(\Omega,\mathcal{F})$上的随机变量并令
+	$\mathcal{F}_X:=\{X^{-1}(A):A\in \mathcal{B}(\mathbb{R})\}$. 我们称$\sigma(X):=\sigma\left(\mathcal{F}_{X}\right)$为随机变量$X$的生成$\sigma$-代数.
+	\end{defi}
+	\pause
+
+\begin{defi}
+  (\tc{有限个随机变量的生成$\sigma$-代数})设$X_k, k=1,2,\cdots, n$为定义在$(\Omega,\mathcal{F})$上的随机变量并令
+  $\mathcal{F}_{X_k}:=\{X_k^{-1}(A):A\in \mathcal{B}(\mathbb{R})\}$. 我们称\[\sigma(X_1,X_2,\cdots,X_n):=\sigma\left(\cup_{k=1}^n\mathcal{F}_{X_k}\right)\]为随机变量$X_1,X_2,\cdots,X_n$的生成$\sigma$-代数.
+\end{defi}
+\pause
+\begin{itemize}[<+-|alert@+>]
+	\item $\mathcal{F}_{X}, \mathcal{F}_{X_k}$均为$\sigma$-代数, 但$\cup_{k=1}^n\mathcal{F}_{X_k}$不一定是$\sigma$-代数, 因此
+	\[\sigma(X)=\mathcal{F}_X, \quad \mbox{ 但  } \quad  \sigma(X_1,X_2,\cdots,X_n)\neq \cup_{k=1}^n\mathcal{F}_{X_k}.\]
+	\item 若$X$是$(\Omega,\mathcal{F})$上的随机变量,则必有$\sigma(X):=\mathcal{F}_X\subset\mathcal{F}$, 即$\sigma(X)$是$\Omega$上使得$X$成为随变量所需要的最小$\sigma$-代数.
+	\item 类似的, $\sigma(X_1,X_2,\cdots,X_n)$是$\Omega$上使得$X_1,X_2,\cdots,X_n$为随机变量所需要的最小$\sigma$-代数.
+	\item 随机变量$X$生成的$\sigma-$代数$\sigma(X)$集中体现了$X$的取值信息.
+\end{itemize}
+\end{frame}
+\begin{frame}{两个随机变量之间的关系}
+\begin{defi}
+考虑两个随机变量$X, Y$，如果对任意的$B\in\mathcal{B}(\mathbb{R})$均有
+\[
+Y^{-1}(B) \in \sigma(X),\ \mbox{等价的}\ \sigma(Y)\subset \sigma(X).
+\]则称$Y$适应(adaptive to) $X$.
+\end{defi}
+
+\pause
+
+\begin{thm}
+考虑可测空间$(\Omega, \mathcal{F})$, $X$和$Y$为定义其上的随机变量. 若$Y$适应$X$, 则存在可测函数$g: \mathbb{R} \rightarrow \mathbb{R}$, 使得
+\[
+Y(\omega)=g(X(\omega)),  \ \forall \omega \in \Omega .
+\]
+\end{thm}
+
+\pause
+
+\begin{rmk}
+	\begin{itemize}[<+-|alert@+>]
+		\item 随机变量的生成$\sigma$-代数研究随机变量间关系起着重要作用.
+		\item 直观地看,$Y$适应$X$, 意味着$Y$包含的信息被$X$包含的信息所涵盖. 换句话说,$Y$和$X$间存在导出关系.
+	\end{itemize}
+\end{rmk}
+
+
+
+\end{frame}
+\subsection{随机向量}
+
+\begin{frame}{随机向量: 如何定义$\mathcal{B}(\mathbb{R}^n)$}
+\begin{itemize}
+	\item 直观上来讲, 随机向量就是取值于$\mathbb{R}^n$的随机变量.
+	\item 如何定义$\mathcal{B}(\mathbb{R}^n)$
+	\begin{itemize}[<+-|alert@+>]
+		\item 注意到$$\mathbb{R}^n:=\mathbb{R}\times \mathbb{R}\times\cdots\times \mathbb{R}=\Pi_{k=1}^n\mathbb{R}$$
+		\item 我们希望
+		\[\mathcal{B}(\mathbb{R}^n)=\mathcal{B}(\mathbb{R})\times \mathcal{B}(\mathbb{R})\times\cdots\times\mathcal{B}(\mathbb{R})=\Pi_{k=1}^n\mathcal{B}(\mathbb{R})\]
+		\item 但$\Pi_{k=1}^n\mathcal{B}(\mathbb{R})$不是$\sigma$-代数.
+		\item 因此, 定义
+		\[\mathcal{B}(\mathbb{R}^n):=\sigma(\mathcal{B}(\mathbb{R})\times \mathcal{B}(\mathbb{R})\times\cdots\times\mathcal{B}(\mathbb{R}))=\sigma(\Pi_{k=1}^n\mathcal{B}(\mathbb{R}))\]
+		\item 我们也可以类比$\mathcal{B}(\mathbb{R})$的定义方法, 先定义$\mathbb{R}^n$上的立方体
+		$$I=I_1\times I_2\times\cdots\times I_n=\Pi_{k=1}^nI_k, \ I_k=(a_k, b_k].$$ 然后定义$\mathcal{B}(\mathbb{R}^n)$为:
+		\[\mathcal{B}(\mathbb{R}^n):=\sigma(\{I:I\mbox{为}\mathbb{R}^n\mbox{上的立方体}\}).\]%集合的生成$\sigma$-代数来定义$\mathcal{B}(\mathbb{R}^n)$.
+	\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{随机向量}
+\begin{defi}
+(\tc{$n$维随机向量}) 考虑可测空间$(\Omega,\mathcal{F})$, 若映射$X: \Omega \rightarrow \mathbb{R}^{n}$使得对任意的$B \in \mathcal{B}(\mathbb{R}^{n})$均有
+	\[
+	X^{-1}(B) \in \mathcal{F}
+	\]
+则称$X$为$n$维随机向量.
+\end{defi}
+\pause
+\begin{rmk}
+若记$X=(X_1, X_2,\cdots, X_n)$, 则$X$为$n$维随机向量当且仅当$X_k, k=1,\cdots,n$为随机变量.
+\end{rmk}
+
+\pause
+\begin{defi}
+(\tc{复随机变量}) 考虑可测空间$(\Omega,\mathcal{F})$以及映射$Z$
+\[
+Z(\omega)=X(\omega)+\mathrm{i} Y(\omega) \in \mathbb{C}
+\]
+其中$\mathrm{i}=\sqrt{-1}$是虚数单位. 如果$(X(\omega), Y(\omega))$构成二维随机向量, 则称$Z$为复随机变量.
+\end{defi}
+
+\end{frame}
+\end{document}

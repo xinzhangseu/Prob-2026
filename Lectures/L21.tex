@@ -1,0 +1,641 @@
+% 取消下一行注释可生成 handout（无逐步显示）；保持注释则生成正常 slide。
+% \PassOptionsToClass{handout}{beamer}
+\documentclass[Main-Prob-All.tex]{subfiles}
+\begin{document}
+\title[概率论]{第二十一讲: 随机变量的收敛性}
+\author[张鑫{\rm Email: x.zhang.seu@foxmail.com}]{\large 张 鑫}
+\institute[东南大学数学学院]{\large \textrm{Email: x.zhang.seu@foxmail.com} \\ \quad  \\
+	\large 东南大学 \quad 数学学院 \\
+	\vspace{0.3cm}
+	%\trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+		%\hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
+}
+\date{}
+
+
+
+{ \setbeamertemplate{footline}{}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+}
+
+% \begin{CJK*}{GBK}{song}
+
+	%   \title{简单随机抽样}
+	%   \author{林语堂}
+	%   \institute{University}
+	%   \date{2009-03-31}
+	%   \date{}
+	%   \begin{frame}
+		%     \titlepage
+		%   \end{frame}
+
+	%   \begin{frame}
+		%     \frametitle{第二章：简单随机抽样}
+		%     \tableofcontents
+		%   %     You might wish to add the option[pausesections]
+		%   \end{frame}
+
+	%   \AtBeginSubsection[]{
+		%   \begin{frame}<beamer>
+			%     \frametitle{Outline}
+			%     \tableofcontents[currentsection,currentsubsection]
+			%   \end{frame}
+		% }
+	%   定义目录页
+
+\section{极限定理}
+\subsection{随机变量的收敛性}
+\begin{frame}
+	\frametitle{随机变量的几种收敛性}
+	\begin{itemize}[<+-|alert@+>]
+		\item \textcolor{red}{几乎必然收敛:} 如果
+		\begin{eqnarray*}
+			P(\{\omega:\lim_{n\rightarrow\infty}X_n(\omega)=X(\omega)\})=1,
+		\end{eqnarray*} 则称随机变量列 $\{X_n\}$ 几乎必然收敛到 $X$, 记作 $X_n\stackrel{a.e.}{\rightarrow} X$, 或 $X_n\rightarrow X, a.s.$
+
+		\item \textcolor{red}{依概率收敛:} 如果对任意的 $\epsilon>0$ 有
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty}P(|X_n(\omega)-X(\omega)|>\epsilon)=0,
+		\end{eqnarray*}
+		则称 $X_n$ 依概率收敛到 $X$, 记作 $X_n\stackrel{P}{\rightarrow} X$.
+		\item \textcolor{red}{$r$ 阶平均收敛:} 设 $r>0$ 为常数，如果随机变量 $X$ 与 $X_n (n\geq 1)$ 的 $r$ 阶矩皆有限，并且有
+		\begin{eqnarray*}
+			\lim_{n\rightarrow\infty}E|X_n-X|^r=0,
+		\end{eqnarray*}
+		则称 $\{X_n\}$ 为 $r$ 阶平均收敛到 $X$, 简称 $r$ 阶收敛，记作 $X_n\stackrel{L^r}{\rightarrow} X$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{几乎必然收敛的刻划与性质}
+	\begin{itemize}[<+-|alert@+>]
+		\item 若记 $E:=\{\omega: \lim_{n\rightarrow\infty} X_n (\omega)=X (\omega)\}$, 则
+		\begin{eqnarray*}
+			E=\cap_{m=1}^\infty\cup_{k=1}^\infty\cap_{n=k}^\infty\{\omega:|X_n(\omega)-X(\omega)|<\dfrac{1}{m}\}\in \mathcal{F};
+		\end{eqnarray*}
+		\item $X_n\stackrel{a.s.}{\rightarrow} X$ 等价于 $P (E)=1$ 或 $P (\bar{E})=0$;
+		\item $X_n\stackrel{a.s.}{\rightarrow} X$ 的充分必要条件是对任意的 $\epsilon>0$ 有
+		\begin{eqnarray*}
+			\lim_{k\rightarrow\infty}P(\cup_{n=k}^\infty|X_n-X|\geq \epsilon)=0
+		\end{eqnarray*}
+		\item 若 $X_n\stackrel{a.s.}{\rightarrow} X$, 则 $X_n\stackrel{P}{\rightarrow} X$.
+
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{依概率收敛不能推出几乎必然收敛}
+	\begin{exam}
+		取 $\Omega=[0,1), \mathcal{F}$ 为区间 $[0,1)$ 上的{\rm Borel} 集类，$P$ 为{\rm Lebesgue} 测度。令
+		\begin{eqnarray*}
+			X_{11}(\omega)=1; \quad
+			X_{21}(\omega)=\left\{
+			\begin{array}{ll}
+				1, &\omega\in [0,\frac{1}{2}),\\
+				0, &\omega\in [\frac{1}{2},1);
+			\end{array}
+			\right.\quad
+			X_{22}(\omega)=\left\{
+			\begin{array}{ll}
+				1, &\omega\in [\frac{1}{2},1),\\
+				0, &\omega\in [0,\frac{1}{2});
+			\end{array}
+			\right.
+		\end{eqnarray*}
+		一般地，对每个自然数 $k$, 将 $[0,1)$ 等分为 $k$ 个区间，并取
+		\begin{eqnarray*}
+			X_{ki}(\omega)=\left\{
+			\begin{array}{ll}
+				1, &\omega\in [\frac{i-1}{k},\frac{i}{k}),\\
+				0, &\mbox{其他},
+			\end{array}
+			\right. i=1,\cdots, k
+		\end{eqnarray*}
+		定义
+		\begin{eqnarray*}
+			Y_1=X_{11}, Y_2=X_{21}, Y_2=X_{22}, Y_3=X_{31}, \cdots
+		\end{eqnarray*}
+		对于随机变量序列 $Y_n$, 对任意的 $\epsilon>0$ 有
+		\begin{eqnarray*}
+			P(|X_{ki}(\omega)|\geq \epsilon)\leq \dfrac{1}{k}\rightarrow 0,
+		\end{eqnarray*}
+		但是收敛的点集 $E=\emptyset$, 即 $Y_n$ 不几乎必然收敛.
+	\end{exam}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{$r$ 阶收敛与依概率收敛}
+	\begin{lem}
+		({\rm Markov} 不等式) 设随机变量 $X$ 的 $r$ 阶矩有限，则对任意 $\epsilon>0$ 有
+		\begin{eqnarray*}
+			P(|X|\geq  \epsilon)\leq \dfrac{1}{\epsilon^r}E|X|^r
+		\end{eqnarray*}
+
+	\end{lem}
+
+
+	\pause
+	\begin{thm}
+		若 $X_n\stackrel{L^r}{\rightarrow} X$, 则 $X_n\stackrel{P}{\rightarrow} X$. 反之不真.
+	\end{thm}
+
+
+	\pause
+
+	\begin{exam}
+		仍取区间 $(0,1)$ 上的几何概率空间 $(\Omega,\mathcal{F}, P)$. 固定 $r>0$, 令
+		\begin{eqnarray*}
+			X_n(\omega)=\left\{
+			\begin{array}{ll}
+				n^{1/r},&\omega\in (0, 1/n),\\
+				0, &\omega\in [1/n,1),
+			\end{array}
+			\right. \quad X(\omega)=0.
+		\end{eqnarray*}
+		易知 $X_n\stackrel{a.s.}{\rightarrow} X$, 从而 $X_n\stackrel{P}{\rightarrow} X$, 但 $X_n\stackrel{L^r}{\nrightarrow} X$.
+	\end{exam}
+\end{frame}
+
+
+
+
+\begin{frame}
+	\frametitle{依分布收敛 (弱收敛)}
+	\begin{defi}
+		设随机变量 $X,X_1, X_2,\cdots,$ 的分布函数分别为 $F (x), F_1 (x),F_2 (x),\cdots,$, 如果对 $F (x)$ 的任一连续点 $x$ 均有
+		\begin{eqnarray}\label{eq:weakdefn}
+			\lim_{n\rightarrow}F_n(x)=F(x),
+		\end{eqnarray}
+		则称 $\{F_n (x)\}$ 弱收敛于 $F (x)$, 记作 $F_n (x)\stackrel{W}{\rightarrow} F (x)$. 此时也称 $\{X_n\}$ 按分布收敛于 $X$, 记作 $X_n\stackrel{W}{\rightarrow} X$.
+	\end{defi}
+	\pause
+	\begin{rmk}
+	后面我们用$C_F$表示函数$F(x)$的连续点集， 即
+	\[C_F:=\{x: x\mbox{为}F(x)\mbox{的连续点}  \}\]
+	\end{rmk}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{为何要求分布函数在连续点收敛，而不是每一点收敛}
+	\begin{exam}
+		考虑随机变量序列 $\{X_n\}$ 服从如下退化分布
+		\begin{eqnarray*}
+			P(X_n=\frac{1}{n})=1, n=1,2,\cdots,
+		\end{eqnarray*}
+		它们的分布函数分别为 $F_n (x)=\left\{
+		\begin{array}{ll}
+			0, & x<\frac{1}{n}\\
+			1, &x\ge \frac{1}{n}
+		\end{array}
+		\right.$
+
+		\pause
+		\begin{itemize}[<+-|alert@+>]
+			\item 则在点点收敛要求下，$\{F_n (x)\}$ 的极限函数为 \pause
+			\begin{eqnarray*}
+				g(x)=\left\{
+				\begin{array}{ll}
+					0, & x\le 0\\
+					1, &x>0
+				\end{array}
+				\right.
+			\end{eqnarray*}
+			\pause 显然上述极限不满足右连续性，即 $g (x)$ 不是一个分布函数.\pause
+			\item 因为 $F_n (x)$ 在 $x=1/n$ 处有跳跃，故当 $n\rightarrow\infty$ 时，跳跃点的位置趋于 0,\pause 很自然的认为 $\{F_n (x)\}$ 应该收敛于点 $x=0$ 的退化分布，即 $F (x)=\left\{
+			\begin{array}{ll}
+				0, & x<0\\
+				1, &x\ge 0
+			\end{array}
+			\right.$. \pause 但是对任意的 $n$, 有 $F_n (0)=0$, 而 $F (0)=1$, 所以 $\lim_{n\rightarrow\infty} F_n (0)=0\neq 1=F (0)$, 而这个不收敛的点恰为 $F (x)$ 的不连续点.
+		\end{itemize}
+	\end{exam}
+\end{frame}
+\begin{frame}
+	\frametitle{依概率收敛与依分布收敛的关系}
+	\begin{thm}
+		若 $X_n\stackrel{P}{\rightarrow} X$, 则 $X_n\stackrel{W}{\rightarrow} X$.
+	\end{thm}
+
+	\pause \zheng 设随机变量 $X,X_1, X_2,\cdots,$ 的分布函数分别为 $F (x), F_1 (x),F_2 (x),\cdots,$ \pause 只需证在 $F (x)$ 的连续点上均有 $F_n (x)\rightarrow F (x)$ 即可. \pause 而要证明这一点我们只需要说明，对任意的 $x$ 均有
+	\begin{eqnarray*}
+		F(x-0)\le \liminf_{n\rightarrow\infty} F_n(x)\le \limsup_{n\rightarrow\infty} F_n(x)\le F(x+0)
+	\end{eqnarray*}
+	\pause 注意到，对任意的 $x'<x$,
+	\begin{eqnarray*}
+		\{X\le x'\}&=&\{X_n\le x, X\le x'\}\cup\{X_n>x,X\le x'\}\\
+		\pause &\subset&\{X_n\le x\}\cup\{|X_n-X|\ge x-x'\}
+	\end{eqnarray*}
+	\pause 从而有 $F (x')\le F_n (x)+P (|X_n-X|\ge x-x')$. \pause 再由 $X_n\stackrel{P}{\rightarrow} X$ 知
+	\pause \begin{eqnarray*}
+		F(x')\le \liminf_{n\rightarrow\infty}F_n(x) \pause \Rightarrow F(x-0)\le \liminf_{n\rightarrow\infty}F_n(x)
+	\end{eqnarray*}
+	\pause 类似可证，当 $x''>x$ 时，$\limsup_{n\rightarrow\infty} F_n (x)\le F (x+0)$.
+\end{frame}
+\begin{frame}
+	\frametitle{依分布收敛无法推出依概率收敛}
+	\begin{exam}
+		设随机变量 $X$ 的分布列为
+		\begin{eqnarray*}
+			P(X=-1)=P(X=1)=1/2
+		\end{eqnarray*}
+		令 $X_n=-X$, 则 $X_n$ 与 $X$ 同分布，即 $X_n$ 与 $X$ 有相同的分布，故 $X_n\stackrel{W}{\rightarrow} X$, \pause 但对任意的 $\epsilon\in (0,2)$,\pause
+		\begin{eqnarray*}
+			P(|X_n-X|\ge \epsilon)=\pause P(2|X|\ge \epsilon)=1\nrightarrow 0
+		\end{eqnarray*}
+
+	\end{exam}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{若 $X_n$ 依分布收敛至常数 $c$, 则 $X_n$ 概率收敛至常数 $c$}
+	\begin{thm}
+		若 $c$ 为常数，则 $X_n\stackrel{P}{\rightarrow} c\Leftrightarrow X_n\stackrel{W}{\rightarrow} c$
+	\end{thm}
+
+	\pause 只需证明充分性即可。记 $X_n$ 的分布函数为 $F_n (x), n=1,2,\cdots, $ 常数 $c$ 的分布函数为 $F (x)=\left\{
+	\begin{array}{ll}
+		0, &x<c,\\
+		1, &x\ge c.
+	\end{array}\right.
+	$\pause 故对任意的 $\epsilon>0$,
+	\begin{eqnarray*}
+		P(|X_n-c|\ge \epsilon)&=&\pause P(X_n\ge c+\epsilon)+P(X_n\le c-\epsilon)\\
+		&\le&\pause  P(X_n> c+\epsilon/2)+P(X_n\le c-\epsilon)\\
+		&=&\pause 1-F_n(c+\epsilon/2)+F_n(c-\epsilon)\\
+		&\rightarrow& \pause 1-F(c+\epsilon/2)+F(c-\epsilon)=0
+	\end{eqnarray*}
+	\pause 从而 $X_n\stackrel{P}{\rightarrow} c$.
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{弱收敛的充分条件}
+	\begin{thm}
+		设 $F (x), F_n (x)(n\geq 1)$ 均为分布函数，如果对于 $F(x)$的连续点集$C_F$ 的某个稠密子集 $D$ 上的一切 $x$ 均有
+		\begin{eqnarray}\label{eq:wchou}
+			\lim_{n\rightarrow\infty}F_n(x)=F(x), \forall x\in D
+		\end{eqnarray}
+		则 $F_n\stackrel{W}\rightarrow F$.
+	\end{thm}
+\pause
+
+\zheng 由 $D \subset C_{F}$ 立得必要性.下设\eqref{eq:wchou}式成立. 对任何 $x \in C_{F}$,取
+$$y<x<z \text{且} y, z \in D,$$ 则有\pause
+\begin{align}
+	F_{n}(y) \leq F_{n}(x) \leq F_{n}(z).
+\end{align}\pause
+上式令 $n \rightarrow \infty$并利用\eqref{eq:wchou}式可得
+\[
+F(y)=\lim _{n} F_{n}(y) \leq \varliminf_{n} F_{n}(x) \leq \varlimsup_{n} F_{n}(x) \leq \lim _{n} F_{n}(z)=F(z) .
+\]
+\pause
+再令 $y \uparrow x$ 及 $z \downarrow x$ 便得证\eqref{eq:weakdefn}式. 即 $F_{n} \xrightarrow{W} F$ 。证毕。
+
+
+\end{frame}
+%\subsection{弱收敛与特征函数列收敛的等价性}
+
+
+\begin{frame}
+	\frametitle{{\rm Helly} 第一定理}
+	\begin{thm}
+		({\rm Helly} 第一定理)任意分布函数列 $F_n(x)$ 均存在子列$F_{n(k)}(x)$以及一个有界、非降、右连续的函数$F(x)$使得对任意的$x\in C_F$, 均有
+		\[\lim _{k \rightarrow \infty} F_{n(k)}(x)=F(x).\]  %弱收敛于某个有界，非降且右连续函数的子序列.
+	\end{thm}\pause
+\begin{rmk}
+极限函数 $F(x)$ 不一定为分布函数. \pause 比如, 若$a+b+c=1$, $G(x)$为分布函数, 令$F_{n}(x)=a 1_{(x \geq n)}+b 1_{(x \geq-n)}+c G(x)$, 则易知\begin{pauses}
+	\[F_{n}(x) \rightarrow F(x)=b+c G(x),\]\pause
+	但
+	\[\lim _{x \downarrow-\infty} F(x)=b\neq 0, \quad  \lim _{x \uparrow \infty} F(x)=b+c=1-a\neq 1\]
+\end{pauses}
+\end{rmk}
+
+
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{{\rm Helly} 第一定理证明}
+
+
+\begin{itemize}[<+-|alert@+>]
+	\item 令 \( q_{1}, q_{2}, \ldots \) 为有理数排列, \(m_{0}(j) \equiv j\). 由于对每个$k$, \[  F_{m}\left(q_{k}\right) \in[0,1], \quad \forall m\geq 1.\]
+	\pause 因此, 存在\( m_{k-1}(j)\)的子列\( m_{k}(j) \)使得\pause
+	\[
+	\lim_{j \rightarrow \infty}F_{m_{k}(j)}(q_{k}) = G(q_{k}).
+	\]
+\item 令 $F_{n(k)}(x):=F_{m_k(k)}(x)$, 则 \pause
+\[\lim_{k \rightarrow \infty}F_{n(k)}(q) = G(q),\quad  \forall q \in \mathbb{Q}.\]
+	\item 令\( F(x)=\inf \{G(q): q \in \mathbb{Q}, q>x\} \), 则易知$F(x)$右连续. \pause 事实上,
+	\[
+	\begin{aligned}
+	\lim _{x_{n} \downarrow x} F\left(x_{n}\right) & =\pause \inf \left\{G(q): q \in \mathbb{Q}, q>x_{n} \text { 对某个 } n\right\} \\
+	& =\pause \inf \{G(q): q \in \mathbb{Q}, q>x\}=\pause F(x)
+	\end{aligned}
+	\]
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{{\rm Helly} 第一定理证明II}
+
+
+\begin{itemize}[<+-|alert@+>]
+
+\item 右连续性证明方法2:对任何 $\varepsilon>0$, 总存在 $q_{k}>x$ 使 $G\left(q_{k}\right)<F(x)+\varepsilon$, 且对于一切 $y \in\left(x, q_{k}\right)$ 有
+\[
+F(x)\leq F(y)\leq G\left(q_{k}\right)<F(x)+\varepsilon .
+\]
+先令 $y \downarrow x$ ，再令 $\varepsilon \downarrow 0$ 得 $F(x)\leq F(x+0) \leq F(x)$. 右连续得证.
+\item 令$x\in C_F$并取$r_1,r_2,r_3\in\mathbb{Q}$使得$r_{1}<r_{2}<x<r_3$, 则
+	\[
+	F(x)-\epsilon<F\left(r_{1}\right) \leq F\left(r_{2}\right) \leq F(x) \leq F(r_3)<F(x)+\epsilon
+	\]
+\item 由于
+ \[ F_{n(k)}\left(r_{2}\right) \rightarrow G\left(r_{2}\right) \geq F\left(r_{1}\right), \quad  F_{n(k)}(r_3) \rightarrow G(r_3) \leq F(r_3), \]
+ \pause 因此, 当$k$充分大时,
+	\[
+	F(x)-\epsilon<F_{n(k)}\left(r_{2}\right) \leq F_{n(k)}(x) \leq F_{n(k)}(r_3)<F(x)+\epsilon
+	\]
+	\item 综上可知
+	\[\lim_{k \rightarrow \infty}F_{n(k)}(x) = F(x), \quad x\in C_F.\]
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{胎紧(tight)}
+	\vspace{-0.1cm}
+
+	\begin{defi}设随机变量$X_n$的分布函数为$F_n(x)$, 我们称分布函数列$\{F_n(x)\}_{n\geq 1}$为胎紧的(tight), 如果对任意的$\epsilon>0$, 存$M_{\epsilon}$使得
+	  \[\sup_{n\geq 1}P(|X_n|>M_{\epsilon})\leq\epsilon.\]
+	\end{defi}
+	\pause%
+	\begin{thm}
+		分布函数列$\{F_n(x)\}_{n\geq 1}$是胎紧的(tight)的当且仅当对任意的$\epsilon>0$, 存$M_{\epsilon}$使得$\sup_{n\geq 1} \big(1-F_{n}\left(M_{\epsilon}\right)+F_{n}\left(-M_{\epsilon}\right) \big)\leq \epsilon$.
+	\end{thm}
+
+	\zheng 充分性, 若$\sup_{n\geq 1} \big(1-F_{n}\left(M_{\epsilon}\right)+F_{n}\left(-M_{\epsilon}\right) \big)\leq \epsilon$, 则由
+	{\small \begin{align*}
+		\sup_{n\geq 1}P(|X_n|>M_{\epsilon})&=\sup_{n\geq 1}\big(1-F_n(M_{\epsilon})+P(X_n<M_{\epsilon})\big)\\
+		&\leq \sup_{n\geq 1}\big(1-F_{n}\left(M_{\epsilon}\right)+F_{n}\left(-M_{\epsilon}\right)\big)\leq \epsilon
+	\end{align*}}
+	知分布函数列$\{F_n(x)\}_{n\geq 1}$是胎紧的.\pause  反之, 取$K_\epsilon=M_\epsilon+\delta, \delta>0$, 则
+	{\small \begin{align*}
+		\sup_{n\geq 1}\big(1-F_{n}\left(K_{\epsilon}\right)+F_{n}\left(-K_{\epsilon}\right)\big)&\leq \sup_{n\geq 1}\big(1-F_{n}\left(M_{\epsilon}\right)+P(X_n<-M_\epsilon)\big)\\
+		&=\sup_{n\geq 1}P(|X_n|>M_{\epsilon})\leq  \epsilon
+	\end{align*}}
+
+
+	\end{frame}
+\begin{frame}{胎紧与分布函数列收敛}
+\begin{thm}
+	分布函数列$\{F_n(x)\}_{n\geq 1}$的子序列收敛到某个分布函数$F(x)$当且仅当$\{F_n(x)\}_{n\geq 1}$是胎紧的.
+ \end{thm}\pause
+
+\zheng
+\begin{itemize}[<+-|alert@+>]
+\item 假设$\{F_n(x)\}_{n\geq 1}$是胎紧的, 且\( F_{n(k)}(x) \rightarrow F(x) \). 下证 $F(x)$为分布函数,\pause  即证: $F(+\infty)-F(-\infty)=1$.
+\item 令 $r, s\in C_F$且\( r<-M_{\epsilon}, s>M_{\epsilon} \), 由
+\(F_{n}(r) \rightarrow F(r), \ F_{n}(s) \rightarrow F(s) \)
+得 \pause %, we have
+\[
+\begin{aligned}
+1-F(s)+F(r)  &=\pause \lim _{k \rightarrow \infty} \big(1-F_{n(k)}(s)+F_{n(k)}(r) \big)\\
+& \leq\lim _{k \rightarrow \infty} \sup_{k\geq 1}\big(1-F_{n(k)}(M_{\epsilon})+F_{n(k)}(-M_{\epsilon}) \big)\\
+&\leq \pause \sup_{n\geq 1} \big(1-F_{n}\left(M_{\epsilon}\right)+F_{n}\left(-M_{\epsilon}\right)\big) \leq \pause \epsilon
+\end{aligned}
+\]
+\item 令$r\rightarrow-\infty, s\rightarrow\infty$后再令$\epsilon\rightarrow 0$可得$F(+\infty)-F(-\infty)=1$%.由上可得${\lim \sup _{x \rightarrow \infty} 1-F(x)+F(-x) \leq \epsilon}$
+\end{itemize}
+
+
+\end{frame}
+\begin{frame}{定理证明续}
+	\begin{itemize}[<+-|alert@+>]
+	\item 若极限函数是分布函数,下面用反证法证明$\{F_n(x)\}_{n\geq 1}$是胎紧的.
+	\item 若$\{F_n(x)\}_{n\geq 1}$不是胎紧的, 则存在$\epsilon>0$以及子列$n(k)$使得对任意的$k$均有 \pause
+	\[
+		1-F_{n(k)}(k)+F_{n(k)}(-k) \geq \epsilon,
+		\]
+		\item 由Helly第一定理可知, $\{F_{n(k)}(x)\}_{k\geq 1}$ 存在子列$\{F_{n\left(k_{j}\right)}\}_{j\geq 1}\rightarrow F(x)$
+		\item 令$r, s\in C_F$, $r<0<s$, 则
+	\begin{align*}
+		1-F(s)+F(r)  &=\pause \lim _{j \rightarrow \infty} \big(1-F_{n\left(k_{j}\right)}(s)+F_{n\left(k_{j}\right)}(r)\big)
+		 \\
+		&\geq \pause \liminf _{j \rightarrow \infty} \big(1-F_{n\left(k_{j}\right)}\left(k_{j}\right)+F_{n\left(k_{j}\right)}\left(-k_{j}\right)\big) \geq \pause \epsilon
+	\end{align*}
+\item 令$s \rightarrow \infty, r \rightarrow-\infty$可知$F(x)$不是分布函数, 与假设矛盾. %is not the distribution function of a probability measure.
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{{\rm Helly} 第二定理}
+	\begin{thm}
+		({\rm Helly} 第二定理) 设分布函数列 $\{F_n(x)\}$ 弱收敛于分布函数 $F (x)$当且仅当对任何有界连续函数 $g(x)$ 有
+		\begin{eqnarray*}
+			\int_{\mathbb{R}}g(x)dF_n(x)\rightarrow\int_{\mathbb{R}}g(x)dF(x).
+		\end{eqnarray*}
+		或等价的\pause
+		\[E[g(X_n)]\rightarrow E[g(X)].\]
+	\end{thm}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{一个引理}
+	\begin{thm}
+		若分布函数列 $\{F_n(x)\}_{n\geq 1}$ 弱收敛于分布函数 $F (x)$, 则存在分布函数为$F_n(x)$的随机变量序列$\{Y_n\}_{n\geq 1}$及分布函数为$F(x)$的随机变量$Y$, 使得$Y_n\rightarrow Y, a.s.$.
+	\end{thm}\pause
+
+	\zheng %\begin{proof}\ %
+		\begin{itemize}[<+-|alert@+>]
+		\item 令$\Omega=(0,1), \mathcal{F}=\mathcal{B}((0,1))$, $P$ 为$(0,1)$上的Lebesgue测度.
+		\item 令
+		\begin{align*}
+			&Y_{n}(y)=F_n^{-1}(y):=\sup \{x: F_{n}(x)<y\}\\
+			&Y(y)=F^{-1}(y):=\sup \{x: F(x)<y\}\\
+			&a_{y}=\sup \{x: F(x)<y\}, \quad b_{y}=\inf \{x: F(x)>y\}\\
+			&\Omega_0=\{y:\left(a_{y}, b_{y}\right)=\emptyset\}
+		\end{align*}
+		 \item  由于$\left(a_{y}, b_{y}\right)$互不相交且每个非空区间均包含不同的有理数, 因此可知 $\Omega-\Omega_0$ 中的元素个数可数, 从而$P(\Omega-\Omega_0)=0$.
+
+		\end{itemize}
+
+	%\end{proof}
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{引理证明(续)}
+	\begin{itemize}[<+-|alert@+>]
+
+		 \item 下证, 对任意的$y \in \Omega_{0}$, 我们有$F_{n}^{-1}(y) \rightarrow F^{-1}(y)$.
+		 \item 首先, 证明${\liminf _{n \rightarrow \infty} F_{n}^{-1}(y) \geq F^{-1}(y)}$,
+		 \begin{itemize}[<+-|alert@+>]
+		 \item 令 $x\in C_F$使得$x<F^{-1}(y)$, 则由$y\in \Omega_0$知$F(x)<y$
+		 \item 由$x\in C_F$以及$F_n(x)\rightarrow F(x)$可知, 当$n$充分大时, $F_n(x)<y$, 也即 $F_n^{-1}(y)\geq x$
+		 \item 令$n\rightarrow\infty$取下极限后再令$x\rightarrow F^{-1}(y)$可得本结果.
+		 \end{itemize}
+		 \item 其次, 证明${\lim \sup _{n \rightarrow \infty} F_{n}^{-1}(y) \leq F^{-1}(y)}$
+		 \begin{itemize}[<+-|alert@+>]
+			\item 令 $x\in C_F$使得$x>F^{-1}(y)$, 则由$y\in \Omega_0$知$F(x)>y$
+			\item 由$x\in C_F$以及$F_n(x)\rightarrow F(x)$可知, 当$n$充分大时, $F_n(x)>y$, 也即 $F_n^{-1}(y)\leq x$
+			\item 令$n\rightarrow\infty$取上极限后再令$x\rightarrow F^{-1}(y)$可得本结果.
+		 \end{itemize}
+
+
+		\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{{\rm Helly} 第二定理证明}
+	%\zheng
+	\begin{itemize}[<+-|alert@+>]
+	\item 必要性
+	\begin{itemize}[<+-|alert@+>]
+		\item 由引理可知, 存在$\{Y_n\}_{n\geq 1}$及$Y$使得$Y_n\rightarrow Y,    a.s.$
+		\item 由于$g(x)$是连续函数, 从而$g(Y_n)\rightarrow g(Y), a.s.$
+		\item 从而由控制收敛定理可知
+		\[E[g(X_n)]=E[g(Y_n)]\rightarrow E[g(Y)]=E[g(X)], \]
+		\pause 也即
+	   \[\int_{\mathbb{R}}g(x)dF_n(x)\rightarrow\int_{\mathbb{R}}g(x)dF(x).\]
+	\end{itemize}
+
+	\end{itemize}
+
+
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{{\rm Helly} 第二定理证明}
+	%\zheng
+	\begin{itemize}[<+-|alert@+>]
+	\item 充分性
+	\begin{itemize}[<+-|alert@+>]
+		\item 令\[
+			g_{x, \epsilon}(y)=\left\{\begin{array}{ll}
+			1 & y \leq x \\
+			0 & y \geq x+\epsilon \\
+			-\frac{1}{\epsilon}(y-x)+1 & x \leq y \leq x+\epsilon
+			\end{array}\right.
+			\]
+		\item 由 $g_{x, \epsilon} $的定义及连续性可知 %\( g_{x, \epsilon}(y)=1 \) 当 \( y \leq x, g_{x, \epsilon} \) 连续且is continuous, and \( g_{x, \epsilon}(y)=0 \) for \( y>x+\epsilon \),
+    \begin{align*}
+		&\limsup _{n \rightarrow \infty} P\left(X_{n} \leq x\right) \leq  \pause \limsup _{n \rightarrow \infty} E g_{x, \epsilon}\left(X_{n}\right)=\pause E g_{x, \epsilon}\left(X\right) \leq \pause P\left(X \leq x+\epsilon\right) \pause \\
+		&\liminf _{n \rightarrow \infty} P\left(X_{n} \leq x\right) \geq \pause \liminf _{n \rightarrow \infty} E g_{x-\epsilon, \epsilon}\left(X_{n}\right)=\pause E g_{x-\epsilon, \epsilon}\left(X\right) \geq \pause P\left(X\leq x-\epsilon\right) \pause
+	\end{align*}
+	\item 令\( \epsilon \rightarrow 0 \) 可得
+	\begin{align*}
+		&\lim \sup _{n \rightarrow \infty} P\left(X_{n} \leq x\right) \leq  \pause P\left(X\leq x\right), \pause \\
+		&\lim \inf _{n \rightarrow \infty} P\left(X_{n} \leq x\right) \geq  \pause P\left(X<x\right)\stackrel{x\in C_F}{=}P\left(X \leq x\right)\pause
+	\end{align*}
+
+	 \item 由上可得, 对任意的$x\in C_F$, 我们有
+	 \[\lim _{n\rightarrow \infty} F_{n}(x)=F(x).\]
+		\end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{连续性定理及证明}
+
+	\begin{thm}
+		(连续性定理) 分布函数列 $\{F_n (x)\}$ 弱收敛到分布函数 $F (x)$ 的充分必要条件是:相应的特征函数列 $\{\varphi_n (t)\}$ 逐点收敛到相应的特征函数 $\varphi (t)$.
+	\end{thm}
+\pause
+
+\zheng
+
+\begin{itemize}[<+-|alert@+>]
+\item 必要性显然. \pause 事实上, 由$\cos(tx), \sin(tx)$为有界连续函数以及Helly第二定理可知
+\begin{align*}
+	\varphi_n(t)&:=\pause \int_{\mathbb{R}}e^{itx}dF_n(x)\pause
+	\\
+	&=\pause \int_{\mathbb{R}}\cos(tx)dF_n(x)+i\int_{\mathbb{R}}\sin(tx)dF_n(x)\pause
+	\\
+	&\rightarrow\pause \int_{\mathbb{R}}\cos(tx)dF(x)+i\int_{\mathbb{R}}\sin(tx)dF(x)\pause
+	\\
+	&=\pause \int_{\mathbb{R}}e^{itx}dF(x)\pause
+	=:\varphi(t).
+\end{align*}
+%\item
+\end{itemize}
+
+
+\end{frame}
+\begin{frame}{连续性定理证明(续)}
+下证充分性. 先证$\{F_n(x)\}_{n\geq 1}$是胎紧的.
+\begin{itemize}[<+-|alert@+>]
+\item 注意到
+\begin{align*}
+	&u^{-1} \int_{-u}^{u}\left(1-\varphi_{n}(t)\right) d t=\pause u^{-1} \int_{-u}^{u}\int_{\mathbb{R}}\left(1-e^{itx}\right)dF_n(x) d t
+	\\ &=\pause u^{-1}\int_{\mathbb{R}}\int_{-u}^{u}\left(1-e^{itx}\right)dt dF_n(x)=\pause 2\int_{\mathbb{R}}(1-\frac{\sin ux}{ux})dF_n(x)\\
+	&\geq \pause 2 \int_{|x|\geq\frac{2}{u}}(1-\frac{1}{|ux|})dF_n(x)\geq \pause \int_{|x|\geq\frac{2}{u}}dF_n(x)=\pause P(|X_n|\geq \frac{2}{u})\pause
+\end{align*}
+\item 另一方面,
+\begin{align*}
+	&\lim_{n\rightarrow\infty}u^{-1} \int_{-u}^{u}\left(1-\varphi_{n}(t)\right) d t=\pause u^{-1} \int_{-u}^{u}\left(1-\varphi(t)\right) d t \stackrel{u\rightarrow 0}{\longrightarrow} \pause 0
+\end{align*}
+
+%\end{itemize}
+
+\item 从而
+\[P(|X_n|\geq \frac{2}{u})\leq \pause u^{-1} \int_{-u}^{u}\left(1-\varphi_{n}(t)\right) d t \leq \pause 2 \epsilon
+\]
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{连续性定理证明(续)}
+其次, 证明对任意的有界连续函数$g(x)$均有 $E[g(X_n)]\rightarrow E[g(X)]$. \pause
+\begin{itemize}[<+-|alert@+>]
+\item 首先注意到, 对于$\{F_n(x)\}_{n\geq 1}$的任一子列$\{F_{n(k)}(x)\}_{k\geq 1}$, 若$F_{n(k)} (x)\stackrel{W}{\rightarrow} F (x)$, 则分布函数$F(x)$的特征函数必为$\varphi(t)$.
+\item 由$\{F_n(x)\}_{n\geq 1}$的胎紧性可知, $\{F_n(x)\}_{n\geq 1}$的任一子列$\{F_{n(k)}(x)\}_{k\geq 1}$均存在子列$\{F_{n(k_j)}(x)\}_{j\geq 1}$弱收敛到某个分布函数$F(x)$, 且$F(x)$的特征函数为$\varphi(t)$.
+
+\item 由于$\{F_{n(k_j)}(x)\}_{j\geq 1}$弱收敛到某个分布函数$F(x)$, 故由Helly第二定理可知, 对任意的有界连续函数$g(x)$均有
+\[\int g(x)dF_{n(k_j)}(x)\rightarrow \int g(x)dF(x)\]
+
+\item 故综上可知, $\int g(x)dF_{n}(x)$的任一子列$\int g(x)dF_{n(k)}(x)$均存在子列$\int g(x)dF_{n(k_j)}(x)\rightarrow \int g(x)dF(x)$. 从而, $\int g(x)dF_{n}(x)\rightarrow \int g(x)dF(x)$, 即 $$E[g(X_n)]\rightarrow E[g(X)].$$
+\end{itemize}
+
+\end{frame}
+
+% \begin{frame}{作业}
+% \begin{enumerate}
+% 	\item $\text {如果 } X_{n} \xrightarrow{P} X \text {, 且 } X_{n} \xrightarrow{P} Y \text {. 试证: } P(X=Y)=1 \text {. }$
+%   \item 如果 $X_{n} \xrightarrow{P} X, Y_{n} \xrightarrow{P} Y$. 试证:
+%   (1) $X_{n}+Y_{n} \xrightarrow{P} X+Y$;
+%   (2) $X_{n} Y_{n} \xrightarrow{P} X Y$.
+%   \item 试证: $X_{n} \xrightarrow{P} X$  的充要条件为: $\lim_{n \rightarrow \infty}E\left(\dfrac{\left|X_{n}-X\right|}{1+\left|X_{n}-X\right|}\right)=0$.
+%   \item 设随机变量序列 $\left\{X_{n}\right\}$ 独立同分布, 其密度函数为
+%   $$p(x)=\left\{
+% 	\begin{array}{ll}
+%   e^{-(x-\alpha)}, & x \geqslant \alpha, \\
+%   0, & x<\alpha.
+%   \end{array} \right.
+%   $$
+
+
+
+%   令 $Y_{n}=\min \left\{X_{1}, X_{2}, \cdots, X_{n}\right\}$, 试证: $Y_{n} \xrightarrow{P} \alpha$.
+% \end{enumerate}
+
+% \end{frame}
+\end{document}

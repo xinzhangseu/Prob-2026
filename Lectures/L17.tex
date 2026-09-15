@@ -1,0 +1,837 @@
+% 取消下一行注释可生成 handout（无逐步显示）；保持注释则生成正常 slide。
+% \PassOptionsToClass{handout}{beamer}
+\documentclass[Main-Prob-All.tex]{subfiles}
+\begin{document}
+\title[概率论]{第十七讲：数学期望 (续) 与方差}
+%\author[张鑫 {\rm Email: xzhangseu@seu.edu.cn} ]{\large 张 鑫}
+\institute[东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
+	\large 东南大学 \quad 数学学院 \\
+	\vspace{0.3cm}
+	%	\trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+		%	\hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
+}
+\date{}
+
+{ \setbeamertemplate{footline}{}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+}
+
+
+% \begin{CJK*}{GBK}{song}
+
+	%   \title{简单随机抽样}
+	%   \author{林语堂}
+	%   \institute{University}
+	%   \date{2009-03-31}
+	%   \date{}
+	%   \begin{frame}
+		%     \titlepage
+		%   \end{frame}
+
+	%   \begin{frame}
+		%     \frametitle{第二章：简单随机抽样}
+		%     \tableofcontents
+		%   %     You might wish to add the option[pausesections]
+		%   \end{frame}
+
+	%   \AtBeginSubsection[]{
+		%   \begin{frame}<beamer>
+			%     \frametitle{Outline}
+			%     \tableofcontents[currentsection,currentsubsection]
+			%   \end{frame}
+		% }
+	%   定义目录页
+
+	%	\section{数字特征与特征函数}
+	\subsection{数学期望}
+
+	\begin{frame}
+		\frametitle{随机变量关于概率测度的积分}
+		\begin{itemize}[<+-|alert@+>]
+			\item 若 $X (\omega)=\sum_{i=1}^{n} a_{i} I_{A_{i}}(\omega), A_1,\cdots, A_n\in\mathcal{F}$, 即 $X$ 为简单随机变量时，定义 \pause
+			\begin{eqnarray*}
+				\int_\Omega X(\omega)P(d\omega):=\sum_{i=1}^na_iP(A_i)
+			\end{eqnarray*}
+			\item 若 $X (\omega)$ 为非负随机变量，则由之前随机变量的结构易知:\pause
+			\begin{eqnarray*}
+				\mbox{存在简单随机变量序列} X_n (\omega)\uparrow X (\omega)
+			\end{eqnarray*}
+			故可定义 \pause
+			\begin{eqnarray*}
+				\int_\Omega X(\omega)P(d\omega):=\lim_{n\rightarrow\infty}\int_\Omega X_n(\omega)P(d\omega)
+			\end{eqnarray*}
+			\item 若 $X (\omega)$ 为任一随机变量，则由于 $X (\omega)=X^+(\omega)-X^-(\omega)$, 故定义 \pause
+			\begin{eqnarray*}
+				\int_\Omega X(\omega)P(d\omega):=\int_\Omega X^+(\omega)P(d\omega)-\int_\Omega X^-(\omega)P(d\omega)
+			\end{eqnarray*}
+
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		\frametitle{随机变量可积与积分存在的定义}
+		\begin{defi}
+			称随机变量 $X (\omega)$ 关于概率测度 $P$ 的积分存在，如果 \pause
+			\[\int_\Omega X^+(\omega) P (d\omega) \mbox{ 与 }\int_\Omega X^-(\omega) P (d\omega) \mbox{不同时为}\infty\]                                                  \pause  称随机变量 $X (\omega)$ 关于概率测度 $P$ 可积，如果 \pause $\int_\Omega X (\omega) P (d\omega)<\infty$, 即 \pause
+			\[\int_\Omega X^+(\omega) P (d\omega)<\infty \mbox{ 且 }\int_\Omega X^-(\omega) P (d\omega)<\infty.\]                                                         \end{defi}
+		\pause
+		\begin{defi}
+			若 $X (\omega)$ 是概率空间 $(\Omega,\mathcal{F},P)$ 上的可积随机变量，则称
+			\begin{eqnarray*}
+				E(X):=\int_\Omega X(\omega)P(d\omega)
+			\end{eqnarray*}
+			为随机变量 $X (\omega)$ 的数学期望.
+		\end{defi}
+	\end{frame}
+	\begin{frame}
+		\frametitle{随机变量期望的性质}
+		\begin{enumerate}[<+-|alert@+>]
+			\item 若 $c$ 为常数，则 $E (c)=c$;
+			\item 若 $X\ge 0$, 则 $E (X)\ge 0$, 且$E(X)=0$ 当且仅当 $X=0$ 几乎处处成立;
+			\item 对任意的常数 $a$, 有 $E (aX)=aE (X)$;
+			\item 对任意两个函数 $g_1 (x),g_2 (x)$ 有
+			\begin{eqnarray*}
+				E(g_1(X)\pm g_2(X))=E(g_1(X))\pm E(g_2(X))
+			\end{eqnarray*}
+			\item 对任意两个随机变量 $X,Y$, 有 $E (X+Y)=E (X)+E (Y)$;
+			\item 一般的，对任意两个随机变量 $X,Y$ 及任给两个常数 $a,b$, 有
+			\begin{eqnarray*}
+				E(aX+bY)=aE(X)+bE(Y);
+			\end{eqnarray*}
+			\item 更一般的有
+			\begin{eqnarray*}
+				E(\sum_{i=1}^na_iX_i+b)=\sum_{i=1}^na_iEX_i+b
+			\end{eqnarray*}
+
+			% \item $E(X^2)=0\Leftrightarrow P(X\neq 0)=0\Leftrightarrow X=0 $ a.s.
+
+			%   \pause 反证法，如果 $P (X\neq 0)>0$, 即 $P (|X|>0)>0$, 则存在自然数 $k$ 使得
+			%   \begin{eqnarray*}
+				%     P(|X|>\dfrac{1}{k})=\epsilon >0
+				%   \end{eqnarray*}
+			%   从而 \vspace{-0.6cm}
+			%  {\small\begin{eqnarray*}
+					%     \hspace{0.8cm} E(X^2)=\pause \int_Rx^2dF(x)\ge\pause  \int_{|x|>\frac{1}{k}}x^2dF(x)\pause >\dfrac{1}{k^2}P(|X|>\dfrac{1}{k})=\dfrac{\epsilon}{k^2}\pause>0
+					%   \end{eqnarray*}}
+
+		\end{enumerate}
+	\end{frame}
+
+
+\begin{frame}{期望的性质}
+\begin{thm}
+设 $X$ 为非负随机变量．则 $E X \geqslant 0$，且 $E X=0$ 当且仅当 $P(X=0)=1$，即 $X=0, a.s..$
+\end{thm}
+
+\zheng
+
+\begin{itemize}[<+-|alert@+>]
+\item 因 $X$ 是非负随机变量，当 $x<0$ 有 $F_{X}(x)=0$．
+\item 由斯蒂尔切斯积分的定义和性质易知
+\[
+E X=\int_{0}^{\infty} x \mathrm{d} F_{X}(x) \geqslant 0.
+\]
+\item 若 $X=0,  a.s.$，则 $F_{X}(x)=1_{\{x \geqslant 0\}}$. 故 $E(X)=\int_{-\infty}^{\infty}xdF_X(x)=0$. %故由命题 4．2．2 有 $E X=0$ ．
+\item 反之，若 $E X=0$ ，则对任意的 $a>0$ 有
+\[
+0=\int_{0}^{\infty} x \mathrm{d} F_{X}(x) \geqslant \int_{a}^{\infty} x \mathrm{d} F_{X}(x) \geqslant a \int_{a}^{\infty} \mathrm{d} F_{X}(x)=a\left[1-F_{X}(a)\right]
+\]
+\item 故 $F_{X}(a)=1$ ，再由右连续性得 $F_{X}(0)=1$ ，从而 $X=0, a.s..$
+\end{itemize}
+
+
+
+
+
+\end{frame}
+
+\begin{frame}{期望的性质}
+\begin{thm}
+给定随机变量 $X$ ，令 $X^{+}=0 \vee X$ 和 $X^{-}=0 \vee(-X)$, 则
+{\small \begin{align*}
+E X^{+}&=\int_{0}^{\infty} x \mathrm{d} F_{X}(x)=\int_{0}^{\infty}\left[1-F_{X}(t)\right] \mathrm{d} t\\
+E X^{-}&=-\int_{-\infty}^{0} x \mathrm{d} F_{X}(x)=\int_{-\infty}^{0} F_{X}(t) \mathrm{d} t
+\end{align*}}
+
+\end{thm}
+
+
+
+\end{frame}
+
+\begin{frame}{期望的性质}
+\zheng
+\begin{itemize}[<+-|alert@+>]
+\item 因 $X^{+}, X^{-}$为非负随机变量, 故
+\begin{itemize}[<+-|alert@+>]
+\item  对 $x<0$ 有 $F_{X^{+}}(x)=F_{X^{-}}(x)=0$.
+\item 对 $x \geqslant 0$, 有
+$$F_{X^{+}}(x)=F_{X}(x), \quad F_{X^{-}}(x)=P(X\geq -x)=1-P(X<-x).$$
+\end{itemize}
+
+\item 从而 %。根据数学期望的定义，并交换积分次序（承认这是允许的）得
+{\small \begin{align*}
+E X^{+} & =\int_{0}^{\infty} x \mathrm{d} F_{X}(x)=\int_{0}^{\infty} \mathrm{d} F_{X}(x) \int_{0}^{x} \mathrm{d} t \\
+ &=\int_{0}^{\infty} \mathrm{d} t \int_{t}^{\infty} \mathrm{d} F_{X}(x)=\int_{0}^{\infty}\left[1-F_{X}(t)\right] \mathrm{d} t\\
+ E X^{-}  & =\int_{0}^{\infty} [1-F_{X^-}(x)]dx=\int_{-\infty}^{0} [1-F_{X^{-}}(-x)] dx\\
+ &=\int_{-\infty}^{0} P(X<x)\mathrm{d} x=\int_{-\infty}^{0} F_X(x)dx
+\end{align*}}
+\item 最后一个等号是因为改变可数个点上的函数值不影响黎曼积分值.
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{期望的性质}
+
+
+\begin{thm}\label{theorem:4.2.5}
+若随机变量 $X$ 的数学期望存在，则有
+\begin{align*}
+E X&=\int_{0}^{\infty} P(X>t) \mathrm{d} t-\int_{-\infty}^{0} P(X \leqslant t) \mathrm{d} t\\
+E|X|&=\int_{0}^{\infty} P(X>t) \mathrm{d} t+\int_{-\infty}^{0} P(X \leqslant t) \mathrm{d} t
+\end{align*}
+\end{thm}
+
+\pause
+
+\begin{exam}
+ 设 $X$ 为取值于数集 $\{0,1,2, \cdots\}$ 的离散型随机变量．则
+\begin{align*}
+E X  &=\int_{0}^{\infty} P(X>t) \mathrm{d} t=\sum_{n=1}^{\infty} \int_{n-1}^{n} P(X>t) \mathrm{d} t\\
+&=\sum_{n=1}^{\infty} \int_{n-1}^{n} P(X \geqslant n) \mathrm{d} t=\sum_{n=1}^{\infty} P(X \geqslant n)
+\end{align*}
+
+\end{exam}
+
+\end{frame}
+
+\begin{frame}{随机变量函数的期望}
+\begin{thm}
+设随机变量 $X$ 有分布函数 $F_{X}$ ，而 $f$ 为 $\mathbb{R}$ 上的可测函数, 则随机变量 $f(X)$ 的数学期望存在当且仅当 $f$ 的 $F_{X}$ 积分存在，且此时
+\[
+E f(X)=\int_{-\infty}^{\infty} f(x) \mathrm{d} F_{X}(x)
+\]
+\end{thm}
+\pause
+\zheng
+%此证明假定（4．2．2）式对于形如 $\{x \in \mathbb{R}: f(x)>t\}$ 和 $\{x \in \mathbb{R}: f(x) \leqslant t\}$ 的集合成立．根据定理 4．2．5 有
+由定理\ref{theorem:4.2.5}知:
+\begin{align*}
+E f(X)  &=\int_{0}^{\infty} P(f(X)>t) \mathrm{d} t-\int_{-\infty}^{0} P(f(X) \leqslant t) \mathrm{d} t \\
+&=\int_{0}^{\infty} \mathrm{d} t \int_{-\infty}^{\infty} 1_{\{f(x)>t\}} \mathrm{d} F_{X}(x)-\int_{-\infty}^{0} \mathrm{d} t \int_{-\infty}^{\infty} 1_{\{f(x) \leqslant t\}} \mathrm{d} F_{X}(x)\\
+&=\int_{-\infty}^{\infty} \mathrm{d} F_{X}(x) \int_{0}^{\infty} 1_{\{f(x)>t\}} \mathrm{d} t-\int_{-\infty}^{\infty} \mathrm{d} F_{X}(x) \int_{-\infty}^{0} 1_{\{f(x) \leqslant t\}} \mathrm{d} t \\
+&
+=\int_{-\infty}^{\infty} f^{+}(x) \mathrm{d} F_{X}(x)-\int_{-\infty}^{\infty} f^{-}(x) \mathrm{d} F_{X}(x)=\int_{-\infty}^{\infty} f(x) \mathrm{d} F_{X}(x)
+\end{align*}
+
+\end{frame}
+
+\begin{frame}
+		\frametitle{随机变量函数的期望}
+		\begin{thm}
+			若随机变量 $X$ 的分布函数为 $F (x)$, 则 $X$ 的某一函数 $g (X)$ 的期望为
+			\begin{eqnarray*}
+				E[g(X)]&=&\int_{-\infty}^{+\infty}g(x)dF(x)\\
+				&=&\pause \left\{
+				\begin{array}{l}
+					\sum_{i}g(x_i)[F(x_i)-F(x_{i-1})]=\sum_{i}g(x_i)P(X=x_i),\\
+					\\
+					\int_{-\infty}^{+\infty}g(x)p(x)dx.
+				\end{array}
+				\right.
+			\end{eqnarray*}
+
+		\end{thm}
+	\end{frame}
+\begin{frame}
+		\frametitle{积分变换定理}
+		\begin{thm}
+			设 $X$ 为概率空间 $(\Omega,\mathcal{F}, P)$ 上的随机变量，$\mathbf{F}$ 为随机变量 $X$ 的分布，则对任意的 Borel 函数 $f (x)$ 有
+			\begin{eqnarray*}
+				\int_\Omega f(X(\omega))P(d\omega)= \int_{\mathbb{R}}f(x)\mathbf{F}(dx) \pause \left(\textcolor{red}{= \int_{\mathbb{R}}f(x)dF(x)}\right).
+			\end{eqnarray*}
+			特别的，若 $f (x)=x$, 则有
+			\begin{eqnarray*}
+				E(X)=\int_\Omega X(\omega)P(d\omega)=\int_{\mathbb{R}}x \mathbf{F}(dx)=\int_{\mathbb{R}} xdF(x)
+			\end{eqnarray*}
+
+		\end{thm}
+	\end{frame}
+
+
+
+	\begin{frame}
+		\frametitle{随机变量函数的期望：多维情形}
+		\begin{thm}
+			若随机向量 $(X_1,\cdots, X_n)$ 的分布函数为 $F (x_1,\cdots,x_n)$, $g (x_1,\cdots, x_n)$ 为 $n$ 元 Borel 函数，则
+			\begin{eqnarray*}
+				E[g(X_1,\cdots, X_n)]&=&\int_{-\infty}^{+\infty}\cdots\int_{-\infty}^{+\infty}g(x_1,\cdots,x_n)dF(x_1,\cdots,x_n).
+			\end{eqnarray*}
+			特别的，\pause
+			\begin{eqnarray*}
+				E(X_i)=\int_{-\infty}^{+\infty}\cdots\int_{-\infty}^{+\infty}x_idF(x_1,\cdots,x_n)=\int_{-\infty}^{+\infty}x_idF_i(x_i)
+			\end{eqnarray*}
+			其中 $F_i (x_i)$ 为 $X_i$ 的分布函数. \pause 更进一步，如果 $(X_1,\cdots,X_n)$ 为连续型随机向量即具有联合分布密度 $p (x_1,\cdots,x_n)$, 则 \pause
+			\begin{eqnarray*}
+				&&E[g(X_1,\cdots, X_n)]=\int_{-\infty}^{+\infty}\cdots\int_{-\infty}^{+\infty}g(x_1,\cdots,x_n)p(x_1,\cdots,x_n)dx_1\cdots dx_n;\\
+				&&\pause E(X_i)=\int_{-\infty}^{+\infty}\cdots\int_{-\infty}^{+\infty}x_ip(x_1,\cdots,x_n)dx_1\cdots dx_n=\int_{-\infty}^{+\infty}x_ip_{X_i}(x_i)dx_i
+			\end{eqnarray*}
+		\end{thm}
+	\end{frame}
+	\begin{frame}
+		\frametitle{随机向量的数学期望}
+		\begin{defi}
+			假设随机向量 $(X_1,\cdots, X_n)$ 的每个分量 $X_i$ 的数学期望都存在，则称
+			\begin{eqnarray*}
+				E(X)=(EX_1,EX_2,\cdots,EX_n)
+			\end{eqnarray*}
+			为随机向量 $X$ 的数学期望向量，简称为 $X$ 的数学期望。这里
+			\begin{eqnarray*}
+				E(X_i)=\int_{-\infty}^{+\infty}\cdots\int_{-\infty}^{+\infty}x_idF(x_1,\cdots,x_n)=\int_{-\infty}^{+\infty}x_idF_i(x_i)
+			\end{eqnarray*}
+			这里 $F_i (x_i)$ 为 $X_i$ 的分布函数.
+
+		\end{defi}
+
+	\end{frame}
+
+
+\begin{frame}
+		\frametitle{随机变量的期望与独立性}
+		\begin{thm}
+			设 $X, Y$ 为概率空间 $(\Omega,\mathcal{F}, P)$ 上两个相互独立的随机变量，且 $X, Y$ 均可积，则乘积 $XY$ 也可积，且
+			\begin{eqnarray*}
+				E(XY)=E(X)E(Y)
+			\end{eqnarray*}
+
+		\end{thm}
+
+		\pause
+		\begin{thm}
+			概率空间 $(\Omega,\mathcal{F}, P)$ 上两个随机变量 $X, Y$ 相互独立的充要条件是，对于使得 $f (X)$ 与 $g (Y)$ 均可积的任何 Borel 函数 $f,g$ 均有
+			\begin{eqnarray*}
+				E[f(X)g(Y)]=E[f(X)]E[g(Y)].
+			\end{eqnarray*}
+
+		\end{thm}
+
+
+
+	\end{frame}
+
+
+
+
+	\begin{frame}
+		\frametitle{期望的极限性质：单调收敛定理}
+		\begin{thm}
+			(单调收敛定理) 若随机变量序列 $\{X_n\}$ 满足条件
+			\begin{eqnarray*}
+				0\leq X_1(\omega)\leq X_2(\omega)\leq \cdots \leq X_n(\omega)\uparrow X(\omega), \omega\in \Omega,
+			\end{eqnarray*}
+			则
+			\begin{eqnarray*}
+				\int_{\Omega}\lim_{n\rightarrow\infty}X_n(\omega)P(d\omega)&=& \lim_{n\rightarrow\infty}\int_\Omega X_n(\omega)P(d\omega), \\
+				{\rm i.e.} \quad    E(\lim_{n\rightarrow\infty}X_n)&=&\lim_{n\rightarrow\infty}E(X_n).
+			\end{eqnarray*}
+
+		\end{thm}
+
+	\end{frame}
+
+	\begin{frame}[allowframebreaks]{单调收敛定理的证明}
+	\begin{itemize}
+		\item 设 $\left\{X_{n k}\right\}_{k \geqslant 1}$ 为定义 $E\left(X_{n}\right)$ 的简单随机变量列，且满足
+
+		\[0 \leqslant X_{11} \leqslant X_{12} \leqslant \cdots \leqslant X_{1 k} \uparrow X_{1} \]
+		\[0 \leqslant X_{21} \leqslant X_{22} \leqslant \cdots \leqslant X_{2 k} \uparrow X_{2} \]
+		\[\vdots\]
+		\[0 \leqslant X_{n 1} \leqslant X_{n 2} \leqslant \cdots \leqslant X_{n k} \uparrow X_{n} \]
+		\[\lim _{k \rightarrow \infty} E\left(X_{n k}\right)=E\left(X_{n}\right)\]
+
+		\item 令 $\widetilde{X}_{k}=\max _{1 \leqslant i \leqslant k} X_{i k}$ ，则 $\widetilde{X}_{k}$ 为非降简单随机变量序列，
+		\[
+		X_{n k} \leqslant \widetilde{X}_{k} \leqslant X_{k}, \quad  E\left(X_{n k}\right) \leq E\left(\widetilde{X}_{k}\right) \leq E\left(X_{k}\right)
+		\]
+		\framebreak
+        \item 下证$\lim _{k \rightarrow \infty} \widetilde{X}_{k}=X$, $\lim _{k \rightarrow \infty}E(\widetilde{X}_{k})=\lim_{n\rightarrow\infty}E(X_n)$
+
+		\begin{itemize}
+			\item 固定 $n$ ，令 $k \rightarrow+\infty$可得
+			\[
+			X_{n} \leq \lim _{k \rightarrow+\infty} \widetilde{X}_{k} \leq X, \qquad   E\left(X_{n}\right) \leq \lim _{k \rightarrow+\infty} E\left(\widetilde{X}_{k}\right) \leq \lim _{k \rightarrow+\infty}E{(X_k)}
+			\]
+
+			\item 再令 $n \rightarrow+\infty$ 可得
+			\[
+			\lim _{k \rightarrow \infty} \widetilde{X}_{k}=X, \qquad  \lim _{k \rightarrow \infty}E(\widetilde{X}_{k})=\lim_{n\rightarrow\infty}E(X_n)
+			\]
+		\end{itemize}
+\item 结合 $E(\lim_{n\rightarrow\infty}X_n)=E(X):=\lim_{k\rightarrow\infty}E(\widetilde{X}_k)=\lim_{n\rightarrow\infty}E(X_n)$可知定理得证.
+	\end{itemize}
+
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{期望的极限性质：Fatou 引理}
+		\begin{thm}
+			(Fatou 引理) 若 $\{X_n\}$ 是一随机变量序列，
+			\begin{itemize}
+				\item 如果存在可积随机变量 $\underline{Y}$ 使得 $X_n\geq \underline{Y}$, 则有 \begin{eqnarray*}
+					\int_{\Omega}\liminf_{n\rightarrow\infty}X_n(\omega)P(d\omega)&\leq& \liminf_{n\rightarrow\infty}\int_\Omega X_n(\omega)P(d\omega),  \\
+					{\rm i.e. }\quad  E(\liminf_{n\rightarrow\infty}X_n)&\leq& \liminf_{n\rightarrow\infty}E(X_n).                                                                                           \end{eqnarray*}
+				\item 如果存在可积随机变量 $\overline{Y}$ 使得 $X_n\leq \overline{Y}$, 则有 \begin{eqnarray*}                                                                                                          \int_{\Omega}\limsup_{n\rightarrow\infty} X_n (\omega)) P (d\omega)&\geq& \limsup_{n\rightarrow\infty}\int_\Omega X_n (\omega)) P (d\omega), \\
+					{\rm i.e.} \quad    E(\limsup_{n\rightarrow\infty}X_n)&\geq& \limsup_{n\rightarrow\infty}E(X_n).                                                                                           \end{eqnarray*} \end{itemize}
+		\end{thm}
+
+	\end{frame}
+\begin{frame}{Fatou引理证明}
+	\begin{itemize}[<+-|alert@+>]
+		\item 如果 $\liminf_{n\rightarrow\infty}E\left(X_n\right)=+\infty$, 则不等式显然成立.以下设 $\liminf_{n\rightarrow\infty}E\left(X_n\right)$ 有限.
+		\item 令$Y_{n}=\inf_{k\geq n}\left(X_{k}-\underline{Y}\right),  n \geq 1$,	则 $\left\{Y_{n}\right\}$ 为非负随机变量的上升序列，且以 $\liminf_{n\rightarrow\infty}\left(X_n-\underline{Y}\right)$ 为极限.
+		\item 由单调收敛定理可得: %故用定理 1.6 得
+		\[
+		E\left[\liminf_{\rightarrow\infty}\left(X_n-\underline{Y}\right)\right]=\lim_{n\rightarrow\infty} E\left[\inf_{k\geq n}\left(X_{k}-\underline{Y}\right)\right] \leq \liminf_{n\rightarrow\infty}E\left(X_n-\underline{Y}\right) .
+		\]
+		\item 消去有限的 $E(\underline{Y})$ 可证得结论
+		\item 对 $\left\{-X_n\right\}$ 用下确界的结论可证得上确界的结论.%（1）便可得证（1.24）式，定理证毕。
+	\end{itemize}
+
+\end{frame}
+
+
+	\begin{frame}
+		\frametitle{期望的极限性质：控制收敛定理}
+		\begin{thm}
+			(控制收敛定理) 设 $\{X_n\}$ 是一随机变量序列。如果存在可积随机变量 $Y$ 使得 $|X_n|\leq Y$, 且 $\lim_{n\rightarrow\infty} X_n (\omega)=X (\omega)$, 则随机变量 $X (\omega)$ 可积，且有
+			\begin{eqnarray*}
+				\int_{\Omega}\lim_{n\rightarrow\infty}X_n(\omega)P(d\omega)&=& \lim_{n\rightarrow\infty}\int_\Omega X_n(\omega)P(d\omega),\\
+				\quad{\rm i.e.} \quad    E(X)=E(\lim_{n\rightarrow\infty}X_n)&=&\lim_{n\rightarrow\infty}E(X_n).
+			\end{eqnarray*}
+
+		\end{thm}
+
+	\end{frame}
+	\begin{frame}{控制收敛定理的证明}
+		\begin{itemize}[<+-|alert@+>]
+			\item  $\left|X_{n}\right| \leq Y$ 蕴含 $|X| \leq Y$, 故 $X$ 可积.
+			\item 取 $\underline{Y}=-Y$ 与 $\overline{Y}=Y$, 用Fatou引理便得到
+			\[
+			E(X) \leq \liminf_{n\rightarrow\infty} E\left(X_{n}\right) \leq \limsup_{n\rightarrow\infty} E\left(X_{n}\right) \leq E(X)
+			\]
+			\item 故 $\lim _{n} E\left(X_{n}\right)$ 存在且等于 $E(X)$, 定理至此得证.
+		\end{itemize}
+
+
+	\end{frame}
+
+	\subsection{随机变量的方差}
+
+
+\begin{frame}{平方可积随机变量集$L^2$}
+\begin{defi}
+  设 $(\Omega, \mathcal{F}, P)$ 是一个概率空间, 称随机变量 $X$ 平方可积, 如果
+  $$E\left(X^{2}\right)<\infty.$$
+\end{defi}
+\pause
+\begin{rmk}
+\begin{itemize}[<+-|alert@+>]
+\item   $(\Omega, \mathcal{F}, P)$ 上的所有平方可积随机变量构成的集合记为 $L^{2}(\Omega, \mathcal{F}, P)$ 或简记为 $L^{2}$.
+\item 类似的, 对 $p \geq 1$, 也可以定义 $L^{p}$ 空间, 即所有满足 $E(|X|^p) < \infty$ 的随机变量组成的集合.
+\item 若 $X\in L^2$, 则由 $E|X|<E\left(1+X^{2}\right)<\infty$ 知 $X$ 可积．
+\end{itemize}
+
+\end{rmk}
+
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{柯西 - 施瓦兹 (Cauchy-Schwarz) 不等式}
+	\begin{thm}
+		对任意的随机变量 $X$ 与 $Y$ 都有
+		\begin{eqnarray*}
+			[E(XY)]^2\le E(X^2)E(Y^2)
+		\end{eqnarray*}
+		等式成立当且仅当存在常数 $t_0$ 使得
+		\begin{eqnarray*}
+			P(Y=t_0X)=1
+		\end{eqnarray*}
+	\end{thm}
+
+\end{frame}
+\begin{frame}
+	\frametitle{Cauchy-Schwarz 不等式的证明:$[E (XY)]^2\le E (X^2) E (Y^2)
+		$}
+
+	\zheng 对任意的实数 $t$, 定义
+	\begin{eqnarray*}
+		u(t):=E(tX-Y)^2=t^2E(X^2)-2tE(XY)+E(Y^2).
+	\end{eqnarray*}
+	\pause 显然，对一切的 $t\in R$, $u (t)\ge 0$, 故方程 $u (t)=0$ 或者没有实根或者有重根，从而
+	\pause \begin{eqnarray*}
+		\Delta=[2E(XY)]^2-4E(X^2)E(Y^2)\le 0
+	\end{eqnarray*}
+	\pause  即
+	\begin{eqnarray*}
+		[E(XY)]^2\le E(X^2)E(Y^2)
+	\end{eqnarray*}
+	\pause 上述不等式等号成立，当且仅当 $\Delta=0$ 即 $u (t)=0$ 存在一个重根 $t_0$, 这时
+	\begin{eqnarray*}
+		u(t_0)=E(t_0X-Y)^2=0
+	\end{eqnarray*}
+	\pause 从而由可知 % 定理～\ref{sec:var0} 知
+	\begin{eqnarray*}
+		P(t_0X-Y=0)=1 \Leftrightarrow P(Y=t_0X)=1.
+	\end{eqnarray*}
+
+\end{frame}
+
+\begin{frame}{$L^2$是一个线性空间}
+\begin{prop}
+平方可积随机变量集 $L^{2}$ 是一个线性空间．
+\end{prop}
+\pause
+
+\vspace{0.5cm}
+\zheng 假设 $X, Y \in L^{2}$, 则对任何 $\alpha, \beta \in \mathbb{R}$, 由柯西－施瓦茨不等式有
+\begin{align*}
+   E\left[(\alpha X+\beta Y)^{2}\right]  &=\alpha^{2} E\left(X^{2}\right)+2 \alpha \beta E(X Y)+\beta^{2} E\left(Y^{2}\right) \\
+&\leqslant \alpha^{2} E\left(X^{2}\right)+2|\alpha \beta|\left[E\left(X^{2}\right) E\left(Y^{2}\right)\right]^{1 / 2}+\beta^{2} E\left(Y^{2}\right)\\
+&<\infty
+\end{align*}
+\pause 所以 $L^{2}$ 是一个线性空间．
+\end{frame}
+
+\begin{frame}{赫尔德（H{\"o}lder）不等式}
+\begin{thm}
+设 $p, q>1$ 满足 $1 / p+1 / q=1$. 若 $X \in L^{p}$ 和 $Y \in L^{q}$，则
+$$
+X Y \in L^{1}, \mbox{ 且 } E(|X Y|) \leqslant\left[E\left(|X|^{p}\right)\right]^{1 / p}\left[E\left(|Y|^{q}\right)\right]^{1 / q}.$$
+\end{thm}
+
+\pause
+
+\zheng
+\begin{itemize}[<+-|alert@+>]
+\item 若 $E(|X Y|)=0$，欲证不等式显然成立．
+\item 若 $E(|X Y|)>0$，则必有 $E(|X|)>0$ 和 $E(|Y|)>0$.
+\item 如若不然, 则 $P(X=0)=1$ 或 $P(Y=0)=1$，从而 $P(X Y=0)=1$，与 $E(|X Y|)>0$ 矛盾.
+\item 根据对数函数的凹性，对 $x, y>0$ 有: $\dfrac{1}{p} \ln x+\dfrac{1}{q} \ln y \leqslant \ln \left(\dfrac{x}{p}+\dfrac{y}{q}\right).$
+\item 因此，对任何 $x, y \geqslant 0$ 有: $x^{1 / p} y^{1 / q} \leqslant \dfrac{x}{p}+\dfrac{y}{q}$.
+\item 在上式中令 $x=|X|^{p} / E\left(|X|^{p}\right)$ 和 $y=|Y|^{q} / E\left(|Y|^{q}\right)$, 并对所得不等式取期望即得结论．
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{一个推论}
+\begin{prop}
+对任何随机变量 $X$ ，函数 $r \mapsto\left[\mathrm{E}\left(|X|^{r}\right)\right]^{1 / r}$ 在 $(0, \infty)$ 上不降。
+\end{prop}
+\pause
+
+\zheng
+
+\begin{itemize}[<+-|alert@+>]
+\item 取 $r>q>0$ 并注意
+$$\dfrac{1}{\frac{r}{q}}+\dfrac{1}{\frac{r}{r-q}}=q / r+(r-q) / r=1.$$
+\item 对 $X=|X|^{q}$ 和 $Y=1$ 应用上面定理即知
+$$E\left(|X|^{q}\right)=E(|X|^{q} Y) \leqslant\left[E\left((|X|^q)^{\frac{r}{q}}\right)\right]^{q / r}\left[E\left(1^{\frac{r}{r-q}}\right)\right]^{(r-q) / r}=\left[E\left(|X|^{r}\right)\right]^{q / r}.$$
+\item 故
+$$\left[E\left(|X|^{q}\right)\right]^{1 / q} \leqslant\left[E\left(|X|^{r}\right)\right]^{1 / r}.$$
+\end{itemize}
+
+\end{frame}
+
+	\begin{frame}
+		\frametitle{随机变量方差的定义}
+		\begin{defi}
+			若 $X\in L^2$, 则称%随机变量 $X^2$ 的期望 $E (X^2)$ 存在，则称
+			\begin{eqnarray*}
+				D(X):=E\big[(X-EX)^2\big]
+			\end{eqnarray*}
+			为随机变量 $X$ 的方差, 有时我们也用 $Var (X)$ 来表示 $X$ 的方差. 称方差 $D (X)$ 的正平方根 $\sqrt{D (X)}$ 为随机变量 $X$ 的标准差，记为 $\sigma (X)$ 或 $\sigma_X$.
+		\end{defi}
+		\pause
+		\begin{thm}
+			假设随机变量 $X$ 的方差存在，则
+			\begin{eqnarray*}
+				D(X)&=&E[(X-EX)^2]=\pause \int_{-\infty}^{+\infty}(x-EX)^2dF(x)\\
+				&=&\pause \left\{
+				\begin{array}{l}
+					\sum_{i}(x_i-EX)^2[F(x_i)-F(x_{i-1})]=\sum_{i}(x_i-EX)^2P(X=x_i)\\
+					\\
+					\int_{-\infty}^{+\infty}(x-EX)^2p(x)dx  \end{array}
+				\right.
+			\end{eqnarray*}
+
+		\end{thm}
+
+	\end{frame}
+	\begin{frame}
+		\frametitle{方差的性质}
+		\begin{enumerate}[<+-|alert@+>]
+			\item $D (X)=E[(X-EX)^2]\ge 0$, $D (X)=0$ 当且仅当 $P (X=EX)=1$;
+			\item 常数的方差为 $0$ 即 $D (c)=0$, 其中 $c$ 为常数；
+			\item $D (X)=E (X^2)-(EX)^2$: 事实上，根据方差的定义及期望的线性性质，我们有 \pause
+			\begin{eqnarray*}
+				D(X)&=&\pause E[(X-EX)^2]=\pause E[X^2-2X\cdot EX+(EX)^2]\\
+				&=&\pause E(X^2)-2EX\cdot EX+(EX)^2\\
+				&=&\pause E(X^2)-(EX)^2
+			\end{eqnarray*}
+		\end{enumerate}
+
+	\end{frame}
+	\begin{frame}
+		\frametitle{方差的性质 (续)}
+		\begin{enumerate}[<+-|alert@+>]
+			\item[4.] 若 $E (X^2)=0$, 则 $E (X)=0, D (X)=0$. \pause 事实上
+			\begin{eqnarray*}
+				0\le D(X)=E(X^2)-(EX)^2=-(EX)^2\le 0
+			\end{eqnarray*}
+
+			\item[5.] 若 $a,b$ 为常数，则 $D (aX+b)=a^2D (X)$, \pause 事实上，
+			\begin{eqnarray*}
+				D(aX+b)&=&E(aX+b-E(aX+b))^2=E(aX-aEX)^2
+				\\ &=&\pause E[a^2(X-EX)^2]=\pause a^2E[(X-EX)^2]=a^2D(X)    \end{eqnarray*}
+			\item[6.] $f (c):=E (X-c)^2$ 当且仅当 $c=E (X)$ 时取到最小值:\pause 由
+			\begin{eqnarray*}
+				f(c)=E(X-EX+EX-c)^2=E(X-EX)^2+[EX-c]^2
+			\end{eqnarray*}
+			可得.
+		\end{enumerate}
+	\end{frame}
+
+
+	\begin{frame}
+		\frametitle{切比雪夫 (Chebyshev) 不等式}
+		\begin{thm}
+			设随机变量 $X$ 的期望与方差均存在，则对任意的 $\epsilon>0$ 有
+			\begin{eqnarray*}
+				P(|X-EX|\ge \epsilon)\le \dfrac{D(X)}{\epsilon^2}
+			\end{eqnarray*}
+		\end{thm}
+
+
+		\pause \zheng 记 $a=EX$, 则
+		\begin{eqnarray*}
+			P(|X-a|\ge \epsilon)&=&\pause\int_{\{x:|x-a|\ge \epsilon\}}dF(x)\le \int_{\{x:|x-a|\ge \epsilon\}}\dfrac{(x-a)^2}{\epsilon^2}dF(x)\\
+			&\le&\pause \dfrac{1}{\epsilon^2}\int_{-\infty}^{+\infty}(x-a)^2dF(x)=\pause \dfrac{D(X)}{\epsilon^2}
+		\end{eqnarray*}
+
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{$D(X)=0\Leftrightarrow P(X=EX)=1$}
+		\begin{thm}\label{sec:var0}
+			若随机变量 $X$ 的方差存在，则
+			\begin{eqnarray*}
+				D(X)=0\Leftrightarrow P(X=EX)=1.
+			\end{eqnarray*}
+			特别的，如果 $E (X^2)=0$, 则 $E (X)=0,D (X)=0$, 从而 $P (X=0)=1$.
+		\end{thm}
+
+		\pause \zheng 充分性显然，下面证必要性。设 $D (X)=0$, 此时 $EX$ 存在。注意到
+		\begin{eqnarray*}
+			\{|X-EX|>0\}=\pause \cup_{n=1}^\infty \{|X-EX|\ge \dfrac{1}{n}\}
+		\end{eqnarray*}
+		\pause 故
+		\begin{eqnarray*}
+			P(|X-EX|>0)&=&\pause P(\cup_{n=1}^\infty \{|X-EX|\ge \dfrac{1}{n}\})\\
+			&\le &\pause \sum_{n=1}^{\infty}P(|X-EX|\ge \dfrac{1}{n})\le\pause \pause \sum_{n=1}^{\infty}\dfrac{D(X)}{(1/n)^2}=0
+		\end{eqnarray*}
+		\pause 从而
+		\begin{eqnarray*}
+			P(X=EX)=1-P(|X-EX|>0)=1-0=1
+		\end{eqnarray*}
+
+
+
+	\end{frame}
+
+
+
+
+	\subsection{常见随机变量的期望与方差}
+	\begin{frame}
+		\frametitle{二项分布 $B (n,p)$ 的期望:$P (X=k)=C_n^kp^k (1-p)^{n-k}$}
+		% \begin{itemize}[<+-|alert@+>]
+			% \item 二项分布 $B (n,p)$: $P (X=k)=C_n^kp^k (1-p)^{n-k}, k=0,1,\cdots, n$.
+			\begin{eqnarray*}
+				E(X)&=&\pause \sum_{k=0}^nkP(X=k)=\pause \sum_{k=0}^n\dfrac{k\cdot n!}{k!(n-k)!}p^k(1-p)^{n-k}\\
+				&=&\pause \sum_{k=1}^{n}\dfrac{n!}{(k-1)!(n-k)!}p^k(1-p)^{n-k}\\
+				&=&\pause \sum_{k=1}^{n}\dfrac{n\cdot \textcolor{red}{(n-1)!}}{\textcolor{red}{(k-1)!(n-1-(k-1))!}}p \textcolor{red}{p^{k-1}(1-p)^{n-1-(k-1)}}\\
+				&=&\pause np\sum_{k=1}^nC_{n-1}^{k-1}p^{k-1}(1-p)^{n-1-(k-1)}\\
+				&=&\pause np
+			\end{eqnarray*}
+			\pause 特别的，对于两点分布 ($B (1,p)$) 随机变量 $X$, 有 $E (X)=p$. \pause 事实上对于两点分布其期望为: $E (X)=0\cdot P (X=0)+1\cdot P (X=1)=p$.
+			% \end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{计算二项分布期望的另一方法}
+		前面在讲二项分布时，我们知道:
+		\begin{eqnarray*}
+			X=X_1+X_2+\cdots+X_n
+		\end{eqnarray*}
+		其中 $X_k, k=1,\cdots, n$ 为第 k 次伯努利试验成功的次数，显然服从两点分布。故 \pause
+		\begin{eqnarray*}
+			EX_i&=&0\cdot P(X_i=0)+1\cdot P(X_i=1)=p\\
+			EX_i^2&=&0^2\cdot P(X_i=0)+1^2\cdot P(X_i=1)=p\\
+			D(X_i)&=&EX_i^2-(EX_i)^2=p-p^2=p(1-p)
+		\end{eqnarray*}
+
+
+		\pause 再由期望的线性性知
+		\begin{eqnarray*}
+			E(X)=\pause E(X_1+X_2+\cdots+X_n)=\pause E(X_1)+E(X_2)+\cdots +E(X_n)=\pause np
+		\end{eqnarray*}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{二项分布的方差 $D (X)$}
+		\vspace{-0.6cm}
+		\begin{eqnarray*}
+			E(X^2)&=&\pause \sum_{k=0}^nk^2P(X=k)=\pause \sum_{k=1}^nk(k-1+1)C_n^kp^k(1-p)^{n-k}\\
+			&=&\pause \sum_{k=1}^{n}k(k-1)C_n^kp^k(1-p)^{n-k}+\sum_{k=1}^{n}kC_n^kp^k(1-p)^{n-k}\\
+			&=&\pause \sum_{k=2}^{n}k(k-1)C_n^kp^k(1-p)^{n-k}+np\\
+			&=&\pause n(n-1)p^2\sum_{k=2}^nC_{n-2}^{k-2}p^{k-2}(1-p)^{(n-2)-(k-2)}+np\\
+			&=&\pause n(n-1)p^2+np
+		\end{eqnarray*}
+		\pause 故
+		\begin{eqnarray*}
+			D(X)=E(X^2)-(EX)^2=n(n-1)p^2+np-(np)^2=np(1-p)
+		\end{eqnarray*}
+		\pause 特别的，两点分布的方差为 $p (1-p)$.
+	\end{frame}
+	\begin{frame}
+		\frametitle{泊松分布的期望与方差: $P (X=k)=\dfrac{\lambda^k}{k!} e^{-\lambda}$}
+		\begin{eqnarray*}
+			E(X)&=&\pause \sum_{k=0}^\infty k P(X=k)=\sum_{k=0}^\infty k \dfrac{\lambda^k}{k!}e^{-\lambda}=\pause \sum_{k=1}^\infty  \lambda\dfrac{\lambda^{k-1}}{(k-1)!}e^{-\lambda}=\pause \lambda\\
+			E(X^2)&=&\pause \sum_{k=0}^\infty k^2 P(X=k)=\sum_{k=1}^\infty k^2 \dfrac{\lambda^k}{k!}e^{-\lambda}=\pause \sum_{k=1}^\infty[(k-1)+1]\dfrac{\lambda^{k}}{(k-1)!}e^{-\lambda}\\
+			&=&\pause \lambda^2e^{-\lambda}\sum_{k=2}^\infty \dfrac{\lambda^{k-2}}{(k-2)!}+\lambda e^{-\lambda}\sum_{k=1}^\infty  \dfrac{\lambda^{k-1}}{(k-1)!}=\pause \lambda^2+\lambda\\
+			D(X)&=&\pause E(X^2)-(EX)^2=\lambda^2+\lambda-\lambda^2=\lambda
+		\end{eqnarray*}
+
+	\end{frame}
+	\begin{frame}
+		\frametitle{几何分布的期望与方差:$P (X=k)=(1-p)^{k-1} p$}
+		\vspace{-0.6cm}
+		{\small \begin{eqnarray*}
+				\hspace{-0.5cm} E(X)&=&\pause \sum_{k=1}^\infty k (1-p)^{k-1}p=\pause p\sum_{k=1}^\infty \sum_{n=1}^k(1-p)^{k-1}=\pause p\sum_{n=1}^\infty\sum_{k=n}^\infty (1-p)^{k-1}\\
+				&=&\pause p\sum_{n=1}^\infty (1-p)^{n-1}\dfrac{1}{1-(1-p)}=\pause\sum_{n=1}^\infty (1-p)^{n-1}=\pause  \dfrac{1}{p}\\
+				E(X^2)&=&\pause \sum_{k=1}^\infty k^2 (1-p)^{k-1}p=\pause p\bigg[\sum_{k=1}^\infty k(k+1)(1-p)^{k-1}-\sum_{k=1}^\infty k(1-p)^{k-1}\bigg]\\
+				&=&\pause 2p\sum_{k=1}^\infty\sum_{n=1}^kn (1-p)^{k-1}-p\sum_{k=1}^\infty k (1-p)^{k-1}\\
+				&=&\pause 2p\sum_{n=1}^\infty n\sum_{k=n}^\infty (1-p)^{k-1}-\dfrac{1}{p}=\pause 2p\sum_{n=1}^\infty n(1-p)^{n-1}/p-\dfrac{1}{p}\\
+				&=&\pause \dfrac{2}{p^2}-\dfrac{1}{p}\\
+				D(X)&=&\pause E(X^2)-(EX)^2=\pause \dfrac{2}{p^2}-\dfrac{1}{p}-\dfrac{1}{p^2}=\pause \dfrac{1-p}{p^2}
+		\end{eqnarray*}}
+
+	\end{frame}
+	\begin{frame}
+		\frametitle{负二项分布的期望与方差: $P (X=k)=C_{k-1}^{r-1} p^r (1-p)^{k-r}$}
+		\vspace{-0.6cm}
+		{\small \begin{eqnarray*}
+				\hspace{-0.5cm} E(X)&=&\pause \sum_{k=r}^\infty k C_{k-1}^{r-1}p^r(1-p)^{k-r}=\pause \sum_{k=r}^\infty\dfrac{r}{p} \dfrac{k\cdot (k-1)!}{r\cdot (r-1)!(k-r)!}p^{r+1}(1-p)^{k-r}\\
+				&=&\sum_{k=r}^\infty\dfrac{r}{p} C_{k+1-1}^{r+1-1}p^{r+1}(1-p)^{k-r}=\pause \dfrac{r}{p}\sum_{l=r+1}^\infty C_{l-1}^{r+1-1}p^{r+1}(1-p)^{l-(r+1)}=\pause \dfrac{r}{p}\\
+				E(X^2)&=&\pause \sum_{k=r}^\infty k^2 C_{k-1}^{r-1}p^r(1-p)^{k-r}=\pause \sum_{k=r}^\infty k(k+1-1) C_{k-1}^{r-1}p^r(1-p)^{k-r}\\
+				&=&\sum_{k=r}^\infty k(k+1) C_{k-1}^{r-1}p^r(1-p)^{k-r}-\sum_{k=r}^\infty k C_{k-1}^{r-1}p^r(1-p)^{k-r}\\
+				&=&\sum_{k=r}^\infty\dfrac{r(r+1)}{p^2} C_{k+2-1}^{r+2-1}p^{r+2}(1-p)^{(k+2)-(r+2)}-\dfrac{r}{p}\\
+				&=&\pause \dfrac{r(r+1)}{p^2}-\dfrac{r}{p}\\
+				D(X)&=&\pause E(X^2)-(EX)^2=\pause \dfrac{r(r+1)}{p^2}-\dfrac{r}{p}-\big(\dfrac{r}{p}\big)^2=\pause \dfrac{r(1-p)}{p^2}
+		\end{eqnarray*}}
+	\end{frame}
+
+
+	% \begin{frame}
+		%   \frametitle{超几何分布的期望与方差: $P (X=k)=\dfrac{C_M^kC_{N-M}^{n-k}}{C_N^n}$}
+		%   \begin{eqnarray*}
+			%     E(X)&=& n\dfrac{M}{N}\\
+			%     E(X^2)&=&\dfrac{M(M-1)n(n-1)}{N(N-1)}+n\dfrac{M}{N}\\
+			%     D(X)&=&\dfrac{nM(N-M)(N-n)}{N^2(N-1)}
+			%   \end{eqnarray*}
+		%   具体证明见教材第 101-102 页.
+		% \end{frame}
+	\begin{frame}
+		\frametitle{均匀分布的期望与方差:$X\sim U (a,b)$}
+		\begin{itemize}[<+-|alert@+>]
+			\item 若 $X\sim U (a,b)$, 即 $p (x)=\left\{\begin{array}{ll}
+				\dfrac{1}{b-a}, & x\in (a,b)\\
+				\\
+				0, & \mbox{其他}
+			\end{array}\right.
+			$, 故 \pause
+			\begin{eqnarray*}
+				E(X)&=&\pause \int_{-\infty}^{+\infty}xp(x)dx=\pause \int_a^bx\dfrac{1}{b-a}dx=\pause \dfrac{a+b}{2}\\
+				E(X^2)&=&\pause \int_{-\infty}^{+\infty}x^2p(x)dx=\pause \int_a^bx^2\dfrac{1}{b-a}dx=\pause \dfrac{a^2+ab+b^2}{3}\\
+				D(X)&=&\pause E(X^2)-(EX)^2=\pause \dfrac{a^2+ab+b^2}{3}-\dfrac{(a+b)^2}{4}=\pause \dfrac{(b-a)^2}{12}
+			\end{eqnarray*}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		\frametitle{标准正态分布的期望与方差:$X\sim N (0,1)$}
+		\begin{itemize}
+			\item 若 $X\sim N (0,1)$ 即 $p (x)=\dfrac{1}{\sqrt{2\pi}} e^{-\dfrac{x^2}{2}}$ 则
+			\begin{eqnarray*}
+				E(X)&=&\pause \int_{-\infty}^{+\infty}xp(x)dx=\pause \int_{-\infty}^{+\infty}x\dfrac{1}{\sqrt{2\pi}}e^{-\dfrac{x^2}{2}}dx=\pause 0\\
+				D(X)&=&\pause E[(X-EX)^2]=\pause E(X^2)=\pause \int_{-\infty}^{+\infty}x^2p(x)dx\\
+				&=&\pause \int_{-\infty}^{+\infty}x^2\dfrac{1}{\sqrt{2\pi}}e^{-\dfrac{x^2}{2}}dx=\pause \dfrac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}xd(-e^{-\frac{x^2}{2}})\\
+				&=&\pause\dfrac{1}{\sqrt{2\pi}}\left(-xe^{-\frac{x^2}{2}}\bigg|_{-\infty}^{+\infty}+\int_{-\infty}^{+\infty}e^{-\frac{x^2}{2}}dx\right)\\
+				&=&\pause 1
+			\end{eqnarray*}
+
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		\frametitle{正态分布的期望与方差:$X\sim N (\mu,\sigma^2)$}
+		\begin{itemize}
+			\item 若 $X\sim N (\mu,\sigma^2)$, 则易知 $\dfrac{X-\mu}{\sigma}\sim N (0,1)$, 故
+			\begin{eqnarray*}
+				E(X)&=&\pause E(\sigma \cdot \dfrac{X-\mu}{\sigma}+\mu )=\pause \sigma E(\dfrac{X-\mu}{\sigma})+\mu=\pause \mu\\
+				D(X)&=&\pause D(\sigma \cdot \dfrac{X-\mu}{\sigma}+\mu )=\pause \sigma^2 D(\dfrac{X-\mu}{\sigma})=\pause \sigma^2
+			\end{eqnarray*}
+
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}
+		\frametitle{Gamma 分布的期望}
+		\begin{itemize}[<+-|alert@+>]
+			\item 若 $X\sim \Gamma (\alpha,\lambda)$ 即 $p (x)=\left\{\begin{array}{ll}
+				\dfrac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}, & x\ge 0\\
+				\\
+				0, &x<0
+			\end{array}\right.$, 故 \pause
+			{\small\begin{eqnarray*}
+					E(X)&=&\pause \int_{-\infty}^{+\infty}xp(x)dx=\pause \int_0^{+\infty}x\dfrac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}dx\\
+					&=&\pause \int_0^{+\infty}\dfrac{\Gamma(\alpha+1)}{\lambda\Gamma(\alpha)}\dfrac{\lambda^{\alpha+1}}{\Gamma(\alpha+1)}x^{\alpha+1-1}e^{-\lambda x}dx=\pause \dfrac{\Gamma(\alpha+1)}{\lambda\Gamma(\alpha)}=\dfrac{\alpha}{\lambda};\\
+					E(X^2)&=&\pause \int_{-\infty}^{+\infty}x^2p(x)dx=\pause \int_0^{+\infty}x^2\dfrac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x}dx\\
+					&=&\pause \int_0^{+\infty}\dfrac{\Gamma(\alpha+2)}{\lambda^2\Gamma(\alpha)}\dfrac{\lambda^{\alpha+2}}{\Gamma(\alpha+2)}x^{\alpha+2-1}e^{-\lambda x}dx=\pause \dfrac{\Gamma(\alpha+2)}{\lambda^2\Gamma(\alpha)}=\pause \dfrac{\alpha(\alpha+1)}{\lambda^2}\\
+					D(X)&=&\pause E(X^2)-(EX)^2=\pause \dfrac{\alpha(\alpha+1)}{\lambda^2}-\big(\dfrac{\alpha}{\lambda}\big)^2=\pause \dfrac{\alpha}{\lambda^2}
+			\end{eqnarray*}}
+
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		\frametitle{指数分布与 $\chi^2$ 分布的期望与方差}
+		\begin{itemize}[<+-|alert@+>]
+			\item 若 $X\sim \Gamma (1,\lambda)$ 分布即 $X$ 服从指数分布，此时 $\alpha=1$
+			\begin{eqnarray*}
+				E(X)&=&\pause \dfrac{\alpha}{\lambda}=\pause \dfrac{1}{\lambda}\\
+				E(X^2)&=&\pause \dfrac{\alpha(\alpha+1)}{\lambda^2}=\pause \dfrac{2}{\lambda^2}\\
+				D(X)&=&\pause \dfrac{\alpha}{\lambda^2}=\pause \dfrac{1}{\lambda^2}
+			\end{eqnarray*}
+
+
+			\item 若 $X\sim \Gamma (\frac{n}{2},\frac{1}{2})$ 即 $X$ 服从 $\chi^2 (n)$ 分布，此时 $\alpha=n/2, \lambda=1/2$  \begin{eqnarray*}
+				E(X)&=&\pause \dfrac{\alpha}{\lambda}=\pause n\\
+				E(X^2)&=&\pause \dfrac{\alpha(\alpha+1)}{\lambda^2}=\pause n(n+2)\\
+				D(X)&=&\pause \dfrac{\alpha}{\lambda^2}=\pause 2n
+			\end{eqnarray*}
+		\end{itemize}
+	\end{frame}
+\end{document}

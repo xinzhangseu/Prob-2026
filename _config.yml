@@ -1,29 +1,25 @@
 # Site settings
-title: Course Website
-subtitle: Title of the Course
+title: 概率论
+subtitle: 2026 年概率论课程
 description: |
-    Add a description of your course. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-    Etiam fermentum massa id justo varius, vitae blandit nibh aliquet. 
-    Nam consequat accumsan massa id lacinia. Proin ac placerat neque. Vivamus ornare eget tortor ac tincidunt. 
-    Mauris semper viverra dui in molestie. Proin bibendum metus orci, quis sollicitudin ligula pretium non. 
-    Integer nec lacus eget neque laoreet semper. Pellentesque eu dolor rutrum, consectetur enim nec, fermentum odio. 
-    Duis venenatis metus cursus, ultrices nulla in, dapibus urna. Fusce pellentesque eros sed justo viverra ultricies. 
-    Morbi porttitor dui ut erat congue accumsan. Donec eget turpis quam. Nam quis lobortis nisl. 
-    Pellentesque varius tincidunt purus, dictum sodales leo suscipit quis. 
-    Proin ullamcorper tristique nisi, quis hendrerit turpis. Donec non congue velit. 
-    Praesent accumsan odio egestas, mollis lorem eget, euismod arcu. 
-baseurl: "/course-website-template" # the subpath of your site, e.g. /blog/
+    本网站提供 2026 年概率论课程的教学安排、课程讲义、参考资料与课程通知。
+    课程内容涵盖概率空间、随机变量及其分布、数字特征、随机变量的收敛性、
+    大数定律与中心极限定理等主题。
+baseurl: "/Prob-2026" # GitHub Pages 项目站点的仓库子路径
 url: "https://xinzhangseu.github.io" # the base hostname & protocol for your site
-syllabus: "https://xinzhangseu.github.io/course-website-template/syllabus/syllabus.pdf"
-githubdir: "xinzhangseu/course-website-template"
+syllabus: "https://xinzhangseu.github.io/Prob-2026/syllabus/syllabus.pdf"
+githubdir: "xinzhangseu/Prob-2026"
 
 # Author/user information
 email: x.zhang.seu@gmail.com
 twitter_username:
 github_username:  xinzhangseu
+author: 张鑫
+jobtitle: 东南大学数学学院
 authorurl: "https://xinzhangseu.github.io"
 address: |
-    Nanjing, China
+    东南大学数学学院
+    南京，中国
 
 
 # Build settings

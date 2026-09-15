@@ -1,0 +1,690 @@
+% 取消下一行注释可生成 handout（无逐步显示）；保持注释则生成正常 slide。
+% \PassOptionsToClass{handout}{beamer}
+\documentclass[Main-Prob-All.tex]{subfiles}
+\begin{document}
+
+
+
+
+
+
+
+\title[概率论]{第十三讲：多维概率分布}
+\author[张鑫 {\rm Email: x.zhang.seu@foxmail.com} ]{\large 张 鑫}
+\institute[东南大学数学学院]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
+	\large 东南大学 \quad 数学学院 \\
+	\vspace{0.3cm}
+	% \trc{公共邮箱: \textrm{zy.prob@qq.com}\\
+		%    \hspace{-1.7cm}  密 \qquad 码: \textrm{seu!prob}}
+}
+\date{\rm \today}
+
+{ \setbeamertemplate{footline}{}
+  \begin{frame}
+    \titlepage
+  \end{frame}
+}
+
+% \begin{frame}[plain]
+%   \frametitle{目录}
+%   \setcounter{tocdepth}{2}
+%   \tableofcontents
+% \end{frame}
+\addtocounter{framenumber}{-3}  % 目录页不计算页码
+%\section{随机变量}
+\subsection{多维概率分布}
+\begin{frame}
+  \frametitle{$n$ 维随机向量的定义}
+  \begin{defi}[$n$ 维随机向量或随机变量] 如果 $X_1,\cdots, X_n$ 是定义在同一个概率空间 $(\Omega,\mathcal{F},P)$ 上的 $n$ 个随机变量，即
+    \begin{eqnarray*}
+      \{\omega:X_i (\omega)\in B_i\}\in \mathcal{F}, \quad \mbox{任意的} B_i\in \mathcal{B},
+    \end{eqnarray*}
+    则称 $X (\omega):=(X_1 (\omega),\cdots,X_n (\omega))$ 为概率空间 $(\Omega,\mathcal{F},P)$ 上的 $n$ 维随机向量或 $n$ 维随机变量.
+  \end{defi}
+
+\vspace{0.2cm}
+\begin{rmk}
+	\begin{itemize}[<+-|alert@+>]
+		\item 如果 $\left (X_1,\cdots ,X_n \right) $ 是一个 $n$ 维随机向量，则对任何不超过 $n$ 的正整数 $k$ 和 $1\leqslant j_1<\cdots <j_k\leqslant n$, $\left ( X_{j_1},\cdots ,X_{j_k} \right) $
+		都是一个 $k$ 维随机向量；
+		\item 特别地，当 $k=1$ 时就是随机变量.
+	\end{itemize}
+
+\end{rmk}
+
+\end{frame}
+\begin{frame}{$n$ 维随机向量的定义}
+
+
+	\begin{thm}
+		$X (\omega)=(X_1 (\omega),\cdots,X_n (\omega))$ 是定义在某个概率空间 $(\Omega,\mathcal{F},P)$ 上的 $n$ 维随机向量当且仅当对任意的 $(x_1,\cdots, x_n)\in \mathbb{R}^ n$ 均有
+		\[\{\omega: X_1(\omega)\leq x_1,\cdots, X_n(\omega)\leq x_n\}=\{X_1\leq x_1,\cdots, X_n\leq x_n\}\in\mathcal{F},\]
+		或等价的有对任意的 $B\in\mathcal{B}(\mathbb{R}^ n)$
+		\[\{\omega: X(\omega)\in B\}=\{\omega: (X_1(\omega),\cdots,X_n(\omega))\in B\}\in\mathcal{F}.\]
+	\end{thm}
+
+
+\end{frame}
+
+\begin{frame}{博雷尔函数与随机向量的复合}
+\begin{thm}
+设 $X=\left(X_{1}, X_{2}, \cdots, X_{d}\right)$ 为 $\Omega$ 上的 $n$ 维向量值函数, $f$ 为 $\mathbb{R}^{n}$ 上的博雷尔可测函数, 则 $Y:=f(X)$ 关于 $\Omega$ 上的 $\sigma$ 代数 $\sigma\left(X_{1}, X_{2}, \cdots, X_{n}\right)$ 可测. 特别地，若 $X$ 为 $(\Omega, \mathcal{F}, P)$ 上的 $n$ 维随机向量，则 $Y$ 为 $(\Omega, \mathcal{F}, P)$ 上的随机变量．
+\end{thm}
+
+\end{frame}
+
+
+
+
+\subsection{多维分布}
+\begin{frame}{多维分布及联合分布函数}
+		\begin{defi}[多维分布]
+		设 $X=\left (X_1,\cdots ,X_n \right) $ 是定义在某个概率空间 $\left ( \varOmega ,\mathcal{F},P   \right) $ 上的 $n$ 维随机向量，则对任意的 $B\in\mathcal{B}(\mathbb{R}^n)$, 称
+		$$
+		\mu(B):=P(X\in B)=P((X_1,\cdots, X_n)\in B)
+		$$ 为 $n$ 维随机向量 $X=\left (X_1,\cdots ,X_n \right)$ 的分布. % 为其分布函数，也称为随机变量 $ X_1,\cdots ,X_n$ 的联合分布函数.
+	\end{defi}
+
+\pause
+
+	\begin{defi}[分布函数或联合分布函数]
+		设 $X=\left (X_1,\cdots ,X_n \right) $ 是定义在某个概率空间 $\left ( \varOmega ,\mathcal{F},P \right) $ 上的 $n$ 维随机向量，称
+		$$
+		F\left( x_1,\cdots ,x_n \right) =P\left( X_1\leqslant x_1,\cdots ,X_n\leqslant x_n \right) ,\quad \forall \left( x_1,\cdots ,x_n \right) \in \mathbb{R}^n
+		$$ 为随机向量 $X$ 的分布函数，也称为随机变量 $ X_1,\cdots,X_n$ 的联合分布函数.
+	\end{defi}
+\pause
+\begin{rmk}
+\begin{itemize}[<+-|alert@+>]
+	\item $n$ 维随机向量的分布函数 $F (x_1,\cdots,x_n)$ 是定义在 $\mathbb{R}^n$ 上的 $n$ 元函数；
+	\item 称一个 $n$ 元函数 $F (x_1,\cdots,x_n)$ 为 $n$ 维分布函数，如果存在某个随机向量以它作为分布函数.
+\end{itemize}
+\end{rmk}
+
+\end{frame}
+
+\begin{frame}{差分算子}
+\begin{itemize}[<+-|alert@+>]
+\item 对于 $\mathbb{R}^{n}$ 上的函数 $F(x_1,\cdots,x_n)$, 定义如下差分算子 $\Delta_{\alpha_{i}, b_{i}}$:
+\begin{align*}
+   &\Delta_{a_{i}, b_{i}}F(x_{1}, \cdots, x_{n})\\
+   &=F\left(x_{1}, \cdots, x_{i-1}, b_{i}, x_{i+1}, \cdots, x_{n}\right)-F\left(x_{1}, \cdots, x_{i-1}, a_{i}, x_{i+1}, \cdots, x_{n}\right),
+\end{align*}
+
+\item $\Delta_{a_{i}, b_{i}}$ 差分算子可以通过复合来形成更加丰富的差分操作:
+\[
+\Delta_{\left(a_{1}, \cdots, a_{n}\right)}^{\left(b_{1}, \cdots, b_{n}\right)}F\left(x_{1}, \cdots, x_{n}\right) :=\Delta_{a_{1}, b_{1}} \Delta_{a_{2}, b_{2}} \cdots \Delta_{a_{n}, b_{n}} F\left(x_{1}, \cdots, x_{n}\right).
+\]
+\item
+以二元及三元情况为例，
+\begin{align*}
+	\Delta_{\left(a_{1}, a_{2}\right)}^{\left(b_{1}, b_{2}\right)} F&= \Delta_{a_{1}, b_{1}} \Delta_{a_{2}, b_{2}} F(x,y)=\Delta_{a_{1}, b_{1}} (F(x, b_2)-F(x,a_2)) \\
+	&=F\left(b_{1}, b_{2}\right)-F\left(a_{1}, b_{2}\right)-F\left(b_{1}, a_{2}\right)+F\left(a_{1}, a_{2}\right) \pause \\
+	\Delta_{\left(a_{1}, a_{2}, a_{3}\right)}^{\left(b_{1}, b_{2}, b_{3}\right)} F&= F\left(b_{1}, b_{2}, b_{3}\right)-F\left(a_{1}, b_{2}, b_{3}\right)-F\left(b_{1}, a_{2}, b_{3}\right)\\
+	&\quad -F\left(b_{1}, b_{2}, a_{3}\right) +F\left(a_{1}, a_{2}, b_{3}\right)+F\left(a_{1}, b_{2}, a_{3}\right)\\
+	&\quad +F\left(b_{1}, a_{2}, a_{3}\right)-F\left(a_{1}, a_{2}, a_{3}\right)
+\end{align*}
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{复合差分算子的表达式}
+\begin{thm}
+对于复合差分算子 $\Delta_{\left(a_{1}, \cdots, a_{n}\right)}^{\left(b_{1}, \cdots, b_{n}\right)}$，有如下表达式：
+$$\Delta_{\left(a_{1}, \cdots, a_{n}\right)}^{\left(b_{1}, \cdots, b_{n}\right)} F(x_1,\cdots,x_n)=\sum_{\boldsymbol{x}=(x_1,\cdots, x_n)\in\mathcal{O}} \operatorname{sgn}(\boldsymbol{x}) F(\boldsymbol{x}),$$
+			其中 \vspace{-0.5cm}
+			\begin{align*}
+				\mathcal{O}&:=\{(x_1,\cdots,x_n): x_j=a_j\mbox{或} b_j, 1\leq j\leq n\},\\
+				\operatorname{sgn}(\boldsymbol{x})&=\left\{
+				\begin{array}{ll}
+					1,& |\{j:x_j=a_j\}|\mbox{为偶数},\\
+					-1, &|\{j:x_j=a_j\}|\mbox{为奇数}.
+					\end{array}\right.
+			\end{align*}
+\end{thm}
+
+\pause
+
+为后面叙述方便, 我们引入以下记号:
+\begin{align*}
+  I(x_1,\cdots,x_n)&:= (-\infty, x_1]\times\cdots\times (-\infty, x_n]\\
+  %\tilde{\Delta}_{a_k, b_k}I(x_1,\cdots,x_n)
+  %&:= I(x_1,\cdots,x_{k-1}, b_k, x_{k+1},\cdots, x_n)\\
+  %&\quad -I(x_1,\cdots,x_{k-1}, a_k, x_{k+1},\cdots, x_n)\\
+  %&= ( -\infty, x_1]\times\cdots\times (-\infty, x_{k-1}]\times (a_k,b_k]\\
+  %&\quad \times (-\infty, x_{k+1}]\times\cdots\times (-\infty, x_n]
+\end{align*}
+
+\end{frame}
+
+\begin{frame}{复合差分算子与随机变量取值概率之间的联系}
+\begin{thm} 令 $F(x_1,\cdots,x_n)$ 是随机向量 $X:=\left (X_1,\cdots ,X_n \right)$ 的分布函数, 即
+		$$
+		F\left( x_1,\cdots ,x_n \right) =P\big( X\in I(x_1,\cdots,x_n) \big),
+		$$
+则我们有:
+\begin{align*}
+  \Delta_{\left(a_{1}, \cdots, a_{n}\right)}^{\left(b_{1}, \cdots, b_{n}\right)} F(x_1,\cdots,x_n) &:=\Delta_{a_{1}, b_{1}} \Delta_{a_{2}, b_{2}} \cdots \Delta_{a_{n}, b_{n}} F\left(x_{1}, \cdots, x_{n}\right) \\
+  &=P\big( X\in (a_1,b_1]\times\cdots\times (a_n,b_n]\big)\\
+  & \geq 0.
+\end{align*}
+
+
+\end{thm}
+
+
+%\pause
+
+
+
+
+
+\end{frame}
+
+
+
+\begin{frame}{复合差分算子与随机变量取值概率之间的联系}
+\zheng 注意到
+\begin{align*}
+  &I(x_1,\cdots,x_{n-1})\times (a_n,b_n] = I(x_1,\cdots,x_{n-1}, b_n) - I(x_1,\cdots,x_{n-1}, a_n)
+\end{align*}
+因此, \begin{align*}
+  &P(X\in I(x_1,\cdots,x_{n-1})\times (a_n,b_n]) \\
+  =&P\big( X\in I(x_1,\cdots,x_{n-1}, b_n)\big) - P\big(X\in I(x_1,\cdots,x_{n-1}, a_n)\big)\\
+  =& F(x_1,\cdots,x_{n-1}, b_n) - F(x_1,\cdots,x_{n-1}, a_n)=\Delta_{a_{n},b_n} F(x_1,\cdots,x_n)
+\end{align*}
+类似的, 由于
+\begin{align*}
+  &I(x_1,\cdots,x_{n-2})\times (a_{n-1}, b_{n-1}]\times (a_n,b_n] \\
+  =& I(x_1,\cdots,x_{n-2}, b_{n-1})\times (a_n, b_n] - I(x_1,\cdots,x_{n-2}, a_{n-1})\times (a_n, b_n]
+\end{align*}
+
+\end{frame}
+
+\begin{frame}{复合差分算子与随机变量取值概率之间的联系}
+
+故
+\begin{align*}
+  &P(X\in I(x_1,\cdots, x_{n-2})\times (a_{n-1}, b_{n-1}]\times (a_n,b_n])\\
+  =&P(X\in I(x_1,\cdots,x_{n-2},b_{n-1})\times (a_n,b_n])\\
+  &-P(X\in I(x_1,\cdots,x_{n-2},a_{n-1})\times (a_n,b_n])\\
+  =&\Delta_{a_n,b_n}F(x_1,\cdots,x_{n-2},b_{n-1}, x_n)-\Delta_{a_n,b_n}F(x_1,\cdots,x_{n-2},a_{n-1}, x_n)\\
+  =&\Delta_{a_{n-1},b_{n-1}}\Delta_{a_n,b_n}F(x_1,\cdots,x_n)
+\end{align*}
+\pause
+依此类推, 可得
+\begin{align*}
+  \Delta_{\left(a_{1}, \cdots, a_{n}\right)}^{\left(b_{1}, \cdots, b_{n}\right)} F(x_1,\cdots,x_n) &=\Delta_{a_{1}, b_{1}} \Delta_{a_{2}, b_{2}} \cdots \Delta_{a_{n}, b_{n}} F\left(x_{1}, \cdots, x_{n}\right) \\
+  &=P\big( X\in (a_1,b_1]\times\cdots\times (a_n,b_n]\big)\\
+  &\geq 0.
+\end{align*}
+\end{frame}
+
+% \begin{frame}{复合差分算子与随机变量取值概率之间的联系}
+% \zheng 注意到
+% \begin{align*}
+%   &I(x_1,\cdots,x_{n-1})\times (a_n,b_n] = I(x_1,\cdots,x_{n-1}, b_n) - I(x_1,\cdots,x_{n-1}, a_n)\\%= \tilde{\Delta}_{a_n, b_n} I(x_1,\cdots,x_n)\\
+%   &I(x_1,\cdots,x_{n-2})\times(a_{n-1},b_{n-1}]\times (a_n,b_n] \\
+%   &= I(x_1,\cdots,x_{n-2})\times(a_{n-1},b_{n-1}]\times (-\infty,b_n] \\
+%   &\quad - I(x_1,\cdots,x_{n-2})\times(a_{n-1},b_{n-1}]\times (-\infty, a_n] \\
+%   &=\tilde{\Delta}_{a_{n-1}, b_{n-1}} I(x_1,\cdots,x_{n-1}, b_n)- \tilde{\Delta}_{a_{n-1}, b_{n-1}} I(x_1,\cdots,x_{n-1}, a_n)\\
+%   &=\tilde{\Delta}_{a_{n-1}, b_{n-1}} \big[I(x_1,\cdots,x_{n-1}, b_n)- I(x_1,\cdots,x_{n-1}, a_n)\big]\\
+%   &= \tilde{\Delta}_{a_{n-1}, b_{n-1}} \tilde{\Delta}_{a_n, b_n} I(x_1,\cdots,x_n)
+% \end{align*}
+% 因此, \begin{align*}
+%   &P((X_1,\cdots,X_n)\in I(x_1,\cdots,x_{n-1})\times (a_n,b_n]) \\
+%   &=P\bigg( (X_1,\cdots,X_n)\in I(x_1,\cdots,x_{n-1}, b_n)\bigg) \\
+%   &\quad - P\bigg( (X_1,\cdots,X_n)\in I(x_1,\cdots,x_{n-1}, a_n)\bigg)\\
+%   &= F(x_1,\cdots,x_{n-1}, b_n) - F(x_1,\cdots,x_{n-1}, a_n)\\
+%   &=\Delta_{a_{n-1},b_n} F(x_1,\cdots,x_n)
+% \end{align*}
+% \end{frame}
+
+
+
+
+
+
+\begin{frame}{联合分布(函数)与边缘分布(函数)}
+\begin{itemize}[<+-|alert@+>]
+\item 随机向量 $X$ 的 第 $k$ ($1\leq k\leq n$) 个分量 $X_k$ 的分布称之为边缘分布:
+\[
+\mu_{k}(B):=P\left(X_{k} \in B\right)=\mu(\mathbb{R} \times \cdots \times \mathbb{R} \times B \times \mathbb{R} \times \cdots \times \mathbb{R}), \quad  B \in \mathcal{B}(\mathbb{R})
+\]
+\item 随机向量 $X$ 的 第 $k$ ($1\leq k\leq n$) 个分量 $X_k$ 的分布函数称之为边缘分布函数:
+\[
+F_{k}(x):=P\left(X_{k} \leqslant x\right)=F(\infty, \cdots, \infty, x, \infty, \cdots, \infty), \quad x \in \mathbb{R}.
+\]
+\item 显然联合分布函数可以确定边缘分布函数，反之是否成立? 即是否存在边缘分布函数相同但联合分布函数不同的情况?
+\end{itemize}
+
+\end{frame}
+
+
+
+
+\begin{frame}{$n$ 维随机向量分布函数的性质}
+	\vspace{-0.15cm}
+	\begin{thm}
+	 	$n$ 维随机向量 $X=\left (X_1,\cdots ,X_n \right)$ 的分布函数 $F\left ( x_1,\cdots ,x_n \right)$ 具有下述性质：
+		\begin{enumerate}[<+-|alert@+>]
+			\item $F\left (x_1,\cdots ,x_n \right)$ 对每个变元非降；
+			\item $F\left (x_1,\cdots ,x_n \right)$ 对每个变元右连续；
+			\item 对任意的 $1\leq j\leq n$, $$
+			\begin{aligned}
+				&\lim_{x_j\rightarrow -\infty} F\left( x_1,\cdots, x_j,\cdots,x_n \right) =0,\\
+				&\lim_{x_1\rightarrow \infty ,\cdots ,x_n\rightarrow \infty} F\left( x_1,\cdots ,x_n \right) =1\\
+			\end{aligned}
+			$$
+			\item $F\left (x_1,\cdots ,x_n\right)$ 具有增量非负性：对任意的 $1\leq j\leq n$ 及 $a_j\leqslant b_j$ 均有 %,j=1,\cdots ,n,$ 都有
+			$$
+			\Delta_{\left(a_{1}, \cdots, a_{n}\right)}^{\left(b_{1}, \cdots, b_{n}\right)} F(x_1,\cdots,x_n)\geq 0.
+			$$
+			% 其中 \vspace{-0.5cm}
+			% \begin{align*}
+			% 	\mathcal{O}&:=\{(x_1,\cdots,x_n): x_j=a_j\mbox{或} b_j, 1\leq j\leq n\},\\
+			% 	\operatorname{sgn}(\boldsymbol{x})&=\left\{
+			% 	\begin{array}{ll}
+			% 		1,& |\{j:x_j=a_j\}|\mbox{为偶数},\\
+			% 		-1, &|\{j:x_j=a_j\}|\mbox{为奇数}.
+			% 		\end{array}\right.
+			% \end{align*}
+%			其中共有 $2^n$ 个加项，$\boldsymbol{x}=\left ( x_1,\cdots ,x_n \right) $，有 $x_j=a_j$ 或 $b_j,j=1,\cdots ,n,$，并且当 $\sharp \left\{ j\mid x_j=a_j \right\} $ 为偶数时，${sgn}(\boldsymbol{x})$ 为 $+$ 号，当 $\sharp \left\{ j\mid x_j=a_j \right\} $ 为奇数时，${sgn}(\boldsymbol{x})$ 为 $-$ 号，其中 $\sharp \left\{ \cdot \right\} $ 表示集合 $\left\{ \cdot \right\} $ 中的元素个数.
+		\end{enumerate}
+	\end{thm}
+
+\end{frame}
+% \begin{frame}{$n$ 维随机向量分布函数的性质}
+
+% 特别的，当 $n=2$ 或 3 时，$\Delta_{\left (a_{1}, \cdots, a_{n}\right)}^{\left (b_{1}, \cdots, b_{n}\right)} F$ 有以下具体形式：
+% \begin{align*}
+% 	\Delta_{\left(a_{1}, a_{2}\right)}^{\left(b_{1}, b_{2}\right)} F&= F\left(b_{1}, b_{2}\right)-F\left(a_{1}, b_{2}\right)-F\left(b_{1}, a_{2}\right)+F\left(a_{1}, a_{2}\right) \pause \\
+% 	\Delta_{\left(a_{1}, a_{2}, a_{3}\right)}^{\left(b_{1}, b_{2}, b_{3}\right)} F&= F\left(b_{1}, b_{2}, b_{3}\right)-F\left(a_{1}, b_{2}, b_{3}\right)-F\left(b_{1}, a_{2}, b_{3}\right)\\
+% 	&\quad -F\left(b_{1}, b_{2}, a_{3}\right) +F\left(a_{1}, a_{2}, b_{3}\right)+F\left(a_{1}, b_{2}, a_{3}\right)\\
+% 	&\quad +F\left(b_{1}, a_{2}, a_{3}\right)-F\left(a_{1}, a_{2}, a_{3}\right)
+% \end{align*}
+
+
+
+
+
+% \end{frame}
+
+
+\begin{frame}
+  \frametitle{二维 (联合) 分布函数}
+  \begin{defi}
+    设 $(X,Y)$ 为 $(\Omega,\mathcal{F},P)$ 上的随机向量，称
+    \begin{eqnarray*}
+      F(x,y):=P(X\le x, Y\le y)
+    \end{eqnarray*}
+    为 $(X,Y)$ 的二维 (联合) 分布函数.
+  \end{defi}
+  % \vspace{-1cm}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=7cm]{fxy.jpg}
+    % \caption{高斯}
+  \end{figure}
+
+\end{frame}
+\begin{frame}
+  \frametitle{二维 (联合) 分布函数的性质}
+  \begin{thm}
+    $F (x,y)$ 具有性质
+    \begin{enumerate}[<+-|alert@+>]
+    \item $F (x,y)$ 对每个自变量是单调不减的；
+    \item $F (x,y)$ 对每个自变量都是右连续的；
+    \item{\small $\lim_{x\rightarrow -\infty}F(x,y)=\lim_{y\rightarrow -\infty}F(x,y)=1-\lim_{x\rightarrow +\infty, y\rightarrow +\infty }F(x,y)=0$;}
+    \item $F (x,y)$ 在任一矩形 $(a_1,b_1]\times (a_2,b_2]$ 上具有非负增量，即有
+      \begin{eqnarray*}
+        \Delta F=F(b_1,b_2)-F(a_1,b_2)-F(b_1,a_2)+F(a_1,a_2)\ge 0.
+      \end{eqnarray*}
+
+    \end{enumerate}
+
+  \end{thm}
+\end{frame}
+\begin{frame}
+  \frametitle{二维离散型分布}
+  \begin{defi}
+    若随机向量 $(X,Y)$ 有至多可列对可能值 $(x_i,y_i), i,j=1,2,\cdots,$, 则称随机向量及其联合分布是离散型的，而
+    \begin{eqnarray*}
+      p_{ij}:=p(x_i,y_j)=P(X=x_i,Y=y_j), \quad i, j=1,2,\cdots,
+    \end{eqnarray*}
+    称为 $(X,Y)$ 的联合分布列 (律). 我们常用下表来表示 $(X,Y)$ 的分布列
+  \end{defi}
+  % \vspace{-1cm}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=6cm]{pij.jpg}
+    % \caption{高斯}
+  \end{figure}
+
+\end{frame}
+\subsection{二维离散及连续型分布}
+\begin{frame}
+  \frametitle{二维离散型分布列的基本性质}
+  \begin{itemize}[<+-|alert@+>]
+  \item 非负性: $p_{ij}\ge 0, i,j=1,2,\cdots $;
+  \item 正则性: $\sum_i\sum_jp_{ij}=1$;
+  \item 与一维情形类似，对任意的 $B\in \mathcal{B}^2$,
+    \begin{eqnarray*}
+      P((X,Y)\in B)=\sum_{i, j: (x_i,y_j)\in B}p_{ij}.
+    \end{eqnarray*}
+\item 特别的,
+$$F(x, y)=P(X\leqslant x, Y \leqslant y)=\sum_{x_{i} \leqslant x} \sum_{y_{j} \leqslant y} p\left(x_{i}, y_{j}\right)=\sum_{x_{i} \leqslant x} \sum_{y_{j} \leqslant y} p_{ij}, (x, y) \in \mathbb{R}^{2}.$$
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{计算联合分布列的方法}
+  \begin{itemize}[<+-|alert@+>]
+  \item 确定随机变量 $(X, Y)$ 的所有取值数对；
+  \item 计算取每个数值对的概率；
+  \item 列出表格
+  \end{itemize}
+  \pause
+  \begin{exam}
+    从 $1,2,3,4$ 中任取一数记为 $X$, 再从 $1,\cdots,X$ 中任取一数记作 $Y$, 求 $(X,Y)$ 的联合分布列及 $P (X=Y)$.
+  \end{exam}
+\end{frame}
+\begin{frame}
+  \frametitle{二维连续型分布}
+  \begin{defi}
+    若存在二元非负可积函数 $p (x,y)$ 使得 $(X,Y)$ 的二维 (联合) 分布函数
+    \begin{eqnarray*}
+      F(x,y)=\int_{-\infty}^x\int_{-\infty}^yp(u,v)dudv, \forall (x,y)\in\mathbb{R}^2
+    \end{eqnarray*}
+    则称 $(X,Y)$ 及其概率分布为连续型的，称 $p (x,y)$ 为其联合分布密度.
+  \end{defi}
+  \vspace{0.5cm}
+
+  \pause
+  易知，联合分布密度具有以下两个基本性质:
+  \begin{enumerate}[<+-|alert@+>]
+  \item 非负性: $p (x,y)\ge 0$;
+  \item 正则性: $\int_{-\infty}^\infty\int_{-\infty}^\infty p (x,y) dxdy=1$.
+  \end{enumerate}
+
+
+
+\end{frame}
+\begin{frame}
+  \frametitle{联合分布密度与概率分布之间的关系}
+
+  \begin{itemize}[<+-|alert@+>]
+  \item $p(x,y)=\dfrac{\partial^2F(x,y)}{\partial x\partial y}$
+  \item 对于连续型随机变量，对任意的 $B\in \mathcal{B}^2$ 有
+    \begin{eqnarray*}
+      P((X,Y)\in B)=\iint_Bp(x,y)dxdy
+    \end{eqnarray*}
+  \item 如何证明上述等式?
+  \end{itemize}
+
+\end{frame}
+\begin{frame}
+
+  \begin{exam}
+    设 $(X,Y)$ 的联合密度函数为
+    \begin{eqnarray*}
+      p(x,y)=\left\{
+      \begin{array}{ll}
+        Ae^{-2x-3y},& x>0,y>0\\
+        0,&\mbox{其他}
+      \end{array}\right.
+    \end{eqnarray*}
+    试确定常数 $A$, 并求概率 $P (X<2,Y<1)$ 及 $P (2X+3Y<6)$.
+  \end{exam}
+
+  \jieda
+  \begin{itemize}[<+-|alert@+>]
+  \item 由 $\iint p (x,y) dxdy=1$ 可得 $A=6$;
+  \item $P(X<2,Y<1)=\pause \int_{-\infty}^2\int_{-\infty}^1p(x,y)dxdy=\pause \int_0^2\int_0^1p(x,y)dxdy=\pause (1-e^{-4})(1-e^{-3})$;
+  \end{itemize}
+
+  % \vspace{-1.5cm}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=4.8cm]{exam1.jpg}
+    % \caption{高斯}
+  \end{figure}
+\end{frame}
+\begin{frame}
+  \vspace{0.8cm}
+  注意到如果我们令 $D:=\{(x,y):2x+3y< 6\}$, 则
+  \begin{eqnarray*}
+    P(2X+3Y<6)&=&P((X,Y)\in D)=\iint_D p(x,y)dxdy\\
+              &=&\int_0^3\int_0^{\frac{1}{3}(6-2x)}6e^{-(2x+3y)}dxdy\\
+              &=&6\int_0^3e^{-2x}(-\frac{1}{3}e^{-3y})|_0^{\frac{1}{3}(6-2x)}dx=1-7e^{-6}
+  \end{eqnarray*}
+
+  % \vspace{-1.5cm}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=5cm]{exam2.jpg}
+  \end{figure}
+\end{frame}
+
+\subsection{边缘分布}
+\begin{frame}
+  \frametitle{边缘分布：随机向量的分量各自的概率分布}
+  \begin{defi}[边缘分布] 在 $(X,Y)$ 的联合分布函数中，令 $y\uparrow +\infty$ 可得
+    \begin{eqnarray*}
+      \lim_{y\rightarrow+\infty}F(x,y)&=&\pause \lim_{y\rightarrow+\infty}P(X\le x, Y\le y)\\ &=& \pause P(X\le x,Y\le +\infty)=F(x,+\infty)
+      \\
+      &=&\pause P(X\le x):=F_1(x).    \end{eqnarray*}
+  称 $F_1 (x)$ 为 $X$ 的边缘分布. \pause 类似的，$Y$ 的边缘分布为
+\begin{eqnarray*}
+F_2(y)=P(Y\le y)=\lim_{x\rightarrow+\infty}F(x,y)=F(+\infty,y)
+\end{eqnarray*}
+
+\end{defi}
+
+\pause 从边缘分布的定义可知，若 $(X,Y)$ 的联合分布为 $F (x,y)$, 则
+\begin{eqnarray*}
+X\sim F_1(x)=F(x,+\infty)\\
+Y\sim F_2(y)=F(+\infty, y)
+\end{eqnarray*}
+\end{frame}
+
+\begin{frame}
+	\frametitle{边缘分布的离散情形}
+	\begin{itemize}[<+-|alert@+>]
+		\item 边缘一词源于离散型情形。在二维离散型概率分布 $\{p_{ij}\}$ 的列表中，将各行求和写在表的最右一列，再将各列求和写在表的最下一行.
+		\item 若 $(X,Y)$ 的联合分布列为 $\{p_{ij}\}$, 则 \pause %\vspace{-0.6cm}
+		\begin{eqnarray*}
+			&&X\mbox{的分布列为:} P (X=x_i)=\pause \sum_{j} P (X=x_i,Y=y_j)=\pause \sum_{j} p_{ij}=\pause p_{i\cdot};\\
+			&& \pause Y\mbox{的分布列为:} P (Y=y_j)=\pause\sum_{i} P (X=x_i,Y=y_j)=\pause\sum_{i} p_{ij}=\pause p_{\cdot j}
+		\end{eqnarray*}
+
+	\end{itemize}
+	\pause \vspace{-0.3cm}
+	\begin{table}
+		\centering
+		\rowcolors[]{1}{blue!20}{blue!10}
+		\begin{tabular}{|c|c|c|c|c|c|c|}
+			\hline
+			\rowcolor{blue!50}
+			$i,j$ & 1  &2 &$\cdots$&$j$&$\cdots$ & $p_{i\cdot}$\\
+			\hline
+			1 & $p_{11}$ & $p_{12}$  & $\cdots$ &  $p_{1j}$& $\cdots$ & $p_{1\cdot}$\\
+			2  & $p_{21}$ & $p_{22}$  &$\cdots$ &  $p_{2j}$  &$\cdots$ & $p_{2\cdot}$\\
+			$\vdots$ & $\vdots$ & $\vdots$  &$\vdots$ &  $\vdots$ &$\vdots$& \\
+			$i$ & $p_{i1}$ & $p_{i2}$  & $\cdots$ & $p_{ij}$ &$\cdots$ & $p_{i\cdot}$\\
+			$\vdots$ & $\vdots$ & $\vdots$  &$\vdots$ &  $\vdots$ &$\vdots$& \\
+			$p_{\cdot j}$& $p_{\cdot 1}$& $p_{\cdot 2}$& $\cdots$& $p_{\cdot j}$&$\cdots$& \\  \hline
+		\end{tabular}
+		% \caption{二维离散型分布列}
+	\end{table}
+
+\end{frame}
+\begin{frame}
+	\frametitle{边缘分布的连续情形}
+	\begin{itemize}[<+-|alert@+>]
+		\item 注意到
+		\vspace{-0.4cm}\begin{eqnarray*}
+			\hspace{-0.3cm}F_1(x)&=&P(X\le x)=\pause F(x,+\infty)=\pause \int_{-\infty}^x\int_{-\infty}^{+\infty}p(u,v)dudv\\
+			&=&\pause \int_{-\infty}^x\underbrace{\left[\int_{-\infty}^{+\infty}p(u,v)dv\right]}_{p_1(u)}du=\pause \int_{-\infty}^xp_1(u)du
+		\end{eqnarray*}
+		\vspace{-0.4cm}   \pause  类似的有，\begin{eqnarray*}
+			\hspace{-0.3cm}F_2(y)&=&P(Y\le y)=\pause F(+\infty,y)=\pause \int_{-\infty}^y\int_{-\infty}^{+\infty}p(u,v)dudv\\
+			&=&\pause \int_{-\infty}^x\underbrace{\left[\int_{-\infty}^{+\infty}p(u,v)du\right]}_{p_2(v)}dv=\pause \int_{-\infty}^yp_2(v)dv
+		\end{eqnarray*}
+\item 对于连续型随机向量，其分量仍为连续型，相应的边缘密度分别为 $$p_1 (x)=\int_{-\infty}^{+\infty} p (x,y) dy,\quad  p_2 (y)=\int_{-\infty}^{+\infty} p (x,y) dx$$
+\end{itemize}
+\end{frame}
+\begin{frame}{二维连续与分量连续之间的关系}
+\begin{itemize}[<+-|alert@+>]
+\item 若 $(X, Y)$ 为二维连续型分布, 则分量 $X$ 与 $Y$ 也均为连续型分布.
+\item 若  $X$ 与 $Y$ 均为连续型分布, $(X,Y)$ 是否为二维连续型分布?
+\begin{itemize}[<+-|alert@+>]
+\item 设 $X$ 服从均匀分布 $U(0,1)$, 并令 $Y=\sqrt{X}$;
+\item $Y$ 也服从绝对连续型分布且有分布密度 $p_{Y}(y)=2 y, 0<y<1$;
+\item 记 $E=\{(x, \sqrt{x}): 0<x<1\}$, 则显然有 $P\{(X, Y) \in E\}=1$;
+\item 由于集合 $E$ 的二维勒贝格测度为零，随机向量 $(X, Y)$ 不是绝对连续型的．
+\item 可见，随机向量的边缘分布是绝对连续型的并不能保证其联合分布是绝对连续型的．
+\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+
+
+
+\subsection{常见的多维分布}
+\begin{frame}
+\frametitle{常见的多维离散型分布：多项分布}
+\begin{itemize}[<+-|alert@+>]
+\item 多项分布：进行 $n$ 次独立重复试验，每次试验有 $r$ 个互不相容的结果:$A_1,\cdots, A_r$ 之一发生；
+\item 每次试验中 $A_i$ 发生的概率为 $p_i=P (A_i), i=1,\cdots,  r$ 且 $p_1+\cdots +p_r=1$;
+\item 记 $X_i$ 为 $n$ 次独立试验中 $A_i$ 出现的次数，则 $(X_1,X_2,\cdots,X_r)$ 取值 $(n_1,n_2,\cdots,n_r)$ 的概率，即 $A_i,i=1,\cdots, r$ 出现 $n_i$ 次的概率为
+\pause  \begin{eqnarray*}
+	P(X_1=n_1,\cdots, X_r=n_r)=\dfrac{n!}{n_1!n_2!\cdots n_r!}p_1^{n_1}p_2^{n_2}\cdots p_r^{n_r}
+\end{eqnarray*}
+其中 $n=n_1+\cdots+n_r$;
+\item 这个联合分布列称为 $r$ 项分布，又称多项分布，记作 $M (n,p_1,\cdots,p_r)$.
+\item 上述概率是多项式 $(p_1+p_2+\cdots+p_r)^n$ 的一项，故其和为 1.
+\item $r=2$ 时即为二项分布.
+\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{常见的多维离散型分布：多维超几何分布}
+	\begin{itemize}
+		\item 多维超几何分布：袋中有 $N$ 个球，其中有 $N_i$ 个 $i$ 号球，$i=1,2,\cdots, r$, 且 $N_1+N_2+\cdots +N_r=N$;
+		\item 从中任取 $n$ 个球，若记 $X_i$ 为取出的 $n$ 个球中 $i$ 号球的个数，$i=1,2,\cdots, r$, 则 \pause
+		\begin{eqnarray*}
+			P(X_1=n_1,X_2=n_2,\cdots, X_r=n_r)=\dfrac{C_{N_1}^{n_1}C_{N_2}^{n_2}\cdots C_{N_r}^{n_r}}{C_{N}^n}
+		\end{eqnarray*}
+		其中 $n_1+n_2+\cdots+n_r=n$;
+		\item $r=2$ 时即为超几何分布.\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{多维均匀分布}
+	\begin{defi}
+		设 $D$ 为 $\mathbb{R}^ n$ 中的一个有界区域，其度量为 $S_D$, 如果多维随机变量 $(X_1,\cdots, X_n)$ 的联合密度函数为
+		\begin{eqnarray*}
+			p(x_1,\cdots,x_n)=\left\{
+			\begin{array}{ll}
+				\dfrac{1}{S_D}, &(x_1,x_2,\cdots,x_n)\in D\\
+				0,&\mbox{其他}
+			\end{array}\right.
+		\end{eqnarray*}
+		则称 $(X_1,\cdots,X_n)$ 服从 $D$ 上的多维均匀分布，记作 $(X_1,\cdots, X_n)\sim U (D)$.
+	\end{defi}
+	\vspace{0.5cm}
+
+	\pause 二维均匀分布所描述的随机现象就是向平面区域 $D$ 中随机投点，如果该点的坐标 $(X,Y)$ 落在 $D$ 的子区域 $G$ 中的概率只与 $G$ 的面积有关，而与 $G$ 的位置无关，\pause 则
+	\begin{eqnarray*}
+		P((X,Y)\in G)=\iint_{G}p(x,y)dxdy=\iint_{G}\dfrac{1}{S_D}dxdy=\dfrac{S_G}{S_D}
+	\end{eqnarray*}
+
+\end{frame}
+\begin{frame}
+	\vspace{0.4cm}
+	\begin{exam}
+		设 $(X,Y)$ 服从单位圆 $D=\{(x,y):x^2+y^2<1\}$ 上的均匀分布，试求其边缘密度函数 (\textcolor{red}{非均匀分布}).
+	\end{exam}
+	\begin{columns}
+		\pause   \column{3cm}
+		% \vspace{-2cm}
+		\begin{figure}[h]
+			\centering
+			\hspace{-1cm} \includegraphics[width=4cm]{exam3.jpg}
+		\end{figure}
+		\pause %\vspace{0.7cm}
+		\column{6.5cm}
+		\pause $(X,Y)$ 的联合密度为
+		\begin{eqnarray*}
+			p(x,y)=\left\{
+			\begin{array}{ll}
+				\dfrac{1}{\pi}, & x^2+y^2<1\\
+				0, & \mbox{其他}
+			\end{array}\right.
+		\end{eqnarray*}
+		\pause 故当 $|x|\ge 1$, $p (x,y)=0$, 从而 $p_1 (x)=0$; 当 $|x|<1$ 时，
+		\begin{eqnarray*}
+			p_1(x)&=&\pause \int_{-\infty}^{+\infty}p(x,y)dy=\pause \int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}}\dfrac{1}{\pi}dy
+			\\
+			&=&\pause \dfrac{2}{\pi}\sqrt{1-x^2}
+		\end{eqnarray*}\pause
+		类似可得 $Y$ 的密度为 $p_2 (y)=\dfrac{2}{\pi}\sqrt{1-y^2}
+		$
+	\end{columns}
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}
+	\frametitle{二维正态分布}
+	\begin{defi}
+		设参数 $\mu_1,\mu_2,\sigma_1,\sigma_2, \rho$ 满足 $\sigma_1>0,\sigma_2>0$ 及 $-1<\rho<1$, 称以
+		\begin{eqnarray*}
+			p(x,y)&=&\dfrac{1}{2\pi \sigma_1\sigma_2\sqrt{1-\rho^2}}\times\\
+			&&\hspace{-1cm}\exp\bigg\{-\dfrac{1}{2(1-\rho^2)}\bigg[\dfrac{(x-\mu_1)^2}{\sigma_1^2}-\dfrac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\dfrac{(y-\mu_2)^2}{\sigma_2^2}\bigg]\bigg\}
+		\end{eqnarray*}
+		为密度函数的连续型分布为二维正态分布，记作 $$(X,Y)\sim N (\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho).$$
+	\end{defi}
+
+	\pause 后面我们会给出
+	\begin{eqnarray*}
+		\int_{-\infty}^{+\infty}  \int_{-\infty}^{+\infty}p(x,y)dxdy=1
+	\end{eqnarray*}
+	的证明.
+\end{frame}
+
+\begin{frame}
+	\frametitle{二维正态分布密度图像}
+	\vspace{0.2cm}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=11cm]{n2.jpg}
+	\end{figure}
+\end{frame}
+\begin{frame}
+	\frametitle{二维正态分布的边缘分布}
+	\vspace{-0.3cm}
+	\begin{thm}
+		若 $(X,Y)$ 为二维正态分布 $N (\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)$, 则 $$X\sim N (\mu_1,\sigma_1^2), \quad Y\sim N (\mu_2,\sigma_2^2)$$
+	\end{thm}
+	\vspace{-0.1cm}
+	\pause\zheng $X$ 的边缘分布密度为
+	{\small \begin{eqnarray*}
+			p_1(x)&=&\pause \int_{-\infty}^{+\infty}\dfrac{1}{2\pi \sigma_1\sigma_2\sqrt{1-\rho^2}}\\
+			&&\hspace{-0.3cm}\pause\cdot \exp\bigg\{-\dfrac{1}{2(1-\rho^2)}\bigg[\dfrac{(x-\mu_1)^2}{\sigma_1^2}-\dfrac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\dfrac{(y-\mu_2)^2}{\sigma_2^2}\bigg]\bigg\}dy\\
+			&=&\pause \int_{-\infty}^{+\infty}\dfrac{1}{2\pi \sigma_1\sqrt{1-\rho^2}}\exp\left\{-\dfrac{u^2-2\rho uv+v^2}{2(1-\rho^2)}\right\}dv\\
+			&=&\pause \int_{-\infty}^{+\infty}\dfrac{1}{2\pi \sigma_1\sqrt{1-\rho^2}}\exp\left\{-\dfrac{1}{2}\left[\left(\dfrac{v-\rho u}{\sqrt{1-\rho^2}}\right)^2+u^2\right]\right\}dv\\
+			&=&\pause \dfrac{1}{\sqrt{2\pi}\sigma_1}e^{-\dfrac{(x-\mu_1)^2}{2\sigma_1^2}}\int_{-\infty}^{+\infty}\dfrac{1}{\sqrt{2\pi}} e^{-\dfrac{t^2}{2}}dt=\pause \dfrac{1}{\sqrt{2\pi}\sigma_1}e^{-\dfrac{(x-\mu_1)^2}{2\sigma_1^2}}
+	\end{eqnarray*}}
+	\pause 类似的可得 $Y\sim N (\mu_2,\sigma_2^2)$.
+\end{frame}
+%  \begin{frame}
+	% \frametitle{作业}
+	% P86-87. 习题 2.5.5: 3, 6, 7, 8, 9.
+	%\end{frame}
+\end{document}
