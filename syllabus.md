@@ -8,13 +8,13 @@ permalink: /syllabus/
   <div><span>课程名称</span><strong>概率论（Probability Theory）</strong></div>
   <div><span>开课学期</span><strong>2026 年秋季学期</strong></div>
   <div><span>授课教师</span><strong>张鑫 · 东南大学数学学院</strong></div>
-  <div><span>课程编号</span><strong>MATH 2XXX</strong></div>
-  <div><span>上课时间</span><strong>周二、周四 14:00–15:45</strong></div>
-  <div><span>上课地点</span><strong>九龙湖校区 J2-204</strong></div>
-  <div><span>答疑时间</span><strong>周三 09:00–11:30</strong></div>
-  <div><span>办公室</span><strong>数学系 320 室</strong></div>
-  <div><span>电子邮箱</span><strong><a href="mailto:xinzhang@seu.edu.cn">xinzhang@seu.edu.cn</a></strong></div>
-  <div><span>课程主页</span><strong><a href="{{ '/' | relative_url }}">{{ site.url }}{{ site.baseurl }}</a></strong></div>
+  <div><span>课程编号</span><strong>B0700082 / B0700083</strong></div>
+  <div><span>上课时间</span><strong>荣誉：周二（3–4）、周四（6–7）<br>普通：周二（1–2）、周四（8–9）</strong></div>
+  <div><span>上课地点</span><strong>九龙湖校区 J2-109</strong></div>
+  <div><span>答疑时间</span><strong>每周二 12:00–13:30</strong></div>
+  <div><span>办公室</span><strong>新文科楼 528-4</strong></div>
+  <div><span>电子邮箱</span><strong><a href="mailto:x.zhang.seu@gmail.com">x.zhang.seu@gmail.com</a></strong></div>
+  <div><span>课程主页</span><strong><a href="https://xinzhangseu.github.io/Prob-2026/">xinzhangseu.github.io/Prob-2026</a></strong></div>
 </div>
 
 ## 课程简介
@@ -60,13 +60,6 @@ permalink: /syllabus/
 - 作业提交时间为每周四上课前；
 - 使用 A4 纸书写，首行注明“第 k 次作业：姓名—学号”；
 - 解答应包含必要的语言说明，不能只有公式。
-
-## 答疑与课程联系
-
-- 答疑时间：每周二 12:00–13:30；
-- 答疑地点：新文科楼 528-4 办公室；
-- 理科试验班 QQ 群：1012134052；
-- 强基拔尖班 QQ 群：856657190。
 
 ## 教学内容与进度
 
