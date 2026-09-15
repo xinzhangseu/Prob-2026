@@ -1,104 +1,149 @@
-Steve's No-Good-Very-Bad Course Website Jekyll Template
-=======================================================
+# 概率论（Prob-2026）
 
-This repository contains a Jekyll template, patterned entirely off my no-good-very-bad Jekyll Template at [svmiller.com](http://svmiller.com), for organizing a course website. I should note that because I ganked it from my website template, there's a lot of empty tags in the template that make reference to things that don't appear in the main `.yml` file. In other words, they reference things that should be there but, because they're not there, ultimately won't interfere with how the site renders.
+本仓库用于维护东南大学数学学院 2026 年秋季学期概率论课程网站及配套讲义。
 
+- 课程主页：<https://xinzhangseu.github.io/Prob-2026/>
+- 授课教师：张鑫
+- 课程编号：B0700082 / B0700083
+- 上课地点：九龙湖校区 J2-109
+- 联系邮箱：[x.zhang.seu@gmail.com](mailto:x.zhang.seu@gmail.com)
 
-## Installation
+## 课程内容
 
-This assumes that you have a working installation of Jekyll. If you don't, first visit [Jekyll's documentation](https://jekyllrb.com/docs/installation/) to learn how to. 
+课程以概率的公理化体系为主线，内容包括随机事件与概率空间、条件概率与独立性、随机变量及其分布、多维分布、随机变量函数的分布、数字特征、母函数与特征函数、随机变量的收敛性、大数定律和中心极限定理。
 
-1. [Fork this repo](https://github.com/svmiller/course-website) and clone it locally.
+课程共 16 周，每周 2 次课，共 32 次课。详细安排请查看[教学大纲](https://xinzhangseu.github.io/Prob-2026/syllabus/)。
+
+## 网站栏目
+
+- [教学大纲](https://xinzhangseu.github.io/Prob-2026/syllabus/)：课程信息、学习目标、成绩构成、作业要求、参考书目及 16 周教学进度。
+- [课程资料](https://xinzhangseu.github.io/Prob-2026/course-materials/)：教材、延伸阅读、学习建议和课程资源说明。
+- [课程讲义](https://xinzhangseu.github.io/Prob-2026/lectures/)：23 讲 Handout、课堂 Slide 和 TeX 源文件。
+- [课程通知](https://xinzhangseu.github.io/Prob-2026/announcements/)：作业布置、调课、资料更新及考试通知。
+
+## 讲义文件
+
+全部讲义位于 [`Lectures/`](Lectures/)：
+
+| 文件 | 用途 |
+| --- | --- |
+| `L01.tex`–`L23.tex` | 各讲 Beamer 源文件 |
+| `L01.pdf`–`L23.pdf` | Handout 版，取消逐步显示，适合阅读和打印 |
+| `L01-S.pdf`–`L23-S.pdf` | Slide 版，保留逐步显示，适合课堂演示 |
+| `Prob-All.tex` | 统一导言及整套讲义编译入口 |
+| `Prob-All.pdf` | 整套 Handout |
+| `Prob-All-S.pdf` | 整套课堂 Slide |
+| `figures/` | 讲义使用的图片资源 |
+| `beamerthemenankai.sty` | Beamer 主题样式 |
+
+每讲源文件使用 `subfiles` 继承统一导言。讲义页的文件信息由 [`_data/lectures.yml`](_data/lectures.yml) 统一维护。
+
+## 编译讲义
+
+讲义使用 XeLaTeX 编译。请先安装包含 XeLaTeX、`xeCJK`、Beamer 和 `subfiles` 的 TeX 发行版，并在 `Lectures` 目录中执行命令。
+
+### 编译整套讲义
 
 ```bash
-cd ~/Sites/
-
-git clone https://github.com/YOUR_USER_NAME/course-website.git
-
+cd Lectures
+xelatex Prob-All.tex
 ```
 
-2. Create a new empty theme with Jekyll
+如目录或交叉引用尚未更新，可连续编译两次。
+
+### 编译单讲
+
+例如编译第 4 讲：
 
 ```bash
-cd ~/Sites/
-
-jekyll new-theme ipa
-
-             create ~/Sites/ipa/assets
-             create ~/Sites/ipa/_layouts
-             create ~/Sites/ipa/_includes
-             create ~/Sites/ipa/_sass
-             create ~/Sites/ipa/_layouts/page.html
-             create ~/Sites/ipa/_layouts/post.html
-             create ~/Sites/ipa/_layouts/default.html
-             create ~/Sites/ipa/Gemfile
-             create ~/Sites/ipa/ipa.gemspec
-             create ~/Sites/ipa/README.md
-             create ~/Sites/ipa/LICENSE.txt
-         initialize ~/Sites/ipa/.git
-             create ~/Sites/ipa/.gitignore
-Your new Jekyll theme, ipa, is ready for you in ~/Sites/ipa! 
-For help getting started, read ~/Sites/ipa/README.md. 
-
-
+cd Lectures
+xelatex L04.tex
 ```
 
-3. Open the ``ipa.gemspec`` file and edit it as follows:
+> 注意：当前 23 个单讲源文件的 `\documentclass[...]{subfiles}` 仍引用旧文件名 `Main-Prob-All.tex`，而本仓库中的统一主文件名为 `Prob-All.tex`。直接编译单讲前，应先将该参数统一改为 `Prob-All.tex`；整套讲义从 `Prob-All.tex` 编译不受影响。
 
-```bash
-  spec.summary	=	"WRITE A SHORT SUMMARY OF YOUR THEME"
-  spec.homepage	=	"http://address.com"
+### Handout 与 Slide
 
-### Update the following two version numbers as per what's on your system.
-  spec.add_development_dependency "bundler", "~> 2.0.1"
-  spec.add_development_dependency "rake", "~> 12.3.2"
+每讲文件开头保留以下接口：
 
-``` 
-
-4. Run ``bundle install`` inside ``~/Sites/ipa/``.  This should run successfully and install all the necessary gems.  It will also create a ``Gemfile`` and a ``Gemfile.lock`` inside your project.
-
-5. Now we are ready to migrate necessary theme files from ``~/Sites/course-website/`` to ``~/Sites/ipa/``.  Copy the following files and folders.  If a folder already exists (e.g. ``_includes``), just copy files inside. If a file already exists, overwrite it.
-
-```bash
-_config.yml
-_css/
-_data/
-_images/
-_includes/
-_layouts/
-_posts/
-_sass/
-_site/
-assets/
-blog.md
-CNAME
-course-materials.md
-feed.xml
-index.html
-lectures.md
-LICENSE.txt
-README.md
-sitemap.xml
-syllabus/
-untitled-lecture/
-
+```tex
+% \PassOptionsToClass{handout}{beamer}
 ```
 
-6. Edit ``_config.yml`` to customize site details.  Then fire up ``jekyll serve``.  You may need to do ``bundle exec jekyll serve`` instead, if you have a separate Ruby installation for Jekyll's purposes.  The site template should be only at ``http://localhost:4000`` now. 
+- 保持注释：生成保留逐步显示的 Slide 版，发布时命名为 `Lxx-S.pdf`；
+- 取消注释：生成不含逐步显示的 Handout 版，文件名保持为 `Lxx.pdf`。
 
-7. Follow the remaining directions below to fully customize your site.
+提交仓库时保留 `.tex` 和最终 `.pdf`，LaTeX 辅助文件已由 [`.gitignore`](.gitignore) 排除。
 
-Here are the things you should tweak to make it your own:
+## 本地预览课程网站
 
-- `_config.yml`. Naturally. This should be familiar if you're accustomed to Jekyll. Do note, for convenience, that I made the `syllabus` field a full URL entry. You should also fill out the `githubdir` field since the goal is to make your course (and, by extension, the knowledge you propose to communicate) open source and reproducible on Github. Let us know where it is.
-- `course-materials.md`: Fudge this to add in helpful information about your course (e.g. the book and whatever else you want to communicate).
-- `index.html`: You won't need to edit much but, if you want your own lead image for your course website that's *not* from *Stand and Deliver* (I don't know why you would do this, but, hey, it's your class...), edit that Jekyll liquid tag I created that embeds images in my spiffy way. This should be intuitive. Just specify a relative path for the image you want to use, how wide you want it to be, and whatever caption you want to add to it.
-- `_data/lectures.yml`: This uses YAML data to render Github and local links to lectures. This should be straightforward (see my example file) but [feel free to look at this tutorial](https://jekyllrb.com/docs/datafiles/) if you want to better understand what's happening here. You could also edit `lectures.md` if, for example, you render your lectures to HTML in lieu of PDF. I do PDF. Changing this isn't hard, though, and should be straightforward. Basically, change ".pdf" to ".html" as you see it and then, probably, find a nice icon for HTML on [Font Awesome](https://fontawesome.com/).
-- `_includes/nav.html`: You won't have to tweak this, per se, but you may want to if, for example, you want to add a course blog. I don't do that, but I do prove a `blog.md` file. Head to [Font Awesome](https://fontawesome.com/) if you're looking for the perfect icon to go with it.
-- `CNAME`: Adding a special domain or subdomain to your course website? Change it here. Is its own Github page on a special account you created on Github (but you're *not* using a special domain on top of that [[example](https://github.com/uw-csss-564)])? Delete it.
+网站使用 Jekyll 构建。在仓库根目录运行：
 
-You can see a snapshot of what it looks like below. You can also try it out here: [http://course-website.svmiller.com/](http://course-website.svmiller.com/)
+```bash
+jekyll serve --host 127.0.0.1 --port 4000
+```
 
-![Snapshot](_images/snapshot.png)
+然后访问：
 
-Feel free to contact me at svmille@clemson.edu. Send along some cheers too if you find it useful.
+<http://127.0.0.1:4000/Prob-2026/>
+
+也可以单独构建网站：
+
+```bash
+jekyll build
+```
+
+生成的 `_site/` 目录仅用于本地预览，不纳入版本控制。推送到 `master` 分支后，GitHub Pages 会自动构建并部署网站。
+
+## 更新课程内容
+
+### 更新讲义目录
+
+1. 将新的 `.tex`、Handout PDF 和 Slide PDF 放入 `Lectures/`；
+2. 在 [`_data/lectures.yml`](_data/lectures.yml) 中更新主题、摘要和文件名；
+3. 本地检查 `/Prob-2026/lectures/` 页面中的三个资源链接。
+
+### 发布课程通知或作业
+
+在 `_posts/` 中新建符合 `YYYY-MM-DD-title.md` 命名规则的文件。例如：
+
+```yaml
+---
+layout: post
+title: "第 02 次作业｜条件概率（截止：2026-09-24）"
+date: 2026-09-17 19:00:00 +0800
+author: 张鑫
+categories:
+  - 作业
+---
+```
+
+作业正文建议依次包含“作业内容、提交时间、提交方式、注意事项和相关资料”。现有的 [`_posts/2026-09-15-homework-01.md`](_posts/2026-09-15-homework-01.md) 可直接复制作为模板。
+
+### 修改网站页面
+
+| 内容 | 文件 |
+| --- | --- |
+| 首页 | `index.html`、`_config.yml` |
+| 教学大纲 | `syllabus.md` |
+| 课程资料 | `course-materials.md` |
+| 讲义目录 | `lectures.md`、`_data/lectures.yml` |
+| 课程通知 | `blog.md`、`_posts/` |
+| 顶部导航 | `_includes/nav.html` |
+| 页面样式 | `_sass/`、`_css/main.scss` |
+
+## 部署检查
+
+提交前建议完成以下检查：
+
+```bash
+jekyll build
+git diff --check
+git status
+```
+
+确认网站构建成功、23 讲资源链接完整，并且没有将 `_site/`、LaTeX 辅助文件或其他本地缓存加入提交。
+
+## 许可
+
+仓库许可信息见 [`LICENSE`](LICENSE)。课程资料的使用与再发布请同时遵守其中的规定。
