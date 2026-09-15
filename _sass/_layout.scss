@@ -267,6 +267,7 @@ ul.listing li.listing-item a {
 .course-facts > div {
     display: grid;
     grid-template-columns: 92px minmax(0, 1fr);
+    align-items: center;
     gap: 12px;
     padding: 11px 16px;
     border-bottom: 1px solid #e8e3ed;
