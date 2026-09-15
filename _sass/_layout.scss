@@ -371,12 +371,14 @@ ul.listing li.listing-item a {
 .schedule-table-wrap td:nth-child(1) {
     width: 10%;
     text-align: center;
+    vertical-align: middle;
 }
 
 .schedule-table-wrap th:nth-child(2),
 .schedule-table-wrap td:nth-child(2) {
     width: 10%;
     text-align: center;
+    vertical-align: middle;
 }
 
 .schedule-table-wrap th:nth-child(3),
