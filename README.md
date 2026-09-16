@@ -60,7 +60,7 @@ cd Lectures
 xelatex L04.tex
 ```
 
-> 注意：当前 23 个单讲源文件的 `\documentclass[...]{subfiles}` 仍引用旧文件名 `Main-Prob-All.tex`，而本仓库中的统一主文件名为 `Prob-All.tex`。直接编译单讲前，应先将该参数统一改为 `Prob-All.tex`；整套讲义从 `Prob-All.tex` 编译不受影响。
+当前 23 个单讲源文件的 `\documentclass[...]{subfiles}` 均引用统一主文件 `Prob-All.tex`，既可单独编译，也可从 `Prob-All.tex` 编译整套讲义。
 
 ### Handout 与 Slide
 
