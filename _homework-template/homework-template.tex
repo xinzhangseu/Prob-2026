@@ -1,0 +1,71 @@
+% !Mode:: "TeX:UTF-8"
+%用xetex时要保存为ＵＴＦ８格式，否则有可能编译不通过。
+\documentclass[12pt,a4paper]{article}
+\usepackage[left=.6in,right=.6in,top=0.8in,bottom=1in]{geometry}
+
+\usepackage{amsmath,amsfonts,amssymb,pict2e,color}
+\newcommand{\tc}{\textcolor{blue}}
+
+\renewcommand{\baselinestretch}{1.5}
+\usepackage{hyperref}%不能有unicode选项，否则bookmark会是乱码
+
+
+
+\usepackage[cm-default]{fontspec}%[cm-default]选项主要用来解决使用数学环境时数学符号不能正常显示的问题
+
+\usepackage{xunicode,xltxtra}
+
+\defaultfontfeatures{Mapping=tex-text}%如果没有它，会有一些 tex 特殊字符无法正常使用，比如连字符。
+
+\XeTeXlinebreaklocale "zh"   %中文断行
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+
+
+% 中英文混排设置%
+\usepackage[BoldFont,SlantFont,fallback,CJKchecksingle]{xeCJK}
+\setmainfont{Times New Roman}%西文衬线字体 DejaVu
+\setsansfont{Times New Roman}%西文无衬线字体
+\setmonofont{Times New Roman}%西文等宽字体
+\setCJKmainfont{KaiTi_GB2312}%中文衬线字体 Adobe宋体
+\setCJKsansfont{Microsoft YaHei}%中文无衬线字体 Adobe黑体
+\setCJKmonofont{NSimSun}%中文等宽字体 文泉驿等宽微米黑
+\punctstyle{banjiao}%半角字符</code>
+
+% 其他中文设置 使用XeCJK无需再设置中文断行和弹性间距%
+% \XeTeXlinebreaklocale “zh”%中文断行
+% \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt%左右弹性间距
+\usepackage{indentfirst}%段落首行缩进
+\setlength{\parindent}{2em}%缩进两个字符
+\hypersetup{pdfauthor={张鑫},
+              pdftitle={概率论作业模板}}     %注意，在document之外的导言区，作用是增添PDF文件中的标题、主题、作者、关键字等属性，这些属性在Acrobat Read中还可以使用Ctrl+D查看
+\newcounter{prob}
+\setcounter{prob}{0}
+\newcommand{\prob}[1]{{\par}\noindent{\bf \large \tc{问题}} {\ \refstepcounter{prob}%
+    {\bf \large\tc{\arabic{prob}\,:}}} #1}
+\newcommand{\solu}{{\par}{\noindent\bf \large \tc{解：\ }}}
+\renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
+
+\begin{document}
+  %\tableofcontents
+\title{概率论第 $k$ 次作业}
+\author{学号-姓名，\quad  学号-姓名，\quad 学号-姓名 \\ 学号-姓名， \quad 学号-姓名，\quad 学号-姓名\\
+学号-姓名， \quad 学号-姓名 }
+\date{}
+\maketitle
+\prob 此处打印问题
+
+\solu 此处书写解答, 公式如下所示
+\begin{eqnarray}
+  \label{eq:1}
+  a^2+b^2=c\\
+  x+y=z
+\end{eqnarray}
+\prob 此处打印另外一个问题
+\solu 此处书写解答
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
