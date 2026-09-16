@@ -97,17 +97,17 @@ permalink: /syllabus/
 
 ### 中文教材与参考书
 
-1. 李增沪、张梅、何辉，《概率论》，高等教育出版社。
-2. 张颢，《概率论》，高等教育出版社。
-3. 杨振明，《概率论（第二版）》，科学出版社。
-4. 李贤平，《概率论基础》，高等教育出版社。
-5. Joseph K. Blitzstein、Jessica Hwang，《概率论导论》（张景肖译），机械工业出版社。
-6. Dimitri P. Bertsekas、John N. Tsitsiklis，《概率导论（第二版）》（郑忠国、童行伟译），人民邮电出版社。
-7. 王梓坤，《科学发现纵横谈》，北京师范大学出版社。
+1. 李增沪、张梅、何辉，[《概率论（上册）》](https://xuanshu.hep.com.cn/front/book/findBookDetails?bookId=66d3513a74ce561611bda71d)，高等教育出版社，2025 年，ISBN 978-7-04-063036-7。
+2. 张颢，[《概率论》](https://xuanshu.hep.com.cn/front/h5Mobile/bookDetails?bookId=59cc0cdbba9eb884cf815274)，高等教育出版社，2018 年，ISBN 978-7-04-047362-9。
+3. 杨振明，[《概率论（第二版）》](https://book.sciencereading.cn/shop/book/Booksimple/show.do?id=BE357DDF8432244B0ADD148975D922E7D000)，科学出版社，2004 年，ISBN 978-7-03-013149-2。
+4. 李贤平，[《概率论基础（第三版）》](https://books.google.com/books?id=Gd6MXwAACAAJ)，高等教育出版社，2010 年，ISBN 978-7-04-028890-2。
+5. Joseph K. Blitzstein、Jessica Hwang，[《概率论导论（翻译版）》](https://www.cmpedu.com/books/book/5585081.htm)（张景肖译），机械工业出版社，2019 年，ISBN 978-7-111-61054-0。
+6. Dimitri P. Bertsekas、John N. Tsitsiklis，[《概率导论（第二版）》](https://www.mit.edu/~dimitrib/probbook.html)（郑忠国、童行伟译），人民邮电出版社，2009 年；链接为英文原版教材官网。
+7. 王梓坤，[《科学发现纵横谈》](https://books.google.com/books?id=R_Bg0AEACAAJ)，北京师范大学出版社，2023 年，ISBN 978-7-303-28590-7。
 
 ### 英文参考书
 
-- A. N. Shiryaev, *Probability*, Springer.
+- A. N. Shiryaev, [*Probability* (2nd ed.)](https://link.springer.com/book/10.1007/978-1-4757-2539-1), Springer, 1996, ISBN 978-1-4757-2539-1.
 
 ## 课程资源
 
