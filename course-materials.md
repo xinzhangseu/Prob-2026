@@ -44,6 +44,11 @@ LaTeX 模板必须使用 XeLaTeX 编译。首次编译前，请下载并安装 `
 xelatex homework-template.tex
 ```
 
+如需学习 LaTeX 的基本使用与排版方法，可参考以下资料：
+
+- [《雷太赫排版系统简介》（包太雷，2013）]({{ '/_assets/包太雷 - 2013 - 雷太赫排版系统简介.pdf' | relative_url }})
+- [《大家来学 LaTeX》（李果正，2004）]({{ '/_assets/李果正 - 2004 - 大家来学Latex.pdf' | relative_url }})
+
 如使用 Markdown 模板，可通过支持数学公式的 Markdown 编辑器或 Pandoc 导出 PDF；提交前应检查公式、中文字体和分页是否显示正常。
 
 ## 主要教材
