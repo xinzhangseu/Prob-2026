@@ -5,7 +5,7 @@
 
 \title[概率论]{第一讲：概率论简介}
 \author[张鑫 {\rm Email: xzhangseu@seu.edu.cn} ]{\large 张 鑫}
-\institute{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
+\institute[]{\large \textrm{Email: xzhangseu@seu.edu.cn} \\ \quad  \\
 \vspace{0.3cm}
 % \trc{ 公共邮箱: \textrm{zy.prob@qq.com}\\
 %  \hspace{-1.7cm}  密\qquad 码: \textrm{seu!prob}}
@@ -27,10 +27,10 @@
 \begin{frame}
 	\frametitle{参考书目}
 	\begin{itemize}[<+-|alert@+>]
-		\item 概率论, 李增沪, 张梅, 何辉, 高等教育出版社, 2025
+		\item 概率论(上), 李增沪, 张梅, 何辉, 高等教育出版社, 2025
 		\item 概率论, 张颢, 高等教育出版社, 2018
 	    \item 概率论(第二版), 杨振明, 科学出版社, 2004
-	    \item 概率论基础(第三版), 李贤平, 高等教育出版社, 2010
+	    \item 概率论基础(第四版), 李贤平, 高等教育出版社, 2026
 	    %\item 概率论基础及其应用, 王梓坤, 北京师范大学出版社
 		%\item 概率论(第三版), 苏淳,冯群强, 科学出版社
 		\item 概率论导论(翻译版), {\rm Joseph K. Blitzstein, Jessica Hwang}\\
@@ -109,24 +109,10 @@
   \end{columns}
    \end{frame}
 
-
 \begin{frame}
-	\frametitle{成绩构成}
+	\frametitle{课程网页及相关信息}
 	\begin{itemize}[<+-|alert@+>]
-		\item {\rm  \textcolor{cyan}{15\%}}: 考勤(不定时随机点名), \textcolor{red}{\bf 三次缺勤,此部分成绩为零, 但若期末考试成绩高于90分,则考勤成绩可用期末成绩替代.}
-		\item {\rm  \textcolor{cyan}{20\%}} :平时成绩,含平时作业、大作业、讨论报告等.
-		%\item  {\rm  \textcolor{cyan}{10\% - 15\%}} : 大作业、课堂讨论报告等
-		\item  {\rm  \textcolor{cyan}{15\%}}  : 开卷测验.
-		\item  {\rm  \textcolor{cyan}{50\%}} : 期末考试
-		\item \textcolor{cyan}{5 分}: 课堂及平时表现加分项
-		%\item 考勤: 不定时随机点名, 如被点到未来上课者每次\textcolor{red}{\bf 扣总评成绩5分}
-		\item 期末考试过后, 凡与考试成绩有关的邮件,QQ留言,微信留言均不回复,敬请谅解
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{答疑时间与课程{\rm QQ}群}
-	\begin{itemize}[<+-|alert@+>]
+		\item 课程网页：\href{https://xinzhangseu.github.io/Prob-2026/}{\url{https://xinzhangseu.github.io/Prob-2026/}}
 		\item 答疑
 		\begin{itemize}[<+-|alert@+>]
 			\item 时间：每周二中午 12:00-13:30
@@ -141,34 +127,45 @@
 \end{frame}
 
 
-
-
-
-\begin{frame}[fragile]
-	\frametitle{作业提交}
-
+\begin{frame}
+	\frametitle{成绩构成}
 	\begin{itemize}[<+-|alert@+>]
-		\item 提交时间：每周四上课前
-		\item 作业书写在A4纸上, 首行注明: 第$k$次作业:姓名-学号
-		\item 作业不能仅有公式,没有语言表达
-% 		\item 如何提交：
-% 		\begin{itemize}[<+-|alert@+>]
-% 			\item 注册Gitee账号并更新个人信息为"学号-姓名":
+		\item {\rm  \textcolor{cyan}{15\%}}: 考勤(不定时随机点名), \tcr{\bf 三次缺勤,此部分成绩为零, 但若期末考试成绩高于90分,则考勤成绩可用期末成绩替代.}
+		\item {\rm  \textcolor{cyan}{15\%}} :平时成绩,含平时作业、大作业、讨论报告等.
+		%\item  {\rm  \textcolor{cyan}{10\% - 15\%}} : 大作业、课堂讨论报告等
+		\item  {\rm  \textcolor{cyan}{20\%}}  : 开卷测验.
+		\item  {\rm  \textcolor{cyan}{50\%}} : 期末考试
+		\item \textcolor{cyan}{5 分}: 课堂及平时表现加分项
+		%\item 考勤: 不定时随机点名, 如被点到未来上课者每次\textcolor{red}{\bf 扣总评成绩5分}
+		\item 期末考试过后, 凡与考试成绩有关的邮件,QQ留言,微信留言均不回复,敬请谅解
+	\end{itemize}
+\end{frame}
 
-% 			强基拔尖班: \href{https://gitee.com/xzhangseu?invite=af354f3608acbf325025111fe2cff3f3d89578f19ae0ba8d8e7cde0b62298f8990135fca197ee75c6b17c049295f276a189625f3b98043645f2e7eaaa8122746}{强基拔尖班邀请链接}%（QQ 群或微信群发送）
-% 			注册 {\rm Gitee}账号.
 
+\begin{frame}
+	\frametitle{作业相关说明}
+	\small
+	\begin{itemize}[<+-|alert@+>]
+		\item 分组提交作业：
+		\begin{itemize}[<+-|alert@+>]
+			\item 自由组合，每组 $3$--$5$ 人，并确定 1 名组长；
+			\item 由组长提交本组的作业。
+		\end{itemize}
+		\item 组号确定：
+		\begin{itemize}[<+-|alert@+>]
+			\item 分组后，由组长在数智东南课程群提交本组成员信息：组长学号、姓名及组员学号、姓名。
+			\item \tcr{组号}为每组组长在数智东南课程群提交组员信息的顺序，即第一个在群里发送组员信息的组为第1组，第二个为第2组，依此类推。
+		\end{itemize}
 
+		\item 作业提交
+		\begin{itemize}[<+-|alert@+>]
+		\item 将作业由组长发送至邮箱：\href{mailto:zy.prob@qq.com}{\texttt{zy.prob@qq.com}}，包含\tcr{作业的PDF和源文件}（\texttt{.md} 或 \texttt{.tex}）。
+		\item 邮件主题：\tcr{\texttt{组号-第$k$次作业}}；文件命名：\tcr{\texttt{组号-第$k$次作业.md（或.tex）}} 和 \tcr{\texttt{组号-第$k$次作业.pdf}}。
+		\item 每周二、周四的作业合并作为一次作业，须在\tcr{下周一 24:00 }前发送至邮箱。
 
-
-% 			理科试验班: \href{https://gitee.com/xzhangseu?invite=af354f3608acbf325025111fe2cff3f3082ca2eb393e34e88e7cde0b62298f8990135fca197ee75c6b17c049295f276a61d258ce9546aa1d5f2e7eaaa8122746}{理科试验班邀请链接}%（QQ 群或微信群发送）
-% 			注册 {\rm Gitee}账号.
-% 			\item  苹果系统已预装{\rm Git}, {\rm Window}系统需下载安装{\rm Git}:
-
-% 			下载地址：https://git-scm.com/download/ %课程作业仓库至本人{\rm Gitee}账户
-% 			\item \href{https://help.gitee.com/base/account/SSH%E5%85%AC%E9%92%A5%E8%AE%BE%E7%BD%AE}{设置Gitee SSH公钥}, 以便推拉作业仓库
-
-% \end{itemize}
+		\end{itemize}
+		\item 作业要求：作业不能仅有公式，必须有详细的语言表达。
+%
 
 	\end{itemize}
 
