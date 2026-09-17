@@ -3,9 +3,7 @@
 本仓库用于维护 2026 年秋季学期概率论课程网站及配套讲义。
 
 - 课程主页：<https://xinzhangseu.github.io/Prob-2026/>
-- 授课教师：张鑫
 - 课程编号：B0700082 / B0700083
-- 上课地点：九龙湖校区 J2-109
 - 联系邮箱：[x.zhang.seu@gmail.com](mailto:x.zhang.seu@gmail.com)
 
 ## 课程内容
@@ -112,7 +110,6 @@ jekyll build
 layout: post
 title: "第 02 次作业｜条件概率（截止：2026-09-24）"
 date: 2026-09-17 19:00:00 +0800
-author: 张鑫
 categories:
   - 作业
 ---
