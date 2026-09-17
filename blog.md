@@ -16,7 +16,7 @@ permalink: /announcements/
     <h2 class="blogyear">{{ y}}</h2>
   {% endif %}
 <li class="archiveposturl"><span><a href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title }}</a></span><br/>
-<span class = "postlower"><strong>作者：</strong> {% if post.author %}{{post.author}}{% else %}{{ site.author }}{% endif %}
+{% if post.author %}<span class = "postlower"><strong>作者：</strong> {{ post.author }}</span>{% endif %}
 <strong>分类：</strong>  {% if post.categories %}
  
   {% for cat in post.categories %}
