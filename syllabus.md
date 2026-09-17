@@ -7,8 +7,6 @@ permalink: /syllabus/
 <div class="course-facts">
   <div><span>课程名称</span><strong>概率论（Probability Theory）</strong></div>
   <div><span>开课学期</span><strong>2026 年秋季学期</strong></div>
-  <div><span>授课教师</span><strong>张鑫</strong></div>
-  <div><span>课程编号</span><strong>B0700082 / B0700083</strong></div>
   <div><span>上课时间</span><strong>周二、周四</strong></div>
   <div><span>上课地点</span><strong>J2-109</strong></div>
   <div><span>答疑时间</span><strong>每周二 12:00–13:30</strong></div>
