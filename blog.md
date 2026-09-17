@@ -16,16 +16,16 @@ permalink: /announcements/
     <h2 class="blogyear">{{ y}}</h2>
   {% endif %}
 <li class="archiveposturl"><span><a href="{{ post.url | relative_url }}" title="{{ post.title }}">{{ post.title }}</a></span><br/>
-{% if post.author %}<span class = "postlower"><strong>作者：</strong> {{ post.author }}</span>{% endif %}
-<strong>分类：</strong>  {% if post.categories %}
- 
+{% if post.author %}<span class="postlower"><strong>作者：</strong> {{ post.author }}</span>{% endif %}
+<span class="postlower"><strong>分类：</strong>  {% if post.categories %}
+
   {% for cat in post.categories %}
   <span class="post-category">{{ cat }}</span>&nbsp;
   {% endfor %}
 
-{% endif %} <!-- {{ post.categories | first }} -->
+{% endif %}
 <strong style="font-size:100%; font-family: 'Titillium Web', sans-serif; float:right">{{ post.date | date: '%Y-%m-%d' }}</strong>
-</span> 
+</span>
 
 </li>
 {% endfor %}
