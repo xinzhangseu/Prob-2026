@@ -10,6 +10,15 @@ permalink: /lectures/
 <strong>TeX 源文件</strong>。
 </p>
 
+<p class="lecture-card__actions">
+  <a class="lecture-link lecture-link--slide"
+     href="{{ '/Lectures/Prob-All.pdf' | relative_url }}"
+     download="Prob-All.pdf">
+    <i class="fas fa-download" aria-hidden="true"></i>
+    <span>下载全部 23 讲 Slide（Handout 版 PDF，约 11 MB）</span>
+  </a>
+</p>
+
 <div class="lecture-list">
 {% for lecture in site.data.lectures %}
   <article class="lecture-row" id="lecture-{{ lecture.number }}">

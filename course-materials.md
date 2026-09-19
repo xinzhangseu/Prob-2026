@@ -8,6 +8,7 @@ permalink: /course-materials/
 
 ## 讲义与课件
 
+- <a href="{{ '/Lectures/Prob-All.pdf' | relative_url }}" download="Prob-All.pdf">下载全部 23 讲 Slide（Handout 版 PDF，约 11 MB）</a>：适合阅读和打印，便于一次下载整套课件。
 - [23 讲课程目录]({{ '/lectures/' | relative_url }})：提供适合阅读和打印的 Handout、保留逐步显示效果的课堂 Slide，以及 TeX 源文件。
 - [完整课程 GitHub 仓库](https://github.com/{{ site.githubdir }})：浏览或下载课程网站与讲义源文件。
 - [教学大纲]({{ '/syllabus/' | relative_url }})：查看学习目标、考核方式、课程进度和作业要求。
@@ -74,6 +75,5 @@ xelatex homework-template.tex
 - [《大家来学 LaTeX》（李果正，2004）]({{ '/_assets/李果正 - 2004 - 大家来学Latex.pdf' | relative_url }})
 
 如使用 Markdown 模板，可通过支持数学公式的 Markdown 编辑器或 Pandoc 导出 PDF；提交前应检查公式、中文字体和分页是否显示正常。
-
 
 
