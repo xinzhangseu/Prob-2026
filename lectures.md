@@ -19,6 +19,13 @@ permalink: /lectures/
   </a>
 </p>
 
+<p>
+  <a href="{{ '/Lectures/Prob-All.tex' | relative_url }}" download="Prob-All.tex">下载统一主文件 Prob-All.tex</a>。
+  各讲源文件通过 <code>subfiles</code> 继承此文件中的公共导言，编译单讲时也必须将它与
+  <code>Lxx.tex</code> 放在同一目录，并保留主题文件和图片资源。
+  具体步骤见<a href="{{ '/course-materials/' | relative_url }}#lecture-compilation">课件编译说明</a>。
+</p>
+
 <div class="lecture-list">
 {% for lecture in site.data.lectures %}
   <article class="lecture-row" id="lecture-{{ lecture.number }}">

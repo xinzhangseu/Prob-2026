@@ -14,6 +14,24 @@ permalink: /course-materials/
 - [教学大纲]({{ '/syllabus/' | relative_url }})：查看学习目标、考核方式、课程进度和作业要求。
 - [课程通知]({{ '/announcements/' | relative_url }})：查看作业布置、课程调整和考试安排。
 
+## 课件源文件与编译说明 {#lecture-compilation}
+
+<a href="{{ '/Lectures/Prob-All.tex' | relative_url }}" download="Prob-All.tex">下载统一主文件 Prob-All.tex</a>
+
+各讲源文件 `L01.tex`–`L23.tex` 使用 `\documentclass[Prob-All.tex]{subfiles}`，从 `Prob-All.tex` 继承文档设置、宏包和公共命令。因此，即使只编译其中一讲，也需要下载 `Prob-All.tex`，并将它与该讲源文件放在同一目录。
+
+编译还需要同目录中的 `beamerthemenankai.sty` 主题文件和 `figures/` 图片目录。建议[下载完整课程仓库](https://github.com/{{ site.githubdir }}/archive/refs/heads/master.zip)，解压后保留 `Lectures/` 的目录结构。请安装包含 XeLaTeX、Beamer、`xeCJK` 和 `subfiles` 的 TeX 发行版，并确保主文件指定的 Fandol 系列字体和 Times New Roman 可用。
+
+在 `Lectures/` 目录中，以第 4 讲为例运行：
+
+```bash
+xelatex L04.tex
+```
+
+单讲源文件开头的 `\PassOptionsToClass{handout}{beamer}` 保持注释时，生成保留逐步显示效果的 Slide；取消注释时，生成适合阅读和打印的 Handout。两种方式默认都输出 `L04.pdf`，如需同时保留，请将 Slide 版另存为 `L04-S.pdf`。
+
+编译全部 23 讲时，需要保留所有单讲源文件，并运行 `xelatex Prob-All.tex`。目录或交叉引用未更新时，可再编译一次。
+
 ## 主要教材
 
 1. 李增沪、张梅、何辉，[《概率论（上册）》](https://union-click.jd.com/jdc?e=618%7Cpc%7C&p=JF8BAS8JK1olWAUFUV5aAU4RAl8IHlkcVQUGVm4ZVxNJXF9RXh5UHw0cSgYYXBcIWDoXSQVJQwYHVldVC08VHDZNRwYlFn9cIg5edT93AzdsYB1xGWVrUwwCaEcbM244GFoXVAIEUFheAHsnA2g4STUdVQ4CXFxeDUgfBF8JK1sTVA4FV15YDU0eAmo4HFscbVZfFgYPURFHXDBSK2slXjYFVFdJDjlWUXsOaWslXTYBZF5cCEoTBmoMGlIcQQYGUldUClcXBWYAHFgVWAYLXFZVOEkWAmsBK2vL0LZpJiAvWk5TaydAeA1yHVsCitPtGSBuC28IGEolBFMHNjkvbhZDBwx6eQJJIF95EiEvahJLcWdVYCYQMwRLBgUPXklIcxByYVxJInVJEW5YOEsRA204Gms)，高等教育出版社，2025 年。
