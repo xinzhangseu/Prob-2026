@@ -56,20 +56,19 @@ xelatex L04.tex
 
 
 
-## 作业提交与 AI 批改
+## 作业提交说明
 
 本课程作业由 AI 批改。请关注微信公众号**「数你最灵」**，作业提交、AI 批改和结果查看等操作均在手机端完成，无需通过电子邮箱提交 PDF 或源文件。
 
 学生端完整使用手册已挂载至微信公众号**「数你最灵」**。请在首次使用前阅读完整手册，并按照公众号内的指引完成操作。每次作业的具体内容和截止时间以课程通知为准。
 
-### 模板下载
+## LaTeX 学习与使用
 
-- [LaTeX 作业模板（`.tex`）]({{ '/_homework-template/homework-template.tex' | relative_url }})
-- [Markdown 作业模板（`.md`）]({{ '/_homework-template/homework-template.md' | relative_url }})
-- [LaTeX 模板示例 PDF]({{ '/_homework-template/homework-template.pdf' | relative_url }})
+请下载 LaTeX 模板进行学习与使用，并通过示例 PDF 查看排版效果。模板源文件和示例 PDF 也可在 GitHub 模板目录中浏览和下载：
+
+- [LaTeX 模板（`.tex`）]({{ '/_homework-template/template.tex' | relative_url }})
+- [LaTeX 模板示例 PDF]({{ '/_homework-template/template.pdf' | relative_url }})
 - [在 GitHub 中查看完整模板目录](https://github.com/{{ site.githubdir }}/tree/master/_homework-template)
-
-### LaTeX 编译与字体
 
 LaTeX 模板必须使用 XeLaTeX 编译。首次编译前，请下载并安装 `_assets/fonts` 目录中的字体：
 
@@ -81,12 +80,10 @@ LaTeX 模板必须使用 XeLaTeX 编译。首次编译前，请下载并安装 `
 安装字体并重新启动 LaTeX 编辑器后，在模板所在目录运行：
 
 ```bash
-xelatex homework-template.tex
+xelatex template.tex
 ```
 
 如需学习 LaTeX 的基本使用与排版方法，可参考以下资料：
 
 - [《雷太赫排版系统简介》（包太雷，2013）]({{ '/_assets/包太雷 - 2013 - 雷太赫排版系统简介.pdf' | relative_url }})
 - [《大家来学 LaTeX》（李果正，2004）]({{ '/_assets/李果正 - 2004 - 大家来学Latex.pdf' | relative_url }})
-
-如使用 Markdown 模板，可通过支持数学公式的 Markdown 编辑器或 Pandoc 导出 PDF；提交前应检查公式、中文字体和分页是否显示正常。

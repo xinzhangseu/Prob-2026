@@ -111,5 +111,4 @@ permalink: /syllabus/
 
 - [课程资料]({{ '/course-materials/' | relative_url }})
 - [课程讲义]({{ '/lectures/' | relative_url }})
-- [原教学大纲 PDF]({{ '/syllabus/syllabus.pdf' | relative_url }})
 - [课程 GitHub 仓库](https://github.com/{{ site.githubdir }})
