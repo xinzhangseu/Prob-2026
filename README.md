@@ -62,6 +62,15 @@ xelatex L04.tex
 
 ### Handout 与 Slide
 
+`Prob-All.tex` 不设置全局 `handout` 选项。提交时，现有钩子会对更改过的单讲 TeX 文件调用 `scripts/build-lecture-handout.sh`，在编译命令中传入 `handout`，生成对应的 `Lxx.pdf`；完整版脚本也在编译时传入该选项，生成 `Prob-All.pdf`。无需修改源文件来切换自动构建模式。
+
+手动生成 Handout 时，在仓库根目录运行：
+
+```bash
+./scripts/build-lecture-handout.sh L04
+./scripts/build-prob-all.sh
+```
+
 每讲文件开头保留以下接口：
 
 ```tex
