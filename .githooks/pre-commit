@@ -11,6 +11,18 @@ if ! printf '%s\n' "$changed_files" | grep -Eq '^Lectures/(L[0-9][0-9]\.tex|Prob
 fi
 
 echo "检测到课件源文件变更，提交前自动更新 Lectures/Prob-All.pdf。"
+
+for changed_file in $changed_files; do
+  case "$changed_file" in
+    Lectures/L[0-9][0-9].tex)
+      lecture=$(basename "$changed_file" .tex)
+      "$repo_root/scripts/build-lecture-handout.sh" "$lecture"
+      git add "$repo_root/Lectures/$lecture.pdf"
+      echo "已将最新的 Lectures/$lecture.pdf 加入本次提交。"
+      ;;
+  esac
+done
+
 "$repo_root/scripts/build-prob-all.sh"
 git add "$repo_root/Lectures/Prob-All.pdf"
 echo "已将最新的 Lectures/Prob-All.pdf 加入本次提交。"

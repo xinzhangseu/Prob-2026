@@ -95,7 +95,7 @@ git config --get core.hooksPath
 .githooks
 ```
 
-此后，如果一次提交暂存了 `Lectures/L01.tex`–`Lectures/L23.tex`、`Prob-All.tex`、Beamer 主题或 `figures/` 中的文件，钩子会自动运行 `scripts/build-prob-all.sh`，重新编译并暂存 `Lectures/Prob-All.pdf`。编译失败时，提交会中止。
+此后，如果一次提交暂存了 `Lectures/L01.tex`–`Lectures/L23.tex`，钩子会先自动更新并暂存对应的单讲 Handout PDF，再重新编译和暂存 `Lectures/Prob-All.pdf`。如果修改了 `Prob-All.tex`、Beamer 主题或 `figures/` 中的文件，钩子也会更新完全版 PDF。编译失败时，提交会中止。
 
 新电脑还需安装 XeLaTeX、`latexmk`、课件使用的字体以及相关 LaTeX 宏包，否则自动编译无法完成。可运行以下命令确认 `latexmk` 已安装：
 
