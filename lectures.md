@@ -5,19 +5,12 @@ permalink: /lectures/
 ---
 
 <p class="lectures-intro">
-本课程共 23 讲。每讲提供适合阅读和打印的 <strong>Handout</strong>、
+本课程共 23 讲。课程提供<a href="{{ '/Lectures/Prob-All.pdf' | relative_url }}" target="_blank" rel="noopener">完整版课件PDF (全部23讲)</a>与单独每讲适合阅读打印的 <strong>Handout</strong>、
 保留逐步显示效果的课堂 <strong>Slide</strong>，以及可供学习和修改的
 <strong>TeX 源文件</strong>。
 </p>
 
-<p class="lecture-card__actions">
-  <a class="lecture-link lecture-link--slide"
-     href="{{ '/Lectures/Prob-All.pdf' | relative_url }}"
-     download="Prob-All.pdf">
-    <i class="fas fa-download" aria-hidden="true"></i>
-    <span>下载全部 23 讲 Slide（Handout 版 PDF，约 11 MB）</span>
-  </a>
-</p>
+
 
 <p>
   <a href="{{ '/Lectures/Prob-All.tex' | relative_url }}" download="Prob-All.tex">下载统一主文件 Prob-All.tex</a>。

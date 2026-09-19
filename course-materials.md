@@ -8,7 +8,7 @@ permalink: /course-materials/
 
 ## 讲义与课件
 
-- <a href="{{ '/Lectures/Prob-All.pdf' | relative_url }}" download="Prob-All.pdf">下载全部 23 讲 Slide（Handout 版 PDF，约 11 MB）</a>：适合阅读和打印，便于一次下载整套课件。
+- <a href="{{ '/Lectures/Prob-All.pdf' | relative_url }}" target="_blank" rel="noopener">概率论完全版Slide (全部23讲）</a>：适合阅读和打印。
 - [23 讲课程目录]({{ '/lectures/' | relative_url }})：提供适合阅读和打印的 Handout、保留逐步显示效果的课堂 Slide，以及 TeX 源文件。
 - [完整课程 GitHub 仓库](https://github.com/{{ site.githubdir }})：浏览或下载课程网站与讲义源文件。
 - [教学大纲]({{ '/syllabus/' | relative_url }})：查看学习目标、考核方式、课程进度和作业要求。
