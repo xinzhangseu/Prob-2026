@@ -73,6 +73,36 @@ xelatex L04.tex
 
 提交仓库时保留 `.tex` 和最终 `.pdf`，LaTeX 辅助文件已由 [`.gitignore`](.gitignore) 排除。
 
+### 提交时自动更新完全版 PDF
+
+仓库提供了可追踪的 `pre-commit` 钩子。Git 不会在克隆仓库后自动启用仓库内的钩子，因此每台新电脑都需要单独完成一次初始化：
+
+```bash
+git clone git@github.com:xinzhangseu/Prob-2026.git
+cd Prob-2026
+git config core.hooksPath .githooks
+```
+
+如果仓库已经克隆到本地，只需进入仓库根目录并执行最后一条配置命令。可用以下命令检查配置是否生效：
+
+```bash
+git config --get core.hooksPath
+```
+
+正常情况下应输出：
+
+```text
+.githooks
+```
+
+此后，如果一次提交暂存了 `Lectures/L01.tex`–`Lectures/L23.tex`、`Prob-All.tex`、Beamer 主题或 `figures/` 中的文件，钩子会自动运行 `scripts/build-prob-all.sh`，重新编译并暂存 `Lectures/Prob-All.pdf`。编译失败时，提交会中止。
+
+新电脑还需安装 XeLaTeX、`latexmk`、课件使用的字体以及相关 LaTeX 宏包，否则自动编译无法完成。可运行以下命令确认 `latexmk` 已安装：
+
+```bash
+latexmk -v
+```
+
 ## 本地预览课程网站
 
 网站使用 Jekyll 构建。在仓库根目录运行：
