@@ -12,6 +12,13 @@
 
  % \usepackage{CJK,graphicx}
  \usepackage{colortbl,xcolor}
+ \usepackage{hhline}
+ \usepackage{nicematrix}
+ \makeatletter
+\newcommand{\fixhhlinecolor}{%
+    \let\reset@color\beamerorig@reset@color
+}
+\makeatother
  \usepackage{multimedia}
  \usepackage{multicol}
  \usepackage{tikz}
@@ -60,8 +67,8 @@
 \usepackage{xeCJK}    % CJK 包
 
  \XeTeXlinebreaklocale "zh"
- \setCJKmainfont[BoldFont=FandolHei]{FandolKai}
- \setCJKsansfont[BoldFont=FandolHei]{FandolKai}  % 设置中文字体
+ \setCJKmainfont[BoldFont=FandolHei-Regular.otf]{FandolKai-Regular.otf}
+ \setCJKsansfont[BoldFont=FandolHei-Regular.otf]{FandolKai-Regular.otf}  % 设置中文字体
  \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
  \setmainfont{Times New Roman} % 设置西文字体
  %\setmainfont{Baskerville} % 设置西文字体
@@ -69,7 +76,7 @@
  %\setsansfont[BoldFont=SimHei]{KaiTi_GB2312}
 
  % \setsansfont[BoldFont=SimHei]{Microsoft YaHei}
-\setmonofont{FandolSong}
+\setmonofont{FandolSong-Regular.otf}
 
  %%%%%%%%%%%%%%%%%%%%% 设置字体方法一结束 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

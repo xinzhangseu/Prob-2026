@@ -376,30 +376,76 @@
 		% \end{frame}
 \begin{frame}{``球-盒"计数问题}
 	\begin{itemize}
-		\item $S(n,k)$:第二类Stirling数, 表示将$n$个元素的集合分解为$k$个非空子集的分法数目;
+		\item $S(n,k)$:第二类Stirling数, 表示将$n$个不同元素的集合分解为$k$个非空子集的分法数目;
 		%\item 例如,${S(3,2)=3}$,即 3 个元素的集合${\{1,2,3\}}$可以分为
 		%\[{\{1,2\} \cup\{3\},\{1,3\} \cup\{2\},\{3,2\} \cup\{1\}}.\]
-		\item 不难验证$S(n+1, k)=k S(n, k)+S(n, k-1)$, 并可以证明(枚举空盒的个数，剩下的随便放，盒子是相同的最后要除以$m!$)
+		\item 不难验证$S(n+1, k)=k S(n, k)+S(n, k-1)$, 并可以利用容斥原理证明 %(枚举空盒的个数，剩下的随便放，盒子是相同的最后要除以$m!$)
 		\[
 		S(n, k)=\frac{1}{k!} \sum_{j=0}^{k}(-1)^{j}C_k^j (k-j)^{n}
 		\]
-		\item ${p(n, k)}$: 表示将${n}$分解为${k}$个正整数之和的分法数目. ${(p(n, k)}$的计算相当复杂, 涉及整数以及集合分拆的问题, 有兴趣的可参阅组合计数方面的文献).
+\item 任意所有可能的放法，先减去所有任选一个盒子为空的放法，再加上任选两个盒子为空的放法，再减去任选三个盒子为空的放法，依此类推，因为盒子是相同的最后要除以$m!$.
+		\item ${p(n, k)}$: 表示将$n$个不同元素的集合分为$k$个非空子集的分法数目，也等同于将${n}$分解为${k}$个正整数之和的分法数目.
+		\item ${p(n, k)}$的计算相当复杂, 涉及整数以及集合分拆的问题, 有兴趣的可参阅组合计数方面的文献.
 	\end{itemize}
-\pause
-	\begin{table}[]
-		\begin{tabular}{|c|cc|cc|}
-		\hline
-		\rowcolor[HTML]{CBCEFB}
-		\cellcolor[HTML]{CBCEFB}{\color[HTML]{000000} }                                                                         & \multicolumn{2}{c|}{\cellcolor[HTML]{CBCEFB}{\color[HTML]{000000} 盒可区分}}                                & \multicolumn{2}{c|}{\cellcolor[HTML]{CBCEFB}{\color[HTML]{000000} 盒不可区分}}                               \\  \cline{2-5}
-		\rowcolor[HTML]{CBCEFB}
-		\multirow{-2}{*}{\cellcolor[HTML]{CBCEFB}{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}$n$个球\\ $r$个盒子\end{tabular}}} & \multicolumn{1}{c|}{\cellcolor[HTML]{CBCEFB}{\color[HTML]{000000} 允许空盒}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}不允许空盒\\ $n>r$\end{tabular}} & \multicolumn{1}{c|}{\cellcolor[HTML]{CBCEFB}{\color[HTML]{000000} 允许空盒}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}不允许空盒\\ $n>r$\end{tabular}} \\ \hline
-		\rowcolor[HTML]{ECF4FF}
-		\cellcolor[HTML]{CBCEFB}{\color[HTML]{000000} 球可区分}                                                                     & \multicolumn{1}{c|}{\cellcolor[HTML]{ECF4FF}{\color[HTML]{000000} $r^n$}}    & {\color[HTML]{000000} $r!S(n,r)$}     & \multicolumn{1}{c|}{\cellcolor[HTML]{ECF4FF}{\color[HTML]{000000} $\sum_{k=1}^rS(n,k)$}}    & {\color[HTML]{000000} $S(n,r)$}     \\ \hline
-		\rowcolor[HTML]{ECF4FF}
-		\cellcolor[HTML]{CBCEFB}{\color[HTML]{000000} 球不可区分}                                                                    & \multicolumn{1}{c|}{\cellcolor[HTML]{ECF4FF}{\color[HTML]{000000} $C_{n+r-1}^n$}}    & {\color[HTML]{000000} $C_{(n-r)+r-1}^{n-r}$}     & \multicolumn{1}{c|}{\cellcolor[HTML]{ECF4FF}{\color[HTML]{000000} $\sum_{k=1}^rp(n,r)$}}    & {\color[HTML]{000000} $p(n,r)$}     \\ \hline
-		\end{tabular}
-		\end{table}
+
 \end{frame}
+
+
+
+\begin{frame}{``球-盒"计数问题}
+\begin{table}
+    \centering \fixhhlinecolor
+    \begin{tabular}{|c|cc|cc|}
+        \hline
+        \rowcolor[HTML]{CBCEFB}
+        &
+        \multicolumn{2}{c|}{盒可区分} &
+        \multicolumn{2}{c|}{盒不可区分} \\
+
+        % 用背景色填补第 1 列的白缝
+        \arrayrulecolor[HTML]{CBCEFB}
+
+       \hhline{|>{\arrayrulecolor[HTML]{CBCEFB}}->{\arrayrulecolor{black}}|--|--|}
+
+        \rowcolor[HTML]{CBCEFB}
+        \multirow{-2}{*}{%
+            \begin{tabular}{@{}c@{}}
+                $n$个球 \\
+                $k$个盒子
+            \end{tabular}%
+        }
+        & \multicolumn{1}{c|}{允许空盒}
+        & \begin{tabular}{@{}c@{}}
+            不允许空盒 \\
+            $n \ge k$
+          \end{tabular}
+        & \multicolumn{1}{c|}{允许空盒}
+        & \begin{tabular}{@{}c@{}}
+            不允许空盒 \\
+            $n \ge k$
+          \end{tabular} \\
+        \hline
+
+        \rowcolor[HTML]{ECF4FF}
+        \cellcolor[HTML]{CBCEFB}球可区分
+        & \multicolumn{1}{c|}{$k^n$}
+        & $k!S(n,k)$
+        & \multicolumn{1}{c|}{$\displaystyle\sum_{j=1}^{k}S(n,j)$}
+        & $S(n,k)$ \\
+        \hline
+
+        \rowcolor[HTML]{ECF4FF}
+        \cellcolor[HTML]{CBCEFB}球不可区分
+        & \multicolumn{1}{c|}{$C_{n+k-1}^{n}$}
+        & $C_{(n-k)+k-1}^{n-k}$
+        & \multicolumn{1}{c|}{$\displaystyle\sum_{j=1}^{k}p(n,j)$}
+        & $p(n,k)$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\end{frame}
+
 % \subsection{统计物理模型}
 % \begin{frame}{{\rm Maxwell-Boltzmann}(麦克斯韦-玻尔兹曼)统计}
 % \begin{itemize}[<+-|alert@+>]
