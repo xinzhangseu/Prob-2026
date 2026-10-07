@@ -271,18 +271,24 @@
 	\begin{defi}
 		(约当测度) 令 $E$ 为 $\mathbb{R}^d$ 的有界子集.
 		\begin{itemize}
-			\item 称
-			\[m_{*,J}(E):=\sup_{A\subset E, A\mbox{为基本集}}m(A)\]
-			为约当内测度;
-			\item 称
-			\[m^{*,J}(E):=\inf_{A\supset E, A\mbox{为基本集}}m(A)\]
-			为约当外测度;
-			\item 称 $E$ 为约当可测的, 如果
-			$$m_{*,J}(E)=m^{*,J}(E).$$此
-			时称 $m(E):=m_{*,J}(E)=m^{*,J}(E)$ 为集合 $E$ 的约当测度.
+			\item 约当外测度定义如下：
+			\begin{align*}
+			\hspace{-0.3cm}m^{*,J}(E):=&\inf_{A\supset E, A\mbox{为基本集}}m(A)\\
+			=&\inf_{\cup_{i=1}^n B_i\supset E, B_i, 1\leq i\leq n, \mbox{为矩形}}\sum_{i=1}^n |B_i|
+			%=&\inf \big\{\sum _{k=1}^{n}|I_{k}|: n\in \mathbb{N},\ \bigcup _{k=1}^{n}I_{k}\supset E,\ \{I_{k}\}_{k=1}^{n}\text{是矩形}\big\}.
+			\end{align*}
+\item 约当内测度定义如下：%称
+			\begin{align*}
+			\hspace{-0.3cm}m_{*,J}(E):=&\sup_{A\subset E, A\mbox{为基本集}}m(A)\\
+			=&\sup_{\cup_{i=1}^n B_i\subset E, B_i, 1\leq i\leq n, \mbox{为互不相交的矩形}}\sum_{i=1}^n |B_i|%\\
+			%=&\sup \big\{\sum _{k=1}^{n}|I_{k}|: n\in \mathbb{N},\ \bigcup _{k=1}^{n}I_{k}\subset E,\ \{I_{k}\}_{k=1}^{n}\text{是互不相交的矩形}\big\}.
+			\end{align*}
+			\item 若$m_{*,J}(E)=m^{*,J}(E)=m(E)$, 则称 $E$ 是约当可测的, $m(E)$ 为集合 $E$ 的约当测度.
 		\end{itemize}
 	\end{defi}
 \end{frame}
+
+
 
 \begin{frame}{如何理解约当可测集的定义:以一维情形为例}
 
@@ -362,7 +368,7 @@
 		\item {\rm Lebesgue}内测度$m_*(E)$如何定义?
 		\begin{itemize}[<+-|alert@+>]
 		\item 如果定义
-		$$m_*(E):=\sup_{\cup_{i=1}^\infty B_i\subset E, B_i, i\geq 1, \mbox{为矩形}}\sum_{i=1}^\infty |B_i|.$$
+		$$m_*(E):=\sup_{\cup_{i=1}^\infty B_i\subset E, B_i, i\geq 1, \mbox{为互不相交的矩形}}\sum_{i=1}^\infty |B_i|.$$
 		\item 可以证明
 		$$m_*(E)=m_{*,J}(E).$$
 		\item 由于可数矩形并的余集不一定是可数矩形的并, 因此, 若以此处定义的内外测度相等定义{\rm Lebesgue}可测集, 我们无法像约当可测集那样得到外测度的可加性.
