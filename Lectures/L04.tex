@@ -315,6 +315,69 @@
 
 \end{frame}
 
+\begin{frame}{约当可测的等价定义}
+\begin{thm}
+设 $E\subset\mathbb{R}^n$ 为有界集, 则 $E$ 约当可测当且仅当对任意有界集$S$
+	\[
+	m^*(S)=m^*(S\cap E)+m^*(S\cap E^c).
+	\]%
+\end{thm} %%这里须约定：\(\overline E\) 表示 \(E\) 的补集 \(E^c\)，而不是闭包；并且按约当度的通常定义，\(E\subset\mathbb R^n\) 是有界集。我们证明：
+\vspace{-0.7cm}
+ \begin{itemize}[<+-|alert@+>]
+	\item 必要性：
+	\begin{itemize}[<+-|alert@+>]
+	\item 设 \(E\) 约当可测。由约当外测度的次可加性知：
+\[
+m^*(S)\le m^*(S\cap E)+m^*(S\cap E^c).
+\]
+\item 下证反向不等式：由约当外测度的定义，对任意 \(\varepsilon>0\)，存在有限个矩形 \(R_1,\dots,R_N\) 覆盖 \(S\)，且$\sum_{i=1}^N |R_i|<m^*(S)+\varepsilon.$
+\item 由于 \(E\) 约当可测，\(R_i\cap E\) 与 \(R_i\cap E^c\) 都约当可测，故：
+\[
+m(R_i\cap E)+m(R_i\cap E^c)=|R_i|.
+\]
+\item 利用单调性和次可加性，得
+\[
+\begin{aligned}
+m^*(S\cap E)+m^*(S\cap E^c)
+&\le \sum_{i=1}^N
+\bigl[m(R_i\cap E)+m(R_i\cap E^c)\bigr]\\
+&=\sum_{i=1}^N|R_i|
+<m^*(S)+\varepsilon. \text{ 令} \varepsilon\downarrow0\text{即得所需等式.}
+\end{aligned}
+\]
+
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+\begin{frame}{约当可测的等价定义}
+\begin{thm}
+设 $E\subset\mathbb{R}^n$ 为有界集, 则 $E$ 约当可测当且仅当对任意有界集$S$
+	\[
+	m^*(S)=m^*(S\cap E)+m^*(S\cap E^c).
+	\]%
+\end{thm} %%这里须约定：\(\overline E\) 表示 \(E\) 的补集 \(E^c\)，而不是闭包；并且按约当度的通常定义，\(E\subset\mathbb R^n\) 是有界集。我们证明：
+\vspace{-0.5cm}
+\begin{itemize}[<+-|alert@+>]
+	\item 充分性：假设等式对任意有界集 \(S\) 成立.
+	\begin{itemize}[<+-|alert@+>]
+	\item 取一个包含 \(E\) 的矩形 \(Q\)，令 \(S=Q\)，便有
+\[
+|Q|=m^*(E)+m^*(Q\setminus E).
+\]
+\item 另一方面，约当内测度满足
+\[
+m_*(E)=|Q|-m^*(Q\setminus E).
+\]
+\item 因此
+\[
+m_*(E)=m^*(E),
+\]故 \(E\) 约当可测。
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
 \begin{frame}
 	\frametitle{约当测度的优缺点}
 	设 $E,\  F\subset\mathbb{R}^d$ 为约当可测集, 则
