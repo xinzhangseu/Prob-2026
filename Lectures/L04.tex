@@ -176,7 +176,7 @@
 	\end{itemize}
 
 \end{frame}
-\begin{frame}{黎曼积与与{\rm Lebesgue} 积分的直观解释}
+\begin{frame}{黎曼积分与{\rm Lebesgue} 积分的直观解释}
 
 	\begin{itemize}[<+-|alert@+>]%微积分的历程 245-246
 		\item 想像一位零售商,在一天结束营业时汇总今天的营业收入.
@@ -401,7 +401,7 @@ m_*(E)=m^*(E),
 		是{\rm Riemann } 可积的且 $\int_{a}^b{1}_{E}(x) \, dx=m(E)$.
 		\item  设 $[a,b]$ 为一区间, $f:[a,b]\rightarrow \mathbb{R}$ 为一有界函数, 则 $f$ 是{\rm Riemann }可积当且仅当
 		\begin{align}
-			E_+ &:=\{(x,t):x\in[a,b], 0\leq f(x)\leq t\}\\ E_-&:=\{(x,t):x\in[a,b], f(x)\leq t\leq 0\}
+			E_+ &:=\{(x,t):x\in[a,b], 0\leq t\leq f(x)\}\\ E_-&:=\{(x,t):x\in[a,b], f(x)\leq t\leq 0\}
 		\end{align}
 		在 $\mathbb{R}^2$ 上是{\rm Jordan} 可测的, 且有
 		$$\int_{a}^b f(x)  \, dx=m_{2}(E_{+})-m_{2}(E_{-}) $$
