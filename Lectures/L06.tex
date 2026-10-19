@@ -139,9 +139,32 @@
 	\end{jieda}
 
 	\end{frame}
+
+\begin{frame}{条件概率的例子}
+	\begin{exam}（条件概率的大小）
+设样本空间为 $\Omega=\{1,2,\ldots,10\}$，令
+\begin{align*}
+A&=\{2,3,4,5,6\},\quad
+B=\{4,5,6,7,8,9\},\\
+C&=\{2,4,6,8,10\},\quad
+D=\{1,7,8,9\}.
+\end{align*}
+那么有
+\[
+P(A\mid B)=\frac{3}{6}=\frac{5}{10}=P(A),
+\]
+\[
+P(A\mid C)=\frac{3}{5}>\frac{5}{10}=P(A),
+\]
+\[
+P(A\mid D)=0<\frac{5}{10}=P(A).
+\]
+\pause 由此可见，条件概率相比于无条件概率，并没有明确的大小关系.
+	\end{exam}
+\end{frame}
 	\begin{frame}{条件概率的注}
 	\begin{itemize}[<+-|alert@+>]
-	\item 条件概率大小与原事件无条件概率并没有明确的大小关系,见教材例6.5.
+	\item 条件概率大小与原事件无条件概率并没有明确的大小关系,见上例.
 	\item  注意哪些事件放在竖线的哪一边是非常重要的，具体来说就是 $P (A|B)\neq P (B|A)$.
 	\item 无论 $P (A|B)$ 还是 $P (B|A)$ 都是有意义的 (直观上或数学上):
 	\begin{itemize}[<+-|alert@+>]
