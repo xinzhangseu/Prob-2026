@@ -65,8 +65,8 @@
             \item 直观来看，结果应为 1/2.
             \item 令 $G_{1}$, $G_{2}$, $G_{3}$ 分别表示年长、 年幼、 随机的孩子是女孩这三个事件。由对称性可得: $P (G_{1})=P (G_{2})=P (G_{3})=1/2$
             \item 根据朴素概率的定义，或者独立性，可得: $P (G_{1}\cap G_{2})=1/4$
-            \item 因此，$P (G_{1}\cap G_{2}|G_{3})=P (G_{1}\cap G_{2}\cap G_{3})/P (G_{3})=1/2$
-            \item 又因为 $G_{1}\cap G_{2}\cap G_{3}=G_{1}\cap G_{2}$, 所以概率为 $1/2$.
+            \item 注意到 $G_{1}\cap G_{2}\cap G_{3}=G_{1}\cap G_{2}$, 所以概率为 $1/2$
+			\item 因此，$P (G_{1}\cap G_{2}|G_{3})=P (G_{1}\cap G_{2}\cap G_{3})/P (G_{3})=1/2$.
         \end{itemize}
     \end{jieda}
 	\pause
@@ -879,7 +879,7 @@
   \end{exam}
 
   \pause
-\jieda 记$p_n=P(A_n)$, 则以$A_{n-}$与$\bar{A}_{n-1}$为分割用全概率公式可得:\pause
+\jieda 记$p_n=P(A_n)$, 则以$A_{n-1}$与$\bar{A}_{n-1}$为分割用全概率公式可得:\pause
 \begin{align*}
   p_n=P(A_n)&=\pause P(A_{n-1})P(A_n|A_{n-1})+P(\bar{A}_{n-1})P(A_n|\bar{A}_{n-1})\pause\\
             &=\pause p_{n-1}\dfrac{5}{6}+(1-p_{n-1})\dfrac{1}{6}=\pause \dfrac{2}{3}p_{n-1}+\dfrac{1}{6}\pause
