@@ -465,9 +465,9 @@ Y^{-1}(B) \in \sigma(X),\ \mbox{等价的}\ \sigma(Y)\subset \sigma(X).
 Y(\omega)=g(X(\omega)),  \ \forall \omega \in \Omega .
 \]
 \end{thm}
-
+%
 \pause
-
+%
 \begin{rmk}
 	\begin{itemize}[<+-|alert@+>]
 		\item 随机变量的生成$\sigma$-代数研究随机变量间关系起着重要作用.
@@ -487,13 +487,13 @@ Y(\omega)=g(X(\omega)),  \ \forall \omega \in \Omega .
 	\begin{itemize}[<+-|alert@+>]
 		\item 注意到$$\mathbb{R}^n:=\mathbb{R}\times \mathbb{R}\times\cdots\times \mathbb{R}=\Pi_{k=1}^n\mathbb{R}$$
 		\item 我们希望
-		\[\mathcal{B}(\mathbb{R}^n)=\mathcal{B}(\mathbb{R})\times \mathcal{B}(\mathbb{R})\times\cdots\times\mathcal{B}(\mathbb{R})=\Pi_{k=1}^n\mathcal{B}(\mathbb{R})\]
-		\item 但$\Pi_{k=1}^n\mathcal{B}(\mathbb{R})$不是$\sigma$-代数.
+		\[\mathcal{B}(\mathbb{R}^n)=\mathcal{G}:=\{A_1\times\cdots\times A_n: A_i\in\mathcal{B}(\mathbb{R}),i=1,2,\cdots,n\}\]
+		\item 但$\mathcal{G}$不是$\sigma$-代数.
 		\item 因此, 定义
-		\[\mathcal{B}(\mathbb{R}^n):=\sigma(\mathcal{B}(\mathbb{R})\times \mathcal{B}(\mathbb{R})\times\cdots\times\mathcal{B}(\mathbb{R}))=\sigma(\Pi_{k=1}^n\mathcal{B}(\mathbb{R}))\]
-		\item 我们也可以类比$\mathcal{B}(\mathbb{R})$的定义方法, 先定义$\mathbb{R}^n$上的立方体
+		\[\mathcal{B}(\mathbb{R}^n):=\sigma(\mathcal{G})\]
+		\item 我们也可以类比$\mathcal{B}(\mathbb{R})$的定义方法, 先定义$\mathbb{R}^n$上的矩形
 		$$I=I_1\times I_2\times\cdots\times I_n=\Pi_{k=1}^nI_k, \ I_k=(a_k, b_k].$$ 然后定义$\mathcal{B}(\mathbb{R}^n)$为:
-		\[\mathcal{B}(\mathbb{R}^n):=\sigma(\{I:I\mbox{为}\mathbb{R}^n\mbox{上的立方体}\}).\]%集合的生成$\sigma$-代数来定义$\mathcal{B}(\mathbb{R}^n)$.
+		\[\mathcal{B}(\mathbb{R}^n):=\sigma(\{I:I\mbox{为}\mathbb{R}^n\mbox{上的矩形}\}).\]%集合的生成$\sigma$-代数来定义$\mathcal{B}(\mathbb{R}^n)$.
 	\end{itemize}
 
 \end{itemize}
